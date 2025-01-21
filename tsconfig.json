@@ -1,0 +1,22 @@
+{
+	"extends": "./.svelte-kit/tsconfig.json",
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"moduleResolution": "bundler",
+		"paths": {
+			"$lib/*": ["./src/lib/*"],
+			"@components/*": ["./src/lib/client/components/*"],
+			"@icons/*": ["./src/lib/client/icons/*"],
+			"@server/*": ["./src/lib/server/*"],
+			"@client/*": ["./src/lib/client/*"],
+			"@shared/*": ["./src/lib/shared/*"]
+		}
+	}
+}
