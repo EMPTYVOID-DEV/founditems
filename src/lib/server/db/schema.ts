@@ -1,18 +1,50 @@
-import { pgTable, text, integer, timestamp } from 'drizzle-orm/pg-core';
+import type { ClaimsStates, Languages, PostStates, QuizType } from '$lib/shared/types';
+import { boolean, json, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { nanoid } from 'nanoid';
 
-export const user = pgTable('user', {
-	id: text('id').primaryKey(),
-	age: integer('age')
+export const userTable = pgTable('user', {
+	id: varchar('id', { length: 8 }).primaryKey().default(nanoid(8)),
+	fullname: text('fullname').notNull(),
+	email: text('email').unique().notNull(),
+	password: text('password').notNull(),
+	verified: boolean('verified').notNull().default(false),
+	address: text('address').notNull(),
+	phoneNumber: text('phone_number').notNull(),
+	avatar: text('avatar').notNull()
 });
 
-export const session = pgTable('session', {
+export const sessionTable = pgTable('session', {
 	id: text('id').primaryKey(),
 	userId: text('user_id')
 		.notNull()
-		.references(() => user.id),
+		.references(() => userTable.id),
 	expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
 });
 
-export type Session = typeof session.$inferSelect;
+export const postTable = pgTable('post', {
+	id: varchar('id', { length: 8 }).primaryKey().default(nanoid(8)),
+	userId: text('user_id')
+		.notNull()
+		.references(() => userTable.id, { onDelete: 'cascade' }),
+	title: text('title').notNull(),
+	description: text('description').notNull(),
+	lang: text('lang').$type<Languages>().notNull(),
+	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
+	category: text('category').notNull(),
+	pictures: text('pictures').array().notNull(),
+	quiz: json('quiz').$type<Record<string, QuizType>>().notNull(),
+	state: text('state').$type<PostStates>().notNull()
+});
 
-export type User = typeof user.$inferSelect;
+export const claimTable = pgTable('claim', {
+	id: varchar('id', { length: 8 }).primaryKey().default(nanoid(8)),
+	userId: text('user_id')
+		.notNull()
+		.references(() => userTable.id, { onDelete: 'cascade' }),
+	postId: text('post_id')
+		.notNull()
+		.references(() => postTable.id, { onDelete: 'cascade' }),
+	quizAnswers: json('quiz_answers').notNull(),
+	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
+	state: text('state').$type<ClaimsStates>().notNull()
+});
