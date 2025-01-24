@@ -1,3 +1,127 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		/* Background and Foreground */
+		--background: 220 15% 97%; /* Light Gray */
+		--foreground: 215 28% 20%; /* Charcoal Gray */
+
+		/* Muted */
+		--muted: 210 20% 94%;
+		--muted-foreground: 215 15% 45%;
+
+		/* Popover */
+		--popover: 220 15% 97%;
+		--popover-foreground: 215 28% 20%;
+
+		/* Card */
+		--card: 220 15% 97%;
+		--card-foreground: 215 28% 20%;
+
+		/* Border and Input */
+		--border: 210 12% 90%;
+		--input: 210 12% 90%;
+
+		/* Primary */
+		--primary: 220 76% 53%; /* Bright Blue */
+		--primary-foreground: 0 0% 100%; /* White */
+
+		/* Secondary */
+		--secondary: 45 92% 58%; /* Warm Amber */
+		--secondary-foreground: 215 28% 20%; /* Charcoal Gray */
+
+		/* Accent */
+		--accent: 45 92% 58%;
+		--accent-foreground: 215 28% 20%;
+
+		/* Destructive (Danger) */
+		--destructive: 0 79% 56%; /* Bright Red */
+		--destructive-foreground: 0 0% 100%; /* White */
+
+		/* Success */
+		--success: 140 62% 45%; /* Vivid Green */
+		--success-foreground: 0 0% 100%; /* White */
+
+		/* Ring */
+		--ring: 220 76% 53%; /* Match Primary */
+
+		/* Radius */
+		--radius: 0.5rem;
+
+		/* Sidebar (Optional) */
+		--sidebar-background: 220 12% 95%; /* Light Background */
+		--sidebar-foreground: 220 28% 15%; /* Darker Foreground */
+		--sidebar-primary: 220 76% 53%; /* Bright Blue */
+		--sidebar-primary-foreground: 0 0% 100%; /* White */
+		--sidebar-accent: 45 92% 58%; /* Warm Amber */
+		--sidebar-accent-foreground: 220 28% 15%; /* Darker Foreground */
+		--sidebar-border: 210 12% 90%; /* Light Border */
+		--sidebar-ring: 220 76% 53%; /* Match Primary */
+	}
+
+	.dark {
+		/* Background and Foreground */
+		--background: 220 28% 12%; /* Dark Gray */
+		--foreground: 210 15% 90%; /* Off-White */
+
+		/* Muted */
+		--muted: 220 20% 20%;
+		--muted-foreground: 210 10% 75%;
+
+		/* Popover */
+		--popover: 220 28% 12%;
+		--popover-foreground: 210 15% 90%;
+
+		/* Card */
+		--card: 220 28% 12%;
+		--card-foreground: 210 15% 90%;
+
+		/* Border and Input */
+		--border: 220 20% 20%;
+		--input: 220 20% 20%;
+
+		/* Primary */
+		--primary: 210 15% 90%; /* Off-White */
+		--primary-foreground: 220 76% 53%; /* Bright Blue */
+
+		/* Secondary */
+		--secondary: 220 20% 20%;
+		--secondary-foreground: 210 15% 90%; /* Off-White */
+
+		/* Accent */
+		--accent: 220 20% 20%;
+		--accent-foreground: 210 15% 90%; /* Off-White */
+
+		/* Destructive (Danger) */
+		--destructive: 0 70% 35%; /* Dark Red */
+		--destructive-foreground: 210 15% 90%; /* Off-White */
+
+		/* Success */
+		--success: 140 62% 30%; /* Darker Green */
+		--success-foreground: 210 15% 90%; /* Off-White */
+
+		/* Ring */
+		--ring: 220 76% 53%; /* Match Primary */
+
+		/* Sidebar (Optional) */
+		--sidebar-background: 220 20% 12%; /* Dark Background */
+		--sidebar-foreground: 210 15% 90%; /* Off-White */
+		--sidebar-primary: 220 76% 53%; /* Bright Blue */
+		--sidebar-primary-foreground: 0 0% 100%; /* White */
+		--sidebar-accent: 45 92% 58%; /* Warm Amber */
+		--sidebar-accent-foreground: 210 15% 90%; /* Off-White */
+		--sidebar-border: 220 20% 20%; /* Darker Border */
+		--sidebar-ring: 220 76% 53%; /* Match Primary */
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}

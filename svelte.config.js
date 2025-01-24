@@ -11,7 +11,8 @@ const config = {
 			'@icons': './src/lib/client/icons',
 			'@server': './src/lib/server',
 			'@client': './src/lib/client',
-			'@shared': './src/lib/shared'
+			'@shared': './src/lib/shared',
+			'@assets': './src/lib/assets'
 		}
 	}
 };
