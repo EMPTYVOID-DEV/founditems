@@ -1,0 +1,6 @@
+{
+	"baseLocale": "ar",
+	"adapter": "svelte",
+	"esmImports": true,
+	"outputPath": "./src/lib/client/i18n/"
+}
