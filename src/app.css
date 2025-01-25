@@ -4,6 +4,14 @@
 
 @layer base {
 	:root {
+		/* font sizes */
+		--h1: clamp(2rem, calc(2rem + ((1vw - 0.48rem) * 0.9722)), 2.5rem);
+		--h2: clamp(1.725rem, calc(1.725rem + ((1vw - 0.48rem) * 0.9722)), 2rem);
+		--h3: clamp(1.5rem, calc(1.5rem + ((1vw - 0.48rem) * 0.9722)), 1.725rem);
+		--h4: clamp(1.275rem, calc(1.275rem + ((1vw - 0.48rem) * 0.3472)), 1.5rem);
+		--body: clamp(1rem, calc(1rem + ((1vw - 0.48rem) * 0.1736)), 1.275rem);
+		--small: clamp(0.875rem, calc(0.875rem + ((1vw - 0.48rem) * 0.1736)), 1rem);
+
 		/* Background and Foreground */
 		--background: 220 15% 97%; /* Light Gray */
 		--foreground: 215 28% 20%; /* Charcoal Gray */
@@ -123,5 +131,23 @@
 	}
 	body {
 		@apply bg-background text-foreground;
+	}
+	h1 {
+		@apply text-h1 font-heading;
+	}
+	h2 {
+		@apply text-h2 font-heading;
+	}
+	h3 {
+		@apply text-h3 font-heading;
+	}
+	h4 {
+		@apply text-h4 font-heading;
+	}
+	p,
+	span,
+	a,
+	li {
+		@apply text-body font-body;
 	}
 }

@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/dm-sans':
+        specifier: ^5.1.1
+        version: 5.1.1
+      '@fontsource/inter':
+        specifier: ^5.1.1
+        version: 5.1.1
       '@oslojs/crypto':
         specifier: ^1.0.1
         version: 1.0.1
@@ -72,6 +78,9 @@ importers:
       globals:
         specifier: ^15.0.0
         version: 15.14.0
+      lucide-svelte:
+        specifier: ^0.474.0
+        version: 0.474.0(svelte@5.17.3)
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -756,6 +765,12 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
+
+  '@fontsource/dm-sans@5.1.1':
+    resolution: {integrity: sha512-xApcrecLZkQMM6bl7U+Eokg8Y4LeYMiR+cQUTUNx4Adun5ZpiIlPB9+JEXg/k1gFea/72nmn30AekCBA+HhUCA==}
+
+  '@fontsource/inter@5.1.1':
+    resolution: {integrity: sha512-weN3E+rq0Xb3Z93VHJ+Rc7WOQX9ETJPTAJ+gDcaMHtjft67L58sfS65rAjC5tZUXQ2FdZ/V1/sSzCwZ6v05kJw==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2009,6 +2024,11 @@ packages:
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
+
+  lucide-svelte@0.474.0:
+    resolution: {integrity: sha512-yOSqjXPoEDOXCceBIfDaed6RinOvhp03ShiTXH6O+vlXE/NsyjQpktL8gm2vGDxi9d81HMuPFN1dwhVURh6mGg==}
+    peerDependencies:
+      svelte: ^3 || ^4 || ^5.0.0-next.42
 
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
@@ -3288,6 +3308,10 @@ snapshots:
       '@floating-ui/utils': 0.2.9
 
   '@floating-ui/utils@0.2.9': {}
+
+  '@fontsource/dm-sans@5.1.1': {}
+
+  '@fontsource/inter@5.1.1': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -4652,6 +4676,10 @@ snapshots:
   loupe@3.1.2: {}
 
   lru-cache@10.4.3: {}
+
+  lucide-svelte@0.474.0(svelte@5.17.3):
+    dependencies:
+      svelte: 5.17.3
 
   magic-string@0.30.17:
     dependencies:

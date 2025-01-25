@@ -1,9 +1,13 @@
-import type { BaseTranslation } from '../i18n-types.js';
+import type { BaseTranslation } from '../i18n-types';
 
-const ar = {
-	title: 'ايتمز',
-	intro: 'ايتمز هي منصة تسهل ايجاد اشياء مفقودة',
-	startNow: 'ابدا الان'
-} satisfies BaseTranslation;
+const ar: BaseTranslation = {
+	navbar: {
+		login: 'تسجيل الدخول',
+		selectLanguage: 'اختر اللغة',
+		claims: 'المطالبات',
+		posts: 'المشاركات',
+		search: 'بحث'
+	}
+};
 
 export default ar;

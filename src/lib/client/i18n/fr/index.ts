@@ -1,9 +1,13 @@
-import type { BaseTranslation } from '../i18n-types.js';
+import type { Translation } from '../i18n-types';
 
-const fr = {
-	title: 'items',
-	intro: 'items est une platform qui facilite trouver les choses perdus',
-	startNow: 'commencer maintenant'
-} satisfies BaseTranslation;
+const fr: Translation = {
+	navbar: {
+		login: 'Connexion',
+		selectLanguage: 'Choisissez la langue',
+		claims: 'Les revendications',
+		posts: 'Les messages',
+		search: 'Chercher'
+	}
+};
 
 export default fr;

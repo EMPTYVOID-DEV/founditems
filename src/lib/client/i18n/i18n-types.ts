@@ -14,33 +14,53 @@ export type Translation = RootTranslation
 export type Translations = RootTranslation
 
 type RootTranslation = {
-	/**
-	 * ا​ي​ت​م​ز
-	 */
-	title: string
-	/**
-	 * ا​ي​ت​م​ز​ ​ه​ي​ ​م​ن​ص​ة​ ​ت​س​ه​ل​ ​ا​ي​ج​ا​د​ ​ا​ش​ي​ا​ء​ ​م​ف​ق​و​د​ة
-	 */
-	intro: string
-	/**
-	 * ا​ب​د​ا​ ​ا​ل​ا​ن
-	 */
-	startNow: string
+	navbar: {
+		/**
+		 * ت​س​ج​ي​ل​ ​ا​ل​د​خ​و​ل
+		 */
+		login: string
+		/**
+		 * ا​خ​ت​ر​ ​ا​ل​ل​غ​ة
+		 */
+		selectLanguage: string
+		/**
+		 * ا​ل​م​ط​ا​ل​ب​ا​ت
+		 */
+		claims: string
+		/**
+		 * ا​ل​م​ش​ا​ر​ك​ا​ت
+		 */
+		posts: string
+		/**
+		 * ب​ح​ث
+		 */
+		search: string
+	}
 }
 
 export type TranslationFunctions = {
-	/**
-	 * ايتمز
-	 */
-	title: () => LocalizedString
-	/**
-	 * ايتمز هي منصة تسهل ايجاد اشياء مفقودة
-	 */
-	intro: () => LocalizedString
-	/**
-	 * ابدا الان
-	 */
-	startNow: () => LocalizedString
+	navbar: {
+		/**
+		 * تسجيل الدخول
+		 */
+		login: () => LocalizedString
+		/**
+		 * اختر اللغة
+		 */
+		selectLanguage: () => LocalizedString
+		/**
+		 * المطالبات
+		 */
+		claims: () => LocalizedString
+		/**
+		 * المشاركات
+		 */
+		posts: () => LocalizedString
+		/**
+		 * بحث
+		 */
+		search: () => LocalizedString
+	}
 }
 
 export type Formatters = {}
