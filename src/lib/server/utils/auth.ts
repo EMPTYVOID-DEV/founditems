@@ -3,7 +3,7 @@ import { eq } from 'drizzle-orm';
 import { sha256 } from '@oslojs/crypto/sha2';
 import { encodeBase64url, encodeHexLowerCase } from '@oslojs/encoding';
 import { db } from '../db';
-import type { Session } from '../types';
+import type { Session } from '@shared/types';
 import { sessionTable, userTable } from '../db/schema';
 
 const DAY_IN_MS = 1000 * 60 * 60 * 24;

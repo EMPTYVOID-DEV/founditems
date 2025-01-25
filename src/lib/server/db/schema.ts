@@ -1,4 +1,5 @@
 import type { ClaimsStates, Languages, PostStates, QuizType } from '$lib/shared/types';
+import { relations } from 'drizzle-orm';
 import { boolean, json, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 import { nanoid } from 'nanoid';
 
@@ -48,3 +49,18 @@ export const claimTable = pgTable('claim', {
 	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
 	state: text('state').$type<ClaimsStates>().notNull()
 });
+
+export const userRelation = relations(userTable, ({ many }) => ({
+	posts: many(postTable),
+	claims: many(claimTable)
+}));
+
+export const postRelation = relations(postTable, ({ many, one }) => ({
+	claims: many(claimTable),
+	user: one(userTable, { fields: [postTable.userId], references: [userTable.id] })
+}));
+
+export const claimsRelation = relations(claimTable, ({ one }) => ({
+	user: one(userTable, { fields: [claimTable.userId], references: [userTable.id] }),
+	post: one(postTable, { fields: [claimTable.postId], references: [postTable.id] })
+}));

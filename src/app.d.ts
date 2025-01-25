@@ -3,8 +3,8 @@
 declare global {
 	namespace App {
 		interface Locals {
-			user: import('$lib/server/types').SessionValidationResult['user'];
-			session: import('$lib/server/types').SessionValidationResult['session'];
+			user: import('$lib/shared/types').SessionValidationResult['user'];
+			session: import('$lib/shared/types').SessionValidationResult['session'];
 		}
 		interface Env {
 			DATABASE_URL: string;

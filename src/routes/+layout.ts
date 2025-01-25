@@ -5,8 +5,9 @@ import { loadLocale } from '$lib/client/i18n/i18n-util.sync';
 import { setLocale } from '$lib/client/i18n/i18n-svelte';
 import { detectLangDirection } from '$lib/client/utils';
 import cookies from 'browser-cookies';
+import type { SessionValidationResult } from '$lib/shared/types';
 
-export const load: Load = async () => {
+export const load: Load = async ({ data }) => {
 	if (browser) {
 		const lang = cookies.get('lang') || '';
 		const locale = detectLocale(() => [lang]);
@@ -16,4 +17,5 @@ export const load: Load = async () => {
 		loadLocale(locale);
 		setLocale(locale);
 	}
+	return data as { user: SessionValidationResult['user'] };
 };
