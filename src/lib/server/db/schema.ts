@@ -4,7 +4,9 @@ import { boolean, json, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg
 import { nanoid } from 'nanoid';
 
 export const userTable = pgTable('user', {
-	id: varchar('id', { length: 8 }).primaryKey().default(nanoid(8)),
+	id: varchar('id', { length: 8 })
+		.primaryKey()
+		.$default(() => nanoid(8)),
 	fullname: text('fullname').notNull(),
 	email: text('email').unique().notNull(),
 	password: text('password').notNull(),
@@ -23,7 +25,9 @@ export const sessionTable = pgTable('session', {
 });
 
 export const postTable = pgTable('post', {
-	id: varchar('id', { length: 8 }).primaryKey().default(nanoid(8)),
+	id: varchar('id', { length: 8 })
+		.primaryKey()
+		.$default(() => nanoid(8)),
 	userId: text('user_id')
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
@@ -38,7 +42,9 @@ export const postTable = pgTable('post', {
 });
 
 export const claimTable = pgTable('claim', {
-	id: varchar('id', { length: 8 }).primaryKey().default(nanoid(8)),
+	id: varchar('id', { length: 8 })
+		.primaryKey()
+		.$default(() => nanoid(8)),
 	userId: text('user_id')
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
@@ -47,7 +53,8 @@ export const claimTable = pgTable('claim', {
 		.references(() => postTable.id, { onDelete: 'cascade' }),
 	quizAnswers: json('quiz_answers').notNull(),
 	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
-	state: text('state').$type<ClaimsStates>().notNull()
+	state: text('state').$type<ClaimsStates>().notNull(),
+	lang: text('lang').$type<Languages>().notNull()
 });
 
 export const userRelation = relations(userTable, ({ many }) => ({

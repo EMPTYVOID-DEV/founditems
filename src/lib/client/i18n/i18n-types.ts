@@ -14,11 +14,13 @@ export type Translation = RootTranslation
 export type Translations = RootTranslation
 
 type RootTranslation = {
-	navbar: {
+	auth: {
 		/**
 		 * ت​س​ج​ي​ل​ ​ا​ل​د​خ​و​ل
 		 */
 		login: string
+	}
+	navbar: {
 		/**
 		 * ا​خ​ت​ر​ ​ا​ل​ل​غ​ة
 		 */
@@ -36,14 +38,30 @@ type RootTranslation = {
 		 */
 		search: string
 	}
+	home: {
+		/**
+		 * ا​ج​د​ ​ا​ش​ي​ا​ئ​ك​ ​ا​ل​م​ف​ق​و​د​ة​ ​ب​د​و​ن​ ​ع​ن​ا​ء
+		 */
+		title: string
+		/**
+		 * م​ن​ص​ة​ ​م​ب​ت​ك​ر​ة​ ​ل​ت​و​ص​ي​ل​ ​ا​ل​م​ف​ق​و​د​ا​ت​ ​ب​أ​ص​ح​ا​ب​ه​ا​ ​م​ع​ ​ن​ظ​ا​م​ ​آ​م​ن​ ​ل​إ​د​ا​ر​ة​ ​ا​ل​م​ط​ا​ل​ب​ا​ت​ ​و​م​ن​ع​ ​ا​ل​ا​ح​ت​ي​ا​ل
+		 */
+		description: string
+		/**
+		 * ا​ب​ح​ث​ ​ع​ن​ ​أ​ش​ي​ا​ئ​ك
+		 */
+		findYourThings: string
+	}
 }
 
 export type TranslationFunctions = {
-	navbar: {
+	auth: {
 		/**
 		 * تسجيل الدخول
 		 */
 		login: () => LocalizedString
+	}
+	navbar: {
 		/**
 		 * اختر اللغة
 		 */
@@ -60,6 +78,20 @@ export type TranslationFunctions = {
 		 * بحث
 		 */
 		search: () => LocalizedString
+	}
+	home: {
+		/**
+		 * اجد اشيائك المفقودة بدون عناء
+		 */
+		title: () => LocalizedString
+		/**
+		 * منصة مبتكرة لتوصيل المفقودات بأصحابها مع نظام آمن لإدارة المطالبات ومنع الاحتيال
+		 */
+		description: () => LocalizedString
+		/**
+		 * ابحث عن أشيائك
+		 */
+		findYourThings: () => LocalizedString
 	}
 }
 

@@ -1,0 +1,21 @@
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import Button from '@components/shadcn/button/button.svelte';
+	import LL from '@client/i18n/i18n-svelte.js';
+
+	let { data } = $props();
+</script>
+
+<div
+	class="flex h-full w-svw flex-col items-center justify-center gap-4 bg-gradient-to-t from-primary/60 from-0% to-background to-95%"
+>
+	<h1 class="text-balance text-center text-primary">{$LL.home.title()}</h1>
+	<p class="mr:w-full w-3/4 text-balance text-center font-bold text-muted-foreground">
+		{$LL.home.description()}
+	</p>
+	{#if data.user}
+		<Button onclick={() => goto('/search')}>{$LL.home.findYourThings()}</Button>
+	{:else}
+		<Button onclick={() => goto('/login')}>{$LL.auth.login()}</Button>
+	{/if}
+</div>

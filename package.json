@@ -4,7 +4,8 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "npm-run-all --parallel vite typesafe-i18n",
+		"dev": "npm-run-all --parallel vite i18n",
+		"i18n": "typesafe-i18n",
 		"vite": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -17,9 +18,7 @@
 		"db:generate": "drizzle-kit generate",
 		"db:push": "drizzle-kit push",
 		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "drizzle-kit studio",
-		"i18n": "typesafe-i18n",
-		"typesafe-i18n": "typesafe-i18n --no-watch"
+		"db:studio": "drizzle-kit studio"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.3",
