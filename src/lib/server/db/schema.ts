@@ -1,4 +1,10 @@
-import type { ClaimsStates, Languages, PostStates, QuizType } from '$lib/shared/types';
+import type {
+	ClaimsStates,
+	Languages,
+	PostMetadata,
+	PostStates,
+	QuizType
+} from '$lib/shared/types';
 import { relations } from 'drizzle-orm';
 import { boolean, json, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 import { nanoid } from 'nanoid';
@@ -11,9 +17,9 @@ export const userTable = pgTable('user', {
 	email: text('email').unique().notNull(),
 	password: text('password').notNull(),
 	verified: boolean('verified').notNull().default(false),
-	address: text('address').notNull(),
-	phoneNumber: text('phone_number').notNull(),
-	avatar: text('avatar').notNull()
+	address: text('address').notNull().default(''),
+	phoneNumber: text('phone_number').notNull().default(''),
+	avatar: text('avatar').notNull().default('')
 });
 
 export const sessionTable = pgTable('session', {
@@ -35,10 +41,12 @@ export const postTable = pgTable('post', {
 	description: text('description').notNull(),
 	lang: text('lang').$type<Languages>().notNull(),
 	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
+	updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).notNull(),
 	category: text('category').notNull(),
 	pictures: text('pictures').array().notNull(),
 	quiz: json('quiz').$type<Record<string, QuizType>>().notNull(),
-	state: text('state').$type<PostStates>().notNull()
+	state: text('state').$type<PostStates>().notNull(),
+	metadata: json('metadata').array().$type<PostMetadata>().notNull()
 });
 
 export const claimTable = pgTable('claim', {

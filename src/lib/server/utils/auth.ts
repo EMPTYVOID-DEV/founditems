@@ -5,10 +5,7 @@ import { encodeBase64url, encodeHexLowerCase } from '@oslojs/encoding';
 import { db } from '../db';
 import type { Session } from '@shared/types';
 import { sessionTable, userTable } from '../db/schema';
-
-const DAY_IN_MS = 1000 * 60 * 60 * 24;
-
-export const sessionCookieName = 'auth-session';
+import { DAY_IN_MS, sessionCookieName } from '../const';
 
 export function generateSessionToken() {
 	const bytes = crypto.getRandomValues(new Uint8Array(18));
@@ -16,12 +13,16 @@ export function generateSessionToken() {
 	return token;
 }
 
+export function generateExpirationDate() {
+	return new Date(Date.now() + DAY_IN_MS * 30);
+}
+
 export async function createSession(token: string, userId: string) {
 	const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
 	const session: Session = {
 		id: sessionId,
 		userId,
-		expiresAt: new Date(Date.now() + DAY_IN_MS * 30)
+		expiresAt: generateExpirationDate()
 	};
 	await db.insert(sessionTable).values(session);
 	return session;
@@ -55,7 +56,7 @@ export async function validateSessionToken(token: string) {
 
 	const renewSession = Date.now() >= session.expiresAt.getTime() - DAY_IN_MS * 15;
 	if (renewSession) {
-		session.expiresAt = new Date(Date.now() + DAY_IN_MS * 30);
+		session.expiresAt = generateExpirationDate();
 		await db
 			.update(sessionTable)
 			.set({ expiresAt: session.expiresAt })
@@ -69,15 +70,26 @@ export async function invalidateSession(sessionId: string) {
 	await db.delete(sessionTable).where(eq(sessionTable.id, sessionId));
 }
 
-export function setSessionTokenCookie(event: RequestEvent, token: string, expiresAt: Date) {
-	event.cookies.set(sessionCookieName, token, {
+export function setSessionTokenCookie(
+	cookies: RequestEvent['cookies'],
+	token: string,
+	expiresAt: Date
+) {
+	cookies.set(sessionCookieName, token, {
 		expires: expiresAt,
 		path: '/'
 	});
 }
 
-export function deleteSessionTokenCookie(event: RequestEvent) {
-	event.cookies.delete(sessionCookieName, {
+export function deleteSessionTokenCookie(cookies: RequestEvent['cookies']) {
+	cookies.delete(sessionCookieName, {
 		path: '/'
 	});
+}
+
+export function createSessionWrapper(cookies: RequestEvent['cookies'], userId: string) {
+	const token = generateSessionToken();
+	const expiresAt = generateExpirationDate();
+	setSessionTokenCookie(cookies, token, expiresAt);
+	return createSession(token, userId);
 }
