@@ -5,12 +5,17 @@ export type PostStates =
 	| 'Idle'
 	| 'Processing claims'
 	| 'Validated'
-	| 'Payment'
 	| 'Payment Validated'
-	| 'Shipment'
+	| 'Payment Failed'
+	| 'Shipment Processing'
+	| 'Shipment Failed'
+	| 'Shipment Delivered'
+	| 'Reporting'
 	| 'Released';
 
 export type ClaimsStates = 'Idle' | 'Rejected' | 'Accepted' | 'Post deleted';
+
+export type PostMetadata = Record<PostStates, unknown>[];
 
 export type Languages = 'ar' | 'fr';
 
@@ -25,3 +30,11 @@ export type User = typeof userTable.$inferSelect;
 export type Post = typeof postTable.$inferSelect;
 
 export type Claim = typeof claimTable.$inferSelect;
+
+export type SessionInsert = typeof sessionTable.$inferInsert;
+
+export type UserInsert = typeof userTable.$inferInsert;
+
+export type PostInsert = typeof postTable.$inferInsert;
+
+export type ClaimInsert = typeof claimTable.$inferInsert;
