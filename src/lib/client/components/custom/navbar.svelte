@@ -1,25 +1,25 @@
 <script lang="ts">
-	import type { SessionValidationResult } from '$lib/shared/types';
+	import type { SessionValidationResult } from '@shared/types';
 	import LangSelect from './langSelect.svelte';
-	import LL from '$lib/client/i18n/i18n-svelte';
+	import LL from '@client/i18n/i18n-svelte';
 	import UserAvatar from './userAvatar.svelte';
-	import LogoIcon from '$lib/client/icons/logoIcon.svelte';
-	import CloseIcon from '$lib/client/icons/closeIcon.svelte';
-	import MenuIcon from '$lib/client/icons/menuIcon.svelte';
-	import { cn } from '$lib/client/utils';
-	import { authPage, claimsPage, postsPage, searchPage } from '$lib/client/consts';
+	import CloseIcon from '@client/icons/closeIcon.svelte';
+	import MenuIcon from '@client/icons/menuIcon.svelte';
+	import { cn } from '@client/utils';
+	import { authPage, claimsPage, postsPage, searchPage } from '@client/consts';
 	import { page } from '$app/state';
+	import Logo from './logo.svelte';
 
 	let { user }: { user: SessionValidationResult['user'] } = $props();
 	let currentPathname = $derived(page.url.pathname);
 	let showMenu = $state(false);
 </script>
 
-<div class="fixed left-0 top-0 z-50 flex h-20 w-full items-center bg-background px-4 shadow-md">
-	<a href="/" class="mr-auto cursor-pointer">
-		<LogoIcon />
-	</a>
-
+<div
+	class="fixed left-0 top-0 z-50 flex h-20 w-full items-center bg-background px-4 shadow-md"
+	dir="ltr"
+>
+	<Logo class="mr-auto" />
 	<button class="hidden mr:contents" onclick={() => (showMenu = !showMenu)}>
 		{#if showMenu}
 			<CloseIcon />

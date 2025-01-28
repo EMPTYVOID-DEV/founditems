@@ -29,8 +29,8 @@
 		--card-foreground: 215 28% 20%;
 
 		/* Border and Input */
-		--border: 210 12% 90%;
-		--input: 210 12% 90%;
+		--border: 215 28% 20%;
+		--input: 210 12% 60%;
 
 		/* Primary */
 		--primary: 220 76% 53%; /* Bright Blue */
@@ -95,6 +95,7 @@ body {
 	}
 	p,
 	span,
+	label,
 	a,
 	li {
 		@apply font-body text-body;
