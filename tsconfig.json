@@ -11,13 +11,13 @@
 		"strict": true,
 		"moduleResolution": "bundler",
 		"paths": {
-			"$lib/*": ["./src/lib/*"],
 			"@components/*": ["./src/lib/client/components/*"],
 			"@icons/*": ["./src/lib/client/icons/*"],
 			"@server/*": ["./src/lib/server/*"],
 			"@client/*": ["./src/lib/client/*"],
 			"@shared/*": ["./src/lib/shared/*"],
-			"@assets/*": ["./src/lib/assets/*"]
+			"@assets/*": ["./src/lib/assets/*"],
+			"$lib/*": ["./src/lib/*"]
 		}
 	}
 }

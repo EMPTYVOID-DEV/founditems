@@ -11,7 +11,7 @@ import { postgresUniqueViolationCode } from '@server/const';
 import type { PostgresError } from 'postgres';
 
 export const actions: Actions = {
-	'Sign up': async ({ request }) => {
+	signup: async ({ request }) => {
 		const fd = await request.formData();
 		const fullname = fd.get('fullname')!.toString();
 		const email = fd.get('email')!.toString();
@@ -40,7 +40,7 @@ export const actions: Actions = {
 		}
 		redirect(303, `/auth/verify/${email}`);
 	},
-	'Sign in': async ({ cookies, request }) => {
+	signin: async ({ cookies, request }) => {
 		const fd = await request.formData();
 		const email = fd.get('email')!.toString();
 		const password = fd.get('password')!.toString();

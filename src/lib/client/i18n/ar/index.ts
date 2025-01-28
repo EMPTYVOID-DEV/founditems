@@ -2,7 +2,14 @@ import type { BaseTranslation } from '../i18n-types';
 
 const ar: BaseTranslation = {
 	auth: {
-		login: 'تسجيل الدخول'
+		login: 'تسجيل الدخول',
+		signup: 'إنشاء حساب',
+		fullname: 'الاسم الكامل',
+		email: 'البريد الالكتروني',
+		password: 'كلمة المرور',
+		alreadyHaveAccount: 'لديك حساب بالفعل؟',
+		dontHaveAccount: 'ليس لديك حساب؟',
+		forgetPassword: 'نسيت كلمة المرور؟'
 	},
 	navbar: {
 		selectLanguage: 'اختر اللغة',

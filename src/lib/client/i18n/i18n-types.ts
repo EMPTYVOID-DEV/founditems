@@ -19,6 +19,34 @@ type RootTranslation = {
 		 * ت​س​ج​ي​ل​ ​ا​ل​د​خ​و​ل
 		 */
 		login: string
+		/**
+		 * إ​ن​ش​ا​ء​ ​ح​س​ا​ب
+		 */
+		signup: string
+		/**
+		 * ا​ل​ا​س​م​ ​ا​ل​ك​ا​م​ل
+		 */
+		fullname: string
+		/**
+		 * ا​ل​ب​ر​ي​د​ ​ا​ل​ا​ل​ك​ت​ر​و​ن​ي
+		 */
+		email: string
+		/**
+		 * ك​ل​م​ة​ ​ا​ل​م​ر​و​ر
+		 */
+		password: string
+		/**
+		 * ل​د​ي​ك​ ​ح​س​ا​ب​ ​ب​ا​ل​ف​ع​ل​؟
+		 */
+		alreadyHaveAccount: string
+		/**
+		 * ل​ي​س​ ​ل​د​ي​ك​ ​ح​س​ا​ب​؟
+		 */
+		dontHaveAccount: string
+		/**
+		 * ن​س​ي​ت​ ​ك​ل​م​ة​ ​ا​ل​م​ر​و​ر​؟
+		 */
+		forgetPassword: string
 	}
 	navbar: {
 		/**
@@ -60,6 +88,34 @@ export type TranslationFunctions = {
 		 * تسجيل الدخول
 		 */
 		login: () => LocalizedString
+		/**
+		 * إنشاء حساب
+		 */
+		signup: () => LocalizedString
+		/**
+		 * الاسم الكامل
+		 */
+		fullname: () => LocalizedString
+		/**
+		 * البريد الالكتروني
+		 */
+		email: () => LocalizedString
+		/**
+		 * كلمة المرور
+		 */
+		password: () => LocalizedString
+		/**
+		 * لديك حساب بالفعل؟
+		 */
+		alreadyHaveAccount: () => LocalizedString
+		/**
+		 * ليس لديك حساب؟
+		 */
+		dontHaveAccount: () => LocalizedString
+		/**
+		 * نسيت كلمة المرور؟
+		 */
+		forgetPassword: () => LocalizedString
 	}
 	navbar: {
 		/**
