@@ -9,15 +9,15 @@
 
 	const stateClasses = {
 		error: {
-			toast: 'bg-destructive/70 border-destructive',
+			toast: 'bg-destructive/80 border-destructive',
 			text: 'text-destructive-foreground'
 		},
 		info: {
-			toast: 'bg-primary/70 border-primary',
+			toast: 'bg-primary/80 border-primary',
 			text: 'text-primary-foreground'
 		},
 		success: {
-			toast: 'bg-success/70 border-success',
+			toast: 'bg-success/80 border-success',
 			text: 'text-success-foreground'
 		}
 	};
@@ -31,6 +31,6 @@
 		currentState.toast
 	)}
 >
-	<span class={cn('font-semibold', currentState.text)}>{title}</span>
+	<span class={cn('font-semibold capitalize', currentState.text)}>{title}</span>
 	<span class={currentState.text}>{message}</span>
 </div>

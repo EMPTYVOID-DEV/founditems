@@ -17,8 +17,6 @@ export type ClaimsStates = 'Idle' | 'Rejected' | 'Accepted' | 'Post deleted';
 
 export type PostMetadata = Record<PostStates, unknown>[];
 
-export type Languages = 'ar' | 'fr';
-
 export type QuizType = 'direct' | 'time' | 'address';
 
 export type SessionValidationResult = Awaited<ReturnType<typeof validateSessionToken>>;
@@ -38,3 +36,7 @@ export type UserInsert = typeof userTable.$inferInsert;
 export type PostInsert = typeof postTable.$inferInsert;
 
 export type ClaimInsert = typeof claimTable.$inferInsert;
+
+export type ActionStatus = { status: 'valid' | 'invalid'; errorMsg: string };
+
+export type Validator = (text: string) => ActionStatus;

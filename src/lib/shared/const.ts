@@ -11,3 +11,7 @@ export const postsPage = '/dashboard/posts';
 export const claimsPage = '/dashboard/claims';
 
 export const authPage = '/auth';
+
+export const authVerifyPage = '/auth/verify';
+
+export const authPasswordResetPage = '/auth/password-reset';
