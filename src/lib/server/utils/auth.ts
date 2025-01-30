@@ -6,6 +6,7 @@ import { db } from '../db';
 import type { Session } from '@shared/types';
 import { sessionTable, userTable } from '../db/schema';
 import { DAY_IN_MS, sessionCookieName } from '../const';
+import { dev } from '$app/environment';
 
 export function generateSessionToken() {
 	const bytes = crypto.getRandomValues(new Uint8Array(18));
@@ -77,6 +78,7 @@ export function setSessionTokenCookie(
 ) {
 	cookies.set(sessionCookieName, token, {
 		expires: expiresAt,
+		httpOnly: !dev,
 		path: '/'
 	});
 }
