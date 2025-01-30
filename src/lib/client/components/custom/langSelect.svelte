@@ -1,17 +1,16 @@
 <script lang="ts">
-	import LL, { locale } from '$lib/client/i18n/i18n-svelte';
-	import { setLang, setLangCookie } from '$lib/client/utils';
-	import type { Languages } from '$lib/shared/types';
-	import { availableLocales } from '@client/consts';
+	import { svelteLL, usedLocale } from '@shared/i18n/i18n';
+	import { setClientLocale } from '$lib/client/utils';
+	import { availableLocales } from '@shared/const';
 	import * as Select from '@components/shadcn/select/index.js';
-	let selected = $state<Languages>($locale);
+	import type { Locales } from '@shared/i18n/i18n-types';
+	let selected = $state<Locales>(usedLocale);
 	const languages = availableLocales.map((v) => ({ value: v, label: v }));
 	const triggerContent = $derived(
-		languages.find((lang) => lang.value === selected)?.label ?? $LL.navbar.selectLanguage()
+		languages.find((lang) => lang.value === selected)?.label ?? $svelteLL.navbar.selectLanguage()
 	);
 	function onValueChange() {
-		setLang(selected);
-		setLangCookie(selected);
+		setClientLocale(selected);
 	}
 </script>
 

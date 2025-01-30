@@ -1,14 +1,18 @@
 <script lang="ts">
 	import type { SessionValidationResult } from '@shared/types';
 	import LangSelect from './langSelect.svelte';
-	import LL from '@client/i18n/i18n-svelte';
+	import { svelteLL } from '@shared/i18n/i18n';
 	import UserAvatar from './userAvatar.svelte';
 	import CloseIcon from '@client/icons/closeIcon.svelte';
 	import MenuIcon from '@client/icons/menuIcon.svelte';
 	import { cn } from '@client/utils';
-	import { authPage, claimsPage, postsPage, searchPage } from '@client/consts';
+	import { authPage, claimsPage, postsPage, searchPage } from '@shared/const';
 	import { page } from '$app/state';
 	import Logo from './logo.svelte';
+
+	$effect(() => {
+		if (page.url.pathname) showMenu = false;
+	});
 
 	let { user }: { user: SessionValidationResult['user'] } = $props();
 	let currentPathname = $derived(page.url.pathname);
@@ -38,29 +42,29 @@
 		<a
 			href={searchPage}
 			class={cn('border-primary hover:border-b-2 hover:text-primary', {
-				'text-secondary': currentPathname == searchPage
-			})}>{$LL.navbar.search()}</a
+				'text-primary': currentPathname == searchPage
+			})}>{$svelteLL.navbar.search()}</a
 		>
 		{#if user}
 			<a
 				href={claimsPage}
 				class={cn('border-primary hover:border-b-2 hover:text-primary', {
 					'text-primary': currentPathname == claimsPage
-				})}>{$LL.navbar.claims()}</a
+				})}>{$svelteLL.navbar.claims()}</a
 			>
 			<a
 				href={postsPage}
 				class={cn('border-primary hover:border-b-2 hover:text-primary', {
 					'text-primary': currentPathname == postsPage
-				})}>{$LL.navbar.posts()}</a
+				})}>{$svelteLL.navbar.posts()}</a
 			>
-			<UserAvatar avatar={user.avatar} />
+			<UserAvatar avatar={user.avatar} fullname={user.fullname} />
 		{:else}
 			<a
 				href={authPage}
 				class={cn('border-primary hover:border-b-2 hover:text-primary', {
 					'text-primary': currentPathname == authPage
-				})}>{$LL.auth.login()}</a
+				})}>{$svelteLL.auth.login()}</a
 			>
 		{/if}
 	</div>

@@ -1,32 +1,34 @@
-import { sendVerificationEmail } from '@server/utils/email';
 import { db } from '@server/db';
 import { userTable } from '@server/db/schema';
 import { createSessionWrapper } from '@server/utils/auth';
+import { isValidOtp, setupOtp } from '@server/utils/email';
+import { profilePage } from '@shared/const';
+import { LL } from '@shared/i18n/i18n';
+import { getValidator, getEmailSchema } from '@shared/zod';
 import { fail, type Actions, redirect } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
-import { customAlphabet } from 'nanoid';
-import { env } from '$env/dynamic/private';
 
 export const actions: Actions = {
-	send: async ({ params, cookies }) => {
+	resend: async ({ params }) => {
 		const email = params.email!;
-		const otp = customAlphabet('0123456789')(6);
-		await sendVerificationEmail(email, otp);
-		cookies.set('otp', otp, {
-			path: '/auth/verify',
-			httpOnly: true,
-			maxAge: 60 * 10,
-			secure: env.NODE_ENV == 'prod'
-		});
+		const emailValidated = getValidator(getEmailSchema())(email);
+		if (emailValidated.status == 'invalid') return fail(402, { message: emailValidated.errorMsg });
+		await setupOtp(email);
 	},
 	verify: async ({ cookies, request, params }) => {
-		const email = params.email!;
 		const fd = await request.formData();
-		const enteredOtp = fd.get('otp');
-		const validOtp = cookies.get('otp');
-		if (!validOtp) return fail(400, { message: 'The code has expired, try resend.' });
-		// you can clear the cookie here
-		if (enteredOtp != validOtp) return fail(403, { message: 'The entered code is not valid' });
+		const email = params.email!;
+		const enteredOtp = fd.get('otp')?.toString() || '';
+		const emailValidated = getValidator(getEmailSchema())(email);
+
+		if (emailValidated.status == 'invalid') return fail(402, { message: emailValidated.errorMsg });
+
+		const isValid = await isValidOtp(email, enteredOtp);
+
+		if (isValid == 'invalid') return fail(403, { message: LL.auth.incorrectCode() });
+
+		if (isValid == 'expired') return fail(403, { message: LL.auth.expiredCode() });
+
 		const userInfo = (
 			await db
 				.update(userTable)
@@ -35,6 +37,6 @@ export const actions: Actions = {
 				.returning({ id: userTable.id })
 		)[0];
 		await createSessionWrapper(cookies, userInfo.id);
-		redirect(303, '/dashboard');
+		redirect(303, profilePage);
 	}
 };

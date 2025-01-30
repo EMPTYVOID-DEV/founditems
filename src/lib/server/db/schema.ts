@@ -1,17 +1,13 @@
-import type {
-	ClaimsStates,
-	Languages,
-	PostMetadata,
-	PostStates,
-	QuizType
-} from '$lib/shared/types';
+import type { ClaimsStates, PostMetadata, PostStates, QuizType } from '@shared/types';
+import type { Locales } from '@shared/i18n/i18n-types';
 import { relations } from 'drizzle-orm';
-import { boolean, json, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { boolean, json, pgTable, text, timestamp, varchar, serial } from 'drizzle-orm/pg-core';
 import { nanoid } from 'nanoid';
 
 export const userTable = pgTable('user', {
 	id: varchar('id', { length: 8 })
 		.primaryKey()
+		.notNull()
 		.$default(() => nanoid(8)),
 	fullname: text('fullname').notNull(),
 	email: text('email').unique().notNull(),
@@ -33,13 +29,14 @@ export const sessionTable = pgTable('session', {
 export const postTable = pgTable('post', {
 	id: varchar('id', { length: 8 })
 		.primaryKey()
+		.notNull()
 		.$default(() => nanoid(8)),
 	userId: text('user_id')
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
 	title: text('title').notNull(),
 	description: text('description').notNull(),
-	lang: text('lang').$type<Languages>().notNull(),
+	lang: text('lang').$type<Locales>().notNull(),
 	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
 	updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).notNull(),
 	category: text('category').notNull(),
@@ -52,6 +49,7 @@ export const postTable = pgTable('post', {
 export const claimTable = pgTable('claim', {
 	id: varchar('id', { length: 8 })
 		.primaryKey()
+		.notNull()
 		.$default(() => nanoid(8)),
 	userId: text('user_id')
 		.notNull()
@@ -62,7 +60,14 @@ export const claimTable = pgTable('claim', {
 	quizAnswers: json('quiz_answers').notNull(),
 	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
 	state: text('state').$type<ClaimsStates>().notNull(),
-	lang: text('lang').$type<Languages>().notNull()
+	lang: text('lang').$type<Locales>().notNull()
+});
+
+export const otpTable = pgTable('otp', {
+	id: serial('id').notNull().primaryKey(),
+	code: varchar('code', { length: 6 }).notNull(),
+	email: text('email').unique().notNull(),
+	expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
 });
 
 export const userRelation = relations(userTable, ({ many }) => ({
