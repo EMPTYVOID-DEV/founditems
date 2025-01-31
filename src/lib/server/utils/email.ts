@@ -1,4 +1,3 @@
-import { dev } from '$app/environment';
 import { env } from '$env/dynamic/private';
 import { db } from '@server/db';
 import { otpTable } from '@server/db/schema';
@@ -11,7 +10,7 @@ export async function sendVerificationEmail(email: string, text: string) {
 	let settings: SMTPTransport.Options = {
 		host: env.SMTP_HOST,
 		port: parseInt(env.SMTP_PORT),
-		secure: !dev
+		secure: false
 	};
 
 	if (env.SMTP_REQUIRE_AUTH == 'true')
