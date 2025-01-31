@@ -14,7 +14,7 @@ const config: Config = {
 			}
 		},
 		screens: {
-			mr: { max: '768px' }
+			mr: { max: '800px' }
 		},
 		extend: {
 			colors: {

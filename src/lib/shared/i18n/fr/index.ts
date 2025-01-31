@@ -6,7 +6,9 @@ const fr: Translation = {
 		cancel: 'Annuler',
 		success: 'Succès',
 		error: 'Erreur',
-		info: 'Information'
+		info: 'Information',
+		select: 'Sélectionner',
+		language: 'Langue'
 	},
 	errors: {
 		forbidden: 'Interdit',
@@ -55,7 +57,7 @@ const fr: Translation = {
 	navbar: {
 		selectLanguage: 'Choisissez la langue',
 		claims: 'Les revendications',
-		posts: 'Les messages',
+		posts: 'Les postes',
 		search: 'Chercher'
 	},
 	home: {

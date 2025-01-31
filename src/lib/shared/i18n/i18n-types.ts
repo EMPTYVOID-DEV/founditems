@@ -35,6 +35,14 @@ type RootTranslation = {
 		 * م​ع​ل​و​م​ا​ت
 		 */
 		info: string
+		/**
+		 * ا​خ​ت​ي​ا​ر
+		 */
+		select: string
+		/**
+		 * ا​ل​ل​غ​ة
+		 */
+		language: string
 	}
 	errors: {
 		/**
@@ -238,6 +246,14 @@ export type TranslationFunctions = {
 		 * معلومات
 		 */
 		info: () => LocalizedString
+		/**
+		 * اختيار
+		 */
+		select: () => LocalizedString
+		/**
+		 * اللغة
+		 */
+		language: () => LocalizedString
 	}
 	errors: {
 		/**

@@ -6,7 +6,9 @@ const ar: BaseTranslation = {
 		cancel: 'إلغاء',
 		success: 'نجاح',
 		error: 'خطأ',
-		info: 'معلومات'
+		info: 'معلومات',
+		select: 'اختيار',
+		language: 'اللغة'
 	},
 	errors: {
 		forbidden: 'غير مسموح',

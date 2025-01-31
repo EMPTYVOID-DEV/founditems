@@ -6,16 +6,15 @@
 	import type { Locales } from '@shared/i18n/i18n-types';
 	let selected = $state<Locales>(usedLocale);
 	const languages = availableLocales.map((v) => ({ value: v, label: v }));
-	const triggerContent = $derived(
-		languages.find((lang) => lang.value === selected)?.label ?? $svelteLL.navbar.selectLanguage()
-	);
 	function onValueChange() {
 		setClientLocale(selected);
 	}
 </script>
 
 <Select.Root type="single" {onValueChange} bind:value={selected}>
-	<Select.Trigger class="w-[180px]">{triggerContent}</Select.Trigger>
+	<Select.Trigger class="w-[180px]">
+		{$svelteLL.general.select()} {$svelteLL.general.language()}</Select.Trigger
+	>
 	<Select.Content>
 		{#each languages as { value, label }}
 			<Select.Item {value}>{label}</Select.Item>
