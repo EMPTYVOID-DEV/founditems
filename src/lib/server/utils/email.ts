@@ -43,6 +43,6 @@ export async function isValidOtp(
 	const otpEntry = await db.query.otpTable.findFirst({ where: eq(otpTable.email, email) });
 	if (!otpEntry) return 'invalid';
 	if (otpEntry.code != otp) return 'invalid';
-	if (new Date() > otpEntry.expiresAt) return 'expired';
+	if (new Date() >= otpEntry.expiresAt) return 'expired';
 	return 'valid';
 }

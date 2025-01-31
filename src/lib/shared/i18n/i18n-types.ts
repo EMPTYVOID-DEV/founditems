@@ -36,6 +36,28 @@ type RootTranslation = {
 		 */
 		info: string
 	}
+	errors: {
+		/**
+		 * غ​ي​ر​ ​م​س​م​و​ح
+		 */
+		forbidden: string
+		/**
+		 * غ​ي​ر​ ​م​و​ج​و​د
+		 */
+		notFound: string
+		/**
+		 * خ​ط​أ​ ​ف​ي​ ​ا​ل​خ​ا​د​م
+		 */
+		internalServerError: string
+		/**
+		 * ط​ل​ب​ ​خ​ا​ط​ئ
+		 */
+		badRequest: string
+		/**
+		 * ا​ل​خ​د​م​ة​ ​غ​ي​ر​ ​م​ت​و​ف​ر​ة
+		 */
+		serviceUnavailable: string
+	}
 	validation: {
 		/**
 		 * ا​ل​ا​س​م​ ​ا​ل​ك​ا​م​ل​ ​ي​ج​ب​ ​أ​ن​ ​ي​ك​و​ن​ ​ع​ل​ى​ ​ا​ل​أ​ق​ل​ ​6​ ​أ​ح​ر​ف
@@ -116,9 +138,9 @@ type RootTranslation = {
 		 */
 		sendSuccess: string
 		/**
-		 * ا​ل​ر​م​ز​ ​ص​ح​ي​ح
+		 * ت​م​ ​إ​ع​ا​د​ة​ ​ت​ع​ي​ي​ن​ ​ك​ل​م​ة​ ​ا​ل​م​ر​و​ر​ ​ب​ن​ج​ا​ح
 		 */
-		validCode: string
+		resetPasswordSuccess: string
 		/**
 		 * ت​ح​ق​ق​ ​م​ن​ ​ا​ل​ر​م​ز
 		 */
@@ -217,6 +239,28 @@ export type TranslationFunctions = {
 		 */
 		info: () => LocalizedString
 	}
+	errors: {
+		/**
+		 * غير مسموح
+		 */
+		forbidden: () => LocalizedString
+		/**
+		 * غير موجود
+		 */
+		notFound: () => LocalizedString
+		/**
+		 * خطأ في الخادم
+		 */
+		internalServerError: () => LocalizedString
+		/**
+		 * طلب خاطئ
+		 */
+		badRequest: () => LocalizedString
+		/**
+		 * الخدمة غير متوفرة
+		 */
+		serviceUnavailable: () => LocalizedString
+	}
 	validation: {
 		/**
 		 * الاسم الكامل يجب أن يكون على الأقل 6 أحرف
@@ -297,9 +341,9 @@ export type TranslationFunctions = {
 		 */
 		sendSuccess: () => LocalizedString
 		/**
-		 * الرمز صحيح
+		 * تم إعادة تعيين كلمة المرور بنجاح
 		 */
-		validCode: () => LocalizedString
+		resetPasswordSuccess: () => LocalizedString
 		/**
 		 * تحقق من الرمز
 		 */

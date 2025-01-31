@@ -8,6 +8,13 @@ const ar: BaseTranslation = {
 		error: 'خطأ',
 		info: 'معلومات'
 	},
+	errors: {
+		forbidden: 'غير مسموح',
+		notFound: 'غير موجود',
+		internalServerError: 'خطأ في الخادم',
+		badRequest: 'طلب خاطئ',
+		serviceUnavailable: 'الخدمة غير متوفرة'
+	},
 	validation: {
 		fullname: 'الاسم الكامل يجب أن يكون على الأقل 6 أحرف',
 		email: 'عنوان البريد الإلكتروني غير صالح',
@@ -30,7 +37,7 @@ const ar: BaseTranslation = {
 		resendEmail: 'إعادة إرسال البريد الإلكتروني',
 		resendSuccess: 'تم إعادة إرسال البريد الإلكتروني بنجاح',
 		sendSuccess: 'تم إرسال الرمز بنجاح',
-		validCode: 'الرمز صحيح',
+		resetPasswordSuccess: 'تم إعادة تعيين كلمة المرور بنجاح',
 		verifyCode: 'تحقق من الرمز',
 		lostPasswordEmail: 'اكتب البريد الإلكتروني الذي نسيت كلمة المرور الخاصة به',
 		resetPassword:

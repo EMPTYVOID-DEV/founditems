@@ -78,7 +78,8 @@ export function setSessionTokenCookie(
 ) {
 	cookies.set(sessionCookieName, token, {
 		expires: expiresAt,
-		httpOnly: !dev,
+		httpOnly: true,
+		secure: !dev,
 		path: '/'
 	});
 }

@@ -32,6 +32,7 @@
 		return ({ result, update }) => {
 			if (result.type == 'success' && action.search == '?/resend')
 				showToast($svelteLL.general.success(), $svelteLL.auth.resendSuccess(), 'success');
+
 			if (result.type == 'failure' && typeof result.data?.message == 'string')
 				showToast($svelteLL.general.error(), result.data.message, 'error');
 			update({ reset: false });

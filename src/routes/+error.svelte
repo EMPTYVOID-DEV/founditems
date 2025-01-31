@@ -1,11 +1,26 @@
 <script>
 	import { page } from '$app/state';
+	import { svelteLL } from '@shared/i18n/i18n';
+	import '../app.css';
+	import '@fontsource/dm-sans';
+	import '@fontsource/inter';
 
-	let status = page.status;
-	let message = page.error?.message || 'An unexpected error occurred';
+	let status = $derived(page.status);
+	const errorMap = new Map([
+		[400, $svelteLL.errors.badRequest()],
+		[403, $svelteLL.errors.forbidden()],
+		[404, $svelteLL.errors.notFound()],
+		[500, $svelteLL.errors.internalServerError()],
+		[503, $svelteLL.errors.serviceUnavailable()]
+	]);
 </script>
 
 <div class="flex h-screen flex-col items-center justify-center text-center">
-	<h1 class="text-destructive">{status}</h1>
-	<p>{message}</p>
+	{#if errorMap.has(status)}
+		<h1 class="text-destructive">{status}</h1>
+		<h4>{errorMap.get(status)}</h4>
+	{:else}
+		<h1 class="text-destructive">500</h1>
+		<h4>{$svelteLL.errors.internalServerError()}</h4>
+	{/if}
 </div>

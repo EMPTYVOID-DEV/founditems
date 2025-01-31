@@ -8,6 +8,13 @@ const fr: Translation = {
 		error: 'Erreur',
 		info: 'Information'
 	},
+	errors: {
+		forbidden: 'Interdit',
+		notFound: 'Non trouvé',
+		internalServerError: 'Erreur interne du serveur',
+		badRequest: 'Mauvaise demande',
+		serviceUnavailable: 'Service indisponible'
+	},
 	validation: {
 		fullname: 'Le nom complet doit comporter au moins 6 caractères',
 		email: "L'adresse e-mail n'est pas valide",
@@ -31,7 +38,7 @@ const fr: Translation = {
 		verifyCode: 'Vérifier le code',
 		resendSuccess: 'Email renvoyé avec succès',
 		sendSuccess: 'Code envoyé avec succès',
-		validCode: 'Code valide',
+		resetPasswordSuccess: 'Mot de passe réinitialisé avec succès',
 		lostPasswordEmail:
 			"Saisissez l'adresse e-mail pour laquelle vous avez oublié votre mot de passe.",
 		resetPassword:

@@ -11,7 +11,8 @@
 	const handleAction: SubmitFunction = async ({ formData }) => {
 		formData.append('otp', otp);
 		return ({ result, update }) => {
-			// here we show a toast in case of resend , verification will result in a redirect
+			if (result.type == 'failure' && typeof result.data?.message == 'string')
+				showToast($svelteLL.general.error(), result.data.message, 'error');
 			if (result.type == 'success')
 				showToast($svelteLL.general.success(), $svelteLL.auth.resendSuccess(), 'success');
 			update();
