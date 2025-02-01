@@ -1,5 +1,5 @@
 {
-  "id": "6dc44b15-760a-497a-a228-9e15eba5b96e",
+  "id": "63ca7010-d9a1-4b91-ae87-654982d49813",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -12,8 +12,7 @@
           "name": "id",
           "type": "varchar(8)",
           "primaryKey": true,
-          "notNull": true,
-          "default": "'AbYZBNqG'"
+          "notNull": true
         },
         "user_id": {
           "name": "user_id",
@@ -27,21 +26,34 @@
           "primaryKey": false,
           "notNull": true
         },
-        "quiz_answers": {
-          "name": "quiz_answers",
-          "type": "json",
+        "lang": {
+          "name": "lang",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "proof": {
+          "name": "proof",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "images": {
+          "name": "images",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'::text[]"
+        },
+        "state": {
+          "name": "state",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
         "created_at": {
           "name": "created_at",
           "type": "timestamp with time zone",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "state": {
-          "name": "state",
-          "type": "text",
           "primaryKey": false,
           "notNull": true
         }
@@ -81,6 +93,51 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public.otp": {
+      "name": "otp",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "code": {
+          "name": "code",
+          "type": "varchar(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "otp_email_unique": {
+          "name": "otp_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.post": {
       "name": "post",
       "schema": "",
@@ -89,23 +146,10 @@
           "name": "id",
           "type": "varchar(8)",
           "primaryKey": true,
-          "notNull": true,
-          "default": "'o2hCk_QV'"
+          "notNull": true
         },
         "user_id": {
           "name": "user_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "title": {
-          "name": "title",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "description": {
-          "name": "description",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -116,9 +160,28 @@
           "primaryKey": false,
           "notNull": true
         },
+        "address": {
+          "name": "address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "is_secret": {
+          "name": "is_secret",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": true
         },
@@ -128,21 +191,15 @@
           "primaryKey": false,
           "notNull": true
         },
-        "pictures": {
-          "name": "pictures",
-          "type": "text[]",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "quiz": {
-          "name": "quiz",
-          "type": "json",
-          "primaryKey": false,
-          "notNull": true
-        },
         "state": {
           "name": "state",
           "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "metadata": {
+          "name": "metadata",
+          "type": "json",
           "primaryKey": false,
           "notNull": true
         }
@@ -222,8 +279,7 @@
           "name": "id",
           "type": "varchar(8)",
           "primaryKey": true,
-          "notNull": true,
-          "default": "'S6x1asnB'"
+          "notNull": true
         },
         "fullname": {
           "name": "fullname",
@@ -254,19 +310,22 @@
           "name": "address",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": "''"
         },
         "phone_number": {
           "name": "phone_number",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": "''"
         },
         "avatar": {
           "name": "avatar",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": "''"
         }
       },
       "indexes": {},

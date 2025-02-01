@@ -1,6 +1,6 @@
-import type { ClaimsStates, PostMetadata, PostStates, QuizType } from '@shared/types';
+import type { ClaimsStates, PostMetadata, PostStates } from '@shared/types';
 import type { Locales } from '@shared/i18n/i18n-types';
-import { relations } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
 import { boolean, json, pgTable, text, timestamp, varchar, serial } from 'drizzle-orm/pg-core';
 import { nanoid } from 'nanoid';
 
@@ -34,16 +34,14 @@ export const postTable = pgTable('post', {
 	userId: text('user_id')
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
-	title: text('title').notNull(),
-	description: text('description').notNull(),
 	lang: text('lang').$type<Locales>().notNull(),
-	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
-	updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).notNull(),
+	address: text('address').notNull(),
+	foundDate: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
+	updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull(),
+	isSecret: boolean('is_secret').notNull(),
 	category: text('category').notNull(),
-	pictures: text('pictures').array().notNull(),
-	quiz: json('quiz').$type<Record<string, QuizType>>().notNull(),
 	state: text('state').$type<PostStates>().notNull(),
-	metadata: json('metadata').array().$type<PostMetadata>().notNull()
+	metadata: json('metadata').$type<PostMetadata>().notNull()
 });
 
 export const claimTable = pgTable('claim', {
@@ -57,10 +55,14 @@ export const claimTable = pgTable('claim', {
 	postId: text('post_id')
 		.notNull()
 		.references(() => postTable.id, { onDelete: 'cascade' }),
-	quizAnswers: json('quiz_answers').notNull(),
-	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
+	lang: text('lang').$type<Locales>().notNull(),
+	proof: text('proof').notNull(),
+	images: text('images')
+		.array()
+		.notNull()
+		.default(sql`'{}'::text[]`),
 	state: text('state').$type<ClaimsStates>().notNull(),
-	lang: text('lang').$type<Locales>().notNull()
+	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull()
 });
 
 export const otpTable = pgTable('otp', {

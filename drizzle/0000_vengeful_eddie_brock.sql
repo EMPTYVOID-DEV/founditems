@@ -1,23 +1,33 @@
 CREATE TABLE "claim" (
-	"id" varchar(8) PRIMARY KEY DEFAULT 'AbYZBNqG' NOT NULL,
+	"id" varchar(8) PRIMARY KEY NOT NULL,
 	"user_id" text NOT NULL,
 	"post_id" text NOT NULL,
-	"quiz_answers" json NOT NULL,
-	"created_at" timestamp with time zone NOT NULL,
-	"state" text NOT NULL
+	"lang" text NOT NULL,
+	"proof" text NOT NULL,
+	"images" text[] DEFAULT '{}'::text[] NOT NULL,
+	"state" text NOT NULL,
+	"created_at" timestamp with time zone NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE "otp" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"code" varchar(6) NOT NULL,
+	"email" text NOT NULL,
+	"expires_at" timestamp with time zone NOT NULL,
+	CONSTRAINT "otp_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
 CREATE TABLE "post" (
-	"id" varchar(8) PRIMARY KEY DEFAULT 'o2hCk_QV' NOT NULL,
+	"id" varchar(8) PRIMARY KEY NOT NULL,
 	"user_id" text NOT NULL,
-	"title" text NOT NULL,
-	"description" text NOT NULL,
 	"lang" text NOT NULL,
+	"address" text NOT NULL,
 	"created_at" timestamp with time zone NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"is_secret" boolean NOT NULL,
 	"category" text NOT NULL,
-	"pictures" text[] NOT NULL,
-	"quiz" json NOT NULL,
-	"state" text NOT NULL
+	"state" text NOT NULL,
+	"metadata" json NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "session" (
@@ -27,14 +37,14 @@ CREATE TABLE "session" (
 );
 --> statement-breakpoint
 CREATE TABLE "user" (
-	"id" varchar(8) PRIMARY KEY DEFAULT 'S6x1asnB' NOT NULL,
+	"id" varchar(8) PRIMARY KEY NOT NULL,
 	"fullname" text NOT NULL,
 	"email" text NOT NULL,
 	"password" text NOT NULL,
 	"verified" boolean DEFAULT false NOT NULL,
-	"address" text NOT NULL,
-	"phone_number" text NOT NULL,
-	"avatar" text NOT NULL,
+	"address" text DEFAULT '' NOT NULL,
+	"phone_number" text DEFAULT '' NOT NULL,
+	"avatar" text DEFAULT '' NOT NULL,
 	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint

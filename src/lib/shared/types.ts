@@ -13,11 +13,9 @@ export type PostStates =
 	| 'Reporting'
 	| 'Released';
 
-export type ClaimsStates = 'Idle' | 'Rejected' | 'Accepted' | 'Post deleted';
+export type ClaimsStates = 'Idle' | 'Rejected' | 'Accepted';
 
-export type PostMetadata = Record<PostStates, unknown>[];
-
-export type QuizType = 'direct' | 'time' | 'address';
+export type PostMetadata = Partial<Record<PostStates, unknown>>;
 
 export type SessionValidationResult = Awaited<ReturnType<typeof validateSessionToken>>;
 
