@@ -5,7 +5,7 @@
 </script>
 
 <a href={profilePage}>
-	<Avatar.Root>
+	<Avatar.Root class="h-15 w-15">
 		<Avatar.Image src={avatar} alt="avatar" />
 		<Avatar.Fallback>
 			<span class="rounded-[50%] bg-primary/30 p-3 uppercase">{fullname.slice(0, 2)}</span>

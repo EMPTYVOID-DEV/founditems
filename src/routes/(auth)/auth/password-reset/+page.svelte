@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { svelteLL } from '@shared/i18n/i18n';
+	import { svelteLL } from '@shared/i18n/i18n-svelte';
 	import { showToast } from '@client/utils';
 	import Logo from '@components/custom/logo.svelte';
 	import ReactiveInput from '@components/custom/reactiveInput.svelte';
@@ -50,7 +50,7 @@
 	let otp = $state('');
 </script>
 
-<div class="flex h-svh w-svw items-center justify-center bg-background">
+<div class="flex h-svh w-svw items-center justify-center">
 	{#key currentAction}
 		<form
 			method="post"
@@ -63,8 +63,8 @@
 					{$svelteLL.auth.lostPasswordEmail()}
 				</p>
 				<ReactiveInput
-					label={$svelteLL.auth.email()}
-					placeholder={$svelteLL.auth.email()}
+					label={$svelteLL.schema.email()}
+					placeholder={$svelteLL.schema.email()}
 					name="email"
 					type="email"
 					validator={emailValidator}
@@ -95,8 +95,8 @@
 					</InputOTP.Root>
 				</div>
 				<ReactiveInput
-					label={$svelteLL.auth.password()}
-					placeholder={$svelteLL.auth.password()}
+					label={$svelteLL.schema.password()}
+					placeholder={$svelteLL.schema.password()}
 					name="password"
 					type="password"
 					validator={passwordValidator}

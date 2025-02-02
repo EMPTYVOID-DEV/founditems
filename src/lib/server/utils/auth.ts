@@ -36,7 +36,9 @@ export async function validateSessionToken(token: string) {
 			user: {
 				id: userTable.id,
 				fullname: userTable.fullname,
-				avatar: userTable.avatar
+				avatar: userTable.avatar,
+				address: userTable.address,
+				phoneNumber: userTable.phoneNumber
 			},
 			session: sessionTable
 		})

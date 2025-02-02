@@ -6,7 +6,8 @@ import Sonner from '@components/shadcn/sonnar/sonner.svelte';
 import type { ComponentType } from 'svelte';
 import { detectLocaleDirection } from '@shared/utils';
 import type { Locales } from '@shared/i18n/i18n-types';
-import { setLL, setSvelteLL } from '@shared/i18n/i18n';
+import { setLL } from '@shared/i18n/i18n';
+import { setSvelteLL } from '@shared/i18n/i18n-svelte';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -29,4 +30,8 @@ export function showToast(title: string, message: string, state: 'error' | 'info
 			state
 		}
 	});
+}
+
+export function fileToBlob(file: File) {
+	return new Blob([file], { type: file.type });
 }

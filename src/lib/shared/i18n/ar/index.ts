@@ -8,7 +8,8 @@ const ar: BaseTranslation = {
 		error: 'خطأ',
 		info: 'معلومات',
 		select: 'اختيار',
-		language: 'اللغة'
+		language: 'اللغة',
+		upload: 'اسحب الملفات وأفلِتها هنا، أو انقر لتحديد الملفات'
 	},
 	errors: {
 		forbidden: 'غير مسموح',
@@ -17,10 +18,21 @@ const ar: BaseTranslation = {
 		badRequest: 'طلب خاطئ',
 		serviceUnavailable: 'الخدمة غير متوفرة'
 	},
+	schema: {
+		fullname: 'الاسم الكامل',
+		email: 'البريد الالكتروني',
+		password: 'كلمة المرور',
+		address: 'العنوان الفعلي',
+		avatar: 'الصورة الرمزية'
+	},
 	validation: {
-		fullname: 'الاسم الكامل يجب أن يكون على الأقل 6 أحرف',
+		fullname: 'الاسم الكامل يجب أن يكون على الأقل {0} أحرف',
 		email: 'عنوان البريد الإلكتروني غير صالح',
-		passwordLength: 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل',
+		address: 'يجب أن يكون عنوانك {0} حرفًا على الأقل',
+		imageSize: 'حجم الصورة لا يمكن أن يتجاوز {0} ميجا بايت',
+		invalidImageUpload: 'يجب عليك تحميل ملف الصورة',
+		maxFilesNumber: 'يمكنك تحميل ما يصل إلى {0} ملف',
+		passwordLength: 'يجب أن تكون كلمة المرور مكونة من {0} أحرف على الأقل',
 		passwordSpecialChar: 'يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل',
 		passwordNumber: 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل',
 		passwordUppercase: 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل',
@@ -29,9 +41,6 @@ const ar: BaseTranslation = {
 	auth: {
 		login: 'تسجيل الدخول',
 		signup: 'إنشاء حساب',
-		fullname: 'الاسم الكامل',
-		email: 'البريد الالكتروني',
-		password: 'كلمة المرور',
 		alreadyHaveAccount: 'لديك حساب بالفعل؟',
 		dontHaveAccount: 'ليس لديك حساب؟',
 		forgetPassword: 'نسيت كلمة المرور؟',
@@ -51,18 +60,29 @@ const ar: BaseTranslation = {
 		accountDoesNotExist: 'يبدو أن هذا الحساب غير موجود',
 		passwordIncorrect: 'كلمة المرور غير صحيحة',
 		incorrectCode: 'الرمز غير صحيح',
-		expiredCode: 'الرمز منتهي الصلاحية، حاول إعادة الإرسال'
+		expiredCode: 'الرمز منتهي الصلاحية، حاول إعادة الإرسال',
+		logout: 'تسجيل الخروج'
 	},
 	navbar: {
 		selectLanguage: 'اختر اللغة',
 		claims: 'المطالبات',
-		posts: 'المشاركات',
+		posts: 'المنشورات',
 		search: 'بحث'
 	},
 	home: {
 		title: 'اجد اشيائك المفقودة بدون عناء',
 		description: 'منصة مبتكرة لتوصيل المفقودات بأصحابها مع نظام آمن لإدارة المطالبات ومنع الاحتيال',
 		findYourThings: 'ابحث عن أشيائك'
+	},
+	profile: {
+		fullnameChange: 'يمكنك تغيير اسمك الكامل',
+		fullnameChangeSuccess: 'تم تغيير الاسم بنجاح',
+		addressChange:
+			'يجب عليك تحديد عنوانك قبل إنشاء منشور. تأكد من تحديد العنوان الكامل مع الرمز البريدي',
+		addressChangeSuccess: 'تم تغيير العنوان بنجاح',
+		avatarChange: 'يمكنك تغيير الصورة الرمزية الخاصة بك',
+		avatarChangeSuccess: 'تم تغيير الصورة الرمزية بنجاح',
+		logout: 'يمكنك تسجيل الخروج. سيؤدي هذا إلى إنهاء جلسة التصفح الخاصة بك'
 	}
 };
 

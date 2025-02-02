@@ -3,3 +3,5 @@ export type PostgresError = {
 	message: string;
 	detail?: string;
 };
+
+export type HttpError = { status: number; statusText: string };

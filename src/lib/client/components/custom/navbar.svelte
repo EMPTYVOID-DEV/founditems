@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SessionValidationResult } from '@shared/types';
 	import LangSelect from './langSelect.svelte';
-	import { svelteLL } from '@shared/i18n/i18n';
+	import { svelteLL } from '@shared/i18n/i18n-svelte';
 	import UserAvatar from './userAvatar.svelte';
 	import CloseIcon from '@client/icons/closeIcon.svelte';
 	import MenuIcon from '@client/icons/menuIcon.svelte';

@@ -37,4 +37,4 @@ export type ClaimInsert = typeof claimTable.$inferInsert;
 
 export type ActionStatus = { status: 'valid' | 'invalid'; errorMsg: string };
 
-export type Validator = (text: string) => ActionStatus;
+export type Validator = (data: unknown) => ActionStatus;

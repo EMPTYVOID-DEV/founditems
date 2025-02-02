@@ -15,3 +15,5 @@ export const authPage = '/auth';
 export const authVerifyPage = '/auth/verify';
 
 export const authPasswordResetPage = '/auth/password-reset';
+
+export const maxImageSize = 2.5;

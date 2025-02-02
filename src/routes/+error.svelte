@@ -1,9 +1,11 @@
 <script>
-	import { page } from '$app/state';
-	import { svelteLL } from '@shared/i18n/i18n';
 	import '../app.css';
 	import '@fontsource/dm-sans';
 	import '@fontsource/inter';
+	import { svelteLL } from '@shared/i18n/i18n-svelte';
+	import { page } from '$app/state';
+	import Button from '@components/shadcn/button/button.svelte';
+	import { goto } from '$app/navigation';
 
 	let status = $derived(page.status);
 	const errorMap = new Map([
@@ -23,4 +25,5 @@
 		<h1 class="text-destructive">500</h1>
 		<h4>{$svelteLL.errors.internalServerError()}</h4>
 	{/if}
+	<Button variant="destructive" onclick={() => goto('/')}>Return to home</Button>
 </div>
