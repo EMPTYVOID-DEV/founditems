@@ -27,7 +27,7 @@
 
 <div
 	class={cn(
-		'gap-i2 relative flex w-[var(--width)] flex-col rounded-lg border-2 p-2',
+		'relative flex w-[var(--width)] flex-col gap-2 rounded-lg border-2 p-2',
 		currentState.toast
 	)}
 >

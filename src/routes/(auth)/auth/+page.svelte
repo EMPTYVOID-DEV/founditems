@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { svelteLL } from '@shared/i18n/i18n';
+	import { svelteLL } from '@shared/i18n/i18n-svelte';
 	import Logo from '@components/custom/logo.svelte';
 	import Button from '@components/shadcn/button/button.svelte';
 	import type { SubmitFunction } from '@sveltejs/kit';
@@ -21,7 +21,7 @@
 	};
 </script>
 
-<div class="flex h-svh w-svw items-center justify-center bg-background">
+<div class="flex h-svh w-svw items-center justify-center">
 	<form
 		class=" flex w-1/2 flex-col items-center gap-5 mr:w-[90%]"
 		action={isRegister ? '?/signup' : '?/signin'}
@@ -32,28 +32,28 @@
 
 		{#if isRegister}
 			<ReactiveInput
-				label={$svelteLL.auth.fullname()}
+				label={$svelteLL.schema.fullname()}
 				validator={fullnameValidator}
 				type="text"
 				name="fullname"
-				placeholder={$svelteLL.auth.fullname()}
+				placeholder={$svelteLL.schema.fullname()}
 			/>
 		{/if}
 
 		<ReactiveInput
-			label={$svelteLL.auth.email()}
+			label={$svelteLL.schema.email()}
 			validator={emailValidator}
 			type="email"
 			name="email"
-			placeholder={$svelteLL.auth.email()}
+			placeholder={$svelteLL.schema.email()}
 		/>
 
 		<ReactiveInput
-			label={$svelteLL.auth.password()}
+			label={$svelteLL.schema.password()}
 			validator={passwordValidator}
 			type="password"
 			name="password"
-			placeholder={$svelteLL.auth.password()}
+			placeholder={$svelteLL.schema.password()}
 		/>
 
 		<Button class="w-full max-w-sm" type="submit">

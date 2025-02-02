@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { svelteLL, usedLocale } from '@shared/i18n/i18n';
+	import { svelteLL, svelteUsedLocale } from '@shared/i18n/i18n-svelte';
 	import { setClientLocale } from '$lib/client/utils';
 	import { availableLocales } from '@shared/const';
 	import * as Select from '@components/shadcn/select/index.js';
 	import type { Locales } from '@shared/i18n/i18n-types';
-	let selected = $state<Locales>(usedLocale);
+	let selected = $state<Locales>($svelteUsedLocale);
 	const languages = availableLocales.map((v) => ({ value: v, label: v }));
 	function onValueChange() {
 		setClientLocale(selected);

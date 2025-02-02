@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { svelteLL } from '@shared/i18n/i18n';
+	import { svelteLL } from '@shared/i18n/i18n-svelte';
 	import { showToast } from '@client/utils';
 	import Logo from '@components/custom/logo.svelte';
 	import Button from '@components/shadcn/button/button.svelte';
@@ -20,7 +20,7 @@
 	};
 </script>
 
-<div class="flex h-svh w-svw items-center justify-center bg-background">
+<div class="flex h-svh w-svw items-center justify-center">
 	<form
 		method="post"
 		class=" flex w-1/2 flex-col items-center gap-5 mr:w-[90%]"

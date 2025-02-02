@@ -36,7 +36,7 @@
 	<Input
 		bind:value
 		oninput={validate}
-		class={cn(statusClasses[status], className)}
+		class={cn('bg-background/40', statusClasses[status], className)}
 		{...restProps}
 	/>
 	{#if status === 'invalid'}
