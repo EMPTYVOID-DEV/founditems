@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { svelteLL, svelteUsedLocale } from '@shared/i18n/i18n-svelte';
+	import { svelteUsedLocale } from '@shared/i18n/i18n-svelte';
 	import { setClientLocale } from '$lib/client/utils';
 	import { availableLocales } from '@shared/const';
 	import * as Select from '@components/shadcn/select/index.js';
 	import type { Locales } from '@shared/i18n/i18n-types';
+	import GlobeIcon from '@icons/globeIcon.svelte';
 	let selected = $state<Locales>($svelteUsedLocale);
 	const languages = availableLocales.map((v) => ({ value: v, label: v }));
 	function onValueChange() {
@@ -12,12 +13,13 @@
 </script>
 
 <Select.Root type="single" {onValueChange} bind:value={selected}>
-	<Select.Trigger class="w-[180px]">
-		{$svelteLL.general.select()} {$svelteLL.general.language()}</Select.Trigger
-	>
+	<Select.Trigger class="flex w-[120px] items-center justify-between">
+		<GlobeIcon />
+		<span class="capitalize">{selected}</span>
+	</Select.Trigger>
 	<Select.Content>
 		{#each languages as { value, label }}
-			<Select.Item {value}>{label}</Select.Item>
+			<Select.Item {value} class="capitalize">{label}</Select.Item>
 		{/each}
 	</Select.Content>
 </Select.Root>

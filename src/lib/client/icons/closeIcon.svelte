@@ -10,7 +10,6 @@
 			'stroke-foreground': variant === 'default'
 		})}
 		fill="none"
-		stroke="currentColor"
 		stroke-linecap="round"
 		stroke-width="2"
 		><path d="M5 5L19 5"

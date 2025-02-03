@@ -5,12 +5,11 @@
 
 <svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" viewBox="0 0 24 24"
 	><g
-		fill="none"
 		class={cn({
 			'stroke-primary': variant === 'primary',
 			'stroke-foreground': variant === 'default'
 		})}
-		stroke="currentColor"
+		fill="none"
 		stroke-linecap="round"
 		stroke-width="2"
 		><path d="M5 5L19 19"
