@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { cn } from '@client/utils';
+	import { cn } from '@client/utils.svelte';
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import type { Snippet } from 'svelte';
 	let {

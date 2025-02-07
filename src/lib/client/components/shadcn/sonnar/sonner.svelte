@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '@client/utils';
+	import { cn } from '@client/utils.svelte';
 
 	let {
 		message,

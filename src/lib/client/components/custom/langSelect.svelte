@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { svelteUsedLocale } from '@shared/i18n/i18n-svelte';
-	import { setClientLocale } from '$lib/client/utils';
+	import { setClientLocale } from '@client/utils.svelte';
 	import { availableLocales } from '@shared/const';
 	import * as Select from '@components/shadcn/select/index.js';
 	import type { Locales } from '@shared/i18n/i18n-types';

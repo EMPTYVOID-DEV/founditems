@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fileToBlob, showToast } from '@client/utils';
+	import { fileToBlob, showToast } from '@client/utils.svelte';
 	import FileUpload from '@components/custom/fileUpload.svelte';
 	import FormWrapper from '@components/custom/formWrapper.svelte';
 	import { Button } from '@components/shadcn/button';

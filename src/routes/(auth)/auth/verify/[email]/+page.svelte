@@ -1,31 +1,45 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { svelteLL } from '@shared/i18n/i18n-svelte';
-	import { showToast } from '@client/utils';
+	import { actionLoadingWrapper, showToast } from '@client/utils.svelte';
 	import Logo from '@components/custom/logo.svelte';
-	import Button from '@components/shadcn/button/button.svelte';
 	import * as InputOTP from '@components/shadcn/input-otp/index';
-	import type { SubmitFunction } from '@sveltejs/kit';
 	import { REGEXP_ONLY_DIGITS } from 'bits-ui';
+	import type { SubmitFunctionAfter, SubmitFunctionBefore } from '@client/types';
+	import ActionButton from '@components/custom/actionButton.svelte';
+
 	let otp = $state('');
-	const handleAction: SubmitFunction = async ({ formData }) => {
+
+	const verifyActionBefore: SubmitFunctionBefore = ({ formData }) => {
 		formData.append('otp', otp);
-		return ({ result, update }) => {
-			if (result.type == 'failure' && typeof result.data?.message == 'string')
-				showToast($svelteLL.general.error(), result.data.message, 'error');
-			if (result.type == 'success')
-				showToast($svelteLL.general.success(), $svelteLL.auth.resendSuccess(), 'success');
-			update();
-		};
 	};
+
+	const verifyActionAfter: SubmitFunctionAfter = ({ result, update }) => {
+		if (result.type == 'failure' && typeof result.data?.message == 'string')
+			showToast($svelteLL.general.error(), result.data.message, 'error');
+		update();
+	};
+
+	const resendActionAfter: SubmitFunctionAfter = ({ result, update }) => {
+		if (result.type == 'failure' && typeof result.data?.message == 'string')
+			showToast($svelteLL.general.error(), result.data.message, 'error');
+		if (result.type == 'success')
+			showToast($svelteLL.general.success(), $svelteLL.auth.resendSuccess(), 'success');
+		update();
+	};
+
+	const { action: verifyAction, loading: verifyLoading } = actionLoadingWrapper({
+		after: verifyActionAfter,
+		before: verifyActionBefore
+	});
+
+	const { action: resendAction, loading: resendLoading } = actionLoadingWrapper({
+		after: resendActionAfter
+	});
 </script>
 
 <div class="flex h-svh w-svw items-center justify-center">
-	<form
-		method="post"
-		class=" flex w-1/2 flex-col items-center gap-5 mr:w-[90%]"
-		use:enhance={handleAction}
-	>
+	<div class=" flex w-1/2 flex-col items-center gap-5 mr:w-[90%]">
 		<Logo class="self-center" />
 		<p class="w-full max-w-sm font-bold text-muted-foreground">
 			{$svelteLL.auth.verificationEmail()}
@@ -47,11 +61,18 @@
 				{/snippet}
 			</InputOTP.Root>
 		</div>
-		<Button class="w-full max-w-sm" type="submit" formaction="?/verify"
-			>{$svelteLL.auth.verifyCode()}</Button
-		>
-		<Button class="w-full max-w-sm" variant="secondary" type="submit" formaction="?/resend"
-			>{$svelteLL.auth.resendEmail()}</Button
-		>
-	</form>
+		<form action="?/verify" method="post" use:enhance={verifyAction} class="contents">
+			<ActionButton loading={verifyLoading.value} class="w-full max-w-sm" type="submit"
+				>{$svelteLL.auth.verifyCode()}</ActionButton
+			>
+		</form>
+		<form action="?/resend" method="post" use:enhance={resendAction} class="contents">
+			<ActionButton
+				loading={resendLoading.value}
+				class="w-full max-w-sm"
+				variant="secondary"
+				type="submit">{$svelteLL.auth.resendEmail()}</ActionButton
+			>
+		</form>
+	</div>
 </div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { showToast } from '@client/utils';
+	import { showToast } from '@client/utils.svelte';
 	import CloseIconV2 from '@icons/closeIconV2.svelte';
 	import { svelteLL } from '@shared/i18n/i18n-svelte';
 	import type { Validator } from '@shared/types';
