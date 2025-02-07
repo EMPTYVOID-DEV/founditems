@@ -25,7 +25,10 @@
 <form
 	use:enhance={action}
 	action={actionName}
-	class={cn('flex w-full flex-col rounded-md border-2 border-muted bg-secondary/70', formClass)}
+	class={cn(
+		'flex w-full flex-col rounded-md border-2 border-foreground bg-foreground/20',
+		formClass
+	)}
 	enctype="multipart/form-data"
 	method="post"
 >
@@ -34,7 +37,7 @@
 	</div>
 	<div
 		class={cn(
-			'flex w-full items-center justify-between border-t-2 border-muted px-4 py-3',
+			'flex w-full items-center justify-between border-t-2 border-foreground px-4 py-3',
 			submitterClass
 		)}
 	>

@@ -23,7 +23,7 @@ const fr: Translation = {
 		email: "L'adresse e-mail n'est pas valide",
 		address: 'Votre adresse doit comporter au moins {0} caractères.',
 		imageSize: "la taille de l'image ne peut pas dépasser {0} Mo",
-		invalidImageUpload: "Vous avez téléchargé l'image",
+		invalidImageUpload: 'Vous devez télécharger une image',
 		maxFilesNumber: 'Vous pouvez télécharger jusqu’à {0} fichiers',
 		passwordLength: 'Le mot de passe doit comporter au moins {0} caractères',
 		passwordSpecialChar: 'Le mot de passe doit contenir au moins un caractère spécial',

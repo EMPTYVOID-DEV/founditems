@@ -2,7 +2,7 @@ import { db } from '@server/db';
 import { userTable } from '@server/db/schema';
 import { deleteSessionTokenCookie, invalidateSession } from '@server/utils/auth';
 import { FileUploadFactory } from '@server/utils/fileUpload';
-import { getValidator, getFullnameSchema, getAddressSchema, getImageSchema } from '@shared/zod';
+import { getValidator, getFullnameSchema, getAddressSchema, getAvatarSchema } from '@shared/zod';
 import { error, fail, type Actions } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 
@@ -33,7 +33,7 @@ export const actions: Actions = {
 		const id = locals.user!.id;
 		const fd = await request.formData();
 		const avatar = fd.get('avatar')?.valueOf() as File;
-		const avatarValidated = getValidator(getImageSchema())(avatar);
+		const avatarValidated = getValidator(getAvatarSchema())(avatar);
 
 		if (avatarValidated.status == 'invalid')
 			return fail(402, { message: avatarValidated.errorMsg });
