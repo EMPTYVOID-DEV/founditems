@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { showToast } from '@client/utils';
+	import { showToast } from '@client/utils.svelte';
 	import FormWrapper from '@components/custom/formWrapper.svelte';
 	import ReactiveInput from '@components/custom/reactiveInput.svelte';
 	import { Button } from '@components/shadcn/button';

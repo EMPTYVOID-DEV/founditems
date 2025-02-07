@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '../utils';
+	import { cn } from '../utils.svelte';
 	let { variant = 'primary' }: { variant?: 'primary' | 'default' | 'destructive' } = $props();
 </script>
 

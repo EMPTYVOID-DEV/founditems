@@ -8,6 +8,8 @@ import { detectLocaleDirection } from '@shared/utils';
 import type { Locales } from '@shared/i18n/i18n-types';
 import { setLL } from '@shared/i18n/i18n';
 import { setSvelteLL } from '@shared/i18n/i18n-svelte';
+import type { SubmitFunction } from '@sveltejs/kit';
+import type { SubmitFunctionAfter, SubmitFunctionBefore } from './types';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -34,4 +36,23 @@ export function showToast(title: string, message: string, state: 'error' | 'info
 
 export function fileToBlob(file: File) {
 	return new Blob([file], { type: file.type });
+}
+
+export function actionLoadingWrapper(handlers: {
+	before?: SubmitFunctionBefore;
+	after?: SubmitFunctionAfter;
+}) {
+	const loading = $state({ value: false });
+	const action: SubmitFunction = async (beforeParams) => {
+		loading.value = true;
+		if (handlers.before) handlers.before(beforeParams);
+		return (afterParams) => {
+			if (handlers.after) handlers.after(afterParams);
+			loading.value = false;
+		};
+	};
+	return {
+		action,
+		loading
+	};
 }

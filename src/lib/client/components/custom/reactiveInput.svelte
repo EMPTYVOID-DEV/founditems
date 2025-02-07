@@ -3,7 +3,7 @@
 	import Input from '@components/shadcn/input/input.svelte';
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { WithElementRef } from 'bits-ui';
-	import { cn } from '@client/utils';
+	import { cn } from '@client/utils.svelte';
 
 	let {
 		validator,

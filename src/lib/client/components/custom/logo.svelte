@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '@client/utils';
+	import { cn } from '@client/utils.svelte';
 	import LogoIcon from '@icons/logoIcon.svelte';
 	let { class: className }: { class?: string } = $props();
 </script>

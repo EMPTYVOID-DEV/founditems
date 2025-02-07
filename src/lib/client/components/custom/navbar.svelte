@@ -5,7 +5,7 @@
 	import UserAvatar from './userAvatar.svelte';
 	import CloseIcon from '@client/icons/closeIcon.svelte';
 	import MenuIcon from '@client/icons/menuIcon.svelte';
-	import { cn } from '@client/utils';
+	import { cn } from '@client/utils.svelte';
 	import { authPage, claimsPage, postsPage, searchPage } from '@shared/const';
 	import { page } from '$app/state';
 	import Logo from './logo.svelte';
