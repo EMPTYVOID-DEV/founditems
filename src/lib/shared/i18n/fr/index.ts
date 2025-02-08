@@ -21,7 +21,8 @@ const fr: Translation = {
 	validation: {
 		fullname: 'Le nom complet doit comporter au moins {0} caractères',
 		email: "L'adresse e-mail n'est pas valide",
-		address: 'Votre adresse doit comporter au moins {0} caractères.',
+		address: 'Votre adresse doit comporter au moins {0} caractères',
+		phoneNumber: 'Le numéro de téléphone doit comporter 10 chiffres',
 		imageSize: "la taille de l'image ne peut pas dépasser {0} Mo",
 		invalidImageUpload: 'Vous devez télécharger une image',
 		maxFilesNumber: 'Vous pouvez télécharger jusqu’à {0} fichiers',
@@ -36,7 +37,8 @@ const fr: Translation = {
 		email: 'Email',
 		password: 'Mot de passe',
 		address: 'Adresse physique',
-		avatar: 'Avatar'
+		avatar: 'Avatar',
+		phoneNumber: 'Numéro de téléphone'
 	},
 	auth: {
 		login: 'Connexion',
@@ -51,9 +53,9 @@ const fr: Translation = {
 		sendSuccess: 'Code envoyé avec succès',
 		resetPasswordSuccess: 'Mot de passe réinitialisé avec succès',
 		lostPasswordEmail:
-			"Saisissez l'adresse e-mail pour laquelle vous avez oublié votre mot de passe.",
+			"Saisissez l'adresse e-mail pour laquelle vous avez oublié votre mot de passe",
 		resetPassword:
-			'Nous vous avons envoyé un mot de passe unique ; vérifiez votre boîte de réception. Ensuite, saisissez votre nouveau mot de passe.',
+			'Nous vous avons envoyé un mot de passe unique ; vérifiez votre boîte de réception. Ensuite, saisissez votre nouveau mot de passe',
 		confirmNewPassword: 'Confirmer le nouveau mot de passe',
 		verificationEmail:
 			"Nous vous avons envoyé un code pour vérifier votre e-mail. Vérifiez votre boîte de réception ; s'il n'est pas présent, vérifiez le dossier spam",
@@ -84,7 +86,10 @@ const fr: Translation = {
 		addressChangeSuccess: 'Adresse changée avec succès',
 		avatarChange: 'Vous pouvez changer votre avatar',
 		avatarChangeSuccess: "L'avatar a été modifié avec succès",
-		logout: 'Vous pouvez vous déconnecter. Cela mettra fin à votre session de navigation.'
+		logout: 'Vous pouvez vous déconnecter. Cela mettra fin à votre session de navigation',
+		phoneNumberChange:
+			'Vous devez préciser votre numéro de téléphone avant de créer la publication',
+		phoneNumberChangeSuccess: 'Le numéro de téléphone a été modifié avec succès'
 	}
 };
 

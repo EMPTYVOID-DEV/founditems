@@ -13,7 +13,7 @@ export const actions: Actions = {
 		const fd = await request.formData();
 		const email = fd.get('email')!.toString();
 		const emailValidated = getValidator(getEmailSchema())(email);
-		if (emailValidated.status == 'invalid') return fail(402, { message: emailValidated.errorMsg });
+		if (emailValidated.status == 'invalid') return fail(400, { message: emailValidated.errorMsg });
 		const user = await db.query.userTable.findFirst({ where: eq(userTable.email, email) });
 		if (!user) return fail(403, { message: LL.auth.accountDoesNotExist() });
 		await setupOtp(email);
@@ -22,7 +22,7 @@ export const actions: Actions = {
 		const fd = await request.formData();
 		const email = fd.get('email')!.toString();
 		const emailValidated = getValidator(getEmailSchema())(email);
-		if (emailValidated.status == 'invalid') return fail(402, { message: emailValidated.errorMsg });
+		if (emailValidated.status == 'invalid') return fail(400, { message: emailValidated.errorMsg });
 		await setupOtp(email);
 	},
 	verify: async ({ request }) => {
@@ -33,10 +33,10 @@ export const actions: Actions = {
 		const emailValidated = getValidator(getEmailSchema())(email);
 		const passwordValidated = getValidator(getPasswordSchema())(password);
 
-		if (emailValidated.status == 'invalid') return fail(402, { message: emailValidated.errorMsg });
+		if (emailValidated.status == 'invalid') return fail(400, { message: emailValidated.errorMsg });
 
 		if (passwordValidated.status == 'invalid')
-			return fail(402, { message: passwordValidated.errorMsg });
+			return fail(400, { message: passwordValidated.errorMsg });
 
 		const isValid = await isValidOtp(email, enteredOtp);
 

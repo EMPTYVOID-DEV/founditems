@@ -2,7 +2,14 @@ import { db } from '@server/db';
 import { userTable } from '@server/db/schema';
 import { deleteSessionTokenCookie, invalidateSession } from '@server/utils/auth';
 import { FileUploadFactory } from '@server/utils/fileUpload';
-import { getValidator, getFullnameSchema, getAddressSchema, getAvatarSchema } from '@shared/zod';
+import {
+	getValidator,
+	getFullnameSchema,
+	getAddressSchema,
+	getAvatarSchema,
+	getPhoneNumberSchema
+} from '@shared/zod';
+
 import { error, fail, type Actions } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 
@@ -14,7 +21,7 @@ export const actions: Actions = {
 		const fullnameValidated = getValidator(getFullnameSchema())(fullname);
 
 		if (fullnameValidated.status == 'invalid')
-			return fail(402, { message: fullnameValidated.errorMsg });
+			return fail(400, { message: fullnameValidated.errorMsg });
 
 		await db.update(userTable).set({ fullname }).where(eq(userTable.id, id));
 	},
@@ -25,9 +32,20 @@ export const actions: Actions = {
 		const addressValidated = getValidator(getAddressSchema())(address);
 
 		if (addressValidated.status == 'invalid')
-			return fail(402, { message: addressValidated.errorMsg });
+			return fail(400, { message: addressValidated.errorMsg });
 
 		await db.update(userTable).set({ address }).where(eq(userTable.id, id));
+	},
+	phone: async ({ request, locals }) => {
+		const id = locals.user!.id;
+		const fd = await request.formData();
+		const phoneNumber = fd.get('phoneNumber')!.toString();
+		const phoneNumberValidated = getValidator(getPhoneNumberSchema())(phoneNumber);
+
+		if (phoneNumberValidated.status == 'invalid')
+			return fail(400, { message: phoneNumberValidated.errorMsg });
+
+		await db.update(userTable).set({ phoneNumber }).where(eq(userTable.id, id));
 	},
 	avatar: async ({ request, locals }) => {
 		const id = locals.user!.id;
@@ -36,7 +54,7 @@ export const actions: Actions = {
 		const avatarValidated = getValidator(getAvatarSchema())(avatar);
 
 		if (avatarValidated.status == 'invalid')
-			return fail(402, { message: avatarValidated.errorMsg });
+			return fail(400, { message: avatarValidated.errorMsg });
 
 		const fileUpload = FileUploadFactory.create('image');
 		const upload = await fileUpload.uploadFile(avatar);

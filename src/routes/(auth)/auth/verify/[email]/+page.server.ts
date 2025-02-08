@@ -12,7 +12,7 @@ export const actions: Actions = {
 	resend: async ({ params }) => {
 		const email = params.email!;
 		const emailValidated = getValidator(getEmailSchema())(email);
-		if (emailValidated.status == 'invalid') return fail(402, { message: emailValidated.errorMsg });
+		if (emailValidated.status == 'invalid') return fail(400, { message: emailValidated.errorMsg });
 		await setupOtp(email);
 	},
 	verify: async ({ cookies, request, params }) => {
@@ -21,7 +21,7 @@ export const actions: Actions = {
 		const enteredOtp = fd.get('otp')?.toString() || '';
 		const emailValidated = getValidator(getEmailSchema())(email);
 
-		if (emailValidated.status == 'invalid') return fail(402, { message: emailValidated.errorMsg });
+		if (emailValidated.status == 'invalid') return fail(400, { message: emailValidated.errorMsg });
 
 		const isValid = await isValidOtp(email, enteredOtp);
 

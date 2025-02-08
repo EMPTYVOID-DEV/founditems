@@ -91,6 +91,10 @@ type RootTranslation = {
 		 * ا​ل​ص​و​ر​ة​ ​ا​ل​ر​م​ز​ي​ة
 		 */
 		avatar: string
+		/**
+		 * ر​ق​م​ ​ه​ا​ت​ف
+		 */
+		phoneNumber: string
 	}
 	validation: {
 		/**
@@ -107,6 +111,10 @@ type RootTranslation = {
 		 * @param {unknown} 0
 		 */
 		address: RequiredParams<'0'>
+		/**
+		 * ي​ج​ب​ ​أ​ن​ ​ي​ك​و​ن​ ​ر​ق​م​ ​ا​ل​ه​ا​ت​ف​ ​م​ك​و​ن​ً​ا​ ​م​ن​ ​1​0​ ​أ​ر​ق​ا​م
+		 */
+		phoneNumber: string
 		/**
 		 * ح​ج​م​ ​ا​ل​ص​و​ر​ة​ ​ل​ا​ ​ي​م​ك​ن​ ​أ​ن​ ​ي​ت​ج​ا​و​ز​ ​{​0​}​ ​م​ي​ج​ا​ ​ب​ا​ي​ت
 		 * @param {unknown} 0
@@ -290,6 +298,14 @@ type RootTranslation = {
 		 * ي​م​ك​ن​ك​ ​ت​س​ج​ي​ل​ ​ا​ل​خ​ر​و​ج​.​ ​س​ي​ؤ​د​ي​ ​ه​ذ​ا​ ​إ​ل​ى​ ​إ​ن​ه​ا​ء​ ​ج​ل​س​ة​ ​ا​ل​ت​ص​ف​ح​ ​ا​ل​خ​ا​ص​ة​ ​ب​ك
 		 */
 		logout: string
+		/**
+		 * ي​ج​ب​ ​ع​ل​ي​ك​ ​ت​ح​د​ي​د​ ​ر​ق​م​ ​ه​ا​ت​ف​ك​ ​ق​ب​ل​ ​إ​ن​ش​ا​ء​ ​ا​ل​م​ن​ش​و​ر
+		 */
+		phoneNumberChange: string
+		/**
+		 * ت​م​ ​ت​غ​ي​ي​ر​ ​ر​ق​م​ ​ا​ل​ه​ا​ت​ف​ ​ب​ن​ج​ا​ح
+		 */
+		phoneNumberChangeSuccess: string
 	}
 }
 
@@ -371,6 +387,10 @@ export type TranslationFunctions = {
 		 * الصورة الرمزية
 		 */
 		avatar: () => LocalizedString
+		/**
+		 * رقم هاتف
+		 */
+		phoneNumber: () => LocalizedString
 	}
 	validation: {
 		/**
@@ -385,6 +405,10 @@ export type TranslationFunctions = {
 		 * يجب أن يكون عنوانك {0} حرفًا على الأقل
 		 */
 		address: (arg0: unknown) => LocalizedString
+		/**
+		 * يجب أن يكون رقم الهاتف مكونًا من 10 أرقام
+		 */
+		phoneNumber: () => LocalizedString
 		/**
 		 * حجم الصورة لا يمكن أن يتجاوز {0} ميجا بايت
 		 */
@@ -565,6 +589,14 @@ export type TranslationFunctions = {
 		 * يمكنك تسجيل الخروج. سيؤدي هذا إلى إنهاء جلسة التصفح الخاصة بك
 		 */
 		logout: () => LocalizedString
+		/**
+		 * يجب عليك تحديد رقم هاتفك قبل إنشاء المنشور
+		 */
+		phoneNumberChange: () => LocalizedString
+		/**
+		 * تم تغيير رقم الهاتف بنجاح
+		 */
+		phoneNumberChangeSuccess: () => LocalizedString
 	}
 }
 

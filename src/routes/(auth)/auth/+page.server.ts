@@ -24,10 +24,10 @@ export const actions: Actions = {
 		const passwordValidated = getValidator(getPasswordSchema())(password);
 
 		if (fullnameValidated.status == 'invalid')
-			return fail(402, { message: fullnameValidated.errorMsg });
-		if (emailValidated.status == 'invalid') return fail(402, { message: emailValidated.errorMsg });
+			return fail(400, { message: fullnameValidated.errorMsg });
+		if (emailValidated.status == 'invalid') return fail(400, { message: emailValidated.errorMsg });
 		if (passwordValidated.status == 'invalid')
-			return fail(402, { message: passwordValidated.errorMsg });
+			return fail(400, { message: passwordValidated.errorMsg });
 
 		const hashedPassword = await hash(password);
 		const newUser: UserInsert = {
@@ -51,10 +51,10 @@ export const actions: Actions = {
 		const emailValidated = getValidator(getEmailSchema())(email);
 		const passwordValidated = getValidator(getPasswordSchema())(password);
 
-		if (emailValidated.status == 'invalid') return fail(402, { message: emailValidated.errorMsg });
+		if (emailValidated.status == 'invalid') return fail(400, { message: emailValidated.errorMsg });
 
 		if (passwordValidated.status == 'invalid')
-			return fail(402, { message: passwordValidated.errorMsg });
+			return fail(400, { message: passwordValidated.errorMsg });
 
 		const userKey = await db.query.userTable.findFirst({
 			where: eq(userTable.email, email)

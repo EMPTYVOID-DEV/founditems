@@ -5,10 +5,10 @@
 </script>
 
 <a href={profilePage}>
-	<Avatar.Root class="h-15 w-15">
-		<Avatar.Image src={avatar} alt="avatar" />
+	<Avatar.Root class="h-12 w-12">
+		<Avatar.Image src={avatar} alt="avatar" class="object-cover object-center" />
 		<Avatar.Fallback>
-			<span class="rounded-[50%] bg-primary/30 p-3 uppercase">{fullname.slice(0, 2)}</span>
+			<span class=" rounded-[50%] bg-primary/30 p-3 uppercase">{fullname.slice(0, 2)}</span>
 		</Avatar.Fallback>
 	</Avatar.Root>
 </a>
