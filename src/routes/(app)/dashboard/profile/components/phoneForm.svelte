@@ -28,7 +28,7 @@
 <FormWrapper {action} actionName="?/phone" formClass="w-[80%] mr:w-full">
 	{#snippet mainSnippet()}
 		<h4>{$svelteLL.schema.phoneNumber()}</h4>
-		<p>{$svelteLL.profile.phoneNumberChangeSuccess()}</p>
+		<p>{$svelteLL.profile.phoneNumberChange()}</p>
 		<ReactiveInput validator={addressValidator} name="phoneNumber" value={phoneNumber} />
 	{/snippet}
 	{#snippet submitterSnippet()}
