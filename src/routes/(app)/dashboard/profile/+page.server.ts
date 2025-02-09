@@ -2,7 +2,6 @@ import { db } from '@server/db';
 import { userTable } from '@server/db/schema';
 import { deleteSessionTokenCookie, invalidateSession } from '@server/utils/auth';
 import { FileUploadFactory } from '@server/utils/fileUpload';
-import { avatarsContainer } from '@shared/const';
 import { LL } from '@shared/i18n/i18n';
 import {
 	getValidator,
@@ -50,7 +49,7 @@ export const actions: Actions = {
 		await db.update(userTable).set({ phoneNumber }).where(eq(userTable.id, id));
 	},
 	avatar: async ({ request, locals }) => {
-		const { id, avatar: oldAvatar } = locals.user!;
+		const { id } = locals.user!;
 		const fd = await request.formData();
 		const avatar = fd.get('avatar')?.valueOf() as Blob;
 		const avatarValidated = getValidator(getAvatarSchema())(avatar);
@@ -58,18 +57,13 @@ export const actions: Actions = {
 		if (avatarValidated.status == 'invalid')
 			return fail(400, { message: avatarValidated.errorMsg });
 
-		const fileUpload = FileUploadFactory.create(avatarsContainer);
+		const fileUpload = FileUploadFactory.create();
 		const upload = await fileUpload.uploadFile(avatar);
 		if (upload._tag == 'Left') {
 			console.error(upload.left);
 			return fail(500, { message: LL.errors.unableToUploadFile() });
 		}
 		await db.update(userTable).set({ avatar: upload.right }).where(eq(userTable.id, id));
-
-		if (oldAvatar == '') return;
-
-		const res = await fileUpload.deleteFile(oldAvatar);
-		if (res._tag == 'Left') console.error(res);
 	},
 	logout: async ({ locals, cookies }) => {
 		const { session } = locals;
