@@ -1,51 +1,56 @@
 import { env } from '$env/dynamic/private';
-import { createHash } from 'crypto';
-import { handleFetchError } from './general';
 import { left, right, type Either } from 'fp-ts/lib/Either';
-import type { HttpError } from '@server/types';
+import path from 'path';
+import { nanoid } from 'nanoid';
+import { writeFile, unlink } from 'fs/promises';
+import mime from 'mime-types';
+import { localStorage } from '@shared/const';
 
 export interface FileUpload {
-	uploadFile(file: File): Promise<Either<HttpError, string>>;
+	uploadFile(file: Blob): Promise<Either<Error, string>>;
+	deleteFile(publicId: string): Promise<Either<Error, null>>;
 }
 
 export class FileUploadFactory {
-	static create(assetType: 'image' | 'video' | 'raw'): FileUpload {
-		const storageProvider = env.STORAGE_PROVIDER;
-		if (storageProvider == 'cloudinary') return new Cloudinary(assetType);
-		throw new Error('Invalid storage provider');
+	static create(container: string): FileUpload {
+		switch (env.STORAGE_PROVIDER) {
+			case 'local':
+				return new LocalFileUpload(container);
+			default:
+				throw new Error('Unsupported storage provider');
+		}
 	}
 }
 
-export class Cloudinary implements FileUpload {
-	timestamp: string;
-	apiKey: string;
-	signature: string;
-	uploadUrl: string;
+class LocalFileUpload implements FileUpload {
+	private container: string;
 
-	constructor(assetType: 'image' | 'video' | 'raw') {
-		this.timestamp = Date.now().toString();
-		this.apiKey = env.CLOUDINARY_API_KEY;
-		this.uploadUrl = `https://api.cloudinary.com/v1_1/${env.CLOUNDINARY_CLOUD_NAME}/${assetType}/upload`;
-		this.signature = this.getSignature();
+	constructor(container: string) {
+		this.container = container;
 	}
 
-	async uploadFile(file: File) {
-		const fd = new FormData();
-		fd.append('file', file);
-		fd.append('api_key', this.apiKey);
-		fd.append('timestamp', this.timestamp);
-		fd.append('signature', this.signature);
-		const upload = await handleFetchError(fetch(this.uploadUrl, { method: 'POST', body: fd }));
-		if (upload._tag == 'Right') return right(await this.extractAccessUrl(upload.right));
-		return left(upload.left);
+	async uploadFile(file: Blob): Promise<Either<Error, string>> {
+		const id = nanoid(8);
+		const ext = mime.extension(file.type);
+		const publicId = `/${this.container}/${id}.${ext}`;
+		const filePath = path.join(localStorage, publicId);
+
+		try {
+			const arrayBuffer = await file.arrayBuffer();
+			await writeFile(filePath, Buffer.from(arrayBuffer));
+			return right(publicId);
+		} catch (error) {
+			return left(error instanceof Error ? error : new Error('File upload failed'));
+		}
 	}
 
-	async extractAccessUrl(res: Response): Promise<string> {
-		return res.json().then((data) => data.secure_url);
-	}
-
-	getSignature() {
-		const signature = `timestamp=${this.timestamp}${env.CLOUDINARY_API_SECRET}`;
-		return createHash('sha1').update(signature).digest('hex');
+	async deleteFile(publicId: string): Promise<Either<Error, null>> {
+		try {
+			const filePath = path.join(localStorage, publicId);
+			await unlink(filePath);
+			return right(null);
+		} catch (error) {
+			return left(error instanceof Error ? error : new Error('File deletion failed'));
+		}
 	}
 }

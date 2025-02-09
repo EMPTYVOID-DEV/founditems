@@ -1,6 +1,6 @@
 import type { ClaimsStates, PostMetadata, PostStates } from '@shared/types';
 import type { Locales } from '@shared/i18n/i18n-types';
-import { relations, sql } from 'drizzle-orm';
+import { relations } from 'drizzle-orm';
 import { boolean, json, pgTable, text, timestamp, varchar, serial } from 'drizzle-orm/pg-core';
 import { nanoid } from 'nanoid';
 
@@ -38,8 +38,7 @@ export const postTable = pgTable('post', {
 	address: text('address').notNull(),
 	foundDate: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
 	updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull(),
-	isSecret: boolean('is_secret').notNull(),
-	category: text('category').notNull(),
+	category: text('category').array().notNull(),
 	state: text('state').$type<PostStates>().notNull(),
 	metadata: json('metadata').$type<PostMetadata>().notNull()
 });
@@ -57,10 +56,7 @@ export const claimTable = pgTable('claim', {
 		.references(() => postTable.id, { onDelete: 'cascade' }),
 	lang: text('lang').$type<Locales>().notNull(),
 	proof: text('proof').notNull(),
-	images: text('images')
-		.array()
-		.notNull()
-		.default(sql`'{}'::text[]`),
+	images: text('images').array().notNull(),
 	state: text('state').$type<ClaimsStates>().notNull(),
 	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull()
 });

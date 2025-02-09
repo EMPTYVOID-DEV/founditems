@@ -4,7 +4,7 @@ CREATE TABLE "claim" (
 	"post_id" text NOT NULL,
 	"lang" text NOT NULL,
 	"proof" text NOT NULL,
-	"images" text[] DEFAULT '{}'::text[] NOT NULL,
+	"images" text[] NOT NULL,
 	"state" text NOT NULL,
 	"created_at" timestamp with time zone NOT NULL
 );
@@ -24,8 +24,7 @@ CREATE TABLE "post" (
 	"address" text NOT NULL,
 	"created_at" timestamp with time zone NOT NULL,
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
-	"is_secret" boolean NOT NULL,
-	"category" text NOT NULL,
+	"category" text[] NOT NULL,
 	"state" text NOT NULL,
 	"metadata" json NOT NULL
 );

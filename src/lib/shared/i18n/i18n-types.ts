@@ -69,6 +69,10 @@ type RootTranslation = {
 		 * ا​ل​خ​د​م​ة​ ​غ​ي​ر​ ​م​ت​و​ف​ر​ة
 		 */
 		serviceUnavailable: string
+		/**
+		 * ح​د​ث​ ​خ​ط​أ​ ​أ​ث​ن​ا​ء​ ​ت​ح​م​ي​ل​ ​ا​ل​م​ل​ف
+		 */
+		unableToUploadFile: string
 	}
 	schema: {
 		/**
@@ -365,6 +369,10 @@ export type TranslationFunctions = {
 		 * الخدمة غير متوفرة
 		 */
 		serviceUnavailable: () => LocalizedString
+		/**
+		 * حدث خطأ أثناء تحميل الملف
+		 */
+		unableToUploadFile: () => LocalizedString
 	}
 	schema: {
 		/**
