@@ -16,7 +16,8 @@ const ar: BaseTranslation = {
 		notFound: 'غير موجود',
 		internalServerError: 'خطأ في الخادم',
 		badRequest: 'طلب خاطئ',
-		serviceUnavailable: 'الخدمة غير متوفرة'
+		serviceUnavailable: 'الخدمة غير متوفرة',
+		unableToUploadFile: 'حدث خطأ أثناء تحميل الملف'
 	},
 	schema: {
 		fullname: 'الاسم الكامل',

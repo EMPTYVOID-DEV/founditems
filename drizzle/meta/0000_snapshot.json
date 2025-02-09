@@ -1,5 +1,5 @@
 {
-  "id": "63ca7010-d9a1-4b91-ae87-654982d49813",
+  "id": "3927cc1f-e9d6-46ef-b512-78864f169e8f",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -42,8 +42,7 @@
           "name": "images",
           "type": "text[]",
           "primaryKey": false,
-          "notNull": true,
-          "default": "'{}'::text[]"
+          "notNull": true
         },
         "state": {
           "name": "state",
@@ -179,15 +178,9 @@
           "notNull": true,
           "default": "now()"
         },
-        "is_secret": {
-          "name": "is_secret",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": true
-        },
         "category": {
           "name": "category",
-          "type": "text",
+          "type": "text[]",
           "primaryKey": false,
           "notNull": true
         },

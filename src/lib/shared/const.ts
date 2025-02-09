@@ -17,3 +17,7 @@ export const authVerifyPage = '/auth/verify';
 export const authPasswordResetPage = '/auth/password-reset';
 
 export const maxAvatarSize = 1;
+
+export const localStorage = 'static';
+
+export const avatarsContainer = 'avatars';

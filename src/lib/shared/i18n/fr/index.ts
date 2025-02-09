@@ -16,7 +16,8 @@ const fr: Translation = {
 		notFound: 'Non trouvé',
 		internalServerError: 'Erreur interne du serveur',
 		badRequest: 'Mauvaise demande',
-		serviceUnavailable: 'Service indisponible'
+		serviceUnavailable: 'Service indisponible',
+		unableToUploadFile: "Une erreur s'est produite lors du téléchargement d'un fichier"
 	},
 	validation: {
 		fullname: 'Le nom complet doit comporter au moins {0} caractères',
