@@ -1,0 +1,34 @@
+{
+	"name": "@founditems/mail",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"main": "./dist/index.js",
+	"scripts": {
+		"build": "tsup"
+	},
+	"files": [
+		"./dist/*"
+	],
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"db": "file:../db",
+		"dotenv": "^16.4.7",
+		"nanoid": "^5.0.9",
+		"nodemailer": "^6.10.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.20.0",
+		"@types/node": "^22.10.10",
+		"@types/nodemailer": "^6.4.17",
+		"eslint": "^9.7.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.2.3",
+		"globals": "^15.14.0",
+		"tsup": "^8.3.6",
+		"typescript": "^5.0.0",
+		"typescript-eslint": "^8.24.0"
+	}
+}
