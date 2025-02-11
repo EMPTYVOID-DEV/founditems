@@ -8,7 +8,7 @@
 	},
 	"aliases": {
 		"components": "$lib/client/components",
-		"utils": "$lib/client/utils",
+		"utils": "$lib/client/utils.svelte",
 		"ui": "$lib/client/components/shadcn",
 		"hooks": "$lib/client/hooks"
 	},

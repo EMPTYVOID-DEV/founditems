@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { svelteLL } from '@shared/i18n/i18n-svelte';
+	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import { actionLoadingWrapper, showToast } from '@client/utils.svelte';
 	import Logo from '@components/custom/logo.svelte';
 	import * as InputOTP from '@components/shadcn/input-otp/index';

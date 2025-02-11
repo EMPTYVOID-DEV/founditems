@@ -4,16 +4,16 @@ export const defaultLocale = 'ar';
 
 export const profilePage = '/dashboard/profile';
 
-export const searchPage = '/search';
-
 export const postsPage = '/dashboard/posts';
 
-export const claimsPage = '/dashboard/claims';
+export const connectionsPage = '/dashboard/connections';
 
 export const authPage = '/auth';
 
 export const authVerifyPage = '/auth/verify';
 
 export const authPasswordResetPage = '/auth/password-reset';
+
+export const createPostPage = '/dashboard/posts/create';
 
 export const maxAvatarSize = 1;

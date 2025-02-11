@@ -1,0 +1,89 @@
+{
+	"sportEquipments": {
+		"ball": [],
+		"twoWheeler": [],
+		"skiOrPoles": [],
+		"tennisRacket": [],
+		"helmet": []
+	},
+	"electronics": {
+		"cameraVideoRecorder": [],
+		"hairDryer": [],
+		"headphones": [],
+		"computer": [],
+		"smallElectronics": [],
+		"charger": [],
+		"tablet": [],
+		"earbuds": [],
+		"smartwatch": [],
+		"portableConsole": [],
+		"phones": []
+	},
+	"documents": {
+		"idCard": [],
+		"passport": [],
+		"driverLicense": [],
+		"letterPapers": [],
+		"travelTicket": [],
+		"vehicleRegistrationCard": [],
+		"healthCard": [],
+		"companyBadget": [],
+		"studentCard": [],
+		"familyRecordBook": [],
+		"schoolNotebook": []
+	},
+	"bags": {
+		"bag": [],
+		"smallSuitcase": [],
+		"largeSuitcase": [],
+		"briefcase": [],
+		"handbag": [],
+		"shoppingBag": []
+	},
+	"childrenItems": {
+		"toy": [],
+		"babyCareAccessory": [],
+		"stroller": []
+	},
+	"clothingAccessories": {
+		"belt": [],
+		"hat": [],
+		"cap": [],
+		"beanie": [],
+		"shoes": [],
+		"scarf": [],
+		"gloves": [],
+		"coatJacket": [],
+		"pants": [],
+		"tShirt": [],
+		"swimsuit": []
+	},
+	"jewelry": {
+		"watch": [],
+		"ring": [],
+		"earring": [],
+		"bracelet": [],
+		"necklace": []
+	},
+	"personalItems": {
+		"musicalInstruments": [],
+		"cosmetics": [],
+		"book": [],
+		"umbrella": [],
+		"motorcycleHelmet": [],
+		"walkingCane": [],
+		"householdAppliances": [],
+		"hearingAid": []
+	},
+	"moneyCards": {
+		"bankCard": [],
+		"walletPurse": [],
+		"cardholder": [],
+		"cashBanknotesCoins": [],
+		"checkbook": []
+	},
+	"animals": {
+		"cat": [],
+		"dog": []
+	}
+}

@@ -1,8 +1,17 @@
-import type { ClaimsStates, PostMetadata, PostStates } from '@shared/types';
-import type { Locales } from '@shared/i18n/i18n-types';
-import { relations } from 'drizzle-orm';
-import { boolean, json, pgTable, text, timestamp, varchar, serial } from 'drizzle-orm/pg-core';
+import type { ConnectionMetaData, ConnectionStates, ItemMetaData, ItemStates } from '@shared/types';
+import type { Locales } from '@assets/i18n/i18n-types';
+import {
+	boolean,
+	pgTable,
+	text,
+	timestamp,
+	varchar,
+	serial,
+	json,
+	integer
+} from 'drizzle-orm/pg-core';
 import { nanoid } from 'nanoid';
+import { relations } from 'drizzle-orm';
 
 export const userTable = pgTable('user', {
 	id: varchar('id', { length: 8 })
@@ -20,45 +29,66 @@ export const userTable = pgTable('user', {
 
 export const sessionTable = pgTable('session', {
 	id: text('id').primaryKey(),
-	userId: text('user_id')
+	userId: varchar('user_id', { length: 8 })
 		.notNull()
 		.references(() => userTable.id),
 	expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
 });
 
-export const postTable = pgTable('post', {
-	id: varchar('id', { length: 8 })
-		.primaryKey()
-		.notNull()
-		.$default(() => nanoid(8)),
-	userId: text('user_id')
+export const foundItemTable = pgTable('found_item', {
+	id: serial('id').primaryKey().notNull(),
+	userId: varchar('user_id', { length: 8 })
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
 	lang: text('lang').$type<Locales>().notNull(),
 	address: text('address').notNull(),
-	foundDate: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
-	updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull(),
+	foundDate: timestamp('found_date', { withTimezone: true, mode: 'date' }).notNull(),
 	category: text('category').array().notNull(),
-	state: text('state').$type<PostStates>().notNull(),
-	metadata: json('metadata').$type<PostMetadata>().notNull()
+	metadata: json('meta_data').array().$type<ItemMetaData>().notNull(),
+	state: text('state').$type<ItemStates>().notNull().default('Idle')
 });
 
-export const claimTable = pgTable('claim', {
-	id: varchar('id', { length: 8 })
-		.primaryKey()
-		.notNull()
-		.$default(() => nanoid(8)),
-	userId: text('user_id')
+export const lostItemTable = pgTable('lost_item', {
+	id: serial('id').primaryKey().notNull(),
+	userId: varchar('user_id', { length: 8 })
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
-	postId: text('post_id')
-		.notNull()
-		.references(() => postTable.id, { onDelete: 'cascade' }),
 	lang: text('lang').$type<Locales>().notNull(),
-	proof: text('proof').notNull(),
-	images: text('images').array().notNull(),
-	state: text('state').$type<ClaimsStates>().notNull(),
-	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull()
+	address: text('address').notNull(),
+	lostDate: timestamp('lost_date', { withTimezone: true, mode: 'date' }).notNull(),
+	category: text('category').array().notNull(),
+	metadata: json('meta_data').array().$type<ItemMetaData>().notNull(),
+	state: text('state').$type<ItemStates>().notNull().default('Idle'),
+	description: text('description').notNull(),
+	images: text('images').array().notNull()
+});
+
+export const unmatchedItemsTable = pgTable('unmatched_items', {
+	id: serial('id').primaryKey().notNull(),
+	lostItemId: integer('lost_item_id')
+		.notNull()
+		.references(() => lostItemTable.id, { onDelete: 'cascade' }),
+	foundItemId: integer('found_item_id')
+		.notNull()
+		.references(() => foundItemTable.id, { onDelete: 'cascade' })
+});
+
+export const connectionTable = pgTable('connection', {
+	id: serial('id').primaryKey().notNull(),
+	lostItemId: integer('lost_item_id')
+		.notNull()
+		.references(() => lostItemTable.id, { onDelete: 'cascade' }),
+	foundItemId: integer('found_item_id')
+		.notNull()
+		.references(() => foundItemTable.id, { onDelete: 'cascade' }),
+	founderId: varchar('founder_id', { length: 8 })
+		.notNull()
+		.references(() => userTable.id, { onDelete: 'cascade' }),
+	victimId: varchar('victim_id', { length: 8 })
+		.notNull()
+		.references(() => userTable.id, { onDelete: 'cascade' }),
+	state: text('state').$type<ConnectionStates>().notNull().default('Idle'),
+	metadata: json('meta_data').$type<ConnectionMetaData>().notNull()
 });
 
 export const otpTable = pgTable('otp', {
@@ -68,17 +98,44 @@ export const otpTable = pgTable('otp', {
 	expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
 });
 
-export const userRelation = relations(userTable, ({ many }) => ({
-	posts: many(postTable),
-	claims: many(claimTable)
+export const connectionRelations = relations(connectionTable, ({ one }) => ({
+	lostItem: one(lostItemTable, {
+		fields: [connectionTable.lostItemId],
+		references: [lostItemTable.id]
+	}),
+	foundItem: one(foundItemTable, {
+		fields: [connectionTable.foundItemId],
+		references: [foundItemTable.id]
+	}),
+	founder: one(userTable, { fields: [connectionTable.founderId], references: [userTable.id] }),
+	victim: one(userTable, { fields: [connectionTable.victimId], references: [userTable.id] })
 }));
 
-export const postRelation = relations(postTable, ({ many, one }) => ({
-	claims: many(claimTable),
-	user: one(userTable, { fields: [postTable.userId], references: [userTable.id] })
+export const unmatchedItemsRelations = relations(unmatchedItemsTable, ({ one }) => ({
+	lostItem: one(lostItemTable, {
+		fields: [unmatchedItemsTable.lostItemId],
+		references: [lostItemTable.id]
+	}),
+	foundItem: one(foundItemTable, {
+		fields: [unmatchedItemsTable.foundItemId],
+		references: [foundItemTable.id]
+	})
 }));
 
-export const claimsRelation = relations(claimTable, ({ one }) => ({
-	user: one(userTable, { fields: [claimTable.userId], references: [userTable.id] }),
-	post: one(postTable, { fields: [claimTable.postId], references: [postTable.id] })
+export const lostItemRelations = relations(lostItemTable, ({ one, many }) => ({
+	unmatchedItem: many(unmatchedItemsTable),
+	user: one(userTable, {
+		fields: [lostItemTable.userId],
+		references: [userTable.id]
+	}),
+	connection: one(connectionTable)
+}));
+
+export const foundItemRelations = relations(foundItemTable, ({ one, many }) => ({
+	unmatchedItem: many(unmatchedItemsTable),
+	user: one(userTable, {
+		fields: [foundItemTable.userId],
+		references: [userTable.id]
+	}),
+	connection: one(connectionTable)
 }));

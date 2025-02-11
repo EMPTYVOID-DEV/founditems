@@ -1,9 +1,18 @@
-import type { claimTable, postTable, sessionTable, userTable } from '@server/db/schema';
+import type {
+	sessionTable,
+	userTable,
+	connectionTable,
+	foundItemTable,
+	otpTable,
+	lostItemTable,
+	unmatchedItemsTable
+} from '@server/db/schema';
 import type { validateSessionToken } from '@server/utils/auth';
 
-export type PostStates =
+export type ItemStates = 'Idle' | 'Matched';
+
+export type ConnectionStates =
 	| 'Idle'
-	| 'Processing claims'
 	| 'Validated'
 	| 'Payment Validated'
 	| 'Payment Failed'
@@ -13,9 +22,7 @@ export type PostStates =
 	| 'Reporting'
 	| 'Released';
 
-export type ClaimsStates = 'Idle' | 'Rejected' | 'Accepted';
-
-export type PostMetadata = Partial<Record<PostStates, unknown>>;
+export type ConnectionMetaData = Partial<Record<ConnectionStates, unknown>>;
 
 export type SessionValidationResult = Awaited<ReturnType<typeof validateSessionToken>>;
 
@@ -23,18 +30,36 @@ export type Session = typeof sessionTable.$inferSelect;
 
 export type User = typeof userTable.$inferSelect;
 
-export type Post = typeof postTable.$inferSelect;
+export type FoundItem = typeof foundItemTable.$inferSelect;
 
-export type Claim = typeof claimTable.$inferSelect;
+export type LostItem = typeof lostItemTable.$inferSelect;
+
+export type Connection = typeof connectionTable.$inferSelect;
+
+export type Otp = typeof otpTable.$inferSelect;
+
+export type unmatchItems = typeof unmatchedItemsTable.$inferSelect;
 
 export type SessionInsert = typeof sessionTable.$inferInsert;
 
 export type UserInsert = typeof userTable.$inferInsert;
 
-export type PostInsert = typeof postTable.$inferInsert;
+export type FoundItemInsert = typeof foundItemTable.$inferInsert;
 
-export type ClaimInsert = typeof claimTable.$inferInsert;
+export type LostItemInsert = typeof lostItemTable.$inferInsert;
+
+export type ConnectionInsert = typeof connectionTable.$inferInsert;
+
+export type OtpInsert = typeof otpTable.$inferInsert;
+
+export type UnmatchItemsInsert = typeof unmatchedItemsTable.$inferInsert;
 
 export type ActionStatus = { status: 'valid' | 'invalid'; errorMsg: string };
 
 export type Validator = (data: unknown) => ActionStatus;
+
+export type ItemMetaData = {
+	name: string;
+	type: 'partial' | 'exact';
+	value: string;
+}[];

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { SessionValidationResult } from '@shared/types';
 	import LangSelect from './langSelect.svelte';
-	import { svelteLL } from '@shared/i18n/i18n-svelte';
+	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import UserAvatar from './userAvatar.svelte';
 	import CloseIcon from '@client/icons/closeIcon.svelte';
 	import MenuIcon from '@client/icons/menuIcon.svelte';
 	import { cn } from '@client/utils.svelte';
-	import { authPage, claimsPage, postsPage, searchPage } from '@shared/const';
+	import { authPage, connectionsPage, postsPage } from '@shared/const';
 	import { page } from '$app/state';
 	import Logo from './logo.svelte';
 
@@ -39,22 +39,16 @@
 		)}
 	>
 		<LangSelect />
-		<a
-			href={searchPage}
-			class={cn('border-primary hover:border-b-2 hover:text-primary', {
-				'text-primary': currentPathname == searchPage
-			})}>{$svelteLL.navbar.search()}</a
-		>
 		{#if user}
 			<a
-				href={claimsPage}
-				class={cn('border-primary hover:border-b-2 hover:text-primary', {
-					'text-primary': currentPathname == claimsPage
-				})}>{$svelteLL.navbar.claims()}</a
+				href={connectionsPage}
+				class={cn('border-primary capitalize hover:border-b-2 hover:text-primary', {
+					'text-primary': currentPathname == connectionsPage
+				})}>{$svelteLL.navbar.connections()}</a
 			>
 			<a
 				href={postsPage}
-				class={cn('border-primary hover:border-b-2 hover:text-primary', {
+				class={cn('border-primary capitalize hover:border-b-2 hover:text-primary', {
 					'text-primary': currentPathname == postsPage
 				})}>{$svelteLL.navbar.posts()}</a
 			>

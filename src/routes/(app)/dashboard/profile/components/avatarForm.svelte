@@ -4,7 +4,7 @@
 	import ActionButton from '@components/custom/actionButton.svelte';
 	import FileUpload from '@components/custom/fileUpload.svelte';
 	import FormWrapper from '@components/custom/formWrapper.svelte';
-	import { svelteLL } from '@shared/i18n/i18n-svelte';
+	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import { getValidator, getAvatarSchema } from '@shared/zod';
 
 	let files = $state<File[]>([]);
