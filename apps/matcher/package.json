@@ -1,0 +1,19 @@
+{
+  "name": "matcher",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.8",
+    "bullmq": "^5.40.2",
+    "hono": "^4.6.20",
+    "redis": "^4.7.0",
+    "db": "file:../../packages/db",
+    "mail": "file:../../packages/mail"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1"
+  }
+}
