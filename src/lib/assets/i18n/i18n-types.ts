@@ -47,6 +47,18 @@ type RootTranslation = {
 		 * ا​س​ح​ب​ ​ا​ل​م​ل​ف​ا​ت​ ​و​أ​ف​ل​ِ​ت​ه​ا​ ​ه​ن​ا​،​ ​أ​و​ ​ا​ن​ق​ر​ ​ل​ت​ح​د​ي​د​ ​ا​ل​م​ل​ف​ا​ت
 		 */
 		upload: string
+		/**
+		 * ح​د​د​ ​ت​ا​ر​ي​خ​ا
+		 */
+		selectDate: string
+		/**
+		 * س​ا​ع​ا​ت
+		 */
+		hours: string
+		/**
+		 * د​ق​ا​ئ​ق
+		 */
+		minutes: string
 	}
 	errors: {
 		/**
@@ -247,17 +259,13 @@ type RootTranslation = {
 		 */
 		selectLanguage: string
 		/**
-		 * ا​ل​م​ط​ا​ل​ب​ا​ت
-		 */
-		claims: string
-		/**
 		 * ا​ل​م​ن​ش​و​ر​ا​ت
 		 */
 		posts: string
 		/**
-		 * ب​ح​ث
+		 * ا​ل​ع​ل​ا​ق​ا​ت
 		 */
-		search: string
+		connections: string
 	}
 	home: {
 		/**
@@ -265,7 +273,7 @@ type RootTranslation = {
 		 */
 		title: string
 		/**
-		 * م​ن​ص​ة​ ​م​ب​ت​ك​ر​ة​ ​ل​ت​و​ص​ي​ل​ ​ا​ل​م​ف​ق​و​د​ا​ت​ ​ب​أ​ص​ح​ا​ب​ه​ا​ ​م​ع​ ​ن​ظ​ا​م​ ​آ​م​ن​ ​ل​إ​د​ا​ر​ة​ ​ا​ل​م​ط​ا​ل​ب​ا​ت​ ​و​م​ن​ع​ ​ا​ل​ا​ح​ت​ي​ا​ل
+		 * ي​ع​ي​د​ ​ل​ك​ ​ن​ظ​ا​م​ ​ا​ل​م​ط​ا​ب​ق​ة​ ​ا​ل​ذ​ك​ي​ ​ا​ل​خ​ا​ص​ ​ب​ن​ا​ ​ا​ل​ع​ث​و​ر​ ​ع​ل​ى​ ​ا​ل​ع​ن​ا​ص​ر​ ​ا​ل​م​ف​ق​و​د​ة​ ​ت​ل​ق​ا​ئ​ي​ً​ا​.​ ​ن​ظ​ا​م​ ​آ​م​ن​ ​و​ف​ع​ا​ل​ ​و​م​ص​م​م​ ​ل​ل​ج​م​ي​ع​.
 		 */
 		description: string
 		/**
@@ -311,6 +319,12 @@ type RootTranslation = {
 		 */
 		phoneNumberChangeSuccess: string
 	}
+	posts: {
+		/**
+		 * م​ن​ش​و​ر​ ​ج​د​ي​د
+		 */
+		newPost: string
+	}
 }
 
 export type TranslationFunctions = {
@@ -347,6 +361,18 @@ export type TranslationFunctions = {
 		 * اسحب الملفات وأفلِتها هنا، أو انقر لتحديد الملفات
 		 */
 		upload: () => LocalizedString
+		/**
+		 * حدد تاريخا
+		 */
+		selectDate: () => LocalizedString
+		/**
+		 * ساعات
+		 */
+		hours: () => LocalizedString
+		/**
+		 * دقائق
+		 */
+		minutes: () => LocalizedString
 	}
 	errors: {
 		/**
@@ -542,17 +568,13 @@ export type TranslationFunctions = {
 		 */
 		selectLanguage: () => LocalizedString
 		/**
-		 * المطالبات
-		 */
-		claims: () => LocalizedString
-		/**
 		 * المنشورات
 		 */
 		posts: () => LocalizedString
 		/**
-		 * بحث
+		 * العلاقات
 		 */
-		search: () => LocalizedString
+		connections: () => LocalizedString
 	}
 	home: {
 		/**
@@ -560,7 +582,7 @@ export type TranslationFunctions = {
 		 */
 		title: () => LocalizedString
 		/**
-		 * منصة مبتكرة لتوصيل المفقودات بأصحابها مع نظام آمن لإدارة المطالبات ومنع الاحتيال
+		 * يعيد لك نظام المطابقة الذكي الخاص بنا العثور على العناصر المفقودة تلقائيًا. نظام آمن وفعال ومصمم للجميع.
 		 */
 		description: () => LocalizedString
 		/**
@@ -605,6 +627,12 @@ export type TranslationFunctions = {
 		 * تم تغيير رقم الهاتف بنجاح
 		 */
 		phoneNumberChangeSuccess: () => LocalizedString
+	}
+	posts: {
+		/**
+		 * منشور جديد
+		 */
+		newPost: () => LocalizedString
 	}
 }
 

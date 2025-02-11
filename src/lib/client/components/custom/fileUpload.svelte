@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { showToast } from '@client/utils.svelte';
 	import CloseIconV2 from '@icons/closeIconV2.svelte';
-	import { svelteLL } from '@shared/i18n/i18n-svelte';
+	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import type { Validator } from '@shared/types';
 	import type { WithElementRef } from 'bits-ui';
 	import type { HTMLInputAttributes } from 'svelte/elements';

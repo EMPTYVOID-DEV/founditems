@@ -1,7 +1,7 @@
 import type { ZodSchema } from 'zod';
 import type { Validator } from './types';
 import z from 'zod';
-import { LL } from '@shared/i18n/i18n';
+import { LL } from '@assets/i18n/i18n';
 import { maxAvatarSize } from './const';
 
 export const getFullnameSchema = () => z.string().min(6, { message: LL.validation.fullname(8) });

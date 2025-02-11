@@ -4,7 +4,7 @@
 	import ActionButton from '@components/custom/actionButton.svelte';
 	import FormWrapper from '@components/custom/formWrapper.svelte';
 	import ReactiveInput from '@components/custom/reactiveInput.svelte';
-	import { svelteLL } from '@shared/i18n/i18n-svelte';
+	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import { getValidator, getFullnameSchema } from '@shared/zod';
 
 	let { fullname }: { fullname: string } = $props();

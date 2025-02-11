@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../../app.css';
 	import { Toaster } from 'svelte-sonner';
-	import { svelteUsedLocale } from '@shared/i18n/i18n-svelte';
+	import { svelteUsedLocale } from '@assets/i18n/i18n-svelte';
 	import { detectLocaleDirection } from '@shared/utils';
 	import '@fontsource/dm-sans';
 	import '@fontsource/inter';

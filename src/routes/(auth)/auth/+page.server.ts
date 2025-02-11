@@ -11,7 +11,7 @@ import { authVerifyPage, profilePage } from '@shared/const';
 import { setupOtp } from '@server/utils/email';
 import type { PostgresError } from 'postgres';
 import type { UserInsert } from '@shared/types';
-import { LL } from '@shared/i18n/i18n';
+import { LL } from '@assets/i18n/i18n';
 
 export const actions: Actions = {
 	signup: async ({ request }) => {

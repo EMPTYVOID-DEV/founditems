@@ -6,16 +6,16 @@ import {
 	authPage,
 	authPasswordResetPage,
 	authVerifyPage,
-	claimsPage,
+	connectionsPage,
 	defaultLocale,
 	postsPage,
 	profilePage
 } from '@shared/const';
 import { checkPath } from '@server/utils/general';
 import { detectLocaleDirection } from '@shared/utils';
-import type { Locales } from '@shared/i18n/i18n-types';
-import { isLocale } from '@shared/i18n/i18n-util';
-import { setLL } from '@shared/i18n/i18n';
+import type { Locales } from '@assets/i18n/i18n-types';
+import { isLocale } from '@assets/i18n/i18n-util';
+import { setLL } from '@assets/i18n/i18n';
 
 export function handleError({ error }) {
 	console.error(error);
@@ -47,7 +47,7 @@ const handleRouting: Handle = async ({ event, resolve }) => {
 	const pathname = event.url.pathname;
 	if (user && checkPath(pathname, [authPage, authVerifyPage, authPasswordResetPage], 'startWith'))
 		redirect(303, profilePage);
-	if (!user && checkPath(pathname, [profilePage, claimsPage, postsPage], 'startWith'))
+	if (!user && checkPath(pathname, [profilePage, connectionsPage, postsPage], 'startWith'))
 		redirect(303, authPage);
 	return resolve(event);
 };

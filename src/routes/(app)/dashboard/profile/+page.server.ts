@@ -2,7 +2,7 @@ import { db } from '@server/db';
 import { userTable } from '@server/db/schema';
 import { deleteSessionTokenCookie, invalidateSession } from '@server/utils/auth';
 import { FileUploadFactory } from '@server/utils/fileUpload';
-import { LL } from '@shared/i18n/i18n';
+import { LL } from '@assets/i18n/i18n';
 import {
 	getValidator,
 	getFullnameSchema,

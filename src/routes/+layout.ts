@@ -1,8 +1,8 @@
 import type { Load } from '@sveltejs/kit';
 import type { SessionValidationResult } from '$lib/shared/types';
-import type { Locales } from '@shared/i18n/i18n-types';
-import { setLL } from '@shared/i18n/i18n';
-import { setSvelteLL } from '@shared/i18n/i18n-svelte';
+import type { Locales } from '@assets/i18n/i18n-types';
+import { setLL } from '@assets/i18n/i18n';
+import { setSvelteLL } from '@assets/i18n/i18n-svelte';
 
 export const load: Load = async ({ data }) => {
 	const { locale, user } = data as { user: SessionValidationResult['user']; locale: Locales };

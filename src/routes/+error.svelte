@@ -2,7 +2,7 @@
 	import '../app.css';
 	import '@fontsource/dm-sans';
 	import '@fontsource/inter';
-	import { svelteLL } from '@shared/i18n/i18n-svelte';
+	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import { page } from '$app/state';
 	import Button from '@components/shadcn/button/button.svelte';
 	import { goto } from '$app/navigation';

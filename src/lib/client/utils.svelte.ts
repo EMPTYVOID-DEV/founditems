@@ -5,9 +5,9 @@ import { toast } from 'svelte-sonner';
 import Sonner from '@components/shadcn/sonnar/sonner.svelte';
 import type { ComponentType } from 'svelte';
 import { detectLocaleDirection } from '@shared/utils';
-import type { Locales } from '@shared/i18n/i18n-types';
-import { setLL } from '@shared/i18n/i18n';
-import { setSvelteLL } from '@shared/i18n/i18n-svelte';
+import type { Locales } from '@assets/i18n/i18n-types';
+import { setLL } from '@assets/i18n/i18n';
+import { setSvelteLL } from '@assets/i18n/i18n-svelte';
 import type { SubmitFunction } from '@sveltejs/kit';
 import type { SubmitFunctionAfter, SubmitFunctionBefore } from './types';
 

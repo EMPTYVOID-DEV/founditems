@@ -1,6 +1,6 @@
 // See https://svelte.dev/docs/kit/types#app.d.ts
 
-import type { Locales } from '@shared/i18n/i18n-types';
+import type { Locales } from '@assets/i18n/i18n-types';
 
 // for information about these interfaces
 declare global {

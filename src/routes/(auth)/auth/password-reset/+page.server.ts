@@ -3,7 +3,7 @@ import { db } from '@server/db';
 import { userTable } from '@server/db/schema';
 import { isValidOtp, setupOtp } from '@server/utils/email';
 import { authPage } from '@shared/const';
-import { LL } from '@shared/i18n/i18n';
+import { LL } from '@assets/i18n/i18n';
 import { getValidator, getEmailSchema, getPasswordSchema } from '@shared/zod';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';

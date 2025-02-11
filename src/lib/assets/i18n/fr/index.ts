@@ -9,7 +9,10 @@ const fr: Translation = {
 		info: 'Information',
 		select: 'Sélectionner',
 		language: 'Langue',
-		upload: 'Faites glisser et déposez des fichiers ici, ou cliquez pour sélectionner des fichiers'
+		upload: 'Faites glisser et déposez des fichiers ici, ou cliquez pour sélectionner des fichiers',
+		selectDate: 'Sélectionner une date',
+		hours: 'heures',
+		minutes: 'minutes'
 	},
 	errors: {
 		forbidden: 'Interdit',
@@ -69,14 +72,13 @@ const fr: Translation = {
 	},
 	navbar: {
 		selectLanguage: 'Choisissez la langue',
-		claims: 'Les revendications',
 		posts: 'Les postes',
-		search: 'Chercher'
+		connections: 'Les connections'
 	},
 	home: {
 		title: 'Trouvez vos objets perdus sans effort',
 		description:
-			'Une plateforme innovante pour connecter les objets perdus à leurs propriétaires avec un système de gestion des réclamations sécurisé et anti-fraude',
+			'Notre système de recherche intelligent vous permet de retrouver automatiquement vos objets perdus. Sécurisé, efficace et conçu pour tous.',
 		findYourThings: 'Trouvez vos objets'
 	},
 	profile: {
@@ -91,6 +93,9 @@ const fr: Translation = {
 		phoneNumberChange:
 			'Vous devez préciser votre numéro de téléphone avant de créer la publication',
 		phoneNumberChangeSuccess: 'Le numéro de téléphone a été modifié avec succès'
+	},
+	posts: {
+		newPost: 'nouveau poste'
 	}
 };
 

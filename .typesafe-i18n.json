@@ -2,5 +2,5 @@
 	"baseLocale": "ar",
 	"adapter": "node",
 	"esmImports": true,
-	"outputPath": "./src/lib/shared/i18n"
+	"outputPath": "./src/lib/assets/i18n"
 }

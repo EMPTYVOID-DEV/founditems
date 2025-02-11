@@ -9,7 +9,10 @@ const ar: BaseTranslation = {
 		info: 'معلومات',
 		select: 'اختيار',
 		language: 'اللغة',
-		upload: 'اسحب الملفات وأفلِتها هنا، أو انقر لتحديد الملفات'
+		upload: 'اسحب الملفات وأفلِتها هنا، أو انقر لتحديد الملفات',
+		selectDate: 'حدد تاريخا',
+		hours: 'ساعات',
+		minutes: 'دقائق'
 	},
 	errors: {
 		forbidden: 'غير مسموح',
@@ -68,13 +71,13 @@ const ar: BaseTranslation = {
 	},
 	navbar: {
 		selectLanguage: 'اختر اللغة',
-		claims: 'المطالبات',
 		posts: 'المنشورات',
-		search: 'بحث'
+		connections: 'العلاقات'
 	},
 	home: {
 		title: 'اجد اشيائك المفقودة بدون عناء',
-		description: 'منصة مبتكرة لتوصيل المفقودات بأصحابها مع نظام آمن لإدارة المطالبات ومنع الاحتيال',
+		description:
+			'يعيد لك نظام المطابقة الذكي الخاص بنا العثور على العناصر المفقودة تلقائيًا. نظام آمن وفعال ومصمم للجميع.',
 		findYourThings: 'ابحث عن أشيائك'
 	},
 	profile: {
@@ -88,6 +91,9 @@ const ar: BaseTranslation = {
 		logout: 'يمكنك تسجيل الخروج. سيؤدي هذا إلى إنهاء جلسة التصفح الخاصة بك',
 		phoneNumberChange: 'يجب عليك تحديد رقم هاتفك قبل إنشاء المنشور',
 		phoneNumberChangeSuccess: 'تم تغيير رقم الهاتف بنجاح'
+	},
+	posts: {
+		newPost: 'منشور جديد'
 	}
 };
 

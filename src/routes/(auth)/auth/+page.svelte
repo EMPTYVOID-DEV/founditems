@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { svelteLL } from '@shared/i18n/i18n-svelte';
+	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import Logo from '@components/custom/logo.svelte';
 	import { enhance } from '$app/forms';
 	import { actionLoadingWrapper, showToast } from '@client/utils.svelte';
