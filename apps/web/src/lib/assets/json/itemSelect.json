@@ -1,0 +1,31 @@
+{
+	"ballTypes": ["Basketball", "Football", "Soccer Ball", "Volleyball", "Tennis Ball"],
+	"twoWheelerTypes": ["Bicycle", "Scooter", "Motorcycle"],
+	"twoWheelerBrands": ["Giant", "Trek", "Schwinn", "Yamaha", "Honda"],
+	"skiOrPolesBrands": ["Rossignol", "Salomon", "Atomic", "Black Diamond"],
+	"tennisRacketBrands": ["Wilson", "Babolat", "Head", "Yonex"],
+	"helmetTypes": ["Bicycle Helmet", "Ski Helmet", "Motorcycle Helmet"],
+	"cameraVideoRecorderBrands": ["Sony", "Canon", "Nikon", "GoPro"],
+	"audioAccessoriesTypes": ["headphones", "earpods", "earphones"],
+	"audioAccessoriesBrands": ["Sony", "Bose", "Apple", "Sennheiser"],
+	"computerBrands": ["Apple", "Dell", "HP", "Lenovo", "Asus"],
+	"smallElectronicTypes": ["MP3 Player", "E-reader", "Digital Camera"],
+	"smallElectronicsBrands": ["Sony", "Apple", "Kindle", "Canon"],
+	"chargerTypes": ["USB-C", "Micro-USB", "Lightning", "Wireless"],
+	"tabletBrands": ["Apple", "Samsung", "Amazon", "Lenovo"],
+	"smartwatchBrands": ["Apple", "Samsung", "Fitbit", "Garmin"],
+	"portableConsoleBrands": ["Nintendo", "Sony"],
+	"phoneBrands": ["Apple", "Samsung", "Google", "OnePlus"],
+	"countries": [
+		"United States",
+		"Canada",
+		"United Kingdom",
+		"Germany",
+		"France",
+		"Japan",
+		"China",
+		"Australia",
+		"Brazil",
+		"India"
+	]
+}

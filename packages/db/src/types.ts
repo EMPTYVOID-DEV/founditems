@@ -1,3 +1,4 @@
+import type { z } from 'zod';
 import type {
 	sessionTable,
 	userTable,
@@ -7,6 +8,7 @@ import type {
 	lostItemTable,
 	unmatchedItemsTable
 } from './schema.js';
+import { itemDateSchema, itemMetaDataSchema } from './zod.js';
 
 export type ItemStates = 'Idle' | 'Matched';
 
@@ -51,8 +53,6 @@ export type OtpInsert = typeof otpTable.$inferInsert;
 
 export type UnmatchItemsInsert = typeof unmatchedItemsTable.$inferInsert;
 
-export type ItemMetaData = {
-	name: string;
-	type: 'partial' | 'exact';
-	value: string;
-}[];
+export type ItemDate = z.infer<typeof itemDateSchema>;
+
+export type ItemMetaData = z.infer<typeof itemMetaDataSchema>;

@@ -34,6 +34,8 @@ export const getAvatarSchema = () =>
 export const getPhoneNumberSchema = () =>
 	z.string().regex(/\d{10}/, { message: LL.validation.phoneNumber() });
 
+export const 
+
 export function getValidator(schema: ZodSchema): Validator {
 	return (data: unknown) => {
 		const parseResult = schema.safeParse(data);

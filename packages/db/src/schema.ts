@@ -1,4 +1,10 @@
-import type { ConnectionMetaData, ConnectionStates, ItemMetaData, ItemStates } from './types.js';
+import type {
+	ConnectionMetaData,
+	ConnectionStates,
+	ItemDate,
+	ItemMetaData,
+	ItemStates
+} from './types.js';
 import {
 	boolean,
 	pgTable,
@@ -43,11 +49,14 @@ export const foundItemTable = pgTable('found_item', {
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
 	lang: text('lang').$type().notNull(),
-	address: text('address').notNull(),
-	foundDate: timestamp('found_date', {
+	creationDate: timestamp('creation_date', {
 		withTimezone: true,
 		mode: 'date'
-	}).notNull(),
+	})
+		.notNull()
+		.defaultNow(),
+	address: text('address').notNull(),
+	foundDate: json('found_date').$type<ItemDate>().notNull(),
 	category: text('category').array().notNull(),
 	metadata: json('meta_data').array().$type<ItemMetaData>().notNull(),
 	state: text('state').$type<ItemStates>().notNull().default('Idle')
@@ -59,11 +68,14 @@ export const lostItemTable = pgTable('lost_item', {
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
 	lang: text('lang').$type().notNull(),
-	address: text('address').notNull(),
-	lostDate: timestamp('lost_date', {
+	creationDate: timestamp('creation_date', {
 		withTimezone: true,
 		mode: 'date'
-	}).notNull(),
+	})
+		.notNull()
+		.defaultNow(),
+	address: text('address').notNull(),
+	lostDate: json('lost_date').$type<ItemDate>().notNull(),
 	category: text('category').array().notNull(),
 	metadata: json('meta_data').array().$type<ItemMetaData>().notNull(),
 	state: text('state').$type<ItemStates>().notNull().default('Idle'),

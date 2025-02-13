@@ -1,89 +1,88 @@
 {
 	"sportEquipments": {
-		"ball": [],
-		"twoWheeler": [],
-		"skiOrPoles": [],
-		"tennisRacket": [],
-		"helmet": []
+		"ball": [{ "name": "ballType", "type": "select", "options": "ballTypes" }],
+		"twoWheeler": [
+			{ "name": "twoWheelerType", "type": "select", "options": "twoWheelerTypes" },
+			{ "name": "twoWheelerBrand", "type": "select", "options": "twoWheelerBrands" }
+		],
+		"skiOrPoles": [{ "name": "skiOrPolesBrand", "type": "select", "options": "skiOrPolesBrands" }],
+		"tennisRacket": [
+			{ "name": "tennisRacketBrand", "type": "select", "options": "tennisRacketBrands" }
+		],
+		"helmet": [
+			{ "name": "helmetType", "type": "select", "options": "helmetTypes" },
+			{ "name": "helmetBrand", "type": "text" }
+		]
 	},
 	"electronics": {
-		"cameraVideoRecorder": [],
-		"hairDryer": [],
-		"headphones": [],
-		"computer": [],
-		"smallElectronics": [],
-		"charger": [],
-		"tablet": [],
-		"earbuds": [],
-		"smartwatch": [],
-		"portableConsole": [],
-		"phones": []
+		"cameraVideoRecorder": [
+			{
+				"name": "cameraVideoRecorderBrand",
+				"type": "select",
+				"options": "cameraVideoRecorderBrands"
+			},
+			{ "name": "cameraVideoRecorderModel", "type": "text" }
+		],
+		"hairDryer": [{ "name": "hairDryerBrand", "type": "text" }],
+		"audioAccessories": [
+			{ "name": "audioAccessoriesType", "type": "select", "options": "audioAccessoriesTypes" },
+			{ "name": "audioAccessoriesBrand", "type": "select", "options": "audioAccessoriesBrands" }
+		],
+		"computer": [
+			{ "name": "computerBrand", "type": "select", "options": "computerBrands" },
+			{ "name": "computerModel", "type": "text" },
+			{ "name": "computerWallpaper", "type": "text" }
+		],
+		"smallElectronic": [
+			{ "name": "smallElectronicType", "type": "select", "options": "smallElectronicTypes" },
+			{ "name": "smallElectronicBrand", "type": "select", "options": "smallElectronicsBrands" }
+		],
+		"charger": [
+			{ "name": "chargerType", "type": "select", "options": "chargerTypes" },
+			{ "name": "chargerBrand", "type": "text" }
+		],
+		"tablet": [
+			{ "name": "tabletBrand", "type": "select", "options": "tabletBrands" },
+			{ "name": "tabletModel", "type": "text" },
+			{ "name": "tabletWallpaper", "type": "text" }
+		],
+		"smartwatch": [
+			{ "name": "smartwatchBrand", "type": "select", "options": "smartwatchBrands" },
+			{ "name": "smartwatchModel", "type": "text" }
+		],
+		"portableConsole": [
+			{ "name": "portableConsoleBrand", "type": "select", "options": "portableConsoleBrands" },
+			{ "name": "portableConsoleModel", "type": "text" }
+		],
+		"phone": [
+			{ "name": "phoneBrand", "type": "select", "options": "phoneBrands" },
+			{ "name": "phoneModel", "type": "text" },
+			{ "name": "phoneWallpaper", "type": "text" }
+		]
 	},
 	"documents": {
-		"idCard": [],
-		"passport": [],
-		"driverLicense": [],
-		"letterPapers": [],
-		"travelTicket": [],
-		"vehicleRegistrationCard": [],
-		"healthCard": [],
-		"companyBadget": [],
-		"studentCard": [],
-		"familyRecordBook": [],
-		"schoolNotebook": []
-	},
-	"bags": {
-		"bag": [],
-		"smallSuitcase": [],
-		"largeSuitcase": [],
-		"briefcase": [],
-		"handbag": [],
-		"shoppingBag": []
-	},
-	"childrenItems": {
-		"toy": [],
-		"babyCareAccessory": [],
-		"stroller": []
-	},
-	"clothingAccessories": {
-		"belt": [],
-		"hat": [],
-		"cap": [],
-		"beanie": [],
-		"shoes": [],
-		"scarf": [],
-		"gloves": [],
-		"coatJacket": [],
-		"pants": [],
-		"tShirt": [],
-		"swimsuit": []
-	},
-	"jewelry": {
-		"watch": [],
-		"ring": [],
-		"earring": [],
-		"bracelet": [],
-		"necklace": []
-	},
-	"personalItems": {
-		"musicalInstruments": [],
-		"cosmetics": [],
-		"book": [],
-		"umbrella": [],
-		"motorcycleHelmet": [],
-		"walkingCane": [],
-		"householdAppliances": [],
-		"hearingAid": []
-	},
-	"moneyCards": {
-		"bankCard": [],
-		"walletPurse": [],
-		"cardholder": [],
-		"cashBanknotesCoins": [],
-		"checkbook": []
-	},
-	"animals": {
-		"cat": [],
-		"dog": []
+		"idCard": [
+			{ "name": "issuingCountry", "type": "select", "options": "countries" },
+			{ "name": "name", "type": "text" },
+			{ "name": "birthDate", "type": "date" }
+		],
+		"passport": [
+			{ "name": "issuingCountry", "type": "select", "options": "countries" },
+			{ "name": "name", "type": "text" },
+			{ "name": "birthDate", "type": "date" }
+		],
+		"driverLicense": [
+			{ "name": "issuingCountry", "type": "select", "options": "countries" },
+			{ "name": "name", "type": "text" },
+			{ "name": "birthDate", "type": "date" }
+		],
+		"companyBadget": [
+			{ "name": "companyName", "type": "text" },
+			{ "name": "employerName", "type": "text" }
+		],
+		"studentCard": [
+			{ "name": "schoolName", "type": "text" },
+			{ "name": "name", "type": "text" }
+		]
 	}
 }

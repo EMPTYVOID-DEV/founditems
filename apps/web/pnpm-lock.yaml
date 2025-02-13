@@ -2644,6 +2644,7 @@ snapshots:
       drizzle-orm: 0.39.3(postgres@3.4.5)
       nanoid: 5.0.9
       postgres: 3.4.5
+      zod: 3.24.1
     transitivePeerDependencies:
       - '@aws-sdk/client-rds-data'
       - '@cloudflare/workers-types'
