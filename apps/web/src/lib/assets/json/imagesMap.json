@@ -1,0 +1,20 @@
+{
+	"sportEquipments": "sports_equipments.png",
+	"ball": "ball.png",
+	"twoWheeler": "two_wheeler.png",
+	"skiOrPoles": "ski_or_poles.png",
+	"tennisRacket": "tennis_racket.png",
+	"helmet": "helmet.png",
+	"electronics": "electronics.png",
+	"cameraVideoRecorder": "camera.png",
+	"computer": "computer.png",
+	"charger": "charger.png",
+	"tablet": "tablet.png",
+	"smartwatch": "smart_watch.png",
+	"phone": "phone.png",
+	"documents": "documents.png",
+	"idCard": "id_card.png",
+	"passport": "passeport.png",
+	"driverLicense": "driver_license.png",
+	"companyBadget": "company_badget.png"
+}

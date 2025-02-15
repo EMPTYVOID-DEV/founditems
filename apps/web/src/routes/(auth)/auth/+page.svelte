@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
-	import Logo from '@components/custom/logo.svelte';
+	import Logo from '@components/custom/other/logo.svelte';
 	import { enhance } from '$app/forms';
 	import { actionLoadingWrapper, showToast } from '@client/utils.svelte';
-	import ReactiveInput from '@components/custom/reactiveInput.svelte';
+	import ReactiveInput from '@components/custom/other/reactiveInput.svelte';
 	import { getEmailSchema, getFullnameSchema, getPasswordSchema, getValidator } from '@shared/zod';
 	import { authPasswordResetPage } from '@shared/const';
 	import type { SubmitFunctionAfter } from '@client/types';
-	import ActionButton from '@components/custom/actionButton.svelte';
+	import ActionButton from '@components/custom/other/actionButton.svelte';
 	let isRegister = $state(true);
 	const fullnameValidator = getValidator(getFullnameSchema());
 	const emailValidator = getValidator(getEmailSchema());
@@ -23,7 +23,7 @@
 
 <div class="flex h-svh w-svw items-center justify-center">
 	<form
-		class=" flex w-1/2 flex-col items-center gap-5 mr:w-[90%]"
+		class=" mr:w-[90%] flex w-1/2 flex-col items-center gap-5"
 		action={isRegister ? '?/signup' : '?/signin'}
 		method="POST"
 		use:enhance={action}
@@ -63,14 +63,14 @@
 		<div class="flex w-full max-w-sm items-center justify-between gap-2">
 			<button
 				type="button"
-				class="underline hover:text-primary"
+				class="hover:text-primary underline"
 				onclick={() => (isRegister = !isRegister)}
 				>{isRegister
 					? $svelteLL.auth.alreadyHaveAccount()
 					: $svelteLL.auth.dontHaveAccount()}</button
 			>
 			{#if !isRegister}
-				<a href={authPasswordResetPage} class="underline hover:text-primary"
+				<a href={authPasswordResetPage} class="hover:text-primary underline"
 					>{$svelteLL.auth.forgetPassword()}</a
 				>
 			{/if}

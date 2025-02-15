@@ -20,9 +20,9 @@ importers:
       postgres:
         specifier: ^3.4.4
         version: 3.4.5
-      zod:
-        specifier: ^3.24.1
-        version: 3.24.2
+      utils:
+        specifier: file:../utils
+        version: '@founditems/utils@file:../utils'
     devDependencies:
       '@eslint/js':
         specifier: ^9.20.0
@@ -528,6 +528,9 @@ packages:
   '@eslint/plugin-kit@0.2.5':
     resolution: {integrity: sha512-lB05FkqEdUg2AA0xEbUz0SnkXT1LcCTa438W4IWTUh4hdOnVbQyOJ81OrDXsJk/LSiJHubgGEFoR5EHq1NsH1A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@founditems/utils@file:../utils':
+    resolution: {directory: ../utils, type: directory}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1795,6 +1798,10 @@ snapshots:
     dependencies:
       '@eslint/core': 0.10.0
       levn: 0.4.1
+
+  '@founditems/utils@file:../utils':
+    dependencies:
+      zod: 3.24.2
 
   '@humanfs/core@0.19.1': {}
 

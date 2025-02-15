@@ -1,0 +1,64 @@
+<script lang="ts">
+	import { svelteLL } from '@assets/i18n/i18n-svelte';
+	import type { Translation } from '@assets/i18n/i18n-types';
+	import * as Select from '@components/shadcn/select/index.js';
+	import { PostDataInstance } from './postData.svelte';
+	import { getValidator, getMetaDataTextSchema } from '@shared/zod';
+	import ReactiveInput from '../other/reactiveInput.svelte';
+	import DatePicker from '../date/datePicker.svelte';
+	import { formatDate } from '@client/utils.svelte';
+	const textValidator = getValidator(getMetaDataTextSchema());
+</script>
+
+{#snippet selectSnippet(options: string[], name: string)}
+	{@const metaKey = name as keyof Translation['metaData']}
+	<Select.Root type="single" onValueChange={(val) => PostDataInstance.setMetaData(name, val)}>
+		<Select.Trigger class="flex  w-full max-w-lg  items-center justify-between">
+			{@const optionKey = PostDataInstance.getMetaData(name) as keyof Translation['selectOptions']}
+			<span class="capitalize"
+				>{$svelteLL.metaData[metaKey]()}-{$svelteLL.selectOptions[optionKey]()}</span
+			>
+		</Select.Trigger>
+		<Select.Content>
+			{#each options as option}
+				{@const translationKey = option as keyof Translation['selectOptions']}
+				<Select.Item value={option} class="capitalize"
+					>{$svelteLL.selectOptions[translationKey]()}</Select.Item
+				>
+			{/each}
+		</Select.Content>
+	</Select.Root>
+{/snippet}
+
+{#snippet textSnippet(name: string)}
+	{@const translationKey = name as keyof Translation['metaData']}
+	<ReactiveInput
+		maxSize="lg"
+		label={$svelteLL.metaData[translationKey]()}
+		validator={textValidator}
+		oninput={(e) => PostDataInstance.setMetaData(name, e.currentTarget.value)}
+	/>
+{/snippet}
+
+{#snippet dateSnippet(name: string)}
+	{@const translationKey = name as keyof Translation['metaData']}
+	<div class="flex flex-col gap-1">
+		<span>{$svelteLL.metaData[translationKey]()}</span>
+		<DatePicker
+			onChange={(val) => PostDataInstance.setMetaData(name, formatDate(val))}
+			maxSize="lg"
+		/>
+	</div>
+{/snippet}
+
+<div class="flex w-full flex-col gap-4">
+	{#each PostDataInstance.metaDataDescOptions as metaDataObject}
+		{#if metaDataObject.options}
+			{@render selectSnippet(metaDataObject.options, metaDataObject.name)}
+		{:else if metaDataObject.type == 'text'}
+			{@render textSnippet(metaDataObject.name)}
+		{:else}
+			{@render dateSnippet(metaDataObject.name)}
+		{/if}
+	{/each}
+</div>

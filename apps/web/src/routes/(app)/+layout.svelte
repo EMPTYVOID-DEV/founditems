@@ -5,7 +5,7 @@
 	import { Toaster } from 'svelte-sonner';
 	import { svelteUsedLocale } from '@assets/i18n/i18n-svelte';
 	import { detectLocaleDirection } from '@shared/utils';
-	import Navbar from '@components/custom/navbar.svelte';
+	import Navbar from '@components/custom/other/navbar.svelte';
 
 	let { children, data } = $props();
 	let position: 'bottom-left' | 'bottom-right' = $derived(

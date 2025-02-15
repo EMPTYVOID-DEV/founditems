@@ -1,14 +1,14 @@
 <script lang="ts">
 	import type { SubmitFunctionBefore, SubmitFunctionAfter } from '@client/types';
 	import { actionLoadingWrapper, fileToBlob, showToast } from '@client/utils.svelte';
-	import ActionButton from '@components/custom/actionButton.svelte';
-	import FileUpload from '@components/custom/fileUpload.svelte';
-	import FormWrapper from '@components/custom/formWrapper.svelte';
+	import ActionButton from '@components/custom/other/actionButton.svelte';
+	import FileUpload from '@components/custom/other/fileUpload.svelte';
+	import FormWrapper from '@components/custom/other/formWrapper.svelte';
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
-	import { getValidator, getAvatarSchema } from '@shared/zod';
+	import { getValidator, getImageSchema } from '@shared/zod';
 
 	let files = $state<File[]>([]);
-	const avatarValidator = getValidator(getAvatarSchema());
+	const avatarValidator = getValidator(getImageSchema());
 
 	const avatarActionBefore: SubmitFunctionBefore = ({ formData }) => {
 		if (files.length == 0) return;

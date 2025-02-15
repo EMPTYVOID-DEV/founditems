@@ -58,6 +58,7 @@
 		"browser-cookies": "^1.2.0",
 		"db": "file:../../packages/db",
 		"mail": "file:../../packages/mail",
+		"utils": "file:../../packages/utils",
 		"fp-ts": "^2.16.9",
 		"mime-types": "^2.1.35",
 		"nanoid": "^5.0.9",

@@ -9,6 +9,7 @@
 	import { authPage, connectionsPage, postsPage } from '@shared/const';
 	import { page } from '$app/state';
 	import Logo from './logo.svelte';
+	import { checkPath } from '@shared/utils';
 
 	$effect(() => {
 		if (page.url.pathname) showMenu = false;
@@ -20,11 +21,11 @@
 </script>
 
 <div
-	class="fixed left-0 top-0 z-50 flex h-20 w-full items-center bg-background px-4 shadow-md"
+	class="bg-background fixed left-0 top-0 z-50 flex h-20 w-full items-center px-4 shadow-md"
 	dir="ltr"
 >
 	<Logo class="mr-auto" />
-	<button class="hidden mr:contents" onclick={() => (showMenu = !showMenu)}>
+	<button class="mr:contents hidden" onclick={() => (showMenu = !showMenu)}>
 		{#if showMenu}
 			<CloseIcon />
 		{:else}
@@ -34,7 +35,7 @@
 
 	<div
 		class={cn(
-			'flex items-center gap-5 transition-transform duration-300 ease-in-out mr:fixed mr:left-0 mr:top-20 mr:h-full mr:w-full mr:flex-col mr:items-start mr:bg-background mr:px-4 mr:pl-4',
+			'mr:fixed mr:left-0 mr:top-20 mr:h-full mr:w-full mr:flex-col mr:items-start mr:bg-background mr:px-4 mr:pl-4 flex items-center gap-5 transition-transform duration-300 ease-in-out',
 			{ 'mr:translate-x-0': showMenu, 'mr:-translate-x-full': !showMenu }
 		)}
 	>
@@ -42,23 +43,20 @@
 		{#if user}
 			<a
 				href={connectionsPage}
-				class={cn('border-primary capitalize hover:border-b-2 hover:text-primary', {
-					'text-primary': currentPathname == connectionsPage
+				class={cn('border-primary hover:text-primary capitalize hover:border-b-2', {
+					'text-primary': checkPath(currentPathname, [connectionsPage], 'startWith')
 				})}>{$svelteLL.navbar.connections()}</a
 			>
 			<a
 				href={postsPage}
-				class={cn('border-primary capitalize hover:border-b-2 hover:text-primary', {
-					'text-primary': currentPathname == postsPage
+				class={cn('border-primary hover:text-primary capitalize hover:border-b-2', {
+					'text-primary': checkPath(currentPathname, [postsPage], 'startWith')
 				})}>{$svelteLL.navbar.posts()}</a
 			>
 			<UserAvatar avatar={user.avatar} fullname={user.fullname} />
 		{:else}
-			<a
-				href={authPage}
-				class={cn('border-primary hover:border-b-2 hover:text-primary', {
-					'text-primary': currentPathname == authPage
-				})}>{$svelteLL.auth.login()}</a
+			<a href={authPage} class="border-primary hover:text-primary hover:border-b-2"
+				>{$svelteLL.auth.login()}</a
 			>
 		{/if}
 	</div>

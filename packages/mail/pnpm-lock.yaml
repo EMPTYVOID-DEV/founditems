@@ -248,6 +248,9 @@ packages:
   '@founditems/db@file:../db':
     resolution: {directory: ../db, type: directory}
 
+  '@founditems/utils@file:../utils':
+    resolution: {directory: ../utils, type: directory}
+
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
     engines: {node: '>=18.18.0'}
@@ -1346,7 +1349,7 @@ snapshots:
       drizzle-orm: 0.39.3(postgres@3.4.5)
       nanoid: 5.0.9
       postgres: 3.4.5
-      zod: 3.24.2
+      utils: '@founditems/utils@file:../utils'
     transitivePeerDependencies:
       - '@aws-sdk/client-rds-data'
       - '@cloudflare/workers-types'
@@ -1374,6 +1377,10 @@ snapshots:
       - prisma
       - sql.js
       - sqlite3
+
+  '@founditems/utils@file:../utils':
+    dependencies:
+      zod: 3.24.2
 
   '@humanfs/core@0.19.1': {}
 

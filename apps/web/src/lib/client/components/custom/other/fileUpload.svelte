@@ -64,7 +64,7 @@
 
 {#snippet fileSnippet(filename: string, index: number)}
 	<div
-		class="flex items-center gap-2 rounded-lg border-2 border-secondary bg-secondary/30 px-3 py-1"
+		class="border-secondary bg-secondary/30 flex items-center gap-2 rounded-lg border-2 px-3 py-1"
 		dir="ltr"
 	>
 		<span class="text-small" dir="ltr">{limitFileName(filename)}</span>
@@ -74,16 +74,16 @@
 	</div>
 {/snippet}
 
-<div class="flex w-full flex-col items-center rounded-lg border-2 border-dashed bg-muted p-3">
+<div class="bg-muted flex w-full flex-col rounded-lg border-2 border-dashed p-3">
 	<label
 		for="file"
-		class=" w-full cursor-pointer text-center text-muted-foreground"
+		class=" text-muted-foreground w-full cursor-pointer text-center"
 		ondrop={handleDrop}
 		ondragover={handleDragOver}
 	>
 		{$svelteLL.general.upload()}
 	</label>
-	<div class="mt-2 flex gap-2 empty:hidden">
+	<div class="mt-2 flex flex-wrap justify-center gap-2 empty:hidden">
 		{#each uploadedFiles as file, idx}
 			{@render fileSnippet(file.name, idx)}
 		{/each}

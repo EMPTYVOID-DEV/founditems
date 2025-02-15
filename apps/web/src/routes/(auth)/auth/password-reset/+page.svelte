@@ -2,13 +2,13 @@
 	import { enhance } from '$app/forms';
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import { actionLoadingWrapper, showToast } from '@client/utils.svelte';
-	import Logo from '@components/custom/logo.svelte';
-	import ReactiveInput from '@components/custom/reactiveInput.svelte';
+	import Logo from '@components/custom/other/logo.svelte';
+	import ReactiveInput from '@components/custom/other/reactiveInput.svelte';
 	import * as InputOTP from '@components/shadcn/input-otp';
 	import { getValidator, getEmailSchema, getPasswordSchema } from '@shared/zod';
 	import { REGEXP_ONLY_DIGITS } from 'bits-ui';
 	import type { SubmitFunctionAfter, SubmitFunctionBefore } from '@client/types';
-	import ActionButton from '@components/custom/actionButton.svelte';
+	import ActionButton from '@components/custom/other/actionButton.svelte';
 
 	let stage = $state<'send' | 'verify'>('send');
 
@@ -73,10 +73,10 @@
 </script>
 
 <div class="flex h-svh w-svw items-center justify-center">
-	<div class=" flex w-1/2 flex-col items-center gap-5 mr:w-[90%]">
+	<div class=" mr:w-[90%] flex w-1/2 flex-col items-center gap-5">
 		<Logo class="self-center" />
 		{#if stage == 'send'}
-			<p class="w-full max-w-sm font-bold text-muted-foreground">
+			<p class="text-muted-foreground w-full max-w-sm font-bold">
 				{$svelteLL.auth.lostPasswordEmail()}
 			</p>
 			<ReactiveInput
@@ -92,7 +92,7 @@
 				>
 			</form>
 		{:else}
-			<p class="w-full max-w-sm font-bold text-muted-foreground">
+			<p class="text-muted-foreground w-full max-w-sm font-bold">
 				{$svelteLL.auth.resetPassword()}
 			</p>
 			<div class="contents" dir="ltr">

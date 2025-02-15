@@ -1,0 +1,33 @@
+{
+	"colors": ["red", "blue", "green"],
+	"conditions": ["newWithTicket", "newWithoutTicket", "good", "damaged"],
+	"ballTypes": ["basketball", "football", "soccerBall", "volleyball", "tennisBall"],
+	"twoWheelerTypes": ["bicycle", "scooter", "motorcycle"],
+	"twoWheelerBrands": ["giant", "trek", "schwinn", "yamaha", "honda"],
+	"skiOrPolesBrands": ["rossignol", "salomon", "atomic", "blackDiamond"],
+	"tennisRacketBrands": ["wilson", "babolat", "head", "yonex"],
+	"helmetTypes": ["bicycleHelmet", "skiHelmet", "motorcycleHelmet"],
+	"cameraVideoRecorderBrands": ["sony", "canon", "nikon", "gopro"],
+	"audioAccessoriesTypes": ["headphones", "earpods", "earphones"],
+	"audioAccessoriesBrands": ["sony", "bose", "apple", "sennheiser"],
+	"computerBrands": ["apple", "dell", "hp", "lenovo", "asus"],
+	"smallElectronicTypes": ["mp3Player", "eReader", "digitalCamera"],
+	"smallElectronicsBrands": ["sony", "apple", "kindle", "canon"],
+	"chargerTypes": ["usbC", "microUSB", "lightning", "wireless"],
+	"tabletBrands": ["apple", "samsung", "amazon", "lenovo"],
+	"smartwatchBrands": ["apple", "samsung", "fitbit", "garmin"],
+	"portableConsoleBrands": ["nintendo", "sony"],
+	"phoneBrands": ["apple", "samsung", "google", "onePlus"],
+	"countries": [
+		"unitedStates",
+		"canada",
+		"unitedKingdom",
+		"germany",
+		"france",
+		"japan",
+		"china",
+		"australia",
+		"brazil",
+		"india"
+	]
+}

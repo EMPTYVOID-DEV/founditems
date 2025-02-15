@@ -2,7 +2,7 @@ import type { ZodSchema } from 'zod';
 import type { Validator } from './types';
 import z from 'zod';
 import { LL } from '@assets/i18n/i18n';
-import { maxAvatarSize } from './const';
+import { maxImageSize } from './const';
 
 export const getFullnameSchema = () => z.string().min(6, { message: LL.validation.fullname(8) });
 
@@ -21,20 +21,26 @@ export const getPasswordSchema = () =>
 
 export const getAddressSchema = () => z.string().min(12, { message: LL.validation.address(12) });
 
-export const getAvatarSchema = () =>
+export const getImageSchema = () =>
 	z
 		.instanceof(File, { message: LL.validation.invalidImageUpload() })
 		.refine((file) => file.type.startsWith('image'), {
 			message: LL.validation.invalidImageUpload()
 		})
-		.refine((file) => file.size <= maxAvatarSize * Math.pow(1024, 2), {
-			message: LL.validation.imageSize(maxAvatarSize)
+		.refine((file) => file.size <= maxImageSize * Math.pow(1024, 2), {
+			message: LL.validation.imageSize(maxImageSize)
 		});
 
 export const getPhoneNumberSchema = () =>
 	z.string().regex(/\d{10}/, { message: LL.validation.phoneNumber() });
 
-export const 
+export const getMetaDataTextSchema = () =>
+	z.string().max(20, { message: LL.validation.metaDataText(20) });
+
+export const getItemDateSchema = () =>
+	z.string().regex(/^([1-9]|[12][0-9]|3[01])\/([1-9]|1[0-2])\/([0-9]{4})$/, {
+		message: LL.validation.itemDate()
+	});
 
 export function getValidator(schema: ZodSchema): Validator {
 	return (data: unknown) => {

@@ -14,6 +14,480 @@ export type Translation = RootTranslation
 export type Translations = RootTranslation
 
 type RootTranslation = {
+	selectOptions: {
+		/**
+		 * أ​خ​ر​ى
+		 */
+		other: string
+		/**
+		 * أ​ح​م​ر
+		 */
+		red: string
+		/**
+		 * أ​ز​ر​ق
+		 */
+		blue: string
+		/**
+		 * أ​خ​ض​ر
+		 */
+		green: string
+		/**
+		 * ج​د​ي​د​ ​م​ع​ ​ا​ل​ب​ط​ا​ق​ة
+		 */
+		newWithTicket: string
+		/**
+		 * ج​د​ي​د​ ​ب​د​و​ن​ ​ب​ط​ا​ق​ة
+		 */
+		newWithoutTicket: string
+		/**
+		 * ح​ا​ل​ة​ ​ج​ي​د​ة
+		 */
+		good: string
+		/**
+		 * م​ت​ض​ر​ر
+		 */
+		damaged: string
+		/**
+		 * ك​ر​ة​ ​س​ل​ة
+		 */
+		basketball: string
+		/**
+		 * ك​ر​ة​ ​ق​د​م​ ​أ​م​ر​ي​ك​ي​ة
+		 */
+		football: string
+		/**
+		 * ك​ر​ة​ ​ق​د​م
+		 */
+		soccerBall: string
+		/**
+		 * ك​ر​ة​ ​ط​ا​ئ​ر​ة
+		 */
+		volleyball: string
+		/**
+		 * ك​ر​ة​ ​ت​ن​س
+		 */
+		tennisBall: string
+		/**
+		 * د​ر​ا​ج​ة​ ​ه​و​ا​ئ​ي​ة
+		 */
+		bicycle: string
+		/**
+		 * س​ك​و​ت​ر
+		 */
+		scooter: string
+		/**
+		 * د​ر​ا​ج​ة​ ​ن​ا​ر​ي​ة
+		 */
+		motorcycle: string
+		/**
+		 * ج​ا​ي​ن​ت
+		 */
+		giant: string
+		/**
+		 * ت​ر​ي​ك
+		 */
+		trek: string
+		/**
+		 * ش​و​ي​ن
+		 */
+		schwinn: string
+		/**
+		 * ي​ا​م​ا​ه​ا
+		 */
+		yamaha: string
+		/**
+		 * ه​و​ن​د​ا
+		 */
+		honda: string
+		/**
+		 * ر​و​س​ي​ن​ي​و​ل
+		 */
+		rossignol: string
+		/**
+		 * س​ا​ل​و​م​و​ن
+		 */
+		salomon: string
+		/**
+		 * أ​ت​و​م​ي​ك
+		 */
+		atomic: string
+		/**
+		 * ب​ل​ا​ك​ ​د​ا​ي​م​و​ن​د
+		 */
+		blackDiamond: string
+		/**
+		 * و​ي​ل​س​و​ن
+		 */
+		wilson: string
+		/**
+		 * ب​ا​ب​و​ل​ا​ت
+		 */
+		babolat: string
+		/**
+		 * ه​ي​د
+		 */
+		head: string
+		/**
+		 * ي​و​ن​ك​س
+		 */
+		yonex: string
+		/**
+		 * خ​و​ذ​ة​ ​د​ر​ا​ج​ة​ ​ه​و​ا​ئ​ي​ة
+		 */
+		bicycleHelmet: string
+		/**
+		 * خ​و​ذ​ة​ ​ت​ز​ل​ج
+		 */
+		skiHelmet: string
+		/**
+		 * خ​و​ذ​ة​ ​د​ر​ا​ج​ة​ ​ن​ا​ر​ي​ة
+		 */
+		motorcycleHelmet: string
+		/**
+		 * س​و​ن​ي
+		 */
+		sony: string
+		/**
+		 * ك​ا​ن​و​ن
+		 */
+		canon: string
+		/**
+		 * ن​ي​ك​و​ن
+		 */
+		nikon: string
+		/**
+		 * غ​و​ ​ب​ر​و
+		 */
+		gopro: string
+		/**
+		 * س​م​ا​ع​ا​ت​ ​ر​أ​س
+		 */
+		headphones: string
+		/**
+		 * س​م​ا​ع​ا​ت​ ​ل​ا​س​ل​ك​ي​ة
+		 */
+		earpods: string
+		/**
+		 * س​م​ا​ع​ا​ت​ ​أ​ذ​ن
+		 */
+		earphones: string
+		/**
+		 * م​ش​غ​ل​ ​M​P​3
+		 */
+		mp3Player: string
+		/**
+		 * ق​ا​ر​ئ​ ​إ​ل​ك​ت​ر​و​ن​ي
+		 */
+		eReader: string
+		/**
+		 * ك​ا​م​ي​ر​ا​ ​ر​ق​م​ي​ة
+		 */
+		digitalCamera: string
+		/**
+		 * U​S​B​-​C
+		 */
+		usbC: string
+		/**
+		 * M​i​c​r​o​-​U​S​B
+		 */
+		microUSB: string
+		/**
+		 * L​i​g​h​t​n​i​n​g
+		 */
+		lightning: string
+		/**
+		 * ل​ا​س​ل​ك​ي
+		 */
+		wireless: string
+		/**
+		 * أ​ب​ل
+		 */
+		apple: string
+		/**
+		 * د​ل
+		 */
+		dell: string
+		/**
+		 * إ​ت​ش​ ​ب​ي
+		 */
+		hp: string
+		/**
+		 * ل​ي​ن​و​ف​و
+		 */
+		lenovo: string
+		/**
+		 * أ​س​و​س
+		 */
+		asus: string
+		/**
+		 * ك​ي​ن​د​ل
+		 */
+		kindle: string
+		/**
+		 * ت​ا​ب​ل​ت
+		 */
+		tablet: string
+		/**
+		 * س​ا​م​س​و​ن​ج
+		 */
+		samsung: string
+		/**
+		 * أ​م​ا​ز​و​ن
+		 */
+		amazon: string
+		/**
+		 * ف​ي​ت​ب​ي​ت
+		 */
+		fitbit: string
+		/**
+		 * ج​ا​ر​م​ن
+		 */
+		garmin: string
+		/**
+		 * ن​ي​ن​ت​ن​د​و
+		 */
+		nintendo: string
+		/**
+		 * غ​و​غ​ل
+		 */
+		google: string
+		/**
+		 * و​ا​ن​ ​ب​ل​س
+		 */
+		onePlus: string
+		/**
+		 * ا​ل​و​ل​ا​ي​ا​ت​ ​ا​ل​م​ت​ح​د​ة
+		 */
+		unitedStates: string
+		/**
+		 * ك​ن​د​ا
+		 */
+		canada: string
+		/**
+		 * ا​ل​م​م​ل​ك​ة​ ​ا​ل​م​ت​ح​د​ة
+		 */
+		unitedKingdom: string
+		/**
+		 * أ​ل​م​ا​ن​ي​ا
+		 */
+		germany: string
+		/**
+		 * ف​ر​ن​س​ا
+		 */
+		france: string
+		/**
+		 * ا​ل​ي​ا​ب​ا​ن
+		 */
+		japan: string
+		/**
+		 * ا​ل​ص​ي​ن
+		 */
+		china: string
+		/**
+		 * أ​س​ت​ر​ا​ل​ي​ا
+		 */
+		australia: string
+		/**
+		 * ا​ل​ب​ر​ا​ز​ي​ل
+		 */
+		brazil: string
+		/**
+		 * ا​ل​ه​ن​د
+		 */
+		india: string
+	}
+	metaData: {
+		/**
+		 * ل​و​ن
+		 */
+		color: string
+		/**
+		 * ح​ا​ل​ة
+		 */
+		condition: string
+		/**
+		 * ن​و​ع​ ​ا​ل​ك​ر​ة
+		 */
+		ballType: string
+		/**
+		 * ن​و​ع​ ​ا​ل​م​ر​ك​ب​ة​ ​ث​ن​ا​ئ​ي​ة​ ​ا​ل​ع​ج​ل​ا​ت
+		 */
+		twoWheelerType: string
+		/**
+		 * م​ا​ر​ك​ة​ ​ا​ل​م​ر​ك​ب​ة​ ​ث​ن​ا​ئ​ي​ة​ ​ا​ل​ع​ج​ل​ا​ت
+		 */
+		twoWheelerBrand: string
+		/**
+		 * م​ا​ر​ك​ة​ ​ا​ل​ت​ز​ل​ج​ ​أ​و​ ​ا​ل​ع​ص​ي
+		 */
+		skiOrPolesBrand: string
+		/**
+		 * م​ا​ر​ك​ة​ ​م​ض​ر​ب​ ​ا​ل​ت​ن​س
+		 */
+		tennisRacketBrand: string
+		/**
+		 * ن​و​ع​ ​ا​ل​خ​و​ذ​ة
+		 */
+		helmetType: string
+		/**
+		 * م​ا​ر​ك​ة​ ​ا​ل​خ​و​ذ​ة
+		 */
+		helmetBrand: string
+		/**
+		 * م​ا​ر​ك​ة​ ​ا​ل​ك​ا​م​ي​ر​ا
+		 */
+		cameraVideoRecorderBrand: string
+		/**
+		 * ط​ر​ا​ز​ ​ا​ل​ك​ا​م​ي​ر​ا
+		 */
+		cameraVideoRecorderModel: string
+		/**
+		 * م​ا​ر​ك​ة​ ​ا​ل​ح​ا​س​و​ب
+		 */
+		computerBrand: string
+		/**
+		 * ط​ر​ا​ز​ ​ا​ل​ح​ا​س​و​ب
+		 */
+		computerModel: string
+		/**
+		 * خ​ل​ف​ي​ة​ ​ا​ل​ح​ا​س​و​ب
+		 */
+		computerWallpaper: string
+		/**
+		 * ن​و​ع​ ​ا​ل​ش​ا​ح​ن
+		 */
+		chargerType: string
+		/**
+		 * م​ا​ر​ك​ة​ ​ا​ل​ش​ا​ح​ن
+		 */
+		chargerBrand: string
+		/**
+		 * م​ا​ر​ك​ة​ ​ا​ل​ج​ه​ا​ز​ ​ا​ل​ل​و​ح​ي
+		 */
+		tabletBrand: string
+		/**
+		 * ط​ر​ا​ز​ ​ا​ل​ج​ه​ا​ز​ ​ا​ل​ل​و​ح​ي
+		 */
+		tabletModel: string
+		/**
+		 * خ​ل​ف​ي​ة​ ​ا​ل​ج​ه​ا​ز​ ​ا​ل​ل​و​ح​ي
+		 */
+		tabletWallpaper: string
+		/**
+		 * م​ا​ر​ك​ة​ ​ا​ل​س​ا​ع​ة​ ​ا​ل​ذ​ك​ي​ة
+		 */
+		smartwatchBrand: string
+		/**
+		 * ط​ر​ا​ز​ ​ا​ل​س​ا​ع​ة​ ​ا​ل​ذ​ك​ي​ة
+		 */
+		smartwatchModel: string
+		/**
+		 * م​ا​ر​ك​ة​ ​ا​ل​ه​ا​ت​ف
+		 */
+		phoneBrand: string
+		/**
+		 * ط​ر​ا​ز​ ​ا​ل​ه​ا​ت​ف
+		 */
+		phoneModel: string
+		/**
+		 * خ​ل​ف​ي​ة​ ​ا​ل​ه​ا​ت​ف
+		 */
+		phoneWallpaper: string
+		/**
+		 * ا​ل​ب​ل​د​ ​ا​ل​م​ص​د​ر
+		 */
+		issuingCountry: string
+		/**
+		 * ا​ل​ا​س​م
+		 */
+		name: string
+		/**
+		 * ت​ا​ر​ي​خ​ ​ا​ل​م​ي​ل​ا​د
+		 */
+		birthDate: string
+		/**
+		 * ا​س​م​ ​ا​ل​ش​ر​ك​ة
+		 */
+		companyName: string
+		/**
+		 * ا​س​م​ ​ص​ا​ح​ب​ ​ا​ل​ع​م​ل
+		 */
+		employerName: string
+	}
+	categories: {
+		/**
+		 * م​ع​د​ا​ت​ ​ر​ي​ا​ض​ي​ة
+		 */
+		sportEquipments: string
+		/**
+		 * ك​ر​ة
+		 */
+		ball: string
+		/**
+		 * د​ر​ا​ج​ة​ ​ذ​ا​ت​ ​ع​ج​ل​ت​ي​ن
+		 */
+		twoWheeler: string
+		/**
+		 * ز​ل​ا​ج​ا​ت​ ​أ​و​ ​ع​ص​ي​ ​ت​ز​ل​ج
+		 */
+		skiOrPoles: string
+		/**
+		 * م​ض​ر​ب​ ​ت​ن​س
+		 */
+		tennisRacket: string
+		/**
+		 * خ​و​ذ​ة
+		 */
+		helmet: string
+		/**
+		 * إ​ل​ك​ت​ر​و​ن​ي​ا​ت
+		 */
+		electronics: string
+		/**
+		 * ك​ا​م​ي​ر​ا​ ​م​س​ج​ل​ ​ف​ي​د​ي​و
+		 */
+		cameraVideoRecorder: string
+		/**
+		 * ح​ا​س​و​ب
+		 */
+		computer: string
+		/**
+		 * ش​ا​ح​ن
+		 */
+		charger: string
+		/**
+		 * ج​ه​ا​ز​ ​ل​و​ح​ي
+		 */
+		tablet: string
+		/**
+		 * س​ا​ع​ة​ ​ذ​ك​ي​ة
+		 */
+		smartwatch: string
+		/**
+		 * ه​ا​ت​ف
+		 */
+		phone: string
+		/**
+		 * و​ث​ا​ئ​ق
+		 */
+		documents: string
+		/**
+		 * ب​ط​ا​ق​ة​ ​ه​و​ي​ة
+		 */
+		idCard: string
+		/**
+		 * ج​و​ا​ز​ ​س​ف​ر
+		 */
+		passport: string
+		/**
+		 * ر​خ​ص​ة​ ​ق​ي​ا​د​ة
+		 */
+		driverLicense: string
+		/**
+		 * ش​ا​ر​ة​ ​ا​ل​ش​ر​ك​ة
+		 */
+		companyBadget: string
+	}
 	general: {
 		/**
 		 * ت​أ​ك​ي​د
@@ -123,7 +597,7 @@ type RootTranslation = {
 		 */
 		email: string
 		/**
-		 * ي​ج​ب​ ​أ​ن​ ​ي​ك​و​ن​ ​ع​ن​و​ا​ن​ك​ ​{​0​}​ ​ح​ر​ف​ً​ا​ ​ع​ل​ى​ ​ا​ل​أ​ق​ل
+		 * ي​ج​ب​ ​أ​ن​ ​ي​ك​و​ن​ ​ع​ن​و​ا​ن​ ​{​0​}​ ​ح​ر​ف​ً​ا​ ​ع​ل​ى​ ​ا​ل​أ​ق​ل
 		 * @param {unknown} 0
 		 */
 		address: RequiredParams<'0'>
@@ -166,6 +640,19 @@ type RootTranslation = {
 		 * ي​ج​ب​ ​أ​ن​ ​ت​ح​ت​و​ي​ ​ك​ل​م​ة​ ​ا​ل​م​ر​و​ر​ ​ع​ل​ى​ ​ح​ر​ف​ ​ص​غ​ي​ر​ ​و​ا​ح​د​ ​ع​ل​ى​ ​ا​ل​أ​ق​ل
 		 */
 		passwordLowercase: string
+		/**
+		 * ل​ا​ ​ي​م​ك​ن​ ​أ​ن​ ​ي​ت​ج​ا​و​ز​ ​ط​و​ل​ ​ا​ل​ن​ص​ ​{​0​}​ ​ح​ر​ف​ً​ا
+		 * @param {unknown} 0
+		 */
+		metaDataText: RequiredParams<'0'>
+		/**
+		 * ي​ج​ب​ ​ع​ل​ي​ك​ ​ت​ح​د​ي​د​ ​ت​ا​ر​ي​خ
+		 */
+		itemDate: string
+		/**
+		 * ت​ح​ت​ا​ج​ ​إ​ل​ى​ ​ت​ح​د​ي​د​ ​ف​ئ​ة
+		 */
+		itemCategory: string
 	}
 	auth: {
 		/**
@@ -324,10 +811,533 @@ type RootTranslation = {
 		 * م​ن​ش​و​ر​ ​ج​د​ي​د
 		 */
 		newPost: string
+		/**
+		 * {​0​}​ ​ق​س​م​ ​ا​ل​ي​و​م
+		 * @param {unknown} 0
+		 */
+		daySection: RequiredParams<'0'>
+		/**
+		 * ا​ل​ع​و​د​ة​ ​إ​ل​ى​ ​ا​ل​ف​ئ​ا​ت
+		 */
+		returnCategories: string
+		/**
+		 * م​ف​ق​و​د
+		 */
+		lost: string
+		/**
+		 * م​و​ج​و​د
+		 */
+		found: string
+		/**
+		 * ا​خ​ت​ر​ ​ن​و​ع​ ​ا​ل​ش​ي​ء
+		 */
+		selectItemType: string
+		/**
+		 * ا​ل​ب​ي​ا​ن​ا​ت​ ​ا​ل​و​ص​ف​ي​ة​ ​ل​ل​ش​ي​ء​ ​ل​ه​ا​ ​ق​ي​م​ ​ا​ف​ت​ر​ا​ض​ي​ة​.​ ​إ​ذ​ا​ ​ك​ن​ت​ ​ل​ا​ ​ت​ع​ر​ف​ ​ق​ي​م​ه​ا​ ​ف​ل​ا​ ​ت​ق​م​ ​ب​ت​ع​ي​ي​ن​ه​ا
+		 */
+		createDescription: string
+		/**
+		 * أ​ي​ن​ ​ف​ق​د​ت​ ​ا​ل​ش​ي​ء​؟
+		 */
+		whereYouLost: string
+		/**
+		 * م​ت​ى​ ​ف​ق​د​ت​ ​ا​ل​ش​ي​ء​؟
+		 */
+		whenYouLost: string
+		/**
+		 * م​ت​ى​ ​و​ج​د​ت​ ​ا​ل​ش​ي​ء​؟
+		 */
+		whenYouFound: string
+		/**
+		 * أ​ي​ن​ ​و​ج​د​ت​ ​ا​ل​ش​ي​ء​؟
+		 */
+		whereYouFound: string
+		/**
+		 * ي​م​ك​ن​ك​ ​ك​ت​ا​ب​ة​ ​و​ص​ف​ ​ك​ا​م​ل​ ​ل​ل​ع​ن​ص​ر​ ​ا​ل​م​ف​ق​و​د
+		 */
+		lostItemDescription: string
+		/**
+		 * ص​و​ر​ ​ت​ظ​ه​ر​ ​ا​ل​ع​ن​ص​ر​ ​ا​ل​خ​ا​ص​ ​ب​ك
+		 */
+		lostItemImages: string
 	}
 }
 
 export type TranslationFunctions = {
+	selectOptions: {
+		/**
+		 * أخرى
+		 */
+		other: () => LocalizedString
+		/**
+		 * أحمر
+		 */
+		red: () => LocalizedString
+		/**
+		 * أزرق
+		 */
+		blue: () => LocalizedString
+		/**
+		 * أخضر
+		 */
+		green: () => LocalizedString
+		/**
+		 * جديد مع البطاقة
+		 */
+		newWithTicket: () => LocalizedString
+		/**
+		 * جديد بدون بطاقة
+		 */
+		newWithoutTicket: () => LocalizedString
+		/**
+		 * حالة جيدة
+		 */
+		good: () => LocalizedString
+		/**
+		 * متضرر
+		 */
+		damaged: () => LocalizedString
+		/**
+		 * كرة سلة
+		 */
+		basketball: () => LocalizedString
+		/**
+		 * كرة قدم أمريكية
+		 */
+		football: () => LocalizedString
+		/**
+		 * كرة قدم
+		 */
+		soccerBall: () => LocalizedString
+		/**
+		 * كرة طائرة
+		 */
+		volleyball: () => LocalizedString
+		/**
+		 * كرة تنس
+		 */
+		tennisBall: () => LocalizedString
+		/**
+		 * دراجة هوائية
+		 */
+		bicycle: () => LocalizedString
+		/**
+		 * سكوتر
+		 */
+		scooter: () => LocalizedString
+		/**
+		 * دراجة نارية
+		 */
+		motorcycle: () => LocalizedString
+		/**
+		 * جاينت
+		 */
+		giant: () => LocalizedString
+		/**
+		 * تريك
+		 */
+		trek: () => LocalizedString
+		/**
+		 * شوين
+		 */
+		schwinn: () => LocalizedString
+		/**
+		 * ياماها
+		 */
+		yamaha: () => LocalizedString
+		/**
+		 * هوندا
+		 */
+		honda: () => LocalizedString
+		/**
+		 * روسينيول
+		 */
+		rossignol: () => LocalizedString
+		/**
+		 * سالومون
+		 */
+		salomon: () => LocalizedString
+		/**
+		 * أتوميك
+		 */
+		atomic: () => LocalizedString
+		/**
+		 * بلاك دايموند
+		 */
+		blackDiamond: () => LocalizedString
+		/**
+		 * ويلسون
+		 */
+		wilson: () => LocalizedString
+		/**
+		 * بابولات
+		 */
+		babolat: () => LocalizedString
+		/**
+		 * هيد
+		 */
+		head: () => LocalizedString
+		/**
+		 * يونكس
+		 */
+		yonex: () => LocalizedString
+		/**
+		 * خوذة دراجة هوائية
+		 */
+		bicycleHelmet: () => LocalizedString
+		/**
+		 * خوذة تزلج
+		 */
+		skiHelmet: () => LocalizedString
+		/**
+		 * خوذة دراجة نارية
+		 */
+		motorcycleHelmet: () => LocalizedString
+		/**
+		 * سوني
+		 */
+		sony: () => LocalizedString
+		/**
+		 * كانون
+		 */
+		canon: () => LocalizedString
+		/**
+		 * نيكون
+		 */
+		nikon: () => LocalizedString
+		/**
+		 * غو برو
+		 */
+		gopro: () => LocalizedString
+		/**
+		 * سماعات رأس
+		 */
+		headphones: () => LocalizedString
+		/**
+		 * سماعات لاسلكية
+		 */
+		earpods: () => LocalizedString
+		/**
+		 * سماعات أذن
+		 */
+		earphones: () => LocalizedString
+		/**
+		 * مشغل MP3
+		 */
+		mp3Player: () => LocalizedString
+		/**
+		 * قارئ إلكتروني
+		 */
+		eReader: () => LocalizedString
+		/**
+		 * كاميرا رقمية
+		 */
+		digitalCamera: () => LocalizedString
+		/**
+		 * USB-C
+		 */
+		usbC: () => LocalizedString
+		/**
+		 * Micro-USB
+		 */
+		microUSB: () => LocalizedString
+		/**
+		 * Lightning
+		 */
+		lightning: () => LocalizedString
+		/**
+		 * لاسلكي
+		 */
+		wireless: () => LocalizedString
+		/**
+		 * أبل
+		 */
+		apple: () => LocalizedString
+		/**
+		 * دل
+		 */
+		dell: () => LocalizedString
+		/**
+		 * إتش بي
+		 */
+		hp: () => LocalizedString
+		/**
+		 * لينوفو
+		 */
+		lenovo: () => LocalizedString
+		/**
+		 * أسوس
+		 */
+		asus: () => LocalizedString
+		/**
+		 * كيندل
+		 */
+		kindle: () => LocalizedString
+		/**
+		 * تابلت
+		 */
+		tablet: () => LocalizedString
+		/**
+		 * سامسونج
+		 */
+		samsung: () => LocalizedString
+		/**
+		 * أمازون
+		 */
+		amazon: () => LocalizedString
+		/**
+		 * فيتبيت
+		 */
+		fitbit: () => LocalizedString
+		/**
+		 * جارمن
+		 */
+		garmin: () => LocalizedString
+		/**
+		 * نينتندو
+		 */
+		nintendo: () => LocalizedString
+		/**
+		 * غوغل
+		 */
+		google: () => LocalizedString
+		/**
+		 * وان بلس
+		 */
+		onePlus: () => LocalizedString
+		/**
+		 * الولايات المتحدة
+		 */
+		unitedStates: () => LocalizedString
+		/**
+		 * كندا
+		 */
+		canada: () => LocalizedString
+		/**
+		 * المملكة المتحدة
+		 */
+		unitedKingdom: () => LocalizedString
+		/**
+		 * ألمانيا
+		 */
+		germany: () => LocalizedString
+		/**
+		 * فرنسا
+		 */
+		france: () => LocalizedString
+		/**
+		 * اليابان
+		 */
+		japan: () => LocalizedString
+		/**
+		 * الصين
+		 */
+		china: () => LocalizedString
+		/**
+		 * أستراليا
+		 */
+		australia: () => LocalizedString
+		/**
+		 * البرازيل
+		 */
+		brazil: () => LocalizedString
+		/**
+		 * الهند
+		 */
+		india: () => LocalizedString
+	}
+	metaData: {
+		/**
+		 * لون
+		 */
+		color: () => LocalizedString
+		/**
+		 * حالة
+		 */
+		condition: () => LocalizedString
+		/**
+		 * نوع الكرة
+		 */
+		ballType: () => LocalizedString
+		/**
+		 * نوع المركبة ثنائية العجلات
+		 */
+		twoWheelerType: () => LocalizedString
+		/**
+		 * ماركة المركبة ثنائية العجلات
+		 */
+		twoWheelerBrand: () => LocalizedString
+		/**
+		 * ماركة التزلج أو العصي
+		 */
+		skiOrPolesBrand: () => LocalizedString
+		/**
+		 * ماركة مضرب التنس
+		 */
+		tennisRacketBrand: () => LocalizedString
+		/**
+		 * نوع الخوذة
+		 */
+		helmetType: () => LocalizedString
+		/**
+		 * ماركة الخوذة
+		 */
+		helmetBrand: () => LocalizedString
+		/**
+		 * ماركة الكاميرا
+		 */
+		cameraVideoRecorderBrand: () => LocalizedString
+		/**
+		 * طراز الكاميرا
+		 */
+		cameraVideoRecorderModel: () => LocalizedString
+		/**
+		 * ماركة الحاسوب
+		 */
+		computerBrand: () => LocalizedString
+		/**
+		 * طراز الحاسوب
+		 */
+		computerModel: () => LocalizedString
+		/**
+		 * خلفية الحاسوب
+		 */
+		computerWallpaper: () => LocalizedString
+		/**
+		 * نوع الشاحن
+		 */
+		chargerType: () => LocalizedString
+		/**
+		 * ماركة الشاحن
+		 */
+		chargerBrand: () => LocalizedString
+		/**
+		 * ماركة الجهاز اللوحي
+		 */
+		tabletBrand: () => LocalizedString
+		/**
+		 * طراز الجهاز اللوحي
+		 */
+		tabletModel: () => LocalizedString
+		/**
+		 * خلفية الجهاز اللوحي
+		 */
+		tabletWallpaper: () => LocalizedString
+		/**
+		 * ماركة الساعة الذكية
+		 */
+		smartwatchBrand: () => LocalizedString
+		/**
+		 * طراز الساعة الذكية
+		 */
+		smartwatchModel: () => LocalizedString
+		/**
+		 * ماركة الهاتف
+		 */
+		phoneBrand: () => LocalizedString
+		/**
+		 * طراز الهاتف
+		 */
+		phoneModel: () => LocalizedString
+		/**
+		 * خلفية الهاتف
+		 */
+		phoneWallpaper: () => LocalizedString
+		/**
+		 * البلد المصدر
+		 */
+		issuingCountry: () => LocalizedString
+		/**
+		 * الاسم
+		 */
+		name: () => LocalizedString
+		/**
+		 * تاريخ الميلاد
+		 */
+		birthDate: () => LocalizedString
+		/**
+		 * اسم الشركة
+		 */
+		companyName: () => LocalizedString
+		/**
+		 * اسم صاحب العمل
+		 */
+		employerName: () => LocalizedString
+	}
+	categories: {
+		/**
+		 * معدات رياضية
+		 */
+		sportEquipments: () => LocalizedString
+		/**
+		 * كرة
+		 */
+		ball: () => LocalizedString
+		/**
+		 * دراجة ذات عجلتين
+		 */
+		twoWheeler: () => LocalizedString
+		/**
+		 * زلاجات أو عصي تزلج
+		 */
+		skiOrPoles: () => LocalizedString
+		/**
+		 * مضرب تنس
+		 */
+		tennisRacket: () => LocalizedString
+		/**
+		 * خوذة
+		 */
+		helmet: () => LocalizedString
+		/**
+		 * إلكترونيات
+		 */
+		electronics: () => LocalizedString
+		/**
+		 * كاميرا مسجل فيديو
+		 */
+		cameraVideoRecorder: () => LocalizedString
+		/**
+		 * حاسوب
+		 */
+		computer: () => LocalizedString
+		/**
+		 * شاحن
+		 */
+		charger: () => LocalizedString
+		/**
+		 * جهاز لوحي
+		 */
+		tablet: () => LocalizedString
+		/**
+		 * ساعة ذكية
+		 */
+		smartwatch: () => LocalizedString
+		/**
+		 * هاتف
+		 */
+		phone: () => LocalizedString
+		/**
+		 * وثائق
+		 */
+		documents: () => LocalizedString
+		/**
+		 * بطاقة هوية
+		 */
+		idCard: () => LocalizedString
+		/**
+		 * جواز سفر
+		 */
+		passport: () => LocalizedString
+		/**
+		 * رخصة قيادة
+		 */
+		driverLicense: () => LocalizedString
+		/**
+		 * شارة الشركة
+		 */
+		companyBadget: () => LocalizedString
+	}
 	general: {
 		/**
 		 * تأكيد
@@ -436,7 +1446,7 @@ export type TranslationFunctions = {
 		 */
 		email: () => LocalizedString
 		/**
-		 * يجب أن يكون عنوانك {0} حرفًا على الأقل
+		 * يجب أن يكون عنوان {0} حرفًا على الأقل
 		 */
 		address: (arg0: unknown) => LocalizedString
 		/**
@@ -475,6 +1485,18 @@ export type TranslationFunctions = {
 		 * يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل
 		 */
 		passwordLowercase: () => LocalizedString
+		/**
+		 * لا يمكن أن يتجاوز طول النص {0} حرفًا
+		 */
+		metaDataText: (arg0: unknown) => LocalizedString
+		/**
+		 * يجب عليك تحديد تاريخ
+		 */
+		itemDate: () => LocalizedString
+		/**
+		 * تحتاج إلى تحديد فئة
+		 */
+		itemCategory: () => LocalizedString
 	}
 	auth: {
 		/**
@@ -633,6 +1655,54 @@ export type TranslationFunctions = {
 		 * منشور جديد
 		 */
 		newPost: () => LocalizedString
+		/**
+		 * {0} قسم اليوم
+		 */
+		daySection: (arg0: unknown) => LocalizedString
+		/**
+		 * العودة إلى الفئات
+		 */
+		returnCategories: () => LocalizedString
+		/**
+		 * مفقود
+		 */
+		lost: () => LocalizedString
+		/**
+		 * موجود
+		 */
+		found: () => LocalizedString
+		/**
+		 * اختر نوع الشيء
+		 */
+		selectItemType: () => LocalizedString
+		/**
+		 * البيانات الوصفية للشيء لها قيم افتراضية. إذا كنت لا تعرف قيمها فلا تقم بتعيينها
+		 */
+		createDescription: () => LocalizedString
+		/**
+		 * أين فقدت الشيء؟
+		 */
+		whereYouLost: () => LocalizedString
+		/**
+		 * متى فقدت الشيء؟
+		 */
+		whenYouLost: () => LocalizedString
+		/**
+		 * متى وجدت الشيء؟
+		 */
+		whenYouFound: () => LocalizedString
+		/**
+		 * أين وجدت الشيء؟
+		 */
+		whereYouFound: () => LocalizedString
+		/**
+		 * يمكنك كتابة وصف كامل للعنصر المفقود
+		 */
+		lostItemDescription: () => LocalizedString
+		/**
+		 * صور تظهر العنصر الخاص بك
+		 */
+		lostItemImages: () => LocalizedString
 	}
 }
 

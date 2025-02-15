@@ -11,8 +11,7 @@ import {
 	postsPage,
 	profilePage
 } from '@shared/const';
-import { checkPath } from '@server/utils/general';
-import { detectLocaleDirection } from '@shared/utils';
+import { checkPath, detectLocaleDirection } from '@shared/utils';
 import type { Locales } from '@assets/i18n/i18n-types';
 import { isLocale } from '@assets/i18n/i18n-util';
 import { setLL } from '@assets/i18n/i18n';

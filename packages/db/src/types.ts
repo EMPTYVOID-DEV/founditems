@@ -1,4 +1,3 @@
-import type { z } from 'zod';
 import type {
 	sessionTable,
 	userTable,
@@ -8,22 +7,6 @@ import type {
 	lostItemTable,
 	unmatchedItemsTable
 } from './schema.js';
-import { itemDateSchema, itemMetaDataSchema } from './zod.js';
-
-export type ItemStates = 'Idle' | 'Matched';
-
-export type ConnectionStates =
-	| 'Idle'
-	| 'Validated'
-	| 'Payment Validated'
-	| 'Payment Failed'
-	| 'Shipment Processing'
-	| 'Shipment Failed'
-	| 'Shipment Delivered'
-	| 'Reporting'
-	| 'Released';
-
-export type ConnectionMetaData = Partial<Record<ConnectionStates, unknown>>;
 
 export type Session = typeof sessionTable.$inferSelect;
 
@@ -52,7 +35,3 @@ export type ConnectionInsert = typeof connectionTable.$inferInsert;
 export type OtpInsert = typeof otpTable.$inferInsert;
 
 export type UnmatchItemsInsert = typeof unmatchedItemsTable.$inferInsert;
-
-export type ItemDate = z.infer<typeof itemDateSchema>;
-
-export type ItemMetaData = z.infer<typeof itemMetaDataSchema>;

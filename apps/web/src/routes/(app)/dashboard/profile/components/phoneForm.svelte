@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { SubmitFunctionAfter } from '@client/types';
 	import { actionLoadingWrapper, showToast } from '@client/utils.svelte';
-	import ActionButton from '@components/custom/actionButton.svelte';
-	import FormWrapper from '@components/custom/formWrapper.svelte';
-	import ReactiveInput from '@components/custom/reactiveInput.svelte';
+	import ActionButton from '@components/custom/other/actionButton.svelte';
+	import FormWrapper from '@components/custom/other/formWrapper.svelte';
+	import ReactiveInput from '@components/custom/other/reactiveInput.svelte';
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import { getPhoneNumberSchema, getValidator } from '@shared/zod';
 
