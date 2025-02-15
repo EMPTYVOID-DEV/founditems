@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { itemMetaDataType, timeBlocks } from './consts.js';
+import { itemMetaDataType, daySectionsNumber } from './consts.js';
 
 export const itemMetaDataSchema = z
 	.object({
@@ -11,5 +11,5 @@ export const itemMetaDataSchema = z
 
 export const itemDateSchema = z.object({
 	date: z.string(),
-	block: z.number().min(1).max(timeBlocks)
+	section: z.number().min(1).max(daySectionsNumber)
 });

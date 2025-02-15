@@ -5,3 +5,5 @@ export type SessionValidationResult = Awaited<ReturnType<typeof validateSessionT
 export type ActionStatus = { status: 'valid' | 'invalid'; errorMsg: string };
 
 export type Validator = (data: unknown) => ActionStatus;
+
+export type ItemType = 'found' | 'lost';

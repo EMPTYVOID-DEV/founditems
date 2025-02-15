@@ -5,7 +5,7 @@
 	let { loading, children, ...restProps }: { loading: boolean } & ButtonProps = $props();
 </script>
 
-<Button disabled={loading} {...restProps}>
+<Button disabled={loading} {...restProps} type="submit">
 	{#if loading}
 		<LoadingIcon />
 	{/if}

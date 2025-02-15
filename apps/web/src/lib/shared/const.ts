@@ -16,4 +16,6 @@ export const authPasswordResetPage = '/auth/password-reset';
 
 export const createPostPage = '/dashboard/posts/create';
 
-export const maxAvatarSize = 1;
+export const maxImageSize = 1;
+
+export const defaultMetaDataOption = 'other';

@@ -10,9 +10,14 @@
 		label,
 		value = $bindable(),
 		oninput,
+		maxSize = 'sm',
 		class: className,
 		...restProps
-	}: { validator: Validator; label?: string } & WithElementRef<HTMLInputAttributes> = $props();
+	}: {
+		validator: Validator;
+		label?: string;
+		maxSize?: 'lg' | 'sm';
+	} & WithElementRef<HTMLInputAttributes> = $props();
 
 	let errorMsg = $state('');
 	let status = $state<'valid' | 'invalid' | 'idle'>('idle');
@@ -31,8 +36,13 @@
 	}
 </script>
 
-<div class="flex w-full max-w-sm flex-col gap-1.5">
-	<label for="password" class="empty:hidden">{label}</label>
+<div
+	class={cn('flex w-full  flex-col gap-1.5', {
+		'max-w-sm': maxSize == 'sm',
+		'max-w-lg': maxSize == 'lg'
+	})}
+>
+	<label for="password" class="capitalize empty:hidden">{label}</label>
 	<Input
 		bind:value
 		oninput={validate}

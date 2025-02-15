@@ -17,7 +17,7 @@
 	]);
 </script>
 
-<div class="flex h-screen flex-col items-center justify-center text-center">
+<div class="flex h-screen flex-col items-center justify-center gap-4 text-center">
 	{#if errorMap.has(status)}
 		<h1 class="text-destructive">{status}</h1>
 		<h4>{errorMap.get(status)}</h4>

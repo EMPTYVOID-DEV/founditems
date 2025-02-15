@@ -1,15 +1,29 @@
 <script lang="ts">
 	import CalendarIcon from 'lucide-svelte/icons/calendar';
-	import { type DateValue, DateFormatter, getLocalTimeZone } from '@internationalized/date';
-	import { cn } from '@client/utils.svelte';
+	import { DateFormatter, getLocalTimeZone, type DateValue } from '@internationalized/date';
 	import { Button } from '@components/shadcn/button/index';
 	import { Calendar } from '@components/shadcn/calendar/index';
 	import * as Popover from '@components/shadcn/popover/index';
 	import { svelteLL, svelteUsedLocale } from '@assets/i18n/i18n-svelte';
+	import { cn } from '@client/utils.svelte';
+
+	let {
+		onChange,
+		maxSize = 'sm'
+	}: { onChange: (dateValue: DateValue) => void; maxSize?: 'lg' | 'sm' } = $props();
+
+	let dateValue = $state<DateValue | undefined>(undefined);
 
 	const df = new DateFormatter($svelteUsedLocale, { dateStyle: 'long' });
 
-	let { dateValue = $bindable(undefined) }: { dateValue?: DateValue } = $props();
+	function onValueChange(value: DateValue | undefined) {
+		if (!value) return;
+		dateValue = value;
+	}
+
+	$effect(() => {
+		if (dateValue) onChange(dateValue);
+	});
 </script>
 
 <Popover.Root>
@@ -17,10 +31,10 @@
 		{#snippet child({ props })}
 			<Button
 				variant="outline"
-				class={cn(
-					'w-[280px] justify-start text-left font-normal',
-					!dateValue && 'text-muted-foreground'
-				)}
+				class={cn(' w-full justify-start text-left font-normal', {
+					'max-w-sm': maxSize == 'sm',
+					'max-w-lg': maxSize == 'lg'
+				})}
 				{...props}
 			>
 				<CalendarIcon class="mr-2 size-4" />
@@ -31,6 +45,12 @@
 		{/snippet}
 	</Popover.Trigger>
 	<Popover.Content class="w-auto p-0">
-		<Calendar bind:value={dateValue} type="single" initialFocus locale={$svelteUsedLocale} />
+		<Calendar
+			type="single"
+			initialFocus
+			locale={$svelteUsedLocale}
+			value={dateValue}
+			{onValueChange}
+		/>
 	</Popover.Content>
 </Popover.Root>

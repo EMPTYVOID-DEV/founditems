@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FormWrapper from '@components/custom/formWrapper.svelte';
+	import FormWrapper from '@components/custom/other/formWrapper.svelte';
 	import { Button } from '@components/shadcn/button';
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 </script>

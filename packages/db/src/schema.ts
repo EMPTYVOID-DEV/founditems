@@ -1,10 +1,11 @@
 import type {
 	ConnectionMetaData,
 	ConnectionStates,
-	ItemDate,
 	ItemMetaData,
-	ItemStates
-} from './types.js';
+	ItemStates,
+	ItemDate
+} from 'utils';
+
 import {
 	boolean,
 	pgTable,

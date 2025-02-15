@@ -47,6 +47,9 @@ importers:
       typesafe-i18n:
         specifier: ^5.26.2
         version: 5.26.2(typescript@5.7.3)
+      utils:
+        specifier: file:../../packages/utils
+        version: '@founditems/utils@file:../../packages/utils'
       zod:
         specifier: ^3.24.1
         version: 3.24.1
@@ -370,6 +373,9 @@ packages:
 
   '@founditems/mail@file:../../packages/mail':
     resolution: {directory: ../../packages/mail, type: directory}
+
+  '@founditems/utils@file:../../packages/utils':
+    resolution: {directory: ../../packages/utils, type: directory}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2644,7 +2650,7 @@ snapshots:
       drizzle-orm: 0.39.3(postgres@3.4.5)
       nanoid: 5.0.9
       postgres: 3.4.5
-      zod: 3.24.1
+      utils: '@founditems/utils@file:../../packages/utils'
     transitivePeerDependencies:
       - '@aws-sdk/client-rds-data'
       - '@cloudflare/workers-types'
@@ -2706,6 +2712,10 @@ snapshots:
       - prisma
       - sql.js
       - sqlite3
+
+  '@founditems/utils@file:../../packages/utils':
+    dependencies:
+      zod: 3.24.1
 
   '@humanfs/core@0.19.1': {}
 

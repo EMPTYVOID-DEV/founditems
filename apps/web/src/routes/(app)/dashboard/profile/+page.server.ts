@@ -6,7 +6,7 @@ import {
 	getValidator,
 	getFullnameSchema,
 	getAddressSchema,
-	getAvatarSchema,
+	getImageSchema,
 	getPhoneNumberSchema
 } from '@shared/zod';
 import { fail, type Actions } from '@sveltejs/kit';
@@ -49,7 +49,7 @@ export const actions: Actions = {
 		const { id } = locals.user!;
 		const fd = await request.formData();
 		const avatar = fd.get('avatar')?.valueOf() as Blob;
-		const avatarValidated = getValidator(getAvatarSchema())(avatar);
+		const avatarValidated = getValidator(getImageSchema())(avatar);
 
 		if (avatarValidated.status == 'invalid')
 			return fail(400, { message: avatarValidated.errorMsg });

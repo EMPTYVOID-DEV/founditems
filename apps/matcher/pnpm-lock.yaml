@@ -248,6 +248,9 @@ packages:
   '@founditems/mail@file:../../packages/mail':
     resolution: {directory: ../../packages/mail, type: directory}
 
+  '@founditems/utils@file:../../packages/utils':
+    resolution: {directory: ../../packages/utils, type: directory}
+
   '@hono/node-server@1.13.8':
     resolution: {integrity: sha512-fsn8ucecsAXUoVxrUil0m13kOEq4mkX4/4QozCqmY+HpGfKl74OYSn8JcMA8GnG0ClfdRI4/ZSeG7zhFaVg+wg==}
     engines: {node: '>=18.14.1'}
@@ -1138,7 +1141,7 @@ snapshots:
       drizzle-orm: 0.39.3(postgres@3.4.5)
       nanoid: 5.0.9
       postgres: 3.4.5
-      zod: 3.24.2
+      utils: '@founditems/utils@file:../../packages/utils'
     transitivePeerDependencies:
       - '@aws-sdk/client-rds-data'
       - '@cloudflare/workers-types'
@@ -1200,6 +1203,10 @@ snapshots:
       - prisma
       - sql.js
       - sqlite3
+
+  '@founditems/utils@file:../../packages/utils':
+    dependencies:
+      zod: 3.24.2
 
   '@hono/node-server@1.13.8(hono@4.7.1)':
     dependencies:

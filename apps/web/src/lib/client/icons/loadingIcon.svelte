@@ -1,9 +1,13 @@
 <script lang="ts">
 	import { cn } from '../utils.svelte';
-	let { variant = 'default' }: { variant?: 'reversed' | 'default' } = $props();
+	let {
+		variant = 'reversed',
+		height = 24,
+		width = 24
+	}: { variant?: 'reversed' | 'default'; width?: number; height?: number } = $props();
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+<svg xmlns="http://www.w3.org/2000/svg" {width} {height} viewBox="0 0 24 24"
 	><path
 		class={cn({
 			'fill-background/60': variant === 'reversed',
