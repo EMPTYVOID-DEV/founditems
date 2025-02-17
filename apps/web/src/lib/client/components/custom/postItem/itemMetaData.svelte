@@ -45,7 +45,7 @@
 	<div class="flex flex-col gap-1">
 		<span>{$svelteLL.metaData[translationKey]()}</span>
 		<DatePicker
-			onChange={(val) => PostDataInstance.setMetaData(name, formatDate(val))}
+			setDateValue={(val) => PostDataInstance.setMetaData(name, formatDate(val))}
 			maxSize="lg"
 		/>
 	</div>

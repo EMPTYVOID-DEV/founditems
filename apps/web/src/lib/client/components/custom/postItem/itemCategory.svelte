@@ -4,6 +4,7 @@
 	import BackIcon from '@icons/backIcon.svelte';
 	import { PostData, PostDataInstance } from './postData.svelte';
 	import { cn } from '@client/utils.svelte';
+	import { PUBLIC_API_HOST } from '$env/static/public';
 
 	function increaselvl(lvlValue: string) {
 		if (lvl == 2) return;
@@ -25,7 +26,7 @@
 
 {#snippet categorySnippet(lvl: string)}
 	{@const translationKey = lvl as keyof Translation['categories']}
-	{@const src = `/categories/${PostData.getImageName(lvl)}`}
+	{@const src = `${PUBLIC_API_HOST}/categories/${PostData.getImageName(lvl)}`}
 	<button
 		class="border-secondary bg-secondary/25 flex aspect-square w-[10rem] flex-col items-center justify-center gap-2 rounded-sm border-2 p-2"
 		onclick={() => increaselvl(lvl)}

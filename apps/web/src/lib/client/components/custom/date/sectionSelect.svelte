@@ -3,7 +3,7 @@
 	import * as Select from '@components/shadcn/select';
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 
-	let { onChange }: { onChange: (section: number) => void } = $props();
+	let { setSection }: { setSection: (section: number) => void } = $props();
 
 	let section = $state('1');
 
@@ -34,7 +34,7 @@
 	const daySectionOptions = generateDaySectionOptions();
 
 	$effect(() => {
-		onChange(parseInt(section));
+		setSection(parseInt(section));
 	});
 </script>
 

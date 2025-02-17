@@ -35,10 +35,6 @@ export function showToast(title: string, message: string, state: 'error' | 'info
 	});
 }
 
-export function fileToBlob(file: File) {
-	return new Blob([file], { type: file.type });
-}
-
 export function actionLoadingWrapper(handlers: {
 	before?: SubmitFunctionBefore;
 	after?: SubmitFunctionAfter;

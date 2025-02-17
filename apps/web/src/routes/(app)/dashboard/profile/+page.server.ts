@@ -1,6 +1,6 @@
 import { db, userTable, eq } from 'db';
 import { deleteSessionTokenCookie, invalidateSession } from '@server/utils/auth';
-import { FileUploadFactory } from '@server/utils/fileUpload';
+import { uploadAvatar } from '@server/utils/fileUpload';
 import { LL } from '@assets/i18n/i18n';
 import {
 	getValidator,
@@ -46,16 +46,15 @@ export const actions: Actions = {
 		await db.update(userTable).set({ phoneNumber }).where(eq(userTable.id, id));
 	},
 	avatar: async ({ request, locals }) => {
-		const { id } = locals.user!;
+		const { id, avatar: oldAvatar } = locals.user!;
 		const fd = await request.formData();
-		const avatar = fd.get('avatar')?.valueOf() as Blob;
+		const avatar = fd.get('avatar')?.valueOf() as File;
 		const avatarValidated = getValidator(getImageSchema())(avatar);
 
 		if (avatarValidated.status == 'invalid')
 			return fail(400, { message: avatarValidated.errorMsg });
 
-		const fileUpload = FileUploadFactory.create();
-		const upload = await fileUpload.uploadFile(avatar);
+		const upload = await uploadAvatar(avatar, oldAvatar);
 		if (upload._tag == 'Left') {
 			console.error(upload.left);
 			return fail(500, { message: LL.errors.unableToUploadFile() });

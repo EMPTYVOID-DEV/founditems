@@ -8,9 +8,9 @@
 	import { cn } from '@client/utils.svelte';
 
 	let {
-		onChange,
+		setDateValue,
 		maxSize = 'sm'
-	}: { onChange: (dateValue: DateValue) => void; maxSize?: 'lg' | 'sm' } = $props();
+	}: { setDateValue: (dateValue: DateValue) => void; maxSize?: 'lg' | 'sm' } = $props();
 
 	let dateValue = $state<DateValue | undefined>(undefined);
 
@@ -22,7 +22,7 @@
 	}
 
 	$effect(() => {
-		if (dateValue) onChange(dateValue);
+		if (dateValue) setDateValue(dateValue);
 	});
 </script>
 

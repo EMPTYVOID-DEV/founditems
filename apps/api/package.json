@@ -1,19 +1,26 @@
 {
-	"name": "@founditems/matcher",
+	"name": "@founditems/api",
 	"type": "module",
 	"scripts": {
-		"dev": "tsx watch src/index.ts"
+		"dev": "tsx watch src/index.ts",
+		"build": "tsup"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.13.8",
 		"bullmq": "^5.40.2",
 		"db": "file:../../packages/db",
-		"hono": "^4.7.1",
+		"dotenv": "^16.4.7",
+		"hono": "4.6.20",
 		"mail": "file:../../packages/mail",
-		"redis": "^4.7.0"
+		"mime-types": "^2.1.35",
+		"nanoid": "^5.0.9",
+		"redis": "^4.7.0",
+		"tsup": "^8.3.6",
+		"zod": "^3.24.1"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.20.0",
+		"@types/mime-types": "^2.1.4",
 		"@types/node": "^20.11.17",
 		"eslint": "^9.7.0",
 		"eslint-config-prettier": "^9.1.0",

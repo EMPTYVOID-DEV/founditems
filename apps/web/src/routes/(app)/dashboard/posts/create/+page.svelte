@@ -11,7 +11,7 @@
 	import { goto } from '$app/navigation';
 	import { postsPage } from '@shared/const';
 	import type { SubmitFunctionAfter, SubmitFunctionBefore } from '@client/types';
-	import { actionLoadingWrapper, fileToBlob } from '@client/utils.svelte';
+	import { actionLoadingWrapper } from '@client/utils.svelte';
 	import { showToast } from '@client/utils.svelte';
 	import { enhance } from '$app/forms';
 	import ActionButton from '@components/custom/other/actionButton.svelte';
@@ -31,7 +31,7 @@
 		formData.append('metaData', JSON.stringify(PostDataInstance.metaData));
 		if (itemType == 'lost') {
 			formData.append('description', fullDescription);
-			for (let file of files) formData.append('files', fileToBlob(file));
+			for (let file of files) formData.append('files', file);
 		}
 	};
 
@@ -42,6 +42,12 @@
 		update();
 	};
 	let { action, loading } = actionLoadingWrapper({ after: afterAction, before: beforeAction });
+
+	$effect(() => {
+		return () => {
+			PostDataInstance.resetPostData();
+		};
+	});
 </script>
 
 <div class="flex w-full flex-grow flex-col gap-8 p-[2.5%]">

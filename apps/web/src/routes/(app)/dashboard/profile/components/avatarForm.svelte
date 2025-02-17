@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { SubmitFunctionBefore, SubmitFunctionAfter } from '@client/types';
-	import { actionLoadingWrapper, fileToBlob, showToast } from '@client/utils.svelte';
+	import { actionLoadingWrapper, showToast } from '@client/utils.svelte';
 	import ActionButton from '@components/custom/other/actionButton.svelte';
 	import FileUpload from '@components/custom/other/fileUpload.svelte';
 	import FormWrapper from '@components/custom/other/formWrapper.svelte';
@@ -12,7 +12,7 @@
 
 	const avatarActionBefore: SubmitFunctionBefore = ({ formData }) => {
 		if (files.length == 0) return;
-		formData.append('avatar', fileToBlob(files[0]));
+		formData.append('avatar', files[0]);
 	};
 	const avatarActionAfter: SubmitFunctionAfter = ({ result, update }) => {
 		if (result.type == 'success')

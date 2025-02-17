@@ -6,6 +6,7 @@ export async function handleFetchError(
 ): Promise<Either<HttpError, Response>> {
 	try {
 		const res = await call;
+
 		if (!res.ok) throw new Error('Error', { cause: { res } });
 		return right(res);
 	} catch (error) {
