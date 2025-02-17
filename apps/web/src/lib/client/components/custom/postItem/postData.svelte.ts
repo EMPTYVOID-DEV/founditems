@@ -11,6 +11,31 @@ export class PostData {
 	metaDataDescOptions: MetaDataDescOptions = $state([]);
 	metaData: ItemMetaData = $state([]);
 
+	pushToCategory(lvl: string) {
+		this.category.push(lvl);
+	}
+
+	setMetaDataDesc(secondLvl: string) {
+		const jsonLvl2 = categoriesJson.level2 as Record<string, MetaDataDesc>;
+		const metaDataDesc = getObjectProperty<MetaDataDesc>(jsonLvl2, secondLvl)!;
+
+		this.metaDataDescOptions = metaDataDesc.map((val) => {
+			if (val.options)
+				return {
+					name: val.name,
+					type: val.type,
+					options: pipe(
+						getObjectProperty<string[]>(selectOptionsJson, val.options)!,
+						PostData.addDefaultOption
+					)
+				};
+			return { name: val.name, type: val.type };
+		});
+		this.addingBaseDesc();
+		this.orderMetaDataDesc();
+		this.initMetaData();
+	}
+
 	initMetaData() {
 		this.metaData = this.metaDataDescOptions.map((val) => {
 			const tmp = { name: val.name, type: val.type, value: '' };
@@ -21,15 +46,11 @@ export class PostData {
 		});
 	}
 
-	pushToCategory(lvl: string) {
-		this.category.push(lvl);
-	}
-
 	addingBaseDesc() {
 		const colors = getObjectProperty<string[]>(selectOptionsJson, 'colors')!;
 		const itemConditions = getObjectProperty<string[]>(selectOptionsJson, 'conditions')!;
-		colors.push(defaultMetaDataOption);
-		itemConditions.push(defaultMetaDataOption);
+		PostData.addDefaultOption(colors);
+		PostData.addDefaultOption(itemConditions);
 		this.metaDataDescOptions.push(
 			{ name: 'color', type: 'select', options: colors },
 			{ name: 'condition', type: 'select', options: itemConditions }
@@ -54,32 +75,9 @@ export class PostData {
 		});
 	}
 
-	setMetaDataDesc(secondLvl: string) {
-		const jsonLvl2 = categoriesJson.level2 as Record<string, MetaDataDesc>;
-		const metaDataDesc = getObjectProperty<MetaDataDesc>(jsonLvl2, secondLvl)!;
-
-		this.metaDataDescOptions = metaDataDesc.map((val) => {
-			if (val.options)
-				return {
-					name: val.name,
-					type: val.type,
-					options: pipe(
-						getObjectProperty<string[]>(selectOptionsJson, val.options)!,
-						PostData.addDefaultOption
-					)
-				};
-			return { name: val.name, type: val.type };
-		});
-		this.addingBaseDesc();
-		this.orderMetaDataDesc();
-		this.initMetaData();
-	}
-
 	setMetaData(name: string, value: string) {
 		const rightMetaData = this.metaData.find((val) => val.name === name);
-		if (rightMetaData) {
-			rightMetaData.value = value;
-		}
+		if (rightMetaData) rightMetaData.value = value;
 	}
 
 	getMetaData(name: string) {

@@ -5,10 +5,13 @@
   "main": "index.js",
   "scripts": {
     "db:build": "pnpm run --filter @founditems/db build",
+    "db:studio": "pnpm run --filter @founditems/db db:studio",
     "mail:build": "pnpm run --filter @founditems/mail build",
     "web:dev": "pnpm run --filter @founditems/web dev",
     "web:build": "pnpm run --filter @founditems/web build",
-    "web:preview": "pnpm run --filter @founditems/web preview"
+    "web:preview": "pnpm run --filter @founditems/web preview",
+    "api:dev": "pnpm run --filter @founditems/api dev",
+    "api:build": "pnpm run --filter @founditems/api build"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,5 @@
 import { LL, usedLocale } from '@assets/i18n/i18n';
-import { FileUploadFactory } from '@server/utils/fileUpload';
+import { uploadProofs } from '@server/utils/fileUpload';
 import { postsPage } from '@shared/const';
 import { getAddressSchema, getImageSchema, getItemDateSchema, getValidator } from '@shared/zod';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
@@ -16,6 +16,8 @@ export const actions: Actions = {
 		const type = fd.get('type')!.toString();
 		const category = fd.getAll('category') as string[];
 		const metaData = JSON.parse(fd.get('metaData')!.toString()) as ItemMetaData;
+		let description = '';
+		let images: string[] = [];
 
 		const addressValidated = getValidator(getAddressSchema())(address);
 		if (addressValidated.status === 'invalid') {
@@ -36,28 +38,21 @@ export const actions: Actions = {
 			return fail(400, { message: metaDataValidated.errorMsg });
 		}
 
-		let description = '';
-		let images: string[] = [];
-
 		if (type === 'lost') {
 			description = fd.get('description')!.toString();
-			const files = fd.getAll('files') as Blob[];
+			const files = fd.getAll('files') as File[];
 			const imageValidator = getValidator(getImageSchema());
-
 			for (const file of files) {
 				const fileValidated = imageValidator(file);
-				if (fileValidated.status === 'invalid') {
+				if (fileValidated.status === 'invalid')
 					return fail(400, { message: fileValidated.errorMsg });
-				}
-
-				const fileUpload = FileUploadFactory.create();
-				const upload = await fileUpload.uploadFile(file);
-				if (upload._tag === 'Left') {
-					console.error(upload.left);
-					return fail(500, { message: LL.errors.unableToUploadFile() });
-				}
-				images.push(upload.right);
 			}
+			const upload = await uploadProofs(files);
+			if (upload._tag == 'Left') {
+				console.error(upload.left);
+				return fail(500, { message: LL.errors.unableToUploadFile() });
+			}
+			images = upload.right;
 		}
 
 		const itemData = {

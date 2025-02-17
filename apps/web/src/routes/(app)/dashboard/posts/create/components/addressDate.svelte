@@ -31,8 +31,8 @@
 <div class="flex w-full flex-col gap-2">
 	<span class="capitalize">{whenLost}</span>
 	<div class="mr:flex-col flex gap-4">
-		<DatePicker onChange={(date) => setDate(formatDate(date))} />
-		<SectionSelect onChange={setSection} />
+		<DatePicker setDateValue={(date) => setDate(formatDate(date))} />
+		<SectionSelect {setSection} />
 	</div>
 </div>
 

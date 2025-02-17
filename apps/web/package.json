@@ -54,15 +54,13 @@
 		"@node-rs/argon2": "^2.0.2",
 		"@oslojs/crypto": "^1.0.1",
 		"@oslojs/encoding": "^1.1.0",
-		"@types/mime-types": "^2.1.4",
 		"browser-cookies": "^1.2.0",
 		"db": "file:../../packages/db",
-		"mail": "file:../../packages/mail",
-		"utils": "file:../../packages/utils",
 		"fp-ts": "^2.16.9",
-		"mime-types": "^2.1.35",
+		"mail": "file:../../packages/mail",
 		"nanoid": "^5.0.9",
 		"typesafe-i18n": "^5.26.2",
+		"utils": "file:../../packages/utils",
 		"zod": "^3.24.1"
 	}
 }
