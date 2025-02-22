@@ -5,12 +5,8 @@
 	import { Calendar } from '@components/shadcn/calendar/index';
 	import * as Popover from '@components/shadcn/popover/index';
 	import { svelteLL, svelteUsedLocale } from '@assets/i18n/i18n-svelte';
-	import { cn } from '@client/utils.svelte';
 
-	let {
-		setDateValue,
-		maxSize = 'sm'
-	}: { setDateValue: (dateValue: DateValue) => void; maxSize?: 'lg' | 'sm' } = $props();
+	let { setDateValue }: { setDateValue: (dateValue: DateValue) => void } = $props();
 
 	let dateValue = $state<DateValue | undefined>(undefined);
 
@@ -31,10 +27,7 @@
 		{#snippet child({ props })}
 			<Button
 				variant="outline"
-				class={cn(' w-full justify-start text-left font-normal', {
-					'max-w-sm': maxSize == 'sm',
-					'max-w-lg': maxSize == 'lg'
-				})}
+				class="w-full max-w-lg justify-start text-left font-normal"
 				{...props}
 			>
 				<CalendarIcon class="mr-2 size-4" />

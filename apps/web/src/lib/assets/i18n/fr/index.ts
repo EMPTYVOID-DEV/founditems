@@ -124,6 +124,12 @@ const fr: Translation = {
 		driverLicense: 'Permis de conduire',
 		companyBadget: "Badge d'entreprise"
 	},
+	transports: {
+		bus: 'bus',
+		car: 'véhicule',
+		train: 'train',
+		tramway: 'tramway'
+	},
 	general: {
 		confirm: 'Confirmer',
 		cancel: 'Annuler',
@@ -134,8 +140,10 @@ const fr: Translation = {
 		language: 'Langue',
 		upload: 'Faites glisser et déposez des fichiers ici, ou cliquez pour sélectionner des fichiers',
 		selectDate: 'Sélectionner une date',
+		date: 'Date',
 		hours: 'heures',
-		minutes: 'minutes'
+		minutes: 'minutes',
+		transportMethod: 'Méthode de transport'
 	},
 	errors: {
 		forbidden: 'Interdit',
@@ -160,7 +168,8 @@ const fr: Translation = {
 		passwordLowercase: 'Le mot de passe doit contenir au moins une lettre minuscule',
 		metaDataText: 'La longueur du texte ne peut pas dépasser {0} caractères',
 		itemDate: 'Vous devez fixer une date',
-		itemCategory: 'Vous devez sélectionner une catégorie'
+		itemCategory: 'Vous devez sélectionner une catégorie',
+		invalidItemAddress: 'Adresse invalide de la chose'
 	},
 	schema: {
 		fullname: 'Nom complet',
@@ -222,19 +231,23 @@ const fr: Translation = {
 	},
 	posts: {
 		newPost: 'nouveau poste',
-		daySection: 'section de jour {0}',
 		returnCategories: 'retour aux catégories',
 		found: 'trouvé',
 		lost: 'perdue',
 		selectItemType: "Sélectionner le type d'objet",
 		createDescription:
 			"Les métadonnées de l'objet ont des valeurs par défaut. Si vous ne connaissez pas leurs valeurs, ne les définissez pas.",
-		whenYouFound: 'quand vous avez trouvé la chose ?',
-		whenYouLost: 'quand vous avez perdu la chose ?',
-		whereYouFound: 'où avez-vous trouvé cette chose ?',
-		whereYouLost: "où l'avez-vous perdu ?",
+		whenYouFound: 'Quand vous avez trouvé la chose ?',
+		whenYouLost: 'Quand vous avez perdu la chose ?',
+		whereYouFound: 'Où avez-vous trouvé cette chose ?',
+		whereYouLost: "Où l'avez-vous perdu ?",
 		lostItemDescription: "Vous pouvez rédiger une description complète de l'objet perdu",
-		lostItemImages: 'Images montrant votre article'
+		lostItemImages: 'Images montrant votre article',
+		transportEnd: "Point d'arrivée du transport",
+		transportStart: 'Point de départ du transport',
+		address: 'addresse',
+		transport: 'transport',
+		additionalAddress: 'Ajouter une adresse supplémentaire'
 	}
 };
 

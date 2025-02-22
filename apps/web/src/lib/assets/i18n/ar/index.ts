@@ -124,6 +124,12 @@ const ar: BaseTranslation = {
 		driverLicense: 'رخصة قيادة',
 		companyBadget: 'شارة الشركة'
 	},
+	transports: {
+		car: 'سيارة',
+		tramway: 'ترامواي',
+		bus: 'حافلة',
+		train: 'قطار'
+	},
 	general: {
 		confirm: 'تأكيد',
 		cancel: 'إلغاء',
@@ -134,8 +140,10 @@ const ar: BaseTranslation = {
 		language: 'اللغة',
 		upload: 'اسحب الملفات وأفلِتها هنا، أو انقر لتحديد الملفات',
 		selectDate: 'حدد تاريخا',
+		date: 'تاريخ',
 		hours: 'ساعات',
-		minutes: 'دقائق'
+		minutes: 'دقائق',
+		transportMethod: 'وسيلة نقل'
 	},
 	errors: {
 		forbidden: 'غير مسموح',
@@ -168,7 +176,8 @@ const ar: BaseTranslation = {
 		passwordLowercase: 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل',
 		metaDataText: 'لا يمكن أن يتجاوز طول النص {0} حرفًا',
 		itemDate: 'يجب عليك تحديد تاريخ',
-		itemCategory: 'تحتاج إلى تحديد فئة'
+		itemCategory: 'تحتاج إلى تحديد فئة',
+		invalidItemAddress: 'عنوان شيء غير صالح'
 	},
 	auth: {
 		login: 'تسجيل الدخول',
@@ -220,7 +229,6 @@ const ar: BaseTranslation = {
 	},
 	posts: {
 		newPost: 'منشور جديد',
-		daySection: '{0} قسم اليوم',
 		returnCategories: 'العودة إلى الفئات',
 		lost: 'مفقود',
 		found: 'موجود',
@@ -232,7 +240,12 @@ const ar: BaseTranslation = {
 		whenYouFound: 'متى وجدت الشيء؟',
 		whereYouFound: 'أين وجدت الشيء؟',
 		lostItemDescription: 'يمكنك كتابة وصف كامل للعنصر المفقود',
-		lostItemImages: 'صور تظهر العنصر الخاص بك'
+		lostItemImages: 'صور تظهر العنصر الخاص بك',
+		transport: 'النقل',
+		address: 'العنوان',
+		transportStart: 'نقطة انطلاق النقل',
+		transportEnd: 'نقطة انتهاء النقل',
+		additionalAddress: 'إضافة عنوان إضافي'
 	}
 };
 

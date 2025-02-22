@@ -488,6 +488,24 @@ type RootTranslation = {
 		 */
 		companyBadget: string
 	}
+	transports: {
+		/**
+		 * س​ي​ا​ر​ة
+		 */
+		car: string
+		/**
+		 * ت​ر​ا​م​و​ا​ي
+		 */
+		tramway: string
+		/**
+		 * ح​ا​ف​ل​ة
+		 */
+		bus: string
+		/**
+		 * ق​ط​ا​ر
+		 */
+		train: string
+	}
 	general: {
 		/**
 		 * ت​أ​ك​ي​د
@@ -526,6 +544,10 @@ type RootTranslation = {
 		 */
 		selectDate: string
 		/**
+		 * ت​ا​ر​ي​خ
+		 */
+		date: string
+		/**
 		 * س​ا​ع​ا​ت
 		 */
 		hours: string
@@ -533,6 +555,10 @@ type RootTranslation = {
 		 * د​ق​ا​ئ​ق
 		 */
 		minutes: string
+		/**
+		 * و​س​ي​ل​ة​ ​ن​ق​ل
+		 */
+		transportMethod: string
 	}
 	errors: {
 		/**
@@ -653,6 +679,10 @@ type RootTranslation = {
 		 * ت​ح​ت​ا​ج​ ​إ​ل​ى​ ​ت​ح​د​ي​د​ ​ف​ئ​ة
 		 */
 		itemCategory: string
+		/**
+		 * ع​ن​و​ا​ن​ ​ش​ي​ء​ ​غ​ي​ر​ ​ص​ا​ل​ح
+		 */
+		invalidItemAddress: string
 	}
 	auth: {
 		/**
@@ -812,11 +842,6 @@ type RootTranslation = {
 		 */
 		newPost: string
 		/**
-		 * {​0​}​ ​ق​س​م​ ​ا​ل​ي​و​م
-		 * @param {unknown} 0
-		 */
-		daySection: RequiredParams<'0'>
-		/**
 		 * ا​ل​ع​و​د​ة​ ​إ​ل​ى​ ​ا​ل​ف​ئ​ا​ت
 		 */
 		returnCategories: string
@@ -860,6 +885,26 @@ type RootTranslation = {
 		 * ص​و​ر​ ​ت​ظ​ه​ر​ ​ا​ل​ع​ن​ص​ر​ ​ا​ل​خ​ا​ص​ ​ب​ك
 		 */
 		lostItemImages: string
+		/**
+		 * ا​ل​ن​ق​ل
+		 */
+		transport: string
+		/**
+		 * ا​ل​ع​ن​و​ا​ن
+		 */
+		address: string
+		/**
+		 * ن​ق​ط​ة​ ​ا​ن​ط​ل​ا​ق​ ​ا​ل​ن​ق​ل
+		 */
+		transportStart: string
+		/**
+		 * ن​ق​ط​ة​ ​ا​ن​ت​ه​ا​ء​ ​ا​ل​ن​ق​ل
+		 */
+		transportEnd: string
+		/**
+		 * إ​ض​ا​ف​ة​ ​ع​ن​و​ا​ن​ ​إ​ض​ا​ف​ي
+		 */
+		additionalAddress: string
 	}
 }
 
@@ -1338,6 +1383,24 @@ export type TranslationFunctions = {
 		 */
 		companyBadget: () => LocalizedString
 	}
+	transports: {
+		/**
+		 * سيارة
+		 */
+		car: () => LocalizedString
+		/**
+		 * ترامواي
+		 */
+		tramway: () => LocalizedString
+		/**
+		 * حافلة
+		 */
+		bus: () => LocalizedString
+		/**
+		 * قطار
+		 */
+		train: () => LocalizedString
+	}
 	general: {
 		/**
 		 * تأكيد
@@ -1376,6 +1439,10 @@ export type TranslationFunctions = {
 		 */
 		selectDate: () => LocalizedString
 		/**
+		 * تاريخ
+		 */
+		date: () => LocalizedString
+		/**
 		 * ساعات
 		 */
 		hours: () => LocalizedString
@@ -1383,6 +1450,10 @@ export type TranslationFunctions = {
 		 * دقائق
 		 */
 		minutes: () => LocalizedString
+		/**
+		 * وسيلة نقل
+		 */
+		transportMethod: () => LocalizedString
 	}
 	errors: {
 		/**
@@ -1497,6 +1568,10 @@ export type TranslationFunctions = {
 		 * تحتاج إلى تحديد فئة
 		 */
 		itemCategory: () => LocalizedString
+		/**
+		 * عنوان شيء غير صالح
+		 */
+		invalidItemAddress: () => LocalizedString
 	}
 	auth: {
 		/**
@@ -1656,10 +1731,6 @@ export type TranslationFunctions = {
 		 */
 		newPost: () => LocalizedString
 		/**
-		 * {0} قسم اليوم
-		 */
-		daySection: (arg0: unknown) => LocalizedString
-		/**
 		 * العودة إلى الفئات
 		 */
 		returnCategories: () => LocalizedString
@@ -1703,6 +1774,26 @@ export type TranslationFunctions = {
 		 * صور تظهر العنصر الخاص بك
 		 */
 		lostItemImages: () => LocalizedString
+		/**
+		 * النقل
+		 */
+		transport: () => LocalizedString
+		/**
+		 * العنوان
+		 */
+		address: () => LocalizedString
+		/**
+		 * نقطة انطلاق النقل
+		 */
+		transportStart: () => LocalizedString
+		/**
+		 * نقطة انتهاء النقل
+		 */
+		transportEnd: () => LocalizedString
+		/**
+		 * إضافة عنوان إضافي
+		 */
+		additionalAddress: () => LocalizedString
 	}
 }
 

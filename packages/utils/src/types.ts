@@ -1,5 +1,6 @@
 import type { z } from 'zod';
-import { itemDateSchema, itemMetaDataSchema } from './zod.js';
+import { rawAddressSchema, itemAddressSchema, itemMetaDataSchema } from './zod.js';
+import type { availableLocales, transports } from './consts.js';
 
 export type ItemStates = 'Idle' | 'Matched';
 
@@ -14,9 +15,9 @@ export type ConnectionStates =
 	| 'Reporting'
 	| 'Released';
 
-export type ConnectionMetaData = Partial<Record<ConnectionStates, unknown>>;
+export type Nullable<T> = { [K in keyof T]: T[K] | null };
 
-export type ItemDate = z.infer<typeof itemDateSchema>;
+export type ConnectionMetaData = Partial<Record<ConnectionStates, unknown>>;
 
 export type ItemMetaData = z.infer<typeof itemMetaDataSchema>;
 
@@ -26,4 +27,29 @@ export type MetaDataDescOptions = {
 	name: string;
 	type: 'select' | 'text' | 'date';
 	options?: string[];
+}[];
+
+export type AvailableLocales = (typeof availableLocales)[number];
+
+export type Transports = (typeof transports)[number];
+
+export type ItemAddress = z.infer<typeof itemAddressSchema>;
+
+export type RawAddress = z.infer<typeof rawAddressSchema>;
+
+export type ItemAddressTypes = ItemAddress[number]['type'];
+
+export type NominatimResponse = {
+	place_id: number;
+	osm_type: string;
+	osm_id: number;
+	lat: string;
+	lon: string;
+	class: string;
+	type: string;
+	place_rank: number;
+	importance: number;
+	addresstype: string;
+	name: string;
+	display_name: string;
 }[];

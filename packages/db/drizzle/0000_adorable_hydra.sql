@@ -11,9 +11,10 @@ CREATE TABLE "connection" (
 CREATE TABLE "found_item" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" varchar(8) NOT NULL,
+	"creation_date" timestamp with time zone DEFAULT now() NOT NULL,
 	"lang" text NOT NULL,
-	"address" text NOT NULL,
-	"found_date" timestamp with time zone NOT NULL,
+	"address" json NOT NULL,
+	"found_date" timestamp NOT NULL,
 	"category" text[] NOT NULL,
 	"meta_data" json[] NOT NULL,
 	"state" text DEFAULT 'Idle' NOT NULL
@@ -22,9 +23,10 @@ CREATE TABLE "found_item" (
 CREATE TABLE "lost_item" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" varchar(8) NOT NULL,
+	"creation_date" timestamp with time zone DEFAULT now() NOT NULL,
 	"lang" text NOT NULL,
-	"address" text NOT NULL,
-	"lost_date" timestamp with time zone NOT NULL,
+	"address" json NOT NULL,
+	"lost_date" timestamp NOT NULL,
 	"category" text[] NOT NULL,
 	"meta_data" json[] NOT NULL,
 	"state" text DEFAULT 'Idle' NOT NULL,

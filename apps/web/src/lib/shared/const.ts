@@ -16,6 +16,8 @@ export const authPasswordResetPage = '/auth/password-reset';
 
 export const createPostPage = '/dashboard/posts/create';
 
+export const mapQueryApi = '/api/map';
+
 export const maxImageSize = 1;
 
 export const defaultMetaDataOption = 'other';

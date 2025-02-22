@@ -3,7 +3,8 @@ import type {
 	ConnectionStates,
 	ItemMetaData,
 	ItemStates,
-	ItemDate
+	AvailableLocales,
+	ItemAddress
 } from 'utils';
 
 import {
@@ -49,15 +50,15 @@ export const foundItemTable = pgTable('found_item', {
 	userId: varchar('user_id', { length: 8 })
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
-	lang: text('lang').$type().notNull(),
 	creationDate: timestamp('creation_date', {
 		withTimezone: true,
 		mode: 'date'
 	})
 		.notNull()
 		.defaultNow(),
-	address: text('address').notNull(),
-	foundDate: json('found_date').$type<ItemDate>().notNull(),
+	lang: text('lang').$type<AvailableLocales>().notNull(),
+	address: json('address').$type<ItemAddress>().notNull(),
+	foundDate: timestamp('found_date').notNull(),
 	category: text('category').array().notNull(),
 	metadata: json('meta_data').array().$type<ItemMetaData>().notNull(),
 	state: text('state').$type<ItemStates>().notNull().default('Idle')
@@ -68,15 +69,15 @@ export const lostItemTable = pgTable('lost_item', {
 	userId: varchar('user_id', { length: 8 })
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
-	lang: text('lang').$type().notNull(),
 	creationDate: timestamp('creation_date', {
 		withTimezone: true,
 		mode: 'date'
 	})
 		.notNull()
 		.defaultNow(),
-	address: text('address').notNull(),
-	lostDate: json('lost_date').$type<ItemDate>().notNull(),
+	lang: text('lang').$type<AvailableLocales>().notNull(),
+	address: json('address').$type<ItemAddress>().notNull(),
+	lostDate: timestamp('lost_date').notNull(),
 	category: text('category').array().notNull(),
 	metadata: json('meta_data').array().$type<ItemMetaData>().notNull(),
 	state: text('state').$type<ItemStates>().notNull().default('Idle'),
