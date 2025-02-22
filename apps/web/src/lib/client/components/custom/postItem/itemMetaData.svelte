@@ -5,7 +5,7 @@
 	import { PostDataInstance } from './postData.svelte';
 	import { getValidator, getMetaDataTextSchema } from '@shared/zod';
 	import ReactiveInput from '../other/reactiveInput.svelte';
-	import DatePicker from '../date/datePicker.svelte';
+	import DatePicker from '../other/datePicker.svelte';
 	import { formatDate } from '@client/utils.svelte';
 	const textValidator = getValidator(getMetaDataTextSchema());
 </script>
@@ -13,7 +13,7 @@
 {#snippet selectSnippet(options: string[], name: string)}
 	{@const metaKey = name as keyof Translation['metaData']}
 	<Select.Root type="single" onValueChange={(val) => PostDataInstance.setMetaData(name, val)}>
-		<Select.Trigger class="flex  w-full max-w-lg  items-center justify-between">
+		<Select.Trigger class="flex w-full max-w-lg items-center justify-between">
 			{@const optionKey = PostDataInstance.getMetaData(name) as keyof Translation['selectOptions']}
 			<span class="capitalize"
 				>{$svelteLL.metaData[metaKey]()}-{$svelteLL.selectOptions[optionKey]()}</span
@@ -44,14 +44,11 @@
 	{@const translationKey = name as keyof Translation['metaData']}
 	<div class="flex flex-col gap-1">
 		<span>{$svelteLL.metaData[translationKey]()}</span>
-		<DatePicker
-			setDateValue={(val) => PostDataInstance.setMetaData(name, formatDate(val))}
-			maxSize="lg"
-		/>
+		<DatePicker setDateValue={(val) => PostDataInstance.setMetaData(name, formatDate(val))} />
 	</div>
 {/snippet}
 
-<div class="flex w-full flex-col gap-4">
+<div class="flex w-full flex-col gap-3 empty:hidden">
 	{#each PostDataInstance.metaDataDescOptions as metaDataObject}
 		{#if metaDataObject.options}
 			{@render selectSnippet(metaDataObject.options, metaDataObject.name)}

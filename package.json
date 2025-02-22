@@ -7,9 +7,12 @@
     "db:build": "pnpm run --filter @founditems/db build",
     "db:studio": "pnpm run --filter @founditems/db db:studio",
     "mail:build": "pnpm run --filter @founditems/mail build",
+    "utils:build": "pnpm run --filter @founditems/utils build",
     "web:dev": "pnpm run --filter @founditems/web dev",
     "web:build": "pnpm run --filter @founditems/web build",
     "web:preview": "pnpm run --filter @founditems/web preview",
+    "web:i18n": "pnpm run --filter @founditems/web i18n",
+    "web:check": "pnpm run --filter @founditems/web check",
     "api:dev": "pnpm run --filter @founditems/api dev",
     "api:build": "pnpm run --filter @founditems/api build"
   },

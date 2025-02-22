@@ -37,11 +37,6 @@ export const getPhoneNumberSchema = () =>
 export const getMetaDataTextSchema = () =>
 	z.string().max(20, { message: LL.validation.metaDataText(20) });
 
-export const getItemDateSchema = () =>
-	z.string().regex(/^([1-9]|[12][0-9]|3[01])\/([1-9]|1[0-2])\/([0-9]{4})$/, {
-		message: LL.validation.itemDate()
-	});
-
 export function getValidator(schema: ZodSchema): Validator {
 	return (data: unknown) => {
 		const parseResult = schema.safeParse(data);

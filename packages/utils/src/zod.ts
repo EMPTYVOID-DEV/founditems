@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { itemMetaDataType, daySectionsNumber } from './consts.js';
+import { itemMetaDataType, transports } from './consts.js';
 
 export const itemMetaDataSchema = z
 	.object({
@@ -9,7 +9,23 @@ export const itemMetaDataSchema = z
 	})
 	.array();
 
-export const itemDateSchema = z.object({
-	date: z.string(),
-	section: z.number().min(1).max(daySectionsNumber)
+export const rawAddressSchema = z.object({
+	id: z.number(),
+	name: z.string(),
+	longtitude: z.string(),
+	latitude: z.string(),
+	rank: z.number().min(1).max(30)
 });
+
+export const itemAddressSchema = z
+	.discriminatedUnion('type', [
+		z.object({ type: z.literal('general'), address: rawAddressSchema }),
+		z.object({
+			type: z.literal('transport'),
+			method: z.enum(transports),
+			startAddress: rawAddressSchema,
+			endAddress: rawAddressSchema
+		})
+	])
+	.array()
+	.max(3);

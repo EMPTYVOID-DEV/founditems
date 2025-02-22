@@ -3,8 +3,6 @@
 	import Header from './components/header.svelte';
 	import type { ItemType } from '@shared/types';
 	import ItemTypeComponent from './components/itemType.svelte';
-	import type { ItemDate } from 'utils';
-	import AddressDate from './components/addressDate.svelte';
 	import Footer from './components/footer.svelte';
 	import Button from '@components/shadcn/button/button.svelte';
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
@@ -15,20 +13,28 @@
 	import { showToast } from '@client/utils.svelte';
 	import { enhance } from '$app/forms';
 	import ActionButton from '@components/custom/other/actionButton.svelte';
+	import ItemDate from './components/itemDate.svelte';
+	import type { DateValue } from '@internationalized/date';
+	import type { ItemAddress, Nullable } from 'utils';
+	import ItemAddressComponent from './components/itemAddress.svelte';
 
 	let itemType = $state<ItemType>('found');
-	let itemDate: ItemDate = $state({ date: '', section: 1 });
-	let address = $state('');
 	let fullDescription = $state('');
 	let files = $state<File[]>([]);
+	let itemDate = $state<null | Date>(null);
+	let itemAddress = $state<Nullable<ItemAddress[number]>[]>([{ type: 'general', address: null }]);
+
+	function setDateValue(date: DateValue) {
+		if (!itemDate) itemDate = new Date();
+		itemDate.setFullYear(date.year, date.month, date.day);
+	}
 
 	let beforeAction: SubmitFunctionBefore = ({ formData }) => {
-		formData.append('address', address);
-		formData.append('date', itemDate.date);
-		formData.append('section', itemDate.section.toString());
+		formData.append('address', JSON.stringify(itemAddress));
+		formData.append('date', itemDate ? itemDate.toISOString() : '');
 		formData.append('type', itemType);
-		for (let lvl of PostDataInstance.category) formData.append('category', lvl);
 		formData.append('metaData', JSON.stringify(PostDataInstance.metaData));
+		for (let lvl of PostDataInstance.category) formData.append('category', lvl);
 		if (itemType == 'lost') {
 			formData.append('description', fullDescription);
 			for (let file of files) formData.append('files', file);
@@ -41,6 +47,7 @@
 		if (result.type == 'redirect') PostDataInstance.resetPostData();
 		update();
 	};
+
 	let { action, loading } = actionLoadingWrapper({ after: afterAction, before: beforeAction });
 
 	$effect(() => {
@@ -50,15 +57,11 @@
 	});
 </script>
 
-<div class="flex w-full flex-grow flex-col gap-8 p-[2.5%]">
+<div class="flex w-full flex-grow flex-col gap-4 p-[2.5%]">
 	<Header />
 	<ItemTypeComponent setType={(type) => (itemType = type)} />
-	<AddressDate
-		{itemType}
-		setAddress={(val) => (address = val)}
-		setSection={(section) => (itemDate.section = section)}
-		setDate={(date) => (itemDate.date = date)}
-	/>
+	<ItemDate {itemType} {setDateValue} />
+	<ItemAddressComponent bind:itemAddress {itemType} />
 	<ItemCategory />
 	<ItemMetaData />
 	{#if itemType == 'lost'}

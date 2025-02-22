@@ -1,5 +1,5 @@
 {
-  "id": "275362dc-9774-4d31-846d-77a001f939a3",
+  "id": "0bf7716a-7e1b-4ff8-87d7-1d940f4dd0e3",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -129,6 +129,13 @@
           "primaryKey": false,
           "notNull": true
         },
+        "creation_date": {
+          "name": "creation_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
         "lang": {
           "name": "lang",
           "type": "text",
@@ -137,13 +144,13 @@
         },
         "address": {
           "name": "address",
-          "type": "text",
+          "type": "json",
           "primaryKey": false,
           "notNull": true
         },
         "found_date": {
           "name": "found_date",
-          "type": "timestamp with time zone",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": true
         },
@@ -205,6 +212,13 @@
           "primaryKey": false,
           "notNull": true
         },
+        "creation_date": {
+          "name": "creation_date",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
         "lang": {
           "name": "lang",
           "type": "text",
@@ -213,13 +227,13 @@
         },
         "address": {
           "name": "address",
-          "type": "text",
+          "type": "json",
           "primaryKey": false,
           "notNull": true
         },
         "lost_date": {
           "name": "lost_date",
-          "type": "timestamp with time zone",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": true
         },

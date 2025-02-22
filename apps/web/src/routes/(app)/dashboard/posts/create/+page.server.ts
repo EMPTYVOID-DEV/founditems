@@ -1,39 +1,34 @@
 import { LL, usedLocale } from '@assets/i18n/i18n';
 import { uploadProofs } from '@server/utils/fileUpload';
 import { postsPage } from '@shared/const';
-import { getAddressSchema, getImageSchema, getItemDateSchema, getValidator } from '@shared/zod';
+import { getImageSchema, getValidator } from '@shared/zod';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 import { db, foundItemTable, lostItemTable } from 'db';
-import { itemMetaDataSchema, type ItemMetaData } from 'utils';
+import { itemAddressSchema, itemMetaDataSchema, type ItemAddress, type ItemMetaData } from 'utils';
 
 export const actions: Actions = {
 	create: async ({ request, locals }) => {
 		const id = locals.user!.id;
 		const fd = await request.formData();
-		const address = fd.get('address')!.toString();
+		const address: ItemAddress = JSON.parse(fd.get('address')!.toString());
 		const date = fd.get('date')!.toString();
-		const section = parseInt(fd.get('section')!.toString());
+		const castedDate = new Date(date);
 		const type = fd.get('type')!.toString();
 		const category = fd.getAll('category') as string[];
-		const metaData = JSON.parse(fd.get('metaData')!.toString()) as ItemMetaData;
+		const metadata = JSON.parse(fd.get('metaData')!.toString()) as ItemMetaData;
 		let description = '';
 		let images: string[] = [];
 
-		const addressValidated = getValidator(getAddressSchema())(address);
-		if (addressValidated.status === 'invalid') {
-			return fail(400, { message: addressValidated.errorMsg });
-		}
+		if (castedDate.toString() == 'Invalid Date')
+			return fail(400, { message: LL.validation.itemDate() });
 
-		const dateValidated = getValidator(getItemDateSchema())(date);
-		if (dateValidated.status === 'invalid') {
-			return fail(400, { message: dateValidated.errorMsg });
-		}
+		const addressValidated = getValidator(itemAddressSchema)(address);
+		if (addressValidated.status == 'invalid')
+			return fail(400, { message: LL.validation.invalidItemAddress() });
 
-		if (category.length < 2) {
-			return fail(400, { message: LL.validation.itemCategory() });
-		}
+		if (category.length < 2) return fail(400, { message: LL.validation.itemCategory() });
 
-		const metaDataValidated = getValidator(itemMetaDataSchema)(metaData);
+		const metaDataValidated = getValidator(itemMetaDataSchema)(metadata);
 		if (metaDataValidated.status === 'invalid') {
 			return fail(400, { message: metaDataValidated.errorMsg });
 		}
@@ -59,18 +54,19 @@ export const actions: Actions = {
 			address,
 			category,
 			lang: usedLocale,
-			metadata: metaData,
+			metadata,
 			userId: id
 		};
 
-		const itemDate = { date, section };
-
 		if (type === 'lost') {
-			await db
-				.insert(lostItemTable)
-				.values({ ...itemData, description, images, lostDate: itemDate });
+			await db.insert(lostItemTable).values({
+				description,
+				images,
+				lostDate: castedDate,
+				...itemData
+			});
 		} else if (type === 'found') {
-			await db.insert(foundItemTable).values({ ...itemData, foundDate: itemDate });
+			await db.insert(foundItemTable).values({ ...itemData, foundDate: castedDate });
 		}
 
 		redirect(302, postsPage);
