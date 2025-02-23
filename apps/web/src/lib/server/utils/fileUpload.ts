@@ -15,8 +15,8 @@ export async function uploadAvatar(avatar: File, oldAvatar: string) {
 	const fetchPromise = fetch(postEndPoint, { method: 'POST', body: fd });
 	const res = await handleFetchError(fetchPromise);
 	if (res._tag == 'Left') return res;
-	const publicId = (await extractJson<{ publicId: string }>(res.right)).publicId;
-	return right(publicId);
+	const filename = (await extractJson<{ filename: string }>(res.right)).filename;
+	return right(filename);
 }
 
 export async function uploadProofs(proofs: File[]) {
@@ -26,8 +26,8 @@ export async function uploadProofs(proofs: File[]) {
 	const fetchPromise = fetch(postEndpoint, { method: 'POST', body: fd });
 	const res = await handleFetchError(fetchPromise);
 	if (res._tag == 'Left') return res;
-	const publicIds = (await extractJson<{ publicIds: string[] }>(res.right)).publicIds;
-	return right(publicIds);
+	const filenames = (await extractJson<{ filenames: string[] }>(res.right)).filenames;
+	return right(filenames);
 }
 
 async function extractJson<T>(res: Response) {

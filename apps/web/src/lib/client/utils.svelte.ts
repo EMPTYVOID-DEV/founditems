@@ -10,7 +10,6 @@ import { setLL } from '@assets/i18n/i18n';
 import { setSvelteLL } from '@assets/i18n/i18n-svelte';
 import type { SubmitFunction } from '@sveltejs/kit';
 import type { SubmitFunctionAfter, SubmitFunctionBefore } from './types';
-import type { DateValue } from '@internationalized/date';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -59,8 +58,4 @@ export function getObjectProperty<A>(obj: Record<string, A>, target: string) {
 		if (target == key) return structuredClone(obj[key]);
 	}
 	return null;
-}
-
-export function formatDate(date: DateValue) {
-	return `${date.day}/${date.month}/${date.year}`;
 }

@@ -6,8 +6,8 @@
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 </script>
 
-<div class="flex w-full flex-grow flex-col gap-4 px-[2.5%] py-[2.5%]">
-	<div class="mr:flex-col mr:items-start mr:gap-4 flex w-full items-center justify-between">
+<div class="flex w-full flex-grow flex-col gap-4 p-[2.5%]">
+	<div class="mr:flex-col mr:items-start mr:gap-2 flex w-full items-center justify-between">
 		<h1 class="text-primary capitalize">{$svelteLL.navbar.posts()}</h1>
 		<Button
 			onclick={() => goto(createPostPage)}

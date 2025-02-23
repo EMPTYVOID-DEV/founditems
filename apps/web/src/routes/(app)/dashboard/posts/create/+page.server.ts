@@ -29,9 +29,8 @@ export const actions: Actions = {
 		if (category.length < 2) return fail(400, { message: LL.validation.itemCategory() });
 
 		const metaDataValidated = getValidator(itemMetaDataSchema)(metadata);
-		if (metaDataValidated.status === 'invalid') {
+		if (metaDataValidated.status === 'invalid')
 			return fail(400, { message: metaDataValidated.errorMsg });
-		}
 
 		if (type === 'lost') {
 			description = fd.get('description')!.toString();
@@ -58,16 +57,14 @@ export const actions: Actions = {
 			userId: id
 		};
 
-		if (type === 'lost') {
+		if (type === 'lost')
 			await db.insert(lostItemTable).values({
 				description,
 				images,
 				lostDate: castedDate,
 				...itemData
 			});
-		} else if (type === 'found') {
-			await db.insert(foundItemTable).values({ ...itemData, foundDate: castedDate });
-		}
+		else await db.insert(foundItemTable).values({ ...itemData, foundDate: castedDate });
 
 		redirect(302, postsPage);
 	}

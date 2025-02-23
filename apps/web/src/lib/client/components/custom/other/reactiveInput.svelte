@@ -37,7 +37,7 @@
 </script>
 
 <div
-	class={cn('flex w-full  flex-col gap-1.5', {
+	class={cn('flex w-full  flex-col gap-1', {
 		'max-w-sm': maxSize == 'sm',
 		'max-w-lg': maxSize == 'lg'
 	})}

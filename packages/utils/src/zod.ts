@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { itemMetaDataType, transports } from './consts.js';
+import { itemAddressLength, itemMetaDataType, transports } from './consts.js';
 
 export const itemMetaDataSchema = z
 	.object({
@@ -28,4 +28,4 @@ export const itemAddressSchema = z
 		})
 	])
 	.array()
-	.max(3);
+	.max(itemAddressLength);

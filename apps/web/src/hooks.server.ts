@@ -7,7 +7,6 @@ import {
 	authPasswordResetPage,
 	authVerifyPage,
 	connectionsPage,
-	defaultLocale,
 	postsPage,
 	profilePage
 } from '@shared/const';
@@ -15,6 +14,7 @@ import { checkPath, detectLocaleDirection } from '@shared/utils';
 import type { Locales } from '@assets/i18n/i18n-types';
 import { isLocale } from '@assets/i18n/i18n-util';
 import { setLL } from '@assets/i18n/i18n';
+import { defaultLocale } from 'utils';
 
 export function handleError({ error }) {
 	console.error(error);

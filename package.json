@@ -1,8 +1,5 @@
 {
   "name": "founditems",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "db:build": "pnpm run --filter @founditems/db build",
     "db:studio": "pnpm run --filter @founditems/db db:studio",
@@ -14,11 +11,9 @@
     "web:i18n": "pnpm run --filter @founditems/web i18n",
     "web:check": "pnpm run --filter @founditems/web check",
     "api:dev": "pnpm run --filter @founditems/api dev",
-    "api:build": "pnpm run --filter @founditems/api build"
+    "api:build": "pnpm run --filter @founditems/api build",
+    "api:start": "pnpm run --filter @founditems/api start"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "workspaces": [
     "apps/*",
     "packages/*"

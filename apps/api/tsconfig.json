@@ -18,6 +18,7 @@
 		"rootDir": ".",
 		"paths": {
 			"@shared/*": ["./src/shared/*"],
+			"@utils/*": ["./src/utils/*"],
 			"@routes/*": ["./src/routes/*"]
 		}
 	},

@@ -6,8 +6,12 @@
 	import { getValidator, getMetaDataTextSchema } from '@shared/zod';
 	import ReactiveInput from '../other/reactiveInput.svelte';
 	import DatePicker from '../other/datePicker.svelte';
-	import { formatDate } from '@client/utils.svelte';
+	import type { DateValue } from '@internationalized/date';
 	const textValidator = getValidator(getMetaDataTextSchema());
+
+	function formatDate(date: DateValue) {
+		return `${date.day}/${date.month}/${date.year}`;
+	}
 </script>
 
 {#snippet selectSnippet(options: string[], name: string)}
@@ -48,7 +52,7 @@
 	</div>
 {/snippet}
 
-<div class="flex w-full flex-col gap-3 empty:hidden">
+<div class="flex w-full flex-col gap-2 empty:hidden">
 	{#each PostDataInstance.metaDataDescOptions as metaDataObject}
 		{#if metaDataObject.options}
 			{@render selectSnippet(metaDataObject.options, metaDataObject.name)}

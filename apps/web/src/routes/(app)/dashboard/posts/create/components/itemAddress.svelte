@@ -3,12 +3,17 @@
 	import * as Tabs from '@components/shadcn/tabs';
 	import SearchAddress from '@components/custom/address/searchAddress.svelte';
 	import Transport from '@components/custom/address/transport.svelte';
-	import { type ItemAddress, type Nullable, type ItemAddressTypes, transports } from 'utils';
+	import {
+		type ItemAddress,
+		type Nullable,
+		type ItemAddressTypes,
+		transports,
+		itemAddressLength
+	} from 'utils';
 	import Button from '@components/shadcn/button/button.svelte';
 	import type { ItemType } from '@shared/types';
 	import CloseIconV2 from '@icons/closeIconV2.svelte';
 
-	const maxLength = 3;
 	let {
 		itemAddress = $bindable(),
 		itemType
@@ -98,7 +103,7 @@
 	{#each itemAddress as _, idx}
 		{@render addressSnippet(idx)}
 	{/each}
-	{#if itemAddress.length < maxLength}
+	{#if itemAddress.length < itemAddressLength}
 		<Button class="text-secondary p-0" variant="link" onclick={pushAddress}
 			>{$svelteLL.posts.additionalAddress()}</Button
 		>
