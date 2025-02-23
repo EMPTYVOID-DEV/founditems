@@ -11,12 +11,12 @@
 	let imageValidator = getValidator(getImageSchema());
 </script>
 
-<div class="flex w-full max-w-lg flex-col gap-2">
+<div class="flex w-full max-w-lg flex-col gap-1">
 	<span>{$svelteLL.posts.lostItemDescription()}</span>
 	<Input oninput={(e) => setFullDescription(e.currentTarget.value)} />
 </div>
 
-<div class="flex w-full max-w-lg flex-col gap-2">
+<div class="flex w-full max-w-lg flex-col gap-1">
 	<span>{$svelteLL.posts.lostItemImages()}</span>
 	<FileUpload bind:files maxFiles={5} validator={imageValidator} accept="image/*" />
 </div>

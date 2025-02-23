@@ -18,9 +18,7 @@ export const GET: RequestHandler = async ({ fetch, params, locals }) => {
 	const query = `${MAPS_API}/search?q=${address}&format=json&accept-language=${locale}&limit=${limits}`;
 	const response = await handleFetchError(fetch(query));
 
-	if (response._tag == 'Left') {
-		return json([]);
-	}
+	if (response._tag == 'Left') return json([]);
 
 	const data = (await response.right.json()) as NominatimResponse;
 

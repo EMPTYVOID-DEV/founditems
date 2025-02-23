@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export async function sendVerificationEmail(email: string, text: string) {
+export async function sendEmail(email: string, subject: string, text: string) {
 	let settings: SMTPTransport.Options = {
 		host: process.env['SMTP_HOST'],
 		port: parseInt(process.env['SMTP_PORT']!),
@@ -23,8 +23,8 @@ export async function sendVerificationEmail(email: string, text: string) {
 
 	const mailOptions: SMTPTransport.MailOptions = {
 		from: process.env['SMTP_EMAIL'],
-		subject: 'Email verification',
 		to: email,
+		subject,
 		text
 	};
 	return transport.sendMail(mailOptions);
@@ -35,7 +35,7 @@ export async function setupOtp(email: string) {
 	const expiresAt = new Date(Date.now() + 1000 * 60 * 10);
 	await db.delete(otpTable).where(eq(otpTable.email, email));
 	await db.insert(otpTable).values({ email, code, expiresAt });
-	await sendVerificationEmail(email, code);
+	await sendEmail(email, 'Email verification', code);
 }
 
 export async function isValidOtp(

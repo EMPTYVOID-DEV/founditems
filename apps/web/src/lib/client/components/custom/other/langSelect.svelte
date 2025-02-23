@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { svelteUsedLocale } from '@assets/i18n/i18n-svelte';
 	import { setClientLocale } from '@client/utils.svelte';
-	import { availableLocales } from '@shared/const';
 	import * as Select from '@components/shadcn/select/index.js';
 	import type { Locales } from '@assets/i18n/i18n-types';
 	import GlobeIcon from '@icons/globeIcon.svelte';
+	import { availableLocales } from 'utils';
 	let selected = $state<Locales>($svelteUsedLocale);
 	const languages = availableLocales.map((v) => ({ value: v, label: v }));
 	function onValueChange() {

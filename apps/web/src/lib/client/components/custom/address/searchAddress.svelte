@@ -9,7 +9,6 @@
 		if (!searchText) return;
 		const query = `${mapQueryApi}/${searchText}`;
 		const rawAddressOptions: RawAddress[] = await fetch(query).then((res) => res.json());
-		if (rawAddressOptions.length == 0) return [];
 		return rawAddressOptions.map((val) => ({ value: val, label: val.name }));
 	}
 </script>

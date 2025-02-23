@@ -1,7 +1,3 @@
-export const availableLocales = ['ar', 'fr'] as const;
-
-export const defaultLocale = 'ar';
-
 export const profilePage = '/dashboard/profile';
 
 export const postsPage = '/dashboard/posts';
