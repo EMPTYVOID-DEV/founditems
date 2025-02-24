@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import DatePicker from '@components/custom/other/datePicker.svelte';
-	import type { DateValue } from '@internationalized/date';
 	import type { ItemType } from '@shared/types';
 
 	let {
-		setDateValue,
+		setDate,
 		itemType
 	}: {
-		setDateValue: (dateValue: DateValue) => void;
+		setDate: (dateValue: Date | null) => void;
 		itemType: ItemType;
 	} = $props();
 
@@ -19,5 +18,5 @@
 
 <div class="flex flex-col gap-1">
 	<h4>{whenLost}</h4>
-	<DatePicker {setDateValue} />
+	<DatePicker {setDate} />
 </div>

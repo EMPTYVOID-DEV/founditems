@@ -19,7 +19,6 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.2.3",
 		"@eslint/js": "^9.17.0",
-		"@internationalized/date": "^3.7.0",
 		"@sveltejs/adapter-auto": "^4.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
@@ -60,6 +59,7 @@
 		"mail": "file:../../packages/mail",
 		"nanoid": "^5.0.9",
 		"svelte-select": "^5.8.3",
+		"svelty-picker": "^5.2.11",
 		"typesafe-i18n": "^5.26.2",
 		"utils": "file:../../packages/utils",
 		"zod": "^3.24.1"

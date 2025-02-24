@@ -56,7 +56,7 @@
 		--ring: 220 76% 53%; /* Match Primary */
 
 		/* Radius */
-		--radius: 0.5rem;
+		--radius: 0.4rem;
 
 		/* Sidebar */
 		--sidebar-background: 220 12% 95%;
@@ -67,6 +67,39 @@
 		--sidebar-accent-foreground: 220 28% 15%;
 		--sidebar-border: 210 12% 90%;
 		--sidebar-ring: 220 76% 53%;
+
+		/* svelty-picker */
+		--sdt-bg-main: hsl(var(--background)); /** wrap background color */
+		--sdt-shadow-color: hsl(var(--muted)); /** wrap shadow color */
+		--sdt-wrap-shadow: 0 1px 6px var(--sdt-shadow-color); /** wrap shadow settings */
+		--sdt-radius: var(--radius); /** wrap radius */
+		--sdt-color: hsl(
+			var(--foreground)
+		); /** data to select(e.g date/time) text color (except header & buttons) */
+		--sdt-color-selected: hsl(
+			var(--primary-foreground)
+		); /** selected data(e.g date/time) text color */
+		--sdt-header-color: hsl(var(--foreground)); /** header items color (e.g. text & buttons) */
+		--sdt-header-btn-bg-hover: hsl(var(--muted)); /** header items hover background color */
+		--sdt-bg-selected: hsl(var(--primary)); /** selected data(e.g date/time) background color */
+
+		/* action buttons */
+		--sdt-today-bg: hsl(var(--primary)); /** date picker today button hover background color */
+		--sdt-today-color: hsl(var(--bg-main)); /** date picker today button text & border color */
+		--sdt-clear-color: hsl(var(--destructive)); /** clear button text & border color */
+		--sdt-clear-bg: transparent; /** clear button background color */
+		--sdt-clear-hover-color: hsl(var(--bg-main)); /** clear button hover text color */
+		--sdt-clear-hover-bg: hsl(var(--destructive)); /** clear button hover background color */
+
+		/* date picker */
+		--sdt-table-selected-bg: var(--sdt-bg-selected); /** selected date background color */
+		--sdt-table-disabled-date: hsl(var(--destructive)); /** disabled dates text color */
+		--sdt-table-disabled-date-bg: hsl(var(--muted)); /** disabled dates background color */
+		--sdt-table-bg: transparent; /** date picker inner table background color */
+		--sdt-table-data-bg-hover: hsl(var(--muted)); /** table selection data hover background color */
+		--sdt-table-today-indicator: hsl(
+			var(--shadow-color)
+		); /** date picker current day marker color */
 	}
 }
 

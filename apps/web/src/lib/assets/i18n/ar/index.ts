@@ -143,6 +143,8 @@ const ar: BaseTranslation = {
 		date: 'تاريخ',
 		hours: 'ساعات',
 		minutes: 'دقائق',
+		year: 'السنة ',
+		month: 'الشهر',
 		transportMethod: 'وسيلة نقل'
 	},
 	errors: {

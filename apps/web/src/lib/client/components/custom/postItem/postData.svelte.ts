@@ -10,9 +10,10 @@ export class PostData {
 	category: string[] = $state([]);
 	metaDataDescOptions: MetaDataDescOptions = $state([]);
 	metaData: ItemMetaData = $state([]);
+	level = $state(0);
 
-	pushToCategory(lvl: string) {
-		this.category.push(lvl);
+	pushToCategory(lvlValue: string) {
+		this.category.push(lvlValue);
 	}
 
 	setMetaDataDesc(secondLvl: string) {
@@ -61,6 +62,7 @@ export class PostData {
 		this.category = [];
 		this.metaDataDescOptions = [];
 		this.metaData = [];
+		this.level = 0;
 	}
 
 	orderMetaDataDesc() {

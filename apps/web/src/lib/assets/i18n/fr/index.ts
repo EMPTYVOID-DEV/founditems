@@ -143,6 +143,8 @@ const fr: Translation = {
 		date: 'Date',
 		hours: 'heures',
 		minutes: 'minutes',
+		month: 'mois',
+		year: 'année',
 		transportMethod: 'Méthode de transport'
 	},
 	errors: {

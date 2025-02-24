@@ -14,7 +14,6 @@
 	import { enhance } from '$app/forms';
 	import ActionButton from '@components/custom/other/actionButton.svelte';
 	import ItemDate from './components/itemDate.svelte';
-	import type { DateValue } from '@internationalized/date';
 	import type { ItemAddress, Nullable } from 'utils';
 	import ItemAddressComponent from './components/itemAddress.svelte';
 
@@ -23,11 +22,6 @@
 	let files = $state<File[]>([]);
 	let itemDate = $state<null | Date>(null);
 	let itemAddress = $state<Nullable<ItemAddress[number]>[]>([{ type: 'general', address: null }]);
-
-	function setDateValue(date: DateValue) {
-		if (!itemDate) itemDate = new Date();
-		itemDate.setFullYear(date.year, date.month, date.day);
-	}
 
 	let beforeAction: SubmitFunctionBefore = ({ formData }) => {
 		formData.append('address', JSON.stringify(itemAddress));
@@ -60,7 +54,7 @@
 <div class="flex w-full flex-grow flex-col gap-4 p-[2.5%]">
 	<Header />
 	<ItemTypeComponent setType={(type) => (itemType = type)} />
-	<ItemDate {itemType} {setDateValue} />
+	<ItemDate {itemType} setDate={(date) => (itemDate = date)} />
 	<ItemAddressComponent bind:itemAddress {itemType} />
 	<ItemCategory />
 	<ItemMetaData />

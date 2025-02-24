@@ -6,11 +6,11 @@
 	import { getValidator, getMetaDataTextSchema } from '@shared/zod';
 	import ReactiveInput from '../other/reactiveInput.svelte';
 	import DatePicker from '../other/datePicker.svelte';
-	import type { DateValue } from '@internationalized/date';
 	const textValidator = getValidator(getMetaDataTextSchema());
 
-	function formatDate(date: DateValue) {
-		return `${date.day}/${date.month}/${date.year}`;
+	function formatDate(date: Date | null) {
+		if (date) return date.toISOString();
+		return '';
 	}
 </script>
 
@@ -48,7 +48,7 @@
 	{@const translationKey = name as keyof Translation['metaData']}
 	<div class="flex flex-col gap-1">
 		<span>{$svelteLL.metaData[translationKey]()}</span>
-		<DatePicker setDateValue={(val) => PostDataInstance.setMetaData(name, formatDate(val))} />
+		<DatePicker setDate={(val) => PostDataInstance.setMetaData(name, formatDate(val))} />
 	</div>
 {/snippet}
 

@@ -556,6 +556,14 @@ type RootTranslation = {
 		 */
 		minutes: string
 		/**
+		 * ا​ل​س​ن​ة​ 
+		 */
+		year: string
+		/**
+		 * ا​ل​ش​ه​ر
+		 */
+		month: string
+		/**
 		 * و​س​ي​ل​ة​ ​ن​ق​ل
 		 */
 		transportMethod: string
@@ -1450,6 +1458,14 @@ export type TranslationFunctions = {
 		 * دقائق
 		 */
 		minutes: () => LocalizedString
+		/**
+		 * السنة 
+		 */
+		year: () => LocalizedString
+		/**
+		 * الشهر
+		 */
+		month: () => LocalizedString
 		/**
 		 * وسيلة نقل
 		 */
