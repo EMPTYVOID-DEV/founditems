@@ -2,6 +2,7 @@
 	import type { RawAddress } from 'utils';
 	import { mapQueryApi } from '@shared/const';
 	import Select from 'svelte-select';
+	import { svelteLL } from '@assets/i18n/i18n-svelte';
 
 	let { setRawAddress }: { setRawAddress: (rawAddress: RawAddress | null) => void } = $props();
 
@@ -14,10 +15,9 @@
 </script>
 
 <Select
-	--input-padding="0.5rem"
 	class="w-full max-w-lg"
-	containerStyles="border:1px solid gray;"
-	placeholder=""
+	containerStyles="border:1px solid hsl(var(--input));"
+	placeholder={$svelteLL.general.searchAddress()}
 	listOpen={false}
 	{loadOptions}
 	on:input={(e) => setRawAddress(e.detail.value)}

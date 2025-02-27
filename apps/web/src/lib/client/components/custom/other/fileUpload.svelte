@@ -74,7 +74,7 @@
 	</div>
 {/snippet}
 
-<div class="bg-muted flex w-full flex-col rounded-lg border-2 border-dashed p-3">
+<div class="border-input flex w-full flex-col rounded-lg border-2 border-dashed bg-transparent p-3">
 	<label
 		for="file"
 		class=" text-muted-foreground w-full cursor-pointer text-center"

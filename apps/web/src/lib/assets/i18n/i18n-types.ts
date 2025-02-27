@@ -544,6 +544,10 @@ type RootTranslation = {
 		 */
 		selectDate: string
 		/**
+		 * ا​ب​ح​ث​ ​ع​ن​ ​ع​ن​و​ا​ن
+		 */
+		searchAddress: string
+		/**
 		 * ت​ا​ر​ي​خ
 		 */
 		date: string
@@ -913,6 +917,32 @@ type RootTranslation = {
 		 * إ​ض​ا​ف​ة​ ​ع​ن​و​ا​ن​ ​إ​ض​ا​ف​ي
 		 */
 		additionalAddress: string
+		/**
+		 * ن​و​ع
+		 */
+		postType: string
+		/**
+		 * ا​ل​ح​ا​ل​ة
+		 */
+		postState: string
+		/**
+		 * ا​ل​ف​ئ​ة
+		 */
+		itemCategory: string
+		/**
+		 * ا​ل​م​ز​ي​د​ ​م​ن​ ​ا​ل​م​ع​ل​و​م​ا​ت
+		 */
+		seeInfo: string
+	}
+	postStates: {
+		/**
+		 * ع​ا​ط​ل
+		 */
+		idle: string
+		/**
+		 * م​ط​ا​ب​ق​ة
+		 */
+		matched: string
 	}
 }
 
@@ -1447,6 +1477,10 @@ export type TranslationFunctions = {
 		 */
 		selectDate: () => LocalizedString
 		/**
+		 * ابحث عن عنوان
+		 */
+		searchAddress: () => LocalizedString
+		/**
 		 * تاريخ
 		 */
 		date: () => LocalizedString
@@ -1810,6 +1844,32 @@ export type TranslationFunctions = {
 		 * إضافة عنوان إضافي
 		 */
 		additionalAddress: () => LocalizedString
+		/**
+		 * نوع
+		 */
+		postType: () => LocalizedString
+		/**
+		 * الحالة
+		 */
+		postState: () => LocalizedString
+		/**
+		 * الفئة
+		 */
+		itemCategory: () => LocalizedString
+		/**
+		 * المزيد من المعلومات
+		 */
+		seeInfo: () => LocalizedString
+	}
+	postStates: {
+		/**
+		 * عاطل
+		 */
+		idle: () => LocalizedString
+		/**
+		 * مطابقة
+		 */
+		matched: () => LocalizedString
 	}
 }
 
