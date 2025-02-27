@@ -5,6 +5,7 @@ import imagesMap from '@assets/json/imagesMap.json';
 import { getObjectProperty } from '@client/utils.svelte';
 import { defaultMetaDataOption } from '@shared/const';
 import { pipe } from 'fp-ts/lib/function';
+import { PUBLIC_API_HOST } from '$env/static/public';
 
 export class PostData {
 	category: string[] = $state([]);
@@ -77,6 +78,10 @@ export class PostData {
 		});
 	}
 
+	setFullMetaData(metaData: ItemMetaData) {
+		this.metaData = metaData;
+	}
+
 	setMetaData(name: string, value: string) {
 		const rightMetaData = this.metaData.find((val) => val.name === name);
 		if (rightMetaData) rightMetaData.value = value;
@@ -91,8 +96,9 @@ export class PostData {
 		return options;
 	}
 
-	static getImageName(lvl: string) {
-		return getObjectProperty<string>(imagesMap, lvl);
+	static getImageSrc(lvl: string) {
+		const name = getObjectProperty<string>(imagesMap, lvl);
+		return `${PUBLIC_API_HOST}/categories/${name}`;
 	}
 
 	static getSecondLvl(lvl1: string) {

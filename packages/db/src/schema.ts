@@ -61,7 +61,7 @@ export const foundItemTable = pgTable('found_item', {
 	foundDate: timestamp('found_date').notNull(),
 	category: text('category').array().notNull(),
 	metadata: json('meta_data').array().$type<ItemMetaData>().notNull(),
-	state: text('state').$type<ItemStates>().notNull().default('Idle')
+	state: text('state').$type<ItemStates>().notNull().default('idle')
 });
 
 export const lostItemTable = pgTable('lost_item', {
@@ -80,7 +80,7 @@ export const lostItemTable = pgTable('lost_item', {
 	lostDate: timestamp('lost_date').notNull(),
 	category: text('category').array().notNull(),
 	metadata: json('meta_data').array().$type<ItemMetaData>().notNull(),
-	state: text('state').$type<ItemStates>().notNull().default('Idle'),
+	state: text('state').$type<ItemStates>().notNull().default('idle'),
 	description: text('description').notNull(),
 	images: text('images').array().notNull()
 });
@@ -109,7 +109,7 @@ export const connectionTable = pgTable('connection', {
 	victimId: varchar('victim_id', { length: 8 })
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
-	state: text('state').$type<ConnectionStates>().notNull().default('Idle'),
+	state: text('state').$type<ConnectionStates>().notNull().default('idle'),
 	metadata: json('meta_data').$type<ConnectionMetaData>().notNull()
 });
 

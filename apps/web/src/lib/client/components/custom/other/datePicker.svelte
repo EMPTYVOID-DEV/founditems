@@ -17,9 +17,11 @@
 
 <style>
 	.input-wrap :global(input) {
-		border: 1px solid hsl(var(--foreground));
+		width: 100%;
+		max-width: 32rem;
+		border: 1px solid hsl(var(--input));
 		background-color: hsl(var(--background));
-		padding-inline: 0.5rem;
+		padding-inline: 0.75rem;
 		padding-block: 0.25rem;
 		border-radius: calc(var(--radius) - 2px);
 		outline: none;

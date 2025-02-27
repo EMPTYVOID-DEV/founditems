@@ -8,6 +8,13 @@
       "when": 1740213600983,
       "tag": "0000_adorable_hydra",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1740697632135,
+      "tag": "0001_dusty_starfox",
+      "breakpoints": true
     }
   ]
 }

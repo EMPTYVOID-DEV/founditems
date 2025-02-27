@@ -2,18 +2,18 @@ import type { z } from 'zod';
 import { rawAddressSchema, itemAddressSchema, itemMetaDataSchema } from './zod.js';
 import type { availableLocales, transports } from './consts.js';
 
-export type ItemStates = 'Idle' | 'Matched';
+export type ItemStates = 'idle' | 'matched';
 
 export type ConnectionStates =
-	| 'Idle'
-	| 'Validated'
-	| 'Payment Validated'
-	| 'Payment Failed'
-	| 'Shipment Processing'
-	| 'Shipment Failed'
-	| 'Shipment Delivered'
-	| 'Reporting'
-	| 'Released';
+	| 'idle'
+	| 'validated'
+	| 'payment Validated'
+	| 'payment Failed'
+	| 'shipment Processing'
+	| 'shipment Failed'
+	| 'shipment Delivered'
+	| 'reporting'
+	| 'released';
 
 export type Nullable<T> = { [K in keyof T]: T[K] | null };
 

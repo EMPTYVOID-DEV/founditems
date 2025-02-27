@@ -140,6 +140,7 @@ const ar: BaseTranslation = {
 		language: 'اللغة',
 		upload: 'اسحب الملفات وأفلِتها هنا، أو انقر لتحديد الملفات',
 		selectDate: 'حدد تاريخا',
+		searchAddress: 'ابحث عن عنوان',
 		date: 'تاريخ',
 		hours: 'ساعات',
 		minutes: 'دقائق',
@@ -247,7 +248,15 @@ const ar: BaseTranslation = {
 		address: 'العنوان',
 		transportStart: 'نقطة انطلاق النقل',
 		transportEnd: 'نقطة انتهاء النقل',
-		additionalAddress: 'إضافة عنوان إضافي'
+		additionalAddress: 'إضافة عنوان إضافي',
+		postType: 'نوع',
+		postState: 'الحالة',
+		itemCategory: 'الفئة',
+		seeInfo: 'المزيد من المعلومات'
+	},
+	postStates: {
+		idle: 'عاطل',
+		matched: 'مطابقة'
 	}
 };
 
