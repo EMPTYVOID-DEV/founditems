@@ -146,7 +146,13 @@ const fr: Translation = {
 		minutes: 'minutes',
 		month: 'mois',
 		year: 'année',
-		transportMethod: 'méthode de transport'
+		transportMethod: 'méthode de transport',
+		address: 'addresse',
+		transport: 'transport',
+		postState: 'état',
+		postType: 'type',
+		itemCategory: 'catégorie',
+		seeInfo: "plus d'informations"
 	},
 	errors: {
 		forbidden: 'interdit',
@@ -170,8 +176,8 @@ const fr: Translation = {
 		passwordUppercase: 'le mot de passe doit contenir au moins une lettre majuscule',
 		passwordLowercase: 'le mot de passe doit contenir au moins une lettre minuscule',
 		metaDataText: 'la longueur du texte ne peut pas dépasser {0} caractères',
-		itemDate: 'vous devez fixer une date',
 		itemCategory: 'vous devez sélectionner une catégorie',
+		invalidItemDate: 'date invalide',
 		invalidItemAddress: 'adresse invalide de la chose'
 	},
 	schema: {
@@ -248,13 +254,8 @@ const fr: Translation = {
 		lostItemImages: 'images montrant votre article',
 		transportEnd: "point d'arrivée du transport",
 		transportStart: 'point de départ du transport',
-		address: 'addresse',
-		transport: 'transport',
 		additionalAddress: 'ajouter une adresse supplémentaire',
-		postState: 'état',
-		postType: 'type',
-		itemCategory: 'catégorie',
-		seeInfo: "plus d'informations"
+		postInformation: 'information du poste'
 	},
 	postStates: {
 		idle: 'oisif',

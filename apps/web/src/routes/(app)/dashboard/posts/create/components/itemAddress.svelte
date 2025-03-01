@@ -46,7 +46,7 @@
 {#snippet addressHead(index: number)}
 	{#if itemAddress.length > 1}
 		<div class="flex w-full max-w-lg items-center justify-between">
-			<span class="text-small">{$svelteLL.posts.address()}-{index + 1}</span>
+			<span class="text-small">{$svelteLL.general.address()}-{index + 1}</span>
 			<Button
 				size="icon"
 				class="hover:bg-transparent"
@@ -68,9 +68,10 @@
 			onValueChange={(tab) => changeTab(index, tab)}
 		>
 			<Tabs.List>
-				<Tabs.Trigger value="general" class="capitalize">{$svelteLL.posts.address()}</Tabs.Trigger>
+				<Tabs.Trigger value="general" class="capitalize">{$svelteLL.general.address()}</Tabs.Trigger
+				>
 				<Tabs.Trigger value="transport" class="capitalize"
-					>{$svelteLL.posts.transport()}</Tabs.Trigger
+					>{$svelteLL.general.transport()}</Tabs.Trigger
 				>
 			</Tabs.List>
 			<!-- Here we should reset -->
@@ -99,7 +100,7 @@
 {/snippet}
 
 <div class="flex w-full flex-col items-start gap-3">
-	<h4>{whereLost}</h4>
+	<h4 class="capitalize">{whereLost}</h4>
 	{#each itemAddress as _, idx}
 		{@render addressSnippet(idx)}
 	{/each}

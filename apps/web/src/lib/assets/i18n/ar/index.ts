@@ -146,7 +146,13 @@ const ar: BaseTranslation = {
 		minutes: 'دقائق',
 		year: 'السنة ',
 		month: 'الشهر',
-		transportMethod: 'وسيلة نقل'
+		transportMethod: 'وسيلة نقل',
+		transport: 'النقل',
+		address: 'العنوان',
+		postType: 'نوع',
+		postState: 'الحالة',
+		itemCategory: 'الفئة',
+		seeInfo: 'المزيد من المعلومات'
 	},
 	errors: {
 		forbidden: 'غير مسموح',
@@ -178,8 +184,8 @@ const ar: BaseTranslation = {
 		passwordUppercase: 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل',
 		passwordLowercase: 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل',
 		metaDataText: 'لا يمكن أن يتجاوز طول النص {0} حرفًا',
-		itemDate: 'يجب عليك تحديد تاريخ',
 		itemCategory: 'تحتاج إلى تحديد فئة',
+		invalidItemDate: 'تاريخ غير صالح',
 		invalidItemAddress: 'عنوان شيء غير صالح'
 	},
 	auth: {
@@ -244,15 +250,10 @@ const ar: BaseTranslation = {
 		whereYouFound: 'أين وجدت الشيء؟',
 		lostItemDescription: 'يمكنك كتابة وصف كامل للعنصر المفقود',
 		lostItemImages: 'صور تظهر العنصر الخاص بك',
-		transport: 'النقل',
-		address: 'العنوان',
 		transportStart: 'نقطة انطلاق النقل',
 		transportEnd: 'نقطة انتهاء النقل',
 		additionalAddress: 'إضافة عنوان إضافي',
-		postType: 'نوع',
-		postState: 'الحالة',
-		itemCategory: 'الفئة',
-		seeInfo: 'المزيد من المعلومات'
+		postInformation: 'معلومات المنشور'
 	},
 	postStates: {
 		idle: 'عاطل',
