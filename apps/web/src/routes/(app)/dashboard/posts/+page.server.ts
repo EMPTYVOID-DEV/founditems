@@ -6,11 +6,11 @@ export const load: ServerLoad = async ({ locals }) => {
 	const posts = await Promise.allSettled([
 		db.query.foundItemTable.findMany({
 			where: eq(foundItemTable.userId, id),
-			columns: { category: true, lang: true, state: true, id: true }
+			columns: { category: true, state: true, id: true }
 		}),
 		db.query.lostItemTable.findMany({
 			where: eq(lostItemTable.userId, id),
-			columns: { category: true, lang: true, state: true, id: true }
+			columns: { category: true, state: true, id: true }
 		})
 	]);
 

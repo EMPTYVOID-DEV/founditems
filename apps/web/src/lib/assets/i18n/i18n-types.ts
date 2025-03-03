@@ -571,6 +571,30 @@ type RootTranslation = {
 		 * و​س​ي​ل​ة​ ​ن​ق​ل
 		 */
 		transportMethod: string
+		/**
+		 * ا​ل​ن​ق​ل
+		 */
+		transport: string
+		/**
+		 * ا​ل​ع​ن​و​ا​ن
+		 */
+		address: string
+		/**
+		 * ن​و​ع
+		 */
+		postType: string
+		/**
+		 * ا​ل​ح​ا​ل​ة
+		 */
+		postState: string
+		/**
+		 * ا​ل​ف​ئ​ة
+		 */
+		itemCategory: string
+		/**
+		 * ا​ل​م​ز​ي​د​ ​م​ن​ ​ا​ل​م​ع​ل​و​م​ا​ت
+		 */
+		seeInfo: string
 	}
 	errors: {
 		/**
@@ -684,13 +708,13 @@ type RootTranslation = {
 		 */
 		metaDataText: RequiredParams<'0'>
 		/**
-		 * ي​ج​ب​ ​ع​ل​ي​ك​ ​ت​ح​د​ي​د​ ​ت​ا​ر​ي​خ
-		 */
-		itemDate: string
-		/**
 		 * ت​ح​ت​ا​ج​ ​إ​ل​ى​ ​ت​ح​د​ي​د​ ​ف​ئ​ة
 		 */
 		itemCategory: string
+		/**
+		 * ت​ا​ر​ي​خ​ ​غ​ي​ر​ ​ص​ا​ل​ح
+		 */
+		invalidItemDate: string
 		/**
 		 * ع​ن​و​ا​ن​ ​ش​ي​ء​ ​غ​ي​ر​ ​ص​ا​ل​ح
 		 */
@@ -898,14 +922,6 @@ type RootTranslation = {
 		 */
 		lostItemImages: string
 		/**
-		 * ا​ل​ن​ق​ل
-		 */
-		transport: string
-		/**
-		 * ا​ل​ع​ن​و​ا​ن
-		 */
-		address: string
-		/**
 		 * ن​ق​ط​ة​ ​ا​ن​ط​ل​ا​ق​ ​ا​ل​ن​ق​ل
 		 */
 		transportStart: string
@@ -918,21 +934,9 @@ type RootTranslation = {
 		 */
 		additionalAddress: string
 		/**
-		 * ن​و​ع
+		 * م​ع​ل​و​م​ا​ت​ ​ا​ل​م​ن​ش​و​ر
 		 */
-		postType: string
-		/**
-		 * ا​ل​ح​ا​ل​ة
-		 */
-		postState: string
-		/**
-		 * ا​ل​ف​ئ​ة
-		 */
-		itemCategory: string
-		/**
-		 * ا​ل​م​ز​ي​د​ ​م​ن​ ​ا​ل​م​ع​ل​و​م​ا​ت
-		 */
-		seeInfo: string
+		postInformation: string
 	}
 	postStates: {
 		/**
@@ -1504,6 +1508,30 @@ export type TranslationFunctions = {
 		 * وسيلة نقل
 		 */
 		transportMethod: () => LocalizedString
+		/**
+		 * النقل
+		 */
+		transport: () => LocalizedString
+		/**
+		 * العنوان
+		 */
+		address: () => LocalizedString
+		/**
+		 * نوع
+		 */
+		postType: () => LocalizedString
+		/**
+		 * الحالة
+		 */
+		postState: () => LocalizedString
+		/**
+		 * الفئة
+		 */
+		itemCategory: () => LocalizedString
+		/**
+		 * المزيد من المعلومات
+		 */
+		seeInfo: () => LocalizedString
 	}
 	errors: {
 		/**
@@ -1611,13 +1639,13 @@ export type TranslationFunctions = {
 		 */
 		metaDataText: (arg0: unknown) => LocalizedString
 		/**
-		 * يجب عليك تحديد تاريخ
-		 */
-		itemDate: () => LocalizedString
-		/**
 		 * تحتاج إلى تحديد فئة
 		 */
 		itemCategory: () => LocalizedString
+		/**
+		 * تاريخ غير صالح
+		 */
+		invalidItemDate: () => LocalizedString
 		/**
 		 * عنوان شيء غير صالح
 		 */
@@ -1825,14 +1853,6 @@ export type TranslationFunctions = {
 		 */
 		lostItemImages: () => LocalizedString
 		/**
-		 * النقل
-		 */
-		transport: () => LocalizedString
-		/**
-		 * العنوان
-		 */
-		address: () => LocalizedString
-		/**
 		 * نقطة انطلاق النقل
 		 */
 		transportStart: () => LocalizedString
@@ -1845,21 +1865,9 @@ export type TranslationFunctions = {
 		 */
 		additionalAddress: () => LocalizedString
 		/**
-		 * نوع
+		 * معلومات المنشور
 		 */
-		postType: () => LocalizedString
-		/**
-		 * الحالة
-		 */
-		postState: () => LocalizedString
-		/**
-		 * الفئة
-		 */
-		itemCategory: () => LocalizedString
-		/**
-		 * المزيد من المعلومات
-		 */
-		seeInfo: () => LocalizedString
+		postInformation: () => LocalizedString
 	}
 	postStates: {
 		/**

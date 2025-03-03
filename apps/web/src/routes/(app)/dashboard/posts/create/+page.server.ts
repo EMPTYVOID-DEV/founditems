@@ -1,7 +1,7 @@
 import { LL, usedLocale } from '@assets/i18n/i18n';
 import { uploadProofs } from '@server/utils/fileUpload';
 import { postsPage } from '@shared/const';
-import { getImageSchema, getValidator } from '@shared/zod';
+import { getImageSchema, getValidator, itemDateSchema } from '@shared/zod';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 import { db, foundItemTable, lostItemTable } from 'db';
 import { itemAddressSchema, itemMetaDataSchema, type ItemAddress, type ItemMetaData } from 'utils';
@@ -19,8 +19,9 @@ export const actions: Actions = {
 		let description = '';
 		let images: string[] = [];
 
-		if (castedDate.toString() == 'Invalid Date')
-			return fail(400, { message: LL.validation.itemDate() });
+		const dateValidated = getValidator(itemDateSchema)(castedDate);
+		if (dateValidated.status == 'invalid')
+			return fail(400, { message: LL.validation.invalidItemDate() });
 
 		const addressValidated = getValidator(itemAddressSchema)(address);
 		if (addressValidated.status == 'invalid')

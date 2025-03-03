@@ -13,7 +13,7 @@
 </script>
 
 <div class="flex flex-col gap-2">
-	<h4>{$svelteLL.posts.selectItemType()}</h4>
+	<h4 class="capitalize">{$svelteLL.posts.selectItemType()}</h4>
 	<div class="flex items-center gap-4">
 		<Button
 			size="lg"

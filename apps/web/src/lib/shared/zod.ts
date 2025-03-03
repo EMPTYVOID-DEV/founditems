@@ -37,6 +37,15 @@ export const getPhoneNumberSchema = () =>
 export const getMetaDataTextSchema = () =>
 	z.string().max(20, { message: LL.validation.metaDataText(20) });
 
+export const itemDateSchema = z.date().refine((date) => {
+	if (date.toString() == 'Invalid Date') return false;
+	if (date.getTime() > Date.now()) return false;
+	const lastWeek = new Date();
+	lastWeek.setDate(lastWeek.getDate() - 7);
+	if (date.getTime() < lastWeek.getTime()) return false;
+	return true;
+});
+
 export function getValidator(schema: ZodSchema): Validator {
 	return (data: unknown) => {
 		const parseResult = schema.safeParse(data);
