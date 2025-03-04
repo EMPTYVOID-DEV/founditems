@@ -42,7 +42,7 @@
 		'max-w-lg': maxSize == 'lg'
 	})}
 >
-	<label for="password" class="capitalize empty:hidden">{label}</label>
+	<label for="password" class="text-small capitalize empty:hidden">{label}</label>
 	<Input
 		bind:value
 		oninput={validate}

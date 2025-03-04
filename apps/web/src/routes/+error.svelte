@@ -20,10 +20,10 @@
 <div class="flex h-screen flex-col items-center justify-center gap-4 text-center">
 	{#if errorMap.has(status)}
 		<h1 class="text-destructive">{status}</h1>
-		<h4>{errorMap.get(status)}</h4>
+		<h4 class="capitalize">{errorMap.get(status)}</h4>
 	{:else}
 		<h1 class="text-destructive">500</h1>
-		<h4>{$svelteLL.errors.internalServerError()}</h4>
+		<h4 class="capitalize">{$svelteLL.errors.internalServerError()}</h4>
 	{/if}
 	<Button variant="destructive" onclick={() => goto('/')}>Return to home</Button>
 </div>

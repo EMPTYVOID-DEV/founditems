@@ -16,22 +16,25 @@
 
 {#snippet selectSnippet(options: string[], name: string)}
 	{@const metaKey = name as keyof Translation['metaData']}
-	<Select.Root type="single" onValueChange={(val) => PostDataInstance.setMetaData(name, val)}>
-		<Select.Trigger class="flex w-full max-w-lg items-center justify-between">
-			{@const optionKey = PostDataInstance.getMetaData(name) as keyof Translation['selectOptions']}
-			<span class="capitalize"
-				>{$svelteLL.metaData[metaKey]()}-{$svelteLL.selectOptions[optionKey]()}</span
-			>
-		</Select.Trigger>
-		<Select.Content>
-			{#each options as option}
-				{@const translationKey = option as keyof Translation['selectOptions']}
-				<Select.Item value={option} class="capitalize"
-					>{$svelteLL.selectOptions[translationKey]()}</Select.Item
-				>
-			{/each}
-		</Select.Content>
-	</Select.Root>
+	<div class="flex flex-col">
+		<span class="text-small capitalize">{$svelteLL.metaData[metaKey]()}</span>
+		<Select.Root type="single" onValueChange={(val) => PostDataInstance.setMetaData(name, val)}>
+			<Select.Trigger class="flex w-full max-w-lg items-center justify-between">
+				{@const optionKey = PostDataInstance.getMetaData(
+					name
+				) as keyof Translation['selectOptions']}
+				<span class="capitalize">{$svelteLL.selectOptions[optionKey]()}</span>
+			</Select.Trigger>
+			<Select.Content>
+				{#each options as option}
+					{@const translationKey = option as keyof Translation['selectOptions']}
+					<Select.Item value={option} class="capitalize"
+						>{$svelteLL.selectOptions[translationKey]()}</Select.Item
+					>
+				{/each}
+			</Select.Content>
+		</Select.Root>
+	</div>
 {/snippet}
 
 {#snippet textSnippet(name: string)}

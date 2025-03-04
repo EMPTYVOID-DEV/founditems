@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ItemCategory, ItemMetaData, PostDataInstance } from '@components/custom/postItem';
 	import Header from './components/header.svelte';
-	import type { ItemType } from '@shared/types';
+	import type { ItemType } from 'utils';
 	import ItemTypeComponent from './components/itemType.svelte';
 	import Footer from './components/footer.svelte';
 	import Button from '@components/shadcn/button/button.svelte';
@@ -28,11 +28,9 @@
 		formData.append('date', itemDate ? itemDate.toISOString() : '');
 		formData.append('type', itemType);
 		formData.append('metaData', JSON.stringify(PostDataInstance.metaData));
+		formData.append('description', fullDescription);
 		for (let lvl of PostDataInstance.category) formData.append('category', lvl);
-		if (itemType == 'lost') {
-			formData.append('description', fullDescription);
-			for (let file of files) formData.append('files', file);
-		}
+		for (let file of files) formData.append('files', file);
 	};
 
 	let afterAction: SubmitFunctionAfter = ({ result, update }) => {
@@ -58,9 +56,7 @@
 	<ItemAddressComponent bind:itemAddress {itemType} />
 	<ItemCategory />
 	<ItemMetaData />
-	{#if itemType == 'lost'}
-		<Footer bind:files setFullDescription={(desc) => (fullDescription = desc)} />
-	{/if}
+	<Footer bind:files setFullDescription={(desc) => (fullDescription = desc)} />
 	<div class="flex gap-4">
 		<Button size="lg" class="w-fit" variant="outline" onclick={() => goto(postsPage)}
 			>{$svelteLL.general.cancel()}</Button

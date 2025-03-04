@@ -1,9 +1,9 @@
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { env } from '@shared/env.js';
-import uploadRoute from '@routes/upload.js';
 import { logger } from 'hono/logger';
 import { serveAvatars, serveCategories, serveProofs } from './handlers/serveStatic.js';
+import storeRoute from '@routes/store.js';
 
 const app = new Hono();
 
@@ -18,9 +18,9 @@ app.get('/avatars/:avatar', serveAvatars);
 
 app.get('/categories/:category', serveCategories);
 
-app.get('/categories/:proof', serveProofs);
+app.get('/proofs/:proof', serveProofs);
 
-app.route('/upload', uploadRoute);
+app.route('/store', storeRoute);
 
 serve({
 	fetch: app.fetch,

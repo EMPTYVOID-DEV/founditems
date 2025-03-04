@@ -1,5 +1,5 @@
 {
-  "id": "0bf7716a-7e1b-4ff8-87d7-1d940f4dd0e3",
+  "id": "c40fbcfb-feb0-4cd9-b500-be8886639fd0",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -43,7 +43,7 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "default": "'Idle'"
+          "default": "'idle'"
         },
         "meta_data": {
           "name": "meta_data",
@@ -54,10 +54,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "connection_lost_item_id_lost_item_id_fk": {
-          "name": "connection_lost_item_id_lost_item_id_fk",
+        "connection_lost_item_id_item_id_fk": {
+          "name": "connection_lost_item_id_item_id_fk",
           "tableFrom": "connection",
-          "tableTo": "lost_item",
+          "tableTo": "item",
           "columnsFrom": [
             "lost_item_id"
           ],
@@ -67,10 +67,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "connection_found_item_id_found_item_id_fk": {
-          "name": "connection_found_item_id_found_item_id_fk",
+        "connection_found_item_id_item_id_fk": {
+          "name": "connection_found_item_id_item_id_fk",
           "tableFrom": "connection",
-          "tableTo": "found_item",
+          "tableTo": "item",
           "columnsFrom": [
             "found_item_id"
           ],
@@ -113,8 +113,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.found_item": {
-      "name": "found_item",
+    "public.item": {
+      "name": "item",
       "schema": "",
       "columns": {
         "id": {
@@ -148,8 +148,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "found_date": {
-          "name": "found_date",
+        "date": {
+          "name": "date",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true
@@ -171,90 +171,7 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "default": "'Idle'"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "found_item_user_id_user_id_fk": {
-          "name": "found_item_user_id_user_id_fk",
-          "tableFrom": "found_item",
-          "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.lost_item": {
-      "name": "lost_item",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "varchar(8)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "creation_date": {
-          "name": "creation_date",
-          "type": "timestamp with time zone",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "lang": {
-          "name": "lang",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "address": {
-          "name": "address",
-          "type": "json",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "lost_date": {
-          "name": "lost_date",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "category": {
-          "name": "category",
-          "type": "text[]",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "meta_data": {
-          "name": "meta_data",
-          "type": "json[]",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "state": {
-          "name": "state",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "'Idle'"
+          "default": "'idle'"
         },
         "description": {
           "name": "description",
@@ -267,13 +184,20 @@
           "type": "text[]",
           "primaryKey": false,
           "notNull": true
+        },
+        "is_found": {
+          "name": "is_found",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "lost_item_user_id_user_id_fk": {
-          "name": "lost_item_user_id_user_id_fk",
-          "tableFrom": "lost_item",
+        "item_user_id_user_id_fk": {
+          "name": "item_user_id_user_id_fk",
+          "tableFrom": "item",
           "tableTo": "user",
           "columnsFrom": [
             "user_id"
@@ -406,10 +330,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "unmatched_items_lost_item_id_lost_item_id_fk": {
-          "name": "unmatched_items_lost_item_id_lost_item_id_fk",
+        "unmatched_items_lost_item_id_item_id_fk": {
+          "name": "unmatched_items_lost_item_id_item_id_fk",
           "tableFrom": "unmatched_items",
-          "tableTo": "lost_item",
+          "tableTo": "item",
           "columnsFrom": [
             "lost_item_id"
           ],
@@ -419,10 +343,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "unmatched_items_found_item_id_found_item_id_fk": {
-          "name": "unmatched_items_found_item_id_found_item_id_fk",
+        "unmatched_items_found_item_id_item_id_fk": {
+          "name": "unmatched_items_found_item_id_item_id_fk",
           "tableFrom": "unmatched_items",
-          "tableTo": "found_item",
+          "tableTo": "item",
           "columnsFrom": [
             "found_item_id"
           ],

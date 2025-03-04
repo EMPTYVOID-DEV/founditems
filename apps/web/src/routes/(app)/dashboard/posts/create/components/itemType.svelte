@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import { Button } from '@components/shadcn/button';
-	import type { ItemType } from '@shared/types';
+	import type { ItemType } from 'utils';
 
 	let { setType }: { setType: (type: ItemType) => void } = $props();
 	let isLost = $state(true);

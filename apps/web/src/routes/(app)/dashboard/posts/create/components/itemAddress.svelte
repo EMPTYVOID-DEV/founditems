@@ -11,7 +11,7 @@
 		itemAddressLength
 	} from 'utils';
 	import Button from '@components/shadcn/button/button.svelte';
-	import type { ItemType } from '@shared/types';
+	import type { ItemType } from 'utils';
 	import CloseIconV2 from '@icons/closeIconV2.svelte';
 
 	let {

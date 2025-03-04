@@ -15,6 +15,7 @@ import type { Locales } from '@assets/i18n/i18n-types';
 import { isLocale } from '@assets/i18n/i18n-util';
 import { setLL } from '@assets/i18n/i18n';
 import { defaultLocale } from 'utils';
+import { and, db, eq, itemTable } from 'db';
 
 export function handleError({ error }) {
 	console.error(error);
@@ -48,6 +49,15 @@ const handleRouting: Handle = async ({ event, resolve }) => {
 		redirect(303, profilePage);
 	if (!user && checkPath(pathname, [profilePage, connectionsPage, postsPage], 'startWith'))
 		redirect(303, authPage);
+
+	if (event.params.postId) {
+		const postId = event.params.postId;
+		let item = await db.query.itemTable.findFirst({
+			where: and(eq(itemTable.id, parseInt(postId)), eq(itemTable.userId, user!.id))
+		});
+		if (!item) redirect(303, postsPage);
+	}
+
 	return resolve(event);
 };
 
