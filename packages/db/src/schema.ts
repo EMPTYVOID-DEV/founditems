@@ -45,7 +45,7 @@ export const sessionTable = pgTable('session', {
 	}).notNull()
 });
 
-export const foundItemTable = pgTable('found_item', {
+export const itemTable = pgTable('item', {
 	id: serial('id').primaryKey().notNull(),
 	userId: varchar('user_id', { length: 8 })
 		.notNull()
@@ -58,51 +58,33 @@ export const foundItemTable = pgTable('found_item', {
 		.defaultNow(),
 	lang: text('lang').$type<AvailableLocales>().notNull(),
 	address: json('address').$type<ItemAddress>().notNull(),
-	foundDate: timestamp('found_date').notNull(),
-	category: text('category').array().notNull(),
-	metadata: json('meta_data').array().$type<ItemMetaData>().notNull(),
-	state: text('state').$type<ItemStates>().notNull().default('idle')
-});
-
-export const lostItemTable = pgTable('lost_item', {
-	id: serial('id').primaryKey().notNull(),
-	userId: varchar('user_id', { length: 8 })
-		.notNull()
-		.references(() => userTable.id, { onDelete: 'cascade' }),
-	creationDate: timestamp('creation_date', {
-		withTimezone: true,
-		mode: 'date'
-	})
-		.notNull()
-		.defaultNow(),
-	lang: text('lang').$type<AvailableLocales>().notNull(),
-	address: json('address').$type<ItemAddress>().notNull(),
-	lostDate: timestamp('lost_date').notNull(),
+	date: timestamp('date').notNull(),
 	category: text('category').array().notNull(),
 	metadata: json('meta_data').array().$type<ItemMetaData>().notNull(),
 	state: text('state').$type<ItemStates>().notNull().default('idle'),
 	description: text('description').notNull(),
-	images: text('images').array().notNull()
+	images: text('images').array().notNull(),
+	isFound: boolean('is_found').notNull().default(true)
 });
 
 export const unmatchedItemsTable = pgTable('unmatched_items', {
 	id: serial('id').primaryKey().notNull(),
 	lostItemId: integer('lost_item_id')
 		.notNull()
-		.references(() => lostItemTable.id, { onDelete: 'cascade' }),
+		.references(() => itemTable.id, { onDelete: 'cascade' }),
 	foundItemId: integer('found_item_id')
 		.notNull()
-		.references(() => foundItemTable.id, { onDelete: 'cascade' })
+		.references(() => itemTable.id, { onDelete: 'cascade' })
 });
 
 export const connectionTable = pgTable('connection', {
 	id: serial('id').primaryKey().notNull(),
 	lostItemId: integer('lost_item_id')
 		.notNull()
-		.references(() => lostItemTable.id, { onDelete: 'cascade' }),
+		.references(() => itemTable.id, { onDelete: 'cascade' }),
 	foundItemId: integer('found_item_id')
 		.notNull()
-		.references(() => foundItemTable.id, { onDelete: 'cascade' }),
+		.references(() => itemTable.id, { onDelete: 'cascade' }),
 	founderId: varchar('founder_id', { length: 8 })
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
@@ -124,13 +106,13 @@ export const otpTable = pgTable('otp', {
 });
 
 export const connectionRelations = relations(connectionTable, ({ one }) => ({
-	lostItem: one(lostItemTable, {
+	lostItem: one(itemTable, {
 		fields: [connectionTable.lostItemId],
-		references: [lostItemTable.id]
+		references: [itemTable.id]
 	}),
-	foundItem: one(foundItemTable, {
+	foundItem: one(itemTable, {
 		fields: [connectionTable.foundItemId],
-		references: [foundItemTable.id]
+		references: [itemTable.id]
 	}),
 	founder: one(userTable, {
 		fields: [connectionTable.founderId],
@@ -143,29 +125,20 @@ export const connectionRelations = relations(connectionTable, ({ one }) => ({
 }));
 
 export const unmatchedItemsRelations = relations(unmatchedItemsTable, ({ one }) => ({
-	lostItem: one(lostItemTable, {
+	lostItem: one(itemTable, {
 		fields: [unmatchedItemsTable.lostItemId],
-		references: [lostItemTable.id]
+		references: [itemTable.id]
 	}),
-	foundItem: one(foundItemTable, {
+	foundItem: one(itemTable, {
 		fields: [unmatchedItemsTable.foundItemId],
-		references: [foundItemTable.id]
+		references: [itemTable.id]
 	})
 }));
 
-export const lostItemRelations = relations(lostItemTable, ({ one, many }) => ({
+export const itemRelations = relations(itemTable, ({ one, many }) => ({
 	unmatchedItem: many(unmatchedItemsTable),
 	user: one(userTable, {
-		fields: [lostItemTable.userId],
-		references: [userTable.id]
-	}),
-	connection: one(connectionTable)
-}));
-
-export const foundItemRelations = relations(foundItemTable, ({ one, many }) => ({
-	unmatchedItem: many(unmatchedItemsTable),
-	user: one(userTable, {
-		fields: [foundItemTable.userId],
+		fields: [itemTable.userId],
 		references: [userTable.id]
 	}),
 	connection: one(connectionTable)

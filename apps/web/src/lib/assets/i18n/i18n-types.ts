@@ -914,14 +914,6 @@ type RootTranslation = {
 		 */
 		whereYouFound: string
 		/**
-		 * ي​م​ك​ن​ك​ ​ك​ت​ا​ب​ة​ ​و​ص​ف​ ​ك​ا​م​ل​ ​ل​ل​ع​ن​ص​ر​ ​ا​ل​م​ف​ق​و​د
-		 */
-		lostItemDescription: string
-		/**
-		 * ص​و​ر​ ​ت​ظ​ه​ر​ ​ا​ل​ع​ن​ص​ر​ ​ا​ل​خ​ا​ص​ ​ب​ك
-		 */
-		lostItemImages: string
-		/**
 		 * ن​ق​ط​ة​ ​ا​ن​ط​ل​ا​ق​ ​ا​ل​ن​ق​ل
 		 */
 		transportStart: string
@@ -934,9 +926,29 @@ type RootTranslation = {
 		 */
 		additionalAddress: string
 		/**
+		 * و​ص​ف​ ​ا​ل​ش​ي​ء
+		 */
+		itemDescription: string
+		/**
+		 * ص​و​ر​ ​ا​ل​ش​ي​ء
+		 */
+		itemImages: string
+		/**
 		 * م​ع​ل​و​م​ا​ت​ ​ا​ل​م​ن​ش​و​ر
 		 */
 		postInformation: string
+		/**
+		 * م​ن
+		 */
+		from: string
+		/**
+		 * ا​ل​ى
+		 */
+		to: string
+		/**
+		 * ت​ح​ر​ي​ر​ ​ا​ل​م​ن​ش​و​ر
+		 */
+		releasePost: string
 	}
 	postStates: {
 		/**
@@ -1845,14 +1857,6 @@ export type TranslationFunctions = {
 		 */
 		whereYouFound: () => LocalizedString
 		/**
-		 * يمكنك كتابة وصف كامل للعنصر المفقود
-		 */
-		lostItemDescription: () => LocalizedString
-		/**
-		 * صور تظهر العنصر الخاص بك
-		 */
-		lostItemImages: () => LocalizedString
-		/**
 		 * نقطة انطلاق النقل
 		 */
 		transportStart: () => LocalizedString
@@ -1865,9 +1869,29 @@ export type TranslationFunctions = {
 		 */
 		additionalAddress: () => LocalizedString
 		/**
+		 * وصف الشيء
+		 */
+		itemDescription: () => LocalizedString
+		/**
+		 * صور الشيء
+		 */
+		itemImages: () => LocalizedString
+		/**
 		 * معلومات المنشور
 		 */
 		postInformation: () => LocalizedString
+		/**
+		 * من
+		 */
+		from: () => LocalizedString
+		/**
+		 * الى
+		 */
+		to: () => LocalizedString
+		/**
+		 * تحرير المنشور
+		 */
+		releasePost: () => LocalizedString
 	}
 	postStates: {
 		/**

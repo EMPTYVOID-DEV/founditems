@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import DatePicker from '@components/custom/other/datePicker.svelte';
-	import type { ItemType } from '@shared/types';
+	import type { ItemType } from 'utils';
 
 	let {
 		setDate,

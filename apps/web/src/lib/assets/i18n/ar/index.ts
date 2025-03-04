@@ -248,12 +248,15 @@ const ar: BaseTranslation = {
 		whenYouLost: 'متى فقدت الشيء؟',
 		whenYouFound: 'متى وجدت الشيء؟',
 		whereYouFound: 'أين وجدت الشيء؟',
-		lostItemDescription: 'يمكنك كتابة وصف كامل للعنصر المفقود',
-		lostItemImages: 'صور تظهر العنصر الخاص بك',
 		transportStart: 'نقطة انطلاق النقل',
 		transportEnd: 'نقطة انتهاء النقل',
 		additionalAddress: 'إضافة عنوان إضافي',
-		postInformation: 'معلومات المنشور'
+		itemDescription: 'وصف الشيء',
+		itemImages: 'صور الشيء',
+		postInformation: 'معلومات المنشور',
+		from: 'من',
+		to: 'الى',
+		releasePost: 'تحرير المنشور'
 	},
 	postStates: {
 		idle: 'عاطل',

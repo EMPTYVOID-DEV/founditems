@@ -4,8 +4,8 @@
 	import AddIcon from '@icons/addIcon.svelte';
 	import { createPostPage, postsPage } from '@shared/const';
 	import { svelteLL, svelteUsedLocale } from '@assets/i18n/i18n-svelte';
-	import type { ItemType } from '@shared/types.js';
-	import { availableLocales, type AvailableLocales, type ItemStates } from 'utils';
+	import type { ItemType } from 'utils';
+	import { type ItemStates } from 'utils';
 	import { PostData } from '@components/custom/postItem';
 	import type { Translation } from '@assets/i18n/i18n-types.js';
 	import MoreIcon from '@icons/moreIcon.svelte';
@@ -18,8 +18,8 @@
 	{@const categoryTranslation = category[1] as keyof Translation['categories']}
 	{@const typeTranslation = itemType as keyof Translation['posts']}
 	{@const stateTranslation = state as keyof Translation['postStates']}
-	<div class="border-secondary bg-secondary/15 flex gap-4 rounded-sm border-2 p-2">
-		<img alt="category" {src} class="aspect-square w-10 self-center object-cover object-center" />
+	<div class="border-secondary bg-secondary/15 flex items-center gap-4 rounded-sm border-2 p-2">
+		<img alt="category" {src} class="aspect-square w-10 object-cover object-center" />
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.postType()}</span>
 			<span>{$svelteLL.posts[typeTranslation]()}</span>
@@ -30,14 +30,14 @@
 		</div>
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.itemCategory()}</span>
-			<span>{$svelteLL.categories[categoryTranslation]()}</span>
+			<span class="line-clamp-1">{$svelteLL.categories[categoryTranslation]()}</span>
 		</div>
 		<Button
-			class={cn('self-center', {
+			class={cn({
 				'ml-auto': $svelteUsedLocale != 'ar',
 				'mr-auto': $svelteUsedLocale == 'ar'
 			})}
-			onclick={() => goto(`${postsPage}/more/${itemType}/${id}`)}
+			onclick={() => goto(`${postsPage}/more/${id}`)}
 		>
 			<MoreIcon variant="ghost" />
 			<span class="text-small mr:hidden capitalize">{$svelteLL.general.seeInfo()}</span>
@@ -58,11 +58,9 @@
 		</Button>
 	</div>
 	<div class="flex flex-col gap-4">
-		{#each data.foundItems as item}
-			{@render postSnippet('found', item.category, item.state, item.id)}
-		{/each}
-		{#each data.lostItems as item}
-			{@render postSnippet('lost', item.category, item.state, item.id)}
+		{#each data.posts as post}
+			{@const itemType = post.isFound ? 'found' : 'lost'}
+			{@render postSnippet(itemType, post.category, post.state, post.id)}
 		{/each}
 	</div>
 </div>

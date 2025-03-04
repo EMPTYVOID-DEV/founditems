@@ -1,6 +1,6 @@
 import { db, userTable, eq } from 'db';
 import { deleteSessionTokenCookie, invalidateSession } from '@server/utils/auth';
-import { uploadAvatar } from '@server/utils/fileUpload';
+import { uploadAvatar } from '@server/utils/fileManagement';
 import { LL } from '@assets/i18n/i18n';
 import {
 	getValidator,

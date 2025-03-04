@@ -4,12 +4,12 @@ import { handleFetchError } from './general';
 
 export async function uploadAvatar(avatar: File, oldAvatar: string) {
 	if (oldAvatar != '') {
-		const deleteEndPoint = `${PUBLIC_API_HOST}/upload/avatars/${oldAvatar}`;
+		const deleteEndPoint = `${PUBLIC_API_HOST}/store/avatars/${oldAvatar}`;
 		const fetchPromise = fetch(deleteEndPoint, { method: 'DELETE' });
 		const res = await handleFetchError(fetchPromise);
 		if (res._tag == 'Left') return res;
 	}
-	const postEndPoint = `${PUBLIC_API_HOST}/upload/avatars`;
+	const postEndPoint = `${PUBLIC_API_HOST}/store/avatars`;
 	const fd = new FormData();
 	fd.append('avatar', avatar);
 	const fetchPromise = fetch(postEndPoint, { method: 'POST', body: fd });
@@ -20,14 +20,22 @@ export async function uploadAvatar(avatar: File, oldAvatar: string) {
 }
 
 export async function uploadProofs(proofs: File[]) {
-	const postEndpoint = `${PUBLIC_API_HOST}/upload/proofs`;
+	const postEndPoint = `${PUBLIC_API_HOST}/store/proofs`;
 	const fd = new FormData();
 	for (const proof of proofs) fd.append('proofs', proof);
-	const fetchPromise = fetch(postEndpoint, { method: 'POST', body: fd });
+	const fetchPromise = fetch(postEndPoint, { method: 'POST', body: fd });
 	const res = await handleFetchError(fetchPromise);
 	if (res._tag == 'Left') return res;
 	const filenames = (await extractJson<{ filenames: string[] }>(res.right)).filenames;
 	return right(filenames);
+}
+
+export async function deleteItemProofs(itemId: number) {
+	const deleteEndPoint = `${PUBLIC_API_HOST}/store/proofs/${itemId}`;
+	const fetchPromise = fetch(deleteEndPoint, { method: 'DELETE' });
+	const res = await handleFetchError(fetchPromise);
+	if (res._tag == 'Left') return res;
+	return right(res.right);
 }
 
 async function extractJson<T>(res: Response) {

@@ -12,11 +12,11 @@
 </script>
 
 <div class="flex w-full max-w-lg flex-col gap-1">
-	<span>{$svelteLL.posts.lostItemDescription()}</span>
+	<span class="text-small capitalize">{$svelteLL.posts.itemDescription()}</span>
 	<Input oninput={(e) => setFullDescription(e.currentTarget.value)} />
 </div>
 
 <div class="flex w-full max-w-lg flex-col gap-1">
-	<span>{$svelteLL.posts.lostItemImages()}</span>
+	<span class="text-small capitalize">{$svelteLL.posts.itemImages()}</span>
 	<FileUpload bind:files maxFiles={5} validator={imageValidator} accept="image/*" />
 </div>

@@ -39,6 +39,8 @@ export type RawAddress = z.infer<typeof rawAddressSchema>;
 
 export type ItemAddressTypes = ItemAddress[number]['type'];
 
+export type ItemType = 'found' | 'lost';
+
 export type NominatimResponse = {
 	place_id: number;
 	osm_type: string;
