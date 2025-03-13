@@ -104,7 +104,7 @@
 	{#each itemAddress as _, idx}
 		{@render addressSnippet(idx)}
 	{/each}
-	{#if itemAddress.length < itemAddressLength}
+	{#if itemAddress.length < itemAddressLength && itemType == 'lost'}
 		<Button class="text-secondary p-0" variant="link" onclick={pushAddress}
 			>{$svelteLL.posts.additionalAddress()}</Button
 		>

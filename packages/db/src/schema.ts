@@ -18,7 +18,6 @@ import {
 	integer
 } from 'drizzle-orm/pg-core';
 import { nanoid } from 'nanoid';
-import { relations } from 'drizzle-orm';
 
 export const userTable = pgTable('user', {
 	id: varchar('id', { length: 8 })
@@ -104,42 +103,3 @@ export const otpTable = pgTable('otp', {
 		mode: 'date'
 	}).notNull()
 });
-
-export const connectionRelations = relations(connectionTable, ({ one }) => ({
-	lostItem: one(itemTable, {
-		fields: [connectionTable.lostItemId],
-		references: [itemTable.id]
-	}),
-	foundItem: one(itemTable, {
-		fields: [connectionTable.foundItemId],
-		references: [itemTable.id]
-	}),
-	founder: one(userTable, {
-		fields: [connectionTable.founderId],
-		references: [userTable.id]
-	}),
-	victim: one(userTable, {
-		fields: [connectionTable.victimId],
-		references: [userTable.id]
-	})
-}));
-
-export const unmatchedItemsRelations = relations(unmatchedItemsTable, ({ one }) => ({
-	lostItem: one(itemTable, {
-		fields: [unmatchedItemsTable.lostItemId],
-		references: [itemTable.id]
-	}),
-	foundItem: one(itemTable, {
-		fields: [unmatchedItemsTable.foundItemId],
-		references: [itemTable.id]
-	})
-}));
-
-export const itemRelations = relations(itemTable, ({ one, many }) => ({
-	unmatchedItem: many(unmatchedItemsTable),
-	user: one(userTable, {
-		fields: [itemTable.userId],
-		references: [userTable.id]
-	}),
-	connection: one(connectionTable)
-}));
