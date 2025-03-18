@@ -1,6 +1,6 @@
 import { PUBLIC_API_HOST } from '$env/static/public';
 import { right } from 'fp-ts/lib/Either';
-import { handleFetchError } from './general';
+import { extractJson, handleFetchError } from './general';
 
 export async function uploadAvatar(avatar: File, oldAvatar: string) {
 	if (oldAvatar != '') {
@@ -36,9 +36,4 @@ export async function deleteItemProofs(itemId: number) {
 	const res = await handleFetchError(fetchPromise);
 	if (res._tag == 'Left') return res;
 	return right(res.right);
-}
-
-async function extractJson<T>(res: Response) {
-	const obj: T = await res.json();
-	return obj;
 }

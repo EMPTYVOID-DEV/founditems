@@ -19,7 +19,7 @@
 		"paths": {
 			"@shared/*": ["./src/shared/*"],
 			"@utils/*": ["./src/utils/*"],
-			"@routes/*": ["./src/routes/*"]
+			"@services/*": ["./src/services/*"]
 		}
 	},
 	"include": ["src/**/*", "eslint.config.js"],

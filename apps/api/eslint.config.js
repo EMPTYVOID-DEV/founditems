@@ -10,5 +10,10 @@ export default [
 	{ languageOptions: { globals: globals.node } },
 	pluginJs.configs.recommended,
 	...tseslint.configs.recommended,
-	eslintPrettierRecommended
+	eslintPrettierRecommended,
+	{
+		rules: {
+			'prettier/prettier': 'off'
+		}
+	}
 ];

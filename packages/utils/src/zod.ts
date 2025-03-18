@@ -1,11 +1,16 @@
 import { z } from 'zod';
-import { itemAddressLength, itemMetaDataType, transports } from './consts.js';
+import {
+	itemAddressLength,
+	itemMetaDataType,
+	maxMetaDataValueLength,
+	transports
+} from './consts.js';
 
 export const itemMetaDataSchema = z
 	.object({
 		name: z.string(),
 		type: z.enum(itemMetaDataType),
-		value: z.string()
+		value: z.string().max(maxMetaDataValueLength)
 	})
 	.array();
 

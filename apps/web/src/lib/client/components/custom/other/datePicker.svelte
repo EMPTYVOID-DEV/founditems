@@ -2,11 +2,17 @@
 	import { svelteLL, svelteUsedLocale } from '@assets/i18n/i18n-svelte';
 	import SveltyPicker from 'svelty-picker';
 	import { ar_DZ, fr } from 'svelty-picker/i18n';
-	let { setDate }: { setDate: (date: Date | null) => void } = $props();
+	let {
+		setDate,
+		mode = 'date'
+	}: { setDate: (date: Date | null) => void; mode?: 'date' | 'datetime' } = $props();
 </script>
 
 <div class="input-wrap">
 	<SveltyPicker
+		{mode}
+		hourOnly
+		displayFormat="dd/mm/yy:h"
 		i18n={$svelteUsedLocale == 'ar' ? ar_DZ : fr}
 		placeholder={$svelteLL.general.selectDate()}
 		on:dateChange={(e) => {

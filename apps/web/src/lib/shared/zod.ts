@@ -3,6 +3,7 @@ import type { Validator } from './types';
 import z from 'zod';
 import { LL } from '@assets/i18n/i18n';
 import { maxImageSize } from './const';
+import { maxMetaDataValueLength } from 'utils';
 
 export const getFullnameSchema = () => z.string().min(6, { message: LL.validation.fullname(8) });
 
@@ -35,7 +36,9 @@ export const getPhoneNumberSchema = () =>
 	z.string().regex(/\d{10}/, { message: LL.validation.phoneNumber() });
 
 export const getMetaDataTextSchema = () =>
-	z.string().max(20, { message: LL.validation.metaDataText(20) });
+	z
+		.string()
+		.max(maxMetaDataValueLength, { message: LL.validation.metaDataText(maxMetaDataValueLength) });
 
 export const itemDateSchema = z.date().refine((date) => {
 	if (date.toString() == 'Invalid Date') return false;

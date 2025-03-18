@@ -7,3 +7,5 @@ export const defaultLocale = 'ar';
 export const transports = ['car', 'bus', 'train', 'tramway'] as const;
 
 export const itemAddressLength = 3;
+
+export const maxMetaDataValueLength = 300;

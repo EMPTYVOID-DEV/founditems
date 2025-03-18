@@ -3,7 +3,7 @@ import { unlink } from 'fs/promises';
 import path from 'path';
 import { env } from '@shared/env.js';
 import { avatarsStorage, proofsStorage } from '@shared/consts.js';
-import { storeFile } from '@utils/utils.fs.js';
+import { storeFile } from '@utils/fs.js';
 import { db, eq, itemTable } from 'db';
 
 const route = new Hono();
