@@ -9,7 +9,7 @@
 	const textValidator = getValidator(getMetaDataTextSchema());
 
 	function formatDate(date: Date | null) {
-		if (date) return date.toISOString();
+		if (date) return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
 		return '';
 	}
 </script>

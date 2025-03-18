@@ -1,6 +1,6 @@
 import { avatarsStorage, categoryStorge, proofsStorage } from '@shared/consts.js';
 import type { Handler } from 'hono';
-import { streamFile } from '@utils/utils.fs.js';
+import { streamFile } from '@utils/fs.js';
 
 export const serveAvatars: Handler = async (c) => {
 	const avatar = c.req.param('avatar');

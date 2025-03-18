@@ -8,15 +8,18 @@
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.13.8",
+		"@huggingface/transformers": "^3.4.0",
 		"bullmq": "^5.40.2",
 		"db": "file:../../packages/db",
 		"dotenv": "^16.4.7",
+		"fp-ts": "^2.16.9",
 		"hono": "4.6.20",
 		"mail": "file:../../packages/mail",
 		"mime-types": "^2.1.35",
 		"nanoid": "^5.0.9",
 		"redis": "^4.7.0",
 		"tsup": "^8.3.6",
+		"utils": "file:../../packages/utils",
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {

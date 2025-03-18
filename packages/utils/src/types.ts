@@ -37,6 +37,8 @@ export type ItemAddress = z.infer<typeof itemAddressSchema>;
 
 export type RawAddress = z.infer<typeof rawAddressSchema>;
 
+export type TransportAddress = Extract<ItemAddress[number], { type: 'transport' }>;
+
 export type ItemAddressTypes = ItemAddress[number]['type'];
 
 export type ItemType = 'found' | 'lost';
