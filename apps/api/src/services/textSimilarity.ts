@@ -1,16 +1,26 @@
-import { pipeline, type FeatureExtractionPipeline } from '@huggingface/transformers';
-import { env } from '@shared/env.js';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
+import {
+	pipeline,
+	type FeatureExtractionPipeline,
+	env as huggingfaceEnv
+} from '@huggingface/transformers';
+import { zodEnv } from '../shared/env.js';
+import path from 'path';
 
-class TextSimilarity {
+export class TextSimilarity {
 	private embedder: FeatureExtractionPipeline | null;
+	private modelPath: string;
 
 	constructor() {
 		this.embedder = null;
+		this.modelPath = path.join(zodEnv.ROOT_DIR, '.cache', zodEnv.XENOVA_MODEL);
+		huggingfaceEnv.allowRemoteModels = false;
 	}
 
 	async initialize() {
 		if (!this.embedder)
-			this.embedder = await pipeline('feature-extraction', env.XENOVA_MODEL, {
+			this.embedder = await pipeline('feature-extraction', this.modelPath, {
 				dtype: 'fp32'
 			});
 	}
@@ -45,5 +55,3 @@ class TextSimilarity {
 		return this.cosineSimilarity(embedding1, embedding2);
 	}
 }
-
-export const textSimilarity = new TextSimilarity();

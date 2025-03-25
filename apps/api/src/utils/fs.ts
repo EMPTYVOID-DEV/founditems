@@ -1,7 +1,7 @@
 import { access, writeFile } from 'fs/promises';
 import { nanoid } from 'nanoid';
 import path from 'path';
-import { env } from '@shared/env.js';
+import { zodEnv } from '../shared/env.js';
 import mime from 'mime-types';
 import type { Context } from 'hono';
 import { stream } from 'hono/streaming';
@@ -13,13 +13,13 @@ export async function storeFile(file: File, storage: string) {
 	const id = nanoid(8);
 	const ext = mime.extension(file.type) || 'bin';
 	const filename = `${id}.${ext}`;
-	const filePath = path.join(env.ROOT_DIR, storage, filename);
+	const filePath = path.join(zodEnv.ROOT_DIR, storage, filename);
 	await writeFile(filePath, Buffer.from(arrayBuffer));
 	return filename;
 }
 
 export async function streamFile(c: Context, storage: string, filename: string) {
-	const filePath = path.join(env.ROOT_DIR, storage, filename);
+	const filePath = path.join(zodEnv.ROOT_DIR, storage, filename);
 	try {
 		await access(filePath);
 		return stream(c, async (stream) => {

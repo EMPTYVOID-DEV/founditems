@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { cn } from '@client/utils.svelte';
+	import clsx, { type ClassValue } from 'clsx';
+	import { twMerge } from 'tailwind-merge';
+
+	function cn(...inputs: ClassValue[]) {
+		return twMerge(clsx(inputs));
+	}
 
 	let {
 		message,

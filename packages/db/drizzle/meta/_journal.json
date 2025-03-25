@@ -8,6 +8,27 @@
       "when": 1741041942117,
       "tag": "0000_left_leopardon",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1742842705735,
+      "tag": "0001_bored_sersi",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1742843292856,
+      "tag": "0002_redundant_blue_shield",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1742940943915,
+      "tag": "0003_friendly_patch",
+      "breakpoints": true
     }
   ]
 }

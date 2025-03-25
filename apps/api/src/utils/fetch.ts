@@ -1,4 +1,4 @@
-import type { HttpError } from '@shared/types.js';
+import type { HttpError } from '../shared/types.js';
 import { left, right, type Either } from 'fp-ts/lib/Either.js';
 
 export async function extractJson<T>(res: Response) {

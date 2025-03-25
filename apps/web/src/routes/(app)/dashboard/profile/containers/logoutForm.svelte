@@ -4,7 +4,7 @@
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 </script>
 
-<FormWrapper actionName="?/logout" formClass="w-[80%] mr:w-full">
+<FormWrapper actionName="?/logout" formClass="w-[80%] sm:w-full">
 	{#snippet mainSnippet()}
 		<h4>{$svelteLL.auth.logout()}</h4>
 		<p>{$svelteLL.profile.logout()}</p>

@@ -40,18 +40,18 @@
 			onclick={() => goto(`${postsPage}/more/${id}`)}
 		>
 			<MoreIcon variant="ghost" />
-			<span class="text-small mr:hidden capitalize">{$svelteLL.general.seeInfo()}</span>
+			<span class="text-small capitalize sm:hidden">{$svelteLL.general.seeInfo()}</span>
 		</Button>
 	</div>
 {/snippet}
 
 <div class="flex w-full flex-grow flex-col gap-6 p-[2.5%]">
-	<div class="mr:flex-col mr:items-start mr:gap-2 flex items-center justify-between">
+	<div class="flex items-center justify-between sm:flex-col sm:items-start sm:gap-2">
 		<h1 class="text-primary capitalize">{$svelteLL.navbar.posts()}</h1>
 		<Button
 			onclick={() => goto(createPostPage)}
 			variant="secondary"
-			class="mr:w-full cursor-pointer"
+			class="cursor-pointer sm:w-full"
 		>
 			<AddIcon variant="default" />
 			<span class="capitalize">{$svelteLL.posts.newPost()}</span>

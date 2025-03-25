@@ -1,6 +1,6 @@
 import type {
-	ConnectionMetaData,
-	ConnectionStates,
+	MatchMetaData,
+	MatchStates,
 	ItemMetaData,
 	ItemStates,
 	AvailableLocales,
@@ -76,7 +76,7 @@ export const unmatchedItemsTable = pgTable('unmatched_items', {
 		.references(() => itemTable.id, { onDelete: 'cascade' })
 });
 
-export const connectionTable = pgTable('connection', {
+export const matchedItemsTable = pgTable('matched_items', {
 	id: serial('id').primaryKey().notNull(),
 	lostItemId: integer('lost_item_id')
 		.notNull()
@@ -84,14 +84,8 @@ export const connectionTable = pgTable('connection', {
 	foundItemId: integer('found_item_id')
 		.notNull()
 		.references(() => itemTable.id, { onDelete: 'cascade' }),
-	founderId: varchar('founder_id', { length: 8 })
-		.notNull()
-		.references(() => userTable.id, { onDelete: 'cascade' }),
-	victimId: varchar('victim_id', { length: 8 })
-		.notNull()
-		.references(() => userTable.id, { onDelete: 'cascade' }),
-	state: text('state').$type<ConnectionStates>().notNull().default('idle'),
-	metadata: json('meta_data').$type<ConnectionMetaData>().notNull()
+	state: text('state').$type<MatchStates>().notNull().default('idle'),
+	metadata: json('meta_data').$type<MatchMetaData>().notNull().default({})
 });
 
 export const otpTable = pgTable('otp', {

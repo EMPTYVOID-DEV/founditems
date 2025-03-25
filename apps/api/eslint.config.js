@@ -13,7 +13,8 @@ export default [
 	eslintPrettierRecommended,
 	{
 		rules: {
-			'prettier/prettier': 'off'
+			'prettier/prettier': 'off',
+			'@typescript-eslint/no-unused-vars': 'off'
 		}
 	}
 ];

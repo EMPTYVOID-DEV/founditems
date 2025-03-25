@@ -18,5 +18,5 @@
 
 <div class="flex flex-col gap-1">
 	<h4 class="capitalize">{whenLost}</h4>
-	<DatePicker {setDate} mode="datetime" />
+	<DatePicker {setDate} mode="datetime" includeHours />
 </div>

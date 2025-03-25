@@ -4,7 +4,7 @@ import type { availableLocales, transports } from './consts.js';
 
 export type ItemStates = 'idle' | 'matched';
 
-export type ConnectionStates =
+export type MatchStates =
 	| 'idle'
 	| 'validated'
 	| 'payment Validated'
@@ -17,7 +17,7 @@ export type ConnectionStates =
 
 export type Nullable<T> = { [K in keyof T]: T[K] | null };
 
-export type ConnectionMetaData = Partial<Record<ConnectionStates, unknown>>;
+export type MatchMetaData = Partial<Record<MatchStates, unknown>>;
 
 export type ItemMetaData = z.infer<typeof itemMetaDataSchema>;
 

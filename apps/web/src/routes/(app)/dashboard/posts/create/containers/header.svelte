@@ -13,5 +13,5 @@
 			onclick={() => goto(postsPage)}><BackIcon /></button
 		>
 	</div>
-	<p class="mr:text-small">{$svelteLL.posts.createDescription()}</p>
+	<p class="sm:text-small">{$svelteLL.posts.createDescription()}</p>
 </div>

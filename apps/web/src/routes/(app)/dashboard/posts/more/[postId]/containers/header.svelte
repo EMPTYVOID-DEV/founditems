@@ -16,7 +16,7 @@
 </div>
 
 <div
-	class="mr:w-1/4 border-secondary bg-secondary/25 flex aspect-square w-1/6 items-center justify-center self-center rounded-[50%] border-2 p-4"
+	class="border-secondary bg-secondary/25 flex aspect-square w-1/6 items-center justify-center self-center rounded-[50%] border-2 p-4 sm:w-1/4"
 >
 	<img alt="category" {src} class="object-cover object-center" />
 </div>

@@ -6,10 +6,10 @@
 	import ActionButton from '@components/custom/other/actionButton.svelte';
 	import { PostData } from '@components/custom/postItem/postData.svelte.js';
 	import BinIcon from '@icons/binIcon.svelte';
-	import Header from './components/header.svelte';
-	import Body from './components/body.svelte';
-	import Footer from './components/footer.svelte';
-	import Extra from './components/extra.svelte';
+	import Header from './containers/header.svelte';
+	import Body from './containers/body.svelte';
+	import Footer from './containers/footer.svelte';
+	import Extra from './containers/extra.svelte';
 
 	const { data } = $props();
 	const item = data.item;

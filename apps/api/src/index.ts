@@ -1,9 +1,10 @@
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
-import { env } from '@shared/env.js';
+import { zodEnv } from './shared/env.js';
 import { logger } from 'hono/logger';
-import { serveAvatars, serveCategories, serveProofs } from '@services/serveStatic.js';
-import storeRoute from '@services/store.js';
+import { serveAvatars, serveCategories, serveProofs } from './services/serveStatic.js';
+import storeRoute from './services/store.js';
+import { AlgorithmCycle } from './services/algorithmCycle.js';
 
 const app = new Hono();
 
@@ -22,7 +23,9 @@ app.get('/proofs/:proof', serveProofs);
 
 app.route('/store', storeRoute);
 
+new AlgorithmCycle();
+
 serve({
 	fetch: app.fetch,
-	port: env.PORT
+	port: zodEnv.PORT
 });

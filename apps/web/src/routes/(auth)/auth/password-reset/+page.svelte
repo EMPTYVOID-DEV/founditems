@@ -73,7 +73,7 @@
 </script>
 
 <div class="flex h-svh w-svw items-center justify-center">
-	<div class=" mr:w-[90%] flex w-1/2 flex-col items-center gap-5">
+	<div class=" flex w-1/2 flex-col items-center gap-5 sm:w-[90%]">
 		<Logo class="self-center" />
 		{#if stage == 'send'}
 			<p class="text-muted-foreground w-full max-w-sm font-bold">

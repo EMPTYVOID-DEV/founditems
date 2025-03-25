@@ -4,15 +4,19 @@
 	import { ar_DZ, fr } from 'svelty-picker/i18n';
 	let {
 		setDate,
-		mode = 'date'
-	}: { setDate: (date: Date | null) => void; mode?: 'date' | 'datetime' } = $props();
+		includeHours = false
+	}: {
+		setDate: (date: Date | null) => void;
+		mode?: 'date' | 'datetime';
+		includeHours?: boolean;
+	} = $props();
 </script>
 
 <div class="input-wrap">
 	<SveltyPicker
-		{mode}
+		mode={includeHours ? 'datetime' : 'date'}
 		hourOnly
-		displayFormat="dd/mm/yy:h"
+		displayFormat={includeHours ? 'dd/mm/yyyy:h' : 'dd/mm/yyyy'}
 		i18n={$svelteUsedLocale == 'ar' ? ar_DZ : fr}
 		placeholder={$svelteLL.general.selectDate()}
 		on:dateChange={(e) => {

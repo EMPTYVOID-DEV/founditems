@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { ItemCategory, ItemMetaData, PostDataInstance } from '@components/custom/postItem';
-	import Header from './components/header.svelte';
+	import Header from './containers/header.svelte';
 	import type { ItemType } from 'utils';
-	import ItemTypeComponent from './components/itemType.svelte';
-	import Footer from './components/footer.svelte';
+	import ItemTypeComponent from './containers/itemType.svelte';
+	import Footer from './containers/footer.svelte';
 	import Button from '@components/shadcn/button/button.svelte';
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import { goto } from '$app/navigation';
@@ -13,9 +13,9 @@
 	import { showToast } from '@client/utils.svelte';
 	import { enhance } from '$app/forms';
 	import ActionButton from '@components/custom/other/actionButton.svelte';
-	import ItemDate from './components/itemDate.svelte';
+	import ItemDate from './containers/itemDate.svelte';
 	import type { ItemAddress, Nullable } from 'utils';
-	import ItemAddressComponent from './components/itemAddress.svelte';
+	import ItemAddressComponent from './containers/itemAddress.svelte';
 
 	let itemType = $state<ItemType>('found');
 	let fullDescription = $state('');

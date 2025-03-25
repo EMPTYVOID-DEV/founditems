@@ -34,7 +34,7 @@
 {/snippet}
 
 <div
-	class={cn('mr:grid-cols-2 grid w-fit grid-cols-5 gap-2', {
+	class={cn('grid w-fit grid-cols-5 gap-2 sm:grid-cols-2', {
 		'grid-cols-3': categoryOptions.length == 3
 	})}
 >

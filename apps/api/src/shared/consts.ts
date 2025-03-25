@@ -1,5 +1,5 @@
-export const avatarsStorage = 'storage/avatars';
+export const avatarsStorage = 'store/avatars';
 
-export const proofsStorage = 'storage/proofs';
+export const proofsStorage = 'store/proofs';
 
-export const categoryStorge = 'storage/categories';
+export const categoryStorge = 'store/categories';

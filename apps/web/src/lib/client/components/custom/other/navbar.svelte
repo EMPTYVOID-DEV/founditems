@@ -21,11 +21,11 @@
 </script>
 
 <div
-	class="bg-background fixed left-0 top-0 z-50 flex h-20 w-full items-center px-4 shadow-md"
+	class="bg-background fixed left-0 top-0 z-50 flex h-20 w-full items-center justify-between px-4 shadow-md"
 	dir="ltr"
 >
-	<Logo class="mr-auto" />
-	<button class="mr:contents hidden" onclick={() => (showMenu = !showMenu)}>
+	<Logo class="sm-auto" />
+	<button class="hidden sm:contents" onclick={() => (showMenu = !showMenu)}>
 		{#if showMenu}
 			<CloseIcon />
 		{:else}
@@ -35,8 +35,8 @@
 
 	<div
 		class={cn(
-			'mr:fixed mr:left-0 mr:top-20 mr:h-full mr:w-full mr:flex-col mr:items-start mr:bg-background mr:px-4 mr:pl-4 flex items-center gap-5 transition-transform duration-300 ease-in-out',
-			{ 'mr:translate-x-0': showMenu, 'mr:-translate-x-full': !showMenu }
+			'sm:bg-background flex items-center gap-5 transition-transform duration-300 ease-in-out sm:fixed sm:left-0 sm:top-20 sm:h-full sm:w-full sm:flex-col sm:items-start sm:px-4 sm:pl-4',
+			{ 'sm:translate-x-0': showMenu, 'sm:-translate-x-full': !showMenu }
 		)}
 	>
 		<LangSelect />
@@ -55,7 +55,7 @@
 			>
 			<UserAvatar avatar={user.avatar} fullname={user.fullname} />
 		{:else}
-			<a href={authPage} class="border-primary hover:text-primary hover:border-b-2"
+			<a href={authPage} class="border-primary hover:text-primary capitalize hover:border-b-2"
 				>{$svelteLL.auth.login()}</a
 			>
 		{/if}

@@ -1,27 +1,33 @@
 import type { RawAddress, TransportAddress } from 'utils';
-import { env } from '@shared/env.js';
-import { extractJson, handleFetchError } from '@utils/fetch.js';
+import { zodEnv } from '../shared/env.js';
+import { extractJson, handleFetchError } from '../utils/fetch.js';
 import { right } from 'fp-ts/lib/Either.js';
 import type { AvailableLocales } from 'utils';
 import type { Item } from 'db';
-import { textSimilarity } from './textSimilarity.js';
+import type { TextSimilarity } from './textSimilarity.js';
 
 export class Matcher {
 	foundItem: Item;
 	lostItem: Item;
+	textSimilarity: TextSimilarity;
 
-	constructor(foundItem: Item, lostItem: Item) {
+	constructor(foundItem: Item, lostItem: Item, textSimilarity: TextSimilarity) {
 		this.foundItem = foundItem;
 		this.lostItem = lostItem;
+		this.textSimilarity = textSimilarity;
 	}
 
-	dateMatcher() {
+	match() {
+		return this.dateMatcher() && this.addressMatcher() && this.metaDataMatching();
+	}
+
+	private dateMatcher() {
 		const timeDiff = this.foundItem.date.getTime() - this.lostItem.date.getTime();
 		const hoursDiff = timeDiff / (1000 * 60 * 60);
-		return hoursDiff <= env.DATE_MATCHING_THRESHOLD;
+		return hoursDiff <= zodEnv.DATE_MATCHING_THRESHOLD;
 	}
 
-	addressMatcher() {
+	private addressMatcher() {
 		const foundEntry = this.foundItem.address.at(0)!;
 
 		return this.lostItem.address.some((item) => {
@@ -35,7 +41,7 @@ export class Matcher {
 	}
 
 	// items with same category will have the same metaData structure
-	metaDataMatching() {
+	private metaDataMatching() {
 		return this.foundItem.metadata.every((item) => {
 			const counterPartItem = this.lostItem.metadata.find((el) => el.name === item.name)!;
 
@@ -45,7 +51,7 @@ export class Matcher {
 				case 'date':
 					return Matcher.dateMetaDataMatcher(item.value, counterPartItem.value);
 				case 'text':
-					return Matcher.textMatching(
+					return this.textMatching(
 						item.value,
 						counterPartItem.value,
 						this.foundItem.lang,
@@ -53,6 +59,25 @@ export class Matcher {
 					);
 			}
 		});
+	}
+
+	private async textMatching(
+		valA: string,
+		valB: string,
+		langA: AvailableLocales,
+		langB: AvailableLocales
+	) {
+		if (valA === '' || valB === '') return true;
+
+		const translatedA = await Matcher.translateText(valA, langA);
+		const translatedB = await Matcher.translateText(valB, langB);
+
+		if (translatedA._tag === 'Left' || translatedB._tag === 'Left') return false;
+		valA = translatedA.right.translatedText;
+		valB = translatedB.right.translatedText;
+
+		const similarity = await this.textSimilarity.getSimilarity(valA, valB);
+		return similarity >= zodEnv.TEXT_SIMILARITY_THRESHOLD;
 	}
 
 	private static matchTransport(a: TransportAddress, b: TransportAddress) {
@@ -71,25 +96,6 @@ export class Matcher {
 		return valA === '' || valB === '' || valA === valB;
 	}
 
-	private static async textMatching(
-		valA: string,
-		valB: string,
-		langA: AvailableLocales,
-		langB: AvailableLocales
-	) {
-		if (valA === '' || valB === '') return true;
-
-		const translatedA = await Matcher.translateText(valA, langA);
-		const translatedB = await Matcher.translateText(valB, langB);
-
-		if (translatedA._tag === 'Left' || translatedB._tag === 'Left') return false;
-		valA = translatedA.right.translatedText;
-		valB = translatedB.right.translatedText;
-
-		const similarity = await textSimilarity.getSimilarity(valA, valB);
-		return similarity >= env.TEXT_SIMILARITY_THRESHOLD;
-	}
-
 	private static async translateText(text: string, sourceLang: AvailableLocales) {
 		const body = {
 			q: text,
@@ -97,7 +103,7 @@ export class Matcher {
 			target: 'en',
 			format: 'text'
 		};
-		const call = fetch(env.LIBRE_TRANSLATION_ENDPOINT, {
+		const call = fetch(zodEnv.LIBRE_TRANSLATION_ENDPOINT, {
 			method: 'POST',
 			body: JSON.stringify(body),
 			headers: {

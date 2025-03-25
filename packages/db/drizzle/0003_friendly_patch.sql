@@ -1,0 +1,1 @@
+ALTER TABLE "matched_items" ALTER COLUMN "meta_data" SET DEFAULT '{}'::json;

@@ -14,7 +14,11 @@ const config: Config = {
 			}
 		},
 		screens: {
-			mr: { max: '800px' }
+			sm: { max: '768px' },
+			md: { max: '1024px' },
+			lg: { min: '1025px' },
+			xl: { min: '1281px' },
+			'2xl': { min: '1536px' }
 		},
 		extend: {
 			colors: {

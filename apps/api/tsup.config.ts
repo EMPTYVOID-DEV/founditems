@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig(() => ({
-	entry: ['./src/index.ts'],
+	entry: ['./src/index.ts', './src/services/worker.ts'],
 	dts: true,
 	outDir: 'dist',
 	format: ['esm'],

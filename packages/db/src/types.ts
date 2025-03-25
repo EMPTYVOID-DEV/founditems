@@ -1,7 +1,7 @@
 import type {
 	sessionTable,
 	userTable,
-	connectionTable,
+	matchedItemsTable,
 	otpTable,
 	itemTable,
 	unmatchedItemsTable
@@ -13,11 +13,11 @@ export type User = typeof userTable.$inferSelect;
 
 export type Item = typeof itemTable.$inferSelect;
 
-export type Connection = typeof connectionTable.$inferSelect;
+export type MatchedItems = typeof matchedItemsTable.$inferSelect;
 
 export type Otp = typeof otpTable.$inferSelect;
 
-export type unmatchItems = typeof unmatchedItemsTable.$inferSelect;
+export type UnmatchedItems = typeof unmatchedItemsTable.$inferSelect;
 
 export type SessionInsert = typeof sessionTable.$inferInsert;
 
@@ -25,8 +25,8 @@ export type UserInsert = typeof userTable.$inferInsert;
 
 export type ItemInsert = typeof itemTable.$inferInsert;
 
-export type ConnectionInsert = typeof connectionTable.$inferInsert;
+export type MatchedItemsInsert = typeof matchedItemsTable.$inferInsert;
 
 export type OtpInsert = typeof otpTable.$inferInsert;
 
-export type UnmatchItemsInsert = typeof unmatchedItemsTable.$inferInsert;
+export type UnmatchedItemsInsert = typeof unmatchedItemsTable.$inferInsert;

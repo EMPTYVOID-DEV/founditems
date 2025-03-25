@@ -7,8 +7,8 @@
 </script>
 
 <div class="flex w-full flex-grow flex-col items-center justify-center gap-4">
-	<h1 class="text-primary text-balance text-center">{$svelteLL.home.title()}</h1>
-	<p class="text-muted-foreground mr:w-full w-3/4 text-balance text-center font-bold">
+	<h1 class="text-primary text-center capitalize">{$svelteLL.home.title()}</h1>
+	<p class="text-muted-foreground max-w-xl text-center font-bold sm:w-full">
 		{$svelteLL.home.description()}
 	</p>
 	<Button

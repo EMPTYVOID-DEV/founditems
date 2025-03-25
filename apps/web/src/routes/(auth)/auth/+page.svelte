@@ -8,6 +8,7 @@
 	import { authPasswordResetPage } from '@shared/const';
 	import type { SubmitFunctionAfter } from '@client/types';
 	import ActionButton from '@components/custom/other/actionButton.svelte';
+
 	let isRegister = $state(true);
 	const fullnameValidator = getValidator(getFullnameSchema());
 	const emailValidator = getValidator(getEmailSchema());
@@ -23,7 +24,7 @@
 
 <div class="flex h-svh w-svw items-center justify-center">
 	<form
-		class=" mr:w-[90%] flex w-1/2 flex-col items-center gap-5"
+		class=" flex w-1/2 flex-col items-center gap-5 sm:w-[90%]"
 		action={isRegister ? '?/signup' : '?/signin'}
 		method="POST"
 		use:enhance={action}

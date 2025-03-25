@@ -31,7 +31,7 @@ const envSchema = z.object({
 		.url()
 		.default('http://localhost:5000/translate'),
 
-	XENOVA_MODEL: z.string().default('Xenova/all-MiniLM-L6-v2'),
+	XENOVA_MODEL: z.string().default('all-MiniLM-L6-v2'),
 
 	TEXT_SIMILARITY_THRESHOLD: z.coerce
 		.number()
@@ -40,12 +40,24 @@ const envSchema = z.object({
 		.default(0.5)
 		.describe('The threshold of similarity that text matching needs to match'),
 
+	ALGORITHM_BLOCK_SIZE: z.coerce
+		.number()
+		.min(3)
+		.max(10)
+		.default(4)
+		.describe('Number lost items operated on in each cycle'),
+
+	MATCHING_CYCLE_TIMEOUT: z.coerce
+		.number()
+		.default(5000)
+		.describe('Timeout between cycles in milieseconds'),
+
 	PORT: z.coerce
 		.number()
 		.int()
 		.min(1, 'Port must be greater than 0')
 		.max(65535, 'Port must be less than or equal to 65535')
-		.default(3001)
+		.default(3000)
 });
 
-export const env = envSchema.parse(process.env);
+export const zodEnv = envSchema.parse(process.env);

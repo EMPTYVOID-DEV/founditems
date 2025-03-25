@@ -22,10 +22,10 @@
 					<img
 						{src}
 						alt=""
-						class="mr:w-40 aspect-square w-48 rounded-md object-cover object-center"
+						class="aspect-square w-48 rounded-md object-cover object-center sm:w-40"
 					/>
 				</Dialog.Trigger>
-				<Dialog.Content class="mr:w-[80%] w-[40%] bg-transparent p-0" closeClass="hidden">
+				<Dialog.Content class="w-[40%] bg-transparent p-0 sm:w-[80%]" closeClass="hidden">
 					<img {src} alt="" class="aspect-square w-full rounded-md object-cover object-center" />
 				</Dialog.Content>
 			</Dialog.Root>

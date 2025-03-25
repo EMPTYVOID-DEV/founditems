@@ -1,9 +1,9 @@
 <script lang="ts">
-	import AddressForm from './components/addressForm.svelte';
-	import AvatarForm from './components/avatarForm.svelte';
-	import FullnameForm from './components/fullnameForm.svelte';
-	import LogoutForm from './components/logoutForm.svelte';
-	import PhoneForm from './components/phoneForm.svelte';
+	import AddressForm from './containers/addressForm.svelte';
+	import AvatarForm from './containers/avatarForm.svelte';
+	import FullnameForm from './containers/fullnameForm.svelte';
+	import LogoutForm from './containers/logoutForm.svelte';
+	import PhoneForm from './containers/phoneForm.svelte';
 
 	let { data } = $props();
 </script>

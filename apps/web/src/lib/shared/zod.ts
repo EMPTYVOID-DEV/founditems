@@ -3,9 +3,13 @@ import type { Validator } from './types';
 import z from 'zod';
 import { LL } from '@assets/i18n/i18n';
 import { maxImageSize } from './const';
-import { maxMetaDataValueLength } from 'utils';
+import { maxMetaDataValueLength, validItemDateLimit } from 'utils';
 
-export const getFullnameSchema = () => z.string().min(6, { message: LL.validation.fullname(8) });
+export const getFullnameSchema = () =>
+	z
+		.string()
+		.trim()
+		.min(12, { message: LL.validation.fullname(12) });
 
 export const getEmailSchema = () => z.string().email(LL.validation.email());
 
@@ -43,9 +47,9 @@ export const getMetaDataTextSchema = () =>
 export const itemDateSchema = z.date().refine((date) => {
 	if (date.toString() == 'Invalid Date') return false;
 	if (date.getTime() > Date.now()) return false;
-	const lastWeek = new Date();
-	lastWeek.setDate(lastWeek.getDate() - 7);
-	if (date.getTime() < lastWeek.getTime()) return false;
+	const validDate = new Date();
+	validDate.setDate(validDate.getDate() - validItemDateLimit);
+	if (date.getTime() < validDate.getTime()) return false;
 	return true;
 });
 

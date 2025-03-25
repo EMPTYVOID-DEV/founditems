@@ -14,13 +14,7 @@
 		"noUnusedParameters": true,
 		"noPropertyAccessFromIndexSignature": true,
 		"noEmit": true,
-		"outDir": "./dist",
-		"rootDir": ".",
-		"paths": {
-			"@shared/*": ["./src/shared/*"],
-			"@utils/*": ["./src/utils/*"],
-			"@services/*": ["./src/services/*"]
-		}
+		"outDir": "./dist"
 	},
 	"include": ["src/**/*", "eslint.config.js"],
 	"exclude": ["node_modules", "dist"]
