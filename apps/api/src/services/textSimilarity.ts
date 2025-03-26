@@ -26,7 +26,6 @@ export class TextSimilarity {
 	}
 
 	private async getEmbedding(text: string) {
-		await this.initialize();
 		const result = await this.embedder!(text, { pooling: 'mean', normalize: true });
 		return Float32Array.from(result.data);
 	}

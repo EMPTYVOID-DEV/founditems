@@ -8,6 +8,10 @@ import { AlgorithmCycle } from './services/algorithmCycle.js';
 
 const app = new Hono();
 
+const algorithmCycle = new AlgorithmCycle();
+
+algorithmCycle.startAlgorithm();
+
 app.onError((err, c) => {
 	console.log(err);
 	return c.newResponse('Service Unavailable', 500);
@@ -22,8 +26,6 @@ app.get('/categories/:category', serveCategories);
 app.get('/proofs/:proof', serveProofs);
 
 app.route('/store', storeRoute);
-
-new AlgorithmCycle();
 
 serve({
 	fetch: app.fetch,

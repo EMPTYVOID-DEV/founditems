@@ -1,61 +1,167 @@
 import { zodEnv } from '../shared/env.js';
-import type { CycleAction, Signal } from '../shared/types.js';
-import { and, db, eq, itemTable, asc, unmatchedItemsTable, matchedItemsTable, inArray } from 'db';
-import { effect, signal } from './signal.js';
-import { WorkerManager } from './workerManager.js';
+import type { CycleAction, MatchingPair } from '../shared/types.js';
+import {
+	db,
+	eq,
+	itemTable,
+	asc,
+	unmatchedItemsTable,
+	matchedItemsTable,
+	inArray,
+	type Item,
+	and,
+	arrayContains,
+	notExists
+} from 'db';
+import { TextSimilarity } from './textSimilarity.js';
+import { Matcher } from './matcher.js';
+import { Logger } from './logger.js';
 
 export class AlgorithmCycle {
 	blockIndex: number;
-	workersCounter: Signal<number>;
 	actions: CycleAction[];
+	textSimilarity: TextSimilarity;
 
 	constructor() {
 		this.blockIndex = 0;
-		this.workersCounter = signal(0);
 		this.actions = [];
+		this.textSimilarity = new TextSimilarity();
+	}
 
-		effect(async () => {
-			if (this.workersCounter.value == 0) {
-				try {
-					await this.postCycle();
-					setTimeout(() => {
-						this.startCycle();
-					}, zodEnv.MATCHING_CYCLE_TIMEOUT);
-				} catch (error) {
-					console.log('unable to run post cycle');
-				}
-			}
-		});
+	async startAlgorithm() {
+		Logger.info('starting algorithm');
+		await this.textSimilarity.initialize();
+		this.startCycle();
 	}
 
 	private async startCycle() {
-		const cycleItems = await db.query.itemTable.findMany({
-			where: and(eq(itemTable.isFound, false), eq(itemTable.state, 'idle')),
-			orderBy: asc(itemTable.creationDate),
-			offset: this.blockIndex * zodEnv.ALGORITHM_BLOCK_SIZE,
-			limit: zodEnv.ALGORITHM_BLOCK_SIZE
-		});
+		Logger.info('cycle starts');
 
-		this.cycleInitState(cycleItems.length);
+		const lostItems = await this.fetchBlock();
 
-		for (const item of cycleItems) {
-			const worker = WorkerManager.runWorker(item);
-			worker.on('message', (action: CycleAction) => {
-				this.actions.push(action);
-			});
-			worker.on('exit', () => {
-				this.workersCounter.value--;
-			});
+		const matchingPairs = await this.createMatchingPairs(lostItems);
+
+		await this.createActions(matchingPairs);
+
+		this.updateCycleState(lostItems.length);
+
+		Logger.info('cycle ends');
+
+		this.scheduleNewCycle();
+	}
+
+	private async scheduleNewCycle() {
+		try {
+			await this.postCycle();
+		} catch (error) {
+			Logger.error(JSON.stringify(error), 'post cycle');
+		} finally {
+			setTimeout(() => {
+				this.startCycle();
+			}, zodEnv.MATCHING_CYCLE_TIMEOUT);
 		}
 	}
 
-	private cycleInitState(cycleItemsLength: number) {
+	private updateCycleState(cycleItemsLength: number) {
 		if (cycleItemsLength < zodEnv.ALGORITHM_BLOCK_SIZE) this.blockIndex = 0;
 		else this.blockIndex++;
-		this.workersCounter.value = cycleItemsLength;
+	}
+
+	private async fetchBlock() {
+		Logger.info('fetching a cycle block');
+		return await db.query.itemTable
+			.findMany({
+				where: eq(itemTable.isFound, false),
+				orderBy: asc(itemTable.creationDate),
+				offset: this.blockIndex * zodEnv.ALGORITHM_BLOCK_SIZE,
+				limit: zodEnv.ALGORITHM_BLOCK_SIZE
+			})
+			.catch((err) => {
+				Logger.error(JSON.stringify(err), 'fetching the cycle block');
+				return [];
+			});
+	}
+
+	private async createMatchingPairs(lostItems: Item[]) {
+		Logger.info('creating matching pairs');
+		const pairs: MatchingPair[] = [];
+		const idleLostItems = lostItems.filter((it) => it.state == 'idle');
+		await Promise.allSettled(
+			idleLostItems.map(async (lostItem) => {
+				Logger.info(`finding a pre-match for lost_item_id:${lostItem.id}`);
+				return AlgorithmCycle.fetchFoundItem(lostItem).then((foundItem) => {
+					if (foundItem) pairs.push({ foundItem, lostItem });
+				});
+			})
+		);
+		return pairs;
+	}
+
+	private static async fetchFoundItem(lostItem: Item) {
+		return await db
+			.select()
+			.from(itemTable)
+			.where(
+				and(
+					eq(itemTable.isFound, true),
+					eq(itemTable.state, 'idle'),
+					arrayContains(itemTable.category, lostItem.category),
+					notExists(
+						db
+							.select()
+							.from(unmatchedItemsTable)
+							.where(
+								and(
+									eq(unmatchedItemsTable.lostItemId, lostItem.id),
+									eq(unmatchedItemsTable.foundItemId, itemTable.id)
+								)
+							)
+					)
+				)
+			)
+			.limit(1)
+			.then((values) => values.at(0));
+	}
+
+	private async createActions(matchingPairs: MatchingPair[]) {
+		Logger.info('creating cycle actions');
+		await Promise.all(
+			matchingPairs.map(async (pair) => {
+				Logger.info(
+					`started matching lost_item_id:${pair.lostItem.id} with found_item_id:${pair.foundItem.id}`
+				);
+				const matcher = new Matcher(pair.foundItem, pair.lostItem, this.textSimilarity);
+				return matcher
+					.match()
+					.then((matchingResult) => {
+						if (matchingResult)
+							this.actions.push({
+								type: 'match',
+								foundItemId: pair.foundItem.id,
+								lostItemId: pair.lostItem.id
+							});
+						else
+							this.actions.push({
+								type: 'unmatch',
+								foundItemId: pair.foundItem.id,
+								lostItemId: pair.lostItem.id
+							});
+					})
+					.catch((err) =>
+						Logger.error(
+							JSON.stringify(err),
+							`matching lost_item_id:${pair.lostItem.id} with found_item_id:${pair.foundItem.id}`
+						)
+					);
+			})
+		);
 	}
 
 	private async postCycle() {
+		Logger.info('running post cycle actions');
+
+		if (this.actions.length == 0) return;
+
 		const unmatchActions = this.actions.filter((action) => action.type === 'unmatch');
 		const matchActions = AlgorithmCycle.removeMatchDuplicates(
 			this.actions.filter((action) => action.type === 'match')

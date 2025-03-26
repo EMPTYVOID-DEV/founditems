@@ -17,8 +17,8 @@ export class Matcher {
 		this.textSimilarity = textSimilarity;
 	}
 
-	match() {
-		return this.dateMatcher() && this.addressMatcher() && this.metaDataMatching();
+	async match() {
+		return this.dateMatcher() && this.addressMatcher() && (await this.metaDataMatching());
 	}
 
 	private dateMatcher() {
@@ -40,25 +40,28 @@ export class Matcher {
 		});
 	}
 
-	// items with same category will have the same metaData structure
-	private metaDataMatching() {
-		return this.foundItem.metadata.every((item) => {
-			const counterPartItem = this.lostItem.metadata.find((el) => el.name === item.name)!;
+	private async metaDataMatching() {
+		const results = await Promise.all(
+			this.foundItem.metadata.map(async (item) => {
+				const counterPartItem = this.lostItem.metadata.find((el) => el.name === item.name)!;
 
-			switch (item.type) {
-				case 'select':
-					return item.value === counterPartItem.value;
-				case 'date':
-					return Matcher.dateMetaDataMatcher(item.value, counterPartItem.value);
-				case 'text':
-					return this.textMatching(
-						item.value,
-						counterPartItem.value,
-						this.foundItem.lang,
-						this.lostItem.lang
-					);
-			}
-		});
+				switch (item.type) {
+					case 'select':
+						return item.value === counterPartItem.value;
+					case 'date':
+						return Matcher.dateMetaDataMatcher(item.value, counterPartItem.value);
+					case 'text':
+						return this.textMatching(
+							item.value,
+							counterPartItem.value,
+							this.foundItem.lang,
+							this.lostItem.lang
+						);
+				}
+			})
+		);
+
+		return results.every(Boolean);
 	}
 
 	private async textMatching(
