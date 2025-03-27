@@ -9,6 +9,7 @@
 	"dependencies": {
 		"@hono/node-server": "^1.13.8",
 		"@huggingface/transformers": "^3.4.0",
+		"chalk": "^5.4.1",
 		"db": "file:../../packages/db",
 		"dotenv": "^16.4.7",
 		"fp-ts": "^2.16.9",

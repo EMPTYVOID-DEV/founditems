@@ -217,7 +217,7 @@ const fr: Translation = {
 	navbar: {
 		selectLanguage: 'choisissez la langue',
 		posts: 'les postes',
-		connections: 'les connections'
+		matches: 'les matchs'
 	},
 	home: {
 		title: 'trouvez vos objets perdus sans effort',

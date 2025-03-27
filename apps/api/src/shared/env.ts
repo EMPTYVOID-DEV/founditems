@@ -26,12 +26,7 @@ const envSchema = z.object({
 		.default(12)
 		.describe('This it max hours threshold between found and lost date'),
 
-	LIBRE_TRANSLATION_ENDPOINT: z
-		.string({ required_error: 'You must set translation host' })
-		.url()
-		.default('http://localhost:5000/translate'),
-
-	XENOVA_MODEL: z.string().default('all-MiniLM-L6-v2'),
+	XENOVA_MODEL: z.string().default('paraphrase-multilingual-MiniLM-L12-v2'),
 
 	TEXT_SIMILARITY_THRESHOLD: z.coerce
 		.number()
