@@ -30,7 +30,9 @@ export class AlgorithmCycle {
 
 	async startAlgorithm() {
 		Logger.info('starting algorithm');
-		await this.textSimilarity.initialize();
+		await this.textSimilarity.initialize().catch((error) => {
+			Logger.error(JSON.stringify(error), 'initializing text similarity');
+		});
 		this.startCycle();
 	}
 
@@ -76,8 +78,8 @@ export class AlgorithmCycle {
 				offset: this.blockIndex * zodEnv.ALGORITHM_BLOCK_SIZE,
 				limit: zodEnv.ALGORITHM_BLOCK_SIZE
 			})
-			.catch((err) => {
-				Logger.error(JSON.stringify(err), 'fetching the cycle block');
+			.catch((error) => {
+				Logger.error(JSON.stringify(error), 'fetching the cycle block');
 				return [];
 			});
 	}
@@ -147,9 +149,9 @@ export class AlgorithmCycle {
 								lostItemId: pair.lostItem.id
 							});
 					})
-					.catch((err) =>
+					.catch((error) =>
 						Logger.error(
-							JSON.stringify(err),
+							JSON.stringify(error),
 							`matching lost_item_id:${pair.lostItem.id} with found_item_id:${pair.foundItem.id}`
 						)
 					);

@@ -1,8 +1,5 @@
 import type { RawAddress, TransportAddress } from 'utils';
 import { zodEnv } from '../shared/env.js';
-import { extractJson, handleFetchError } from '../utils/fetch.js';
-import { right } from 'fp-ts/lib/Either.js';
-import type { AvailableLocales } from 'utils';
 import type { Item } from 'db';
 import type { TextSimilarity } from './textSimilarity.js';
 
@@ -51,12 +48,7 @@ export class Matcher {
 					case 'date':
 						return Matcher.dateMetaDataMatcher(item.value, counterPartItem.value);
 					case 'text':
-						return this.textMatching(
-							item.value,
-							counterPartItem.value,
-							this.foundItem.lang,
-							this.lostItem.lang
-						);
+						return Matcher.textMatching(item.value, counterPartItem.value, this.textSimilarity);
 				}
 			})
 		);
@@ -64,22 +56,9 @@ export class Matcher {
 		return results.every(Boolean);
 	}
 
-	private async textMatching(
-		valA: string,
-		valB: string,
-		langA: AvailableLocales,
-		langB: AvailableLocales
-	) {
+	private static async textMatching(valA: string, valB: string, textSimilarity: TextSimilarity) {
 		if (valA === '' || valB === '') return true;
-
-		const translatedA = await Matcher.translateText(valA, langA);
-		const translatedB = await Matcher.translateText(valB, langB);
-
-		if (translatedA._tag === 'Left' || translatedB._tag === 'Left') return false;
-		valA = translatedA.right.translatedText;
-		valB = translatedB.right.translatedText;
-
-		const similarity = await this.textSimilarity.getSimilarity(valA, valB);
+		const similarity = await textSimilarity.getSimilarity(valA, valB);
 		return similarity >= zodEnv.TEXT_SIMILARITY_THRESHOLD;
 	}
 
@@ -97,25 +76,5 @@ export class Matcher {
 
 	private static dateMetaDataMatcher(valA: string, valB: string) {
 		return valA === '' || valB === '' || valA === valB;
-	}
-
-	private static async translateText(text: string, sourceLang: AvailableLocales) {
-		const body = {
-			q: text,
-			source: sourceLang,
-			target: 'en',
-			format: 'text'
-		};
-		const call = fetch(zodEnv.LIBRE_TRANSLATION_ENDPOINT, {
-			method: 'POST',
-			body: JSON.stringify(body),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		});
-		const response = await handleFetchError(call);
-		if (response._tag == 'Left') return response;
-		const data = await extractJson<{ translatedText: string }>(response.right);
-		return right(data);
 	}
 }

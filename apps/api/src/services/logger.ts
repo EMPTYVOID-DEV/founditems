@@ -1,11 +1,13 @@
+import chalk from 'chalk';
+
 export class Logger {
 	static error(message: string, location: string) {
-		console.error(`Error-${location}:${message}`);
+		console.error(chalk.red(`Error-${location}:${message}`));
 	}
 	static info(message: string) {
-		console.info(`Info:${message}`);
+		console.info(chalk.blue(`Info:${message}`));
 	}
 	static success(message: string) {
-		console.log(`Success:${message}`);
+		console.log(chalk.green(`Success:${message}`));
 	}
 }

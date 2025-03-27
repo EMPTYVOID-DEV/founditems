@@ -45,7 +45,7 @@
 				href={connectionsPage}
 				class={cn('border-primary hover:text-primary capitalize hover:border-b-2', {
 					'text-primary': checkPath(currentPathname, [connectionsPage], 'startWith')
-				})}>{$svelteLL.navbar.connections()}</a
+				})}>{$svelteLL.navbar.matches()}</a
 			>
 			<a
 				href={postsPage}

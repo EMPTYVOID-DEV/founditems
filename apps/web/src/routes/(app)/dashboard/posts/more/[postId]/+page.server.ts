@@ -1,7 +1,7 @@
 import { deleteItemProofs } from '@server/utils/fileManagement';
 import { postsPage } from '@shared/const';
 import { redirect, type Actions, type ServerLoad } from '@sveltejs/kit';
-import { connectionTable, db, eq, itemTable, or } from 'db';
+import { matchedItemsTable, db, eq, itemTable, or } from 'db';
 
 /**
  * In hook.server we preventing accessing a post that you don't own or one that does not exist
@@ -19,10 +19,10 @@ export const actions: Actions = {
 		const id = params.postId!;
 		const parsedId = parseInt(id);
 		await db.transaction(async (tx) => {
-			const connection = await tx.query.connectionTable.findFirst({
+			const connection = await tx.query.matchedItemsTable.findFirst({
 				where: or(
-					eq(connectionTable.foundItemId, parsedId),
-					eq(connectionTable.lostItemId, parsedId)
+					eq(matchedItemsTable.foundItemId, parsedId),
+					eq(matchedItemsTable.lostItemId, parsedId)
 				)
 			});
 			if (connection) {

@@ -216,7 +216,7 @@ const ar: BaseTranslation = {
 	navbar: {
 		selectLanguage: 'اختر اللغة',
 		posts: 'المنشورات',
-		connections: 'العلاقات'
+		matches: 'التطابقات'
 	},
 	home: {
 		title: 'اجد اشيائك المفقودة بدون عناء',

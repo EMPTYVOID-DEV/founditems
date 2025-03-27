@@ -816,9 +816,9 @@ type RootTranslation = {
 		 */
 		posts: string
 		/**
-		 * ا​ل​ع​ل​ا​ق​ا​ت
+		 * ا​ل​ت​ط​ا​ب​ق​ا​ت
 		 */
-		connections: string
+		matches: string
 	}
 	home: {
 		/**
@@ -1759,9 +1759,9 @@ export type TranslationFunctions = {
 		 */
 		posts: () => LocalizedString
 		/**
-		 * العلاقات
+		 * التطابقات
 		 */
-		connections: () => LocalizedString
+		matches: () => LocalizedString
 	}
 	home: {
 		/**
