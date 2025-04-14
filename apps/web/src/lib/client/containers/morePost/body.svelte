@@ -15,7 +15,7 @@
 	let stateTranslation = state as keyof Translation['postStates'];
 </script>
 
-<div class="grid grid-cols-2 gap-2">
+<div class="grid grid-cols-2 items-start gap-2">
 	<div class="flex flex-col gap-1">
 		<span class="font-bold capitalize">{$svelteLL.general.postType()}</span>
 		<span>{$svelteLL.posts[typeTranslation]()}</span>

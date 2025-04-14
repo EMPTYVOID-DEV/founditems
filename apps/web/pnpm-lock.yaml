@@ -32,12 +32,12 @@ importers:
       fp-ts:
         specifier: ^2.16.9
         version: 2.16.9
-      mail:
-        specifier: file:../../packages/mail
-        version: '@founditems/mail@file:../../packages/mail'
       nanoid:
         specifier: ^5.0.9
         version: 5.0.9
+      nodemailer:
+        specifier: ^6.10.1
+        version: 6.10.1
       svelte-select:
         specifier: ^5.8.3
         version: 5.8.3
@@ -72,6 +72,9 @@ importers:
       '@types/node':
         specifier: ^22.10.10
         version: 22.10.10
+      '@types/nodemailer':
+        specifier: ^6.4.17
+        version: 6.4.17
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.49)
@@ -367,9 +370,6 @@ packages:
 
   '@founditems/db@file:../../packages/db':
     resolution: {directory: ../../packages/db, type: directory}
-
-  '@founditems/mail@file:../../packages/mail':
-    resolution: {directory: ../../packages/mail, type: directory}
 
   '@founditems/utils@file:../../packages/utils':
     resolution: {directory: ../../packages/utils, type: directory}
@@ -681,6 +681,9 @@ packages:
 
   '@types/node@22.10.10':
     resolution: {integrity: sha512-X47y/mPNzxviAGY5TcYPtYL8JsY3kAq2n8fMmKoRCxq/c4v4pyGNCzM2R6+M5/umG4ZfHuT+sgqDYqWc9rJ6ww==}
+
+  '@types/nodemailer@6.4.17':
+    resolution: {integrity: sha512-I9CCaIp6DTldEg7vyUTZi8+9Vo0hi1/T8gv3C89yk1rSAAzoKQ8H8ki/jBYJSFoH/BisgLP8tkZMlQ91CIquww==}
 
   '@typescript-eslint/eslint-plugin@8.19.1':
     resolution: {integrity: sha512-tJzcVyvvb9h/PB96g30MpxACd9IrunT7GF9wfA9/0TJ1LxGOJx1TdPzSbBBnNED7K9Ka8ybJsnEpiXPktolTLg==}
@@ -1681,8 +1684,8 @@ packages:
   node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
 
-  nodemailer@6.10.0:
-    resolution: {integrity: sha512-SQ3wZCExjeSatLE/HBaXS5vqUOQk6GtBdIIKxiFdmm01mOQZX/POJkO3SUX1wDiYcwUOJwT23scFSC9fY2H8IA==}
+  nodemailer@6.10.1:
+    resolution: {integrity: sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==}
     engines: {node: '>=6.0.0'}
 
   normalize-package-data@2.5.0:
@@ -2676,40 +2679,6 @@ snapshots:
       - sql.js
       - sqlite3
 
-  '@founditems/mail@file:../../packages/mail':
-    dependencies:
-      db: '@founditems/db@file:../../packages/db'
-      dotenv: 16.4.7
-      nanoid: 5.0.9
-      nodemailer: 6.10.0
-    transitivePeerDependencies:
-      - '@aws-sdk/client-rds-data'
-      - '@cloudflare/workers-types'
-      - '@electric-sql/pglite'
-      - '@libsql/client'
-      - '@libsql/client-wasm'
-      - '@neondatabase/serverless'
-      - '@op-engineering/op-sqlite'
-      - '@opentelemetry/api'
-      - '@planetscale/database'
-      - '@prisma/client'
-      - '@tidbcloud/serverless'
-      - '@types/better-sqlite3'
-      - '@types/pg'
-      - '@types/sql.js'
-      - '@vercel/postgres'
-      - '@xata.io/client'
-      - better-sqlite3
-      - bun-types
-      - expo-sqlite
-      - knex
-      - kysely
-      - mysql2
-      - pg
-      - prisma
-      - sql.js
-      - sqlite3
-
   '@founditems/utils@file:../../packages/utils':
     dependencies:
       zod: 3.24.1
@@ -2975,6 +2944,10 @@ snapshots:
   '@types/node@22.10.10':
     dependencies:
       undici-types: 6.20.0
+
+  '@types/nodemailer@6.4.17':
+    dependencies:
+      '@types/node': 22.10.10
 
   '@typescript-eslint/eslint-plugin@8.19.1(@typescript-eslint/parser@8.19.1(eslint@9.17.0(jiti@1.21.7))(typescript@5.7.3))(eslint@9.17.0(jiti@1.21.7))(typescript@5.7.3)':
     dependencies:
@@ -4008,7 +3981,7 @@ snapshots:
 
   node-releases@2.0.19: {}
 
-  nodemailer@6.10.0: {}
+  nodemailer@6.10.1: {}
 
   normalize-package-data@2.5.0:
     dependencies:

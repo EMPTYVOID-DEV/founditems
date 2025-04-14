@@ -8,6 +8,7 @@
 	import { authPasswordResetPage } from '@shared/const';
 	import type { SubmitFunctionAfter } from '@client/types';
 	import ActionButton from '@components/custom/other/actionButton.svelte';
+	import ReactivePasswordInput from '@components/custom/other/reactivePasswordInput.svelte';
 
 	let isRegister = $state(true);
 	const fullnameValidator = getValidator(getFullnameSchema());
@@ -24,7 +25,7 @@
 
 <div class="flex h-svh w-svw items-center justify-center">
 	<form
-		class=" flex w-1/2 flex-col items-center gap-5 sm:w-[90%]"
+		class=" flex w-[440px] flex-col items-center gap-5 sm:w-[90%]"
 		action={isRegister ? '?/signup' : '?/signin'}
 		method="POST"
 		use:enhance={action}
@@ -49,19 +50,18 @@
 			placeholder={$svelteLL.schema.email()}
 		/>
 
-		<ReactiveInput
+		<ReactivePasswordInput
 			label={$svelteLL.schema.password()}
 			validator={passwordValidator}
-			type="password"
 			name="password"
 			placeholder={$svelteLL.schema.password()}
 		/>
 
-		<ActionButton loading={loading.value} class="w-full max-w-sm" type="submit" size="lg">
+		<ActionButton loading={loading.value} class="w-full" type="submit" size="lg">
 			{isRegister ? $svelteLL.auth.signup() : $svelteLL.auth.login()}
 		</ActionButton>
 
-		<div class="flex w-full max-w-sm items-center justify-between gap-2">
+		<div class="flex w-full items-center justify-between gap-2">
 			<button
 				type="button"
 				class="hover:text-primary underline"

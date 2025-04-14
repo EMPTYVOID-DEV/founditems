@@ -2,7 +2,7 @@ export const profilePage = '/dashboard/profile';
 
 export const postsPage = '/dashboard/posts';
 
-export const connectionsPage = '/dashboard/connections';
+export const matchesPage = '/dashboard/matches';
 
 export const authPage = '/auth';
 

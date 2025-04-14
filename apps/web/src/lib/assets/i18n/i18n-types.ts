@@ -914,11 +914,11 @@ type RootTranslation = {
 		 */
 		whereYouFound: string
 		/**
-		 * ن​ق​ط​ة​ ​ا​ن​ط​ل​ا​ق​ ​ا​ل​ن​ق​ل
+		 * ن​ق​ط​ة​ ​ا​ن​ط​ل​ا​ق​ ​خ​ط​ ​ا​ل​ن​ق​ل
 		 */
 		transportStart: string
 		/**
-		 * ن​ق​ط​ة​ ​ا​ن​ت​ه​ا​ء​ ​ا​ل​ن​ق​ل
+		 * ن​ق​ط​ة​ ​ا​ن​ت​ه​ا​ء​ ​خ​ط​ ​ا​ل​ن​ق​ل
 		 */
 		transportEnd: string
 		/**
@@ -1857,11 +1857,11 @@ export type TranslationFunctions = {
 		 */
 		whereYouFound: () => LocalizedString
 		/**
-		 * نقطة انطلاق النقل
+		 * نقطة انطلاق خط النقل
 		 */
 		transportStart: () => LocalizedString
 		/**
-		 * نقطة انتهاء النقل
+		 * نقطة انتهاء خط النقل
 		 */
 		transportEnd: () => LocalizedString
 		/**

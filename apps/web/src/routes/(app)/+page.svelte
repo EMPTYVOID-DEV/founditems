@@ -12,7 +12,7 @@
 		{$svelteLL.home.description()}
 	</p>
 	<Button
-		variant="secondary"
+		class="font-bold capitalize"
 		size="lg"
 		onclick={() => {
 			if (data.user) goto(postsPage);

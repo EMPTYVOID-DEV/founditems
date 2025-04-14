@@ -28,7 +28,6 @@
 <style>
 	.input-wrap :global(input) {
 		width: 100%;
-		max-width: 32rem;
 		border: 1px solid hsl(var(--input));
 		background-color: hsl(var(--background));
 		padding-inline: 0.75rem;

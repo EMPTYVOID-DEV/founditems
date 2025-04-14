@@ -21,9 +21,14 @@
 
 <FormWrapper {action} actionName="?/fullname" formClass="w-[80%] sm:w-full">
 	{#snippet mainSnippet()}
-		<h4>{$svelteLL.schema.fullname()}</h4>
+		<h4 class="capitalize">{$svelteLL.schema.fullname()}</h4>
 		<p>{$svelteLL.profile.fullnameChange()}</p>
-		<ReactiveInput validator={fullnameValidator} name="fullname" value={fullname} />
+		<ReactiveInput
+			validator={fullnameValidator}
+			class="max-w-lg"
+			name="fullname"
+			value={fullname}
+		/>
 	{/snippet}
 	{#snippet submitterSnippet()}
 		<ActionButton loading={loading.value} type="submit">{$svelteLL.general.confirm()}</ActionButton>

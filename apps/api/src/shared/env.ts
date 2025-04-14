@@ -18,13 +18,21 @@ const envSchema = z.object({
 			message: 'Invalid database URL format'
 		}),
 
+	ADDRESS_MATCHING_THRESHOLD: z.coerce
+		.number()
+		.int()
+		.min(0)
+		.max(500)
+		.default(100)
+		.describe('max meter-distance threshold between lost and found address'),
+
 	DATE_MATCHING_THRESHOLD: z.coerce
 		.number()
 		.int()
 		.min(2)
-		.max(48)
-		.default(12)
-		.describe('This it max hours threshold between found and lost date'),
+		.max(72)
+		.default(24)
+		.describe('max hours threshold between found and lost date'),
 
 	XENOVA_MODEL: z.string().default('paraphrase-multilingual-MiniLM-L12-v2'),
 

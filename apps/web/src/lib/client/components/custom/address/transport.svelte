@@ -23,7 +23,7 @@
 	<div class="flex flex-col gap-1">
 		<span class="text-small">{$svelteLL.general.transportMethod()}</span>
 		<Select.Root type="single" bind:value={selected}>
-			<Select.Trigger class="flex w-full max-w-lg items-center justify-between">
+			<Select.Trigger class="flex w-full  items-center justify-between">
 				<span class="capitalize">{$svelteLL.transports[selected]()}</span>
 			</Select.Trigger>
 			<Select.Content>

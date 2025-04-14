@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { cn } from '../utils.svelte';
 	let {
-		variant = 'primary',
 		height = 24,
-		width = 24
-	}: { variant?: 'primary' | 'default'; width?: number; height?: number } = $props();
+		width = 24,
+		classname = ''
+	}: {
+		classname?: string;
+		width?: number;
+		height?: number;
+	} = $props();
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" {width} {height} viewBox="0 0 24 24"
 	><path
-		class={cn({
-			'stroke-primary': variant == 'primary',
-			'stroke-foreground': variant == 'default'
-		})}
+		class={classname}
 		fill="none"
 		stroke-linecap="round"
 		stroke-linejoin="round"

@@ -6,7 +6,7 @@
 	import CloseIcon from '@client/icons/closeIcon.svelte';
 	import MenuIcon from '@client/icons/menuIcon.svelte';
 	import { cn } from '@client/utils.svelte';
-	import { authPage, connectionsPage, postsPage } from '@shared/const';
+	import { authPage, matchesPage, postsPage } from '@shared/const';
 	import { page } from '$app/state';
 	import Logo from './logo.svelte';
 	import { checkPath } from '@shared/utils';
@@ -21,15 +21,15 @@
 </script>
 
 <div
-	class="bg-background fixed left-0 top-0 z-50 flex h-20 w-full items-center justify-between px-4 shadow-md"
+	class="bg-background fixed left-0 top-0 z-50 flex h-20 w-full items-center justify-between px-[2.5%] shadow-md"
 	dir="ltr"
 >
 	<Logo class="sm-auto" />
 	<button class="hidden sm:contents" onclick={() => (showMenu = !showMenu)}>
 		{#if showMenu}
-			<CloseIcon />
+			<CloseIcon classname="stroke-primary" />
 		{:else}
-			<MenuIcon />
+			<MenuIcon classname="stroke-primary" />
 		{/if}
 	</button>
 
@@ -42,9 +42,9 @@
 		<LangSelect />
 		{#if user}
 			<a
-				href={connectionsPage}
+				href={matchesPage}
 				class={cn('border-primary hover:text-primary capitalize hover:border-b-2', {
-					'text-primary': checkPath(currentPathname, [connectionsPage], 'startWith')
+					'text-primary': checkPath(currentPathname, [matchesPage], 'startWith')
 				})}>{$svelteLL.navbar.matches()}</a
 			>
 			<a

@@ -30,7 +30,7 @@
 
 <FormWrapper {action} actionName="?/avatar" formClass="w-[80%] sm:w-full">
 	{#snippet mainSnippet()}
-		<h4>{$svelteLL.schema.avatar()}</h4>
+		<h4 class="capitalize">{$svelteLL.schema.avatar()}</h4>
 		<p>{$svelteLL.profile.avatarChange()}</p>
 		<FileUpload accept="image/*" validator={avatarValidator} maxFiles={1} bind:files />
 	{/snippet}

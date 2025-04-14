@@ -39,9 +39,9 @@
 </script>
 
 <div class="flex h-svh w-svw items-center justify-center">
-	<div class=" flex w-1/2 flex-col items-center gap-5 sm:w-[90%]">
+	<div class=" flex w-[440px] flex-col items-center gap-5 sm:w-[90%]">
 		<Logo class="self-center" />
-		<p class="text-muted-foreground w-full max-w-sm font-bold">
+		<p class="text-muted-foreground w-full font-bold">
 			{$svelteLL.auth.verificationEmail()}
 		</p>
 		<div class="contents" dir="ltr">
@@ -62,16 +62,13 @@
 			</InputOTP.Root>
 		</div>
 		<form action="?/verify" method="post" use:enhance={verifyAction} class="contents">
-			<ActionButton loading={verifyLoading.value} class="w-full max-w-sm" type="submit"
+			<ActionButton loading={verifyLoading.value} class="w-full" type="submit"
 				>{$svelteLL.auth.verifyCode()}</ActionButton
 			>
 		</form>
 		<form action="?/resend" method="post" use:enhance={resendAction} class="contents">
-			<ActionButton
-				loading={resendLoading.value}
-				class="w-full max-w-sm"
-				variant="secondary"
-				type="submit">{$svelteLL.auth.resendEmail()}</ActionButton
+			<ActionButton loading={resendLoading.value} class="w-full" variant="secondary" type="submit"
+				>{$svelteLL.auth.resendEmail()}</ActionButton
 			>
 		</form>
 	</div>

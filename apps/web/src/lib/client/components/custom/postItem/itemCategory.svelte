@@ -25,7 +25,7 @@
 	{@const translationKey = lvl as keyof Translation['categories']}
 	{@const src = `${PostData.getImageSrc(lvl)}`}
 	<button
-		class="border-secondary bg-secondary/15 flex aspect-square w-[10rem] flex-col items-center justify-center gap-2 rounded-sm border-2 p-2"
+		class="border-foreground bg-foreground/15 flex aspect-square w-[10rem] flex-col items-center justify-center gap-2 rounded-sm border-2 p-2"
 		onclick={() => increaselvl(lvl)}
 	>
 		<img alt="category" {src} class="aspect-square w-3/5 object-cover object-center" />
@@ -44,7 +44,7 @@
 			onclick={resetlvl}
 		>
 			<span class="text-small capitalize">{$svelteLL.posts.returnCategories()}</span>
-			<BackIcon width={48} height={48} />
+			<BackIcon width={48} height={48} classname="stroke-foreground" />
 		</button>
 	{/if}
 	{#if PostDataInstance.level < 2}

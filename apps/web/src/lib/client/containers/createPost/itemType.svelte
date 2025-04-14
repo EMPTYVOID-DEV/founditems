@@ -18,13 +18,13 @@
 		<Button
 			size="lg"
 			class="rounded-3xl"
-			variant={isLost ? 'default' : 'outline'}
+			variant={isLost ? 'secondary' : 'outline'}
 			onclick={() => (isLost = true)}>{$svelteLL.posts.lost()}</Button
 		>
 		<Button
 			size="lg"
 			class="rounded-3xl"
-			variant={!isLost ? 'default' : 'outline'}
+			variant={!isLost ? 'secondary' : 'outline'}
 			onclick={() => (isLost = false)}>{$svelteLL.posts.found()}</Button
 		>
 	</div>

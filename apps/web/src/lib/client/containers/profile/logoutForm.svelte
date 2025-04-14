@@ -6,7 +6,7 @@
 
 <FormWrapper actionName="?/logout" formClass="w-[80%] sm:w-full">
 	{#snippet mainSnippet()}
-		<h4>{$svelteLL.auth.logout()}</h4>
+		<h4 class="capitalize">{$svelteLL.auth.logout()}</h4>
 		<p>{$svelteLL.profile.logout()}</p>
 	{/snippet}
 	{#snippet submitterSnippet()}

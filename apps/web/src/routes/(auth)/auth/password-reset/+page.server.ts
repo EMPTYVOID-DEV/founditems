@@ -1,6 +1,6 @@
 import { hash } from '@node-rs/argon2';
 import { db, userTable, eq } from 'db';
-import { isValidOtp, setupOtp } from 'mail';
+import { createOtp, verifyOtp } from '@server/utils/mail';
 import { authPage } from '@shared/const';
 import { LL } from '@assets/i18n/i18n';
 import { getValidator, getEmailSchema, getPasswordSchema } from '@shared/zod';
@@ -14,14 +14,14 @@ export const actions: Actions = {
 		if (emailValidated.status == 'invalid') return fail(400, { message: emailValidated.errorMsg });
 		const user = await db.query.userTable.findFirst({ where: eq(userTable.email, email) });
 		if (!user) return fail(403, { message: LL.auth.accountDoesNotExist() });
-		await setupOtp(email);
+		await createOtp(email);
 	},
 	resend: async ({ request }) => {
 		const fd = await request.formData();
 		const email = fd.get('email')!.toString();
 		const emailValidated = getValidator(getEmailSchema())(email);
 		if (emailValidated.status == 'invalid') return fail(400, { message: emailValidated.errorMsg });
-		await setupOtp(email);
+		await createOtp(email);
 	},
 	verify: async ({ request }) => {
 		const fd = await request.formData();
@@ -36,7 +36,7 @@ export const actions: Actions = {
 		if (passwordValidated.status == 'invalid')
 			return fail(400, { message: passwordValidated.errorMsg });
 
-		const isValid = await isValidOtp(email, enteredOtp);
+		const isValid = await verifyOtp(email, enteredOtp);
 
 		if (isValid == 'invalid') return fail(403, { message: LL.auth.incorrectCode() });
 

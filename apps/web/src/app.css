@@ -12,44 +12,43 @@
 		--body: clamp(1rem, calc(1rem + ((1vw - 0.48rem) * 0.1736)), 1.275rem);
 		--small: clamp(0.875rem, calc(0.875rem + ((1vw - 0.48rem) * 0.1736)), 1rem);
 
-		/* Background and Foreground */
-		--background: 220 15% 97%; /* Light Gray */
-		--foreground: 215 28% 20%; /* Charcoal Gray */
+		/* Base */
+		--background: 220 20% 98%; /* Almost white with a cool undertone */
+		--foreground: 220 30% 18%; /* Deep slate for intelligent tone */
 
 		/* Muted */
-		--muted: 210 15% 88%; /* Softer Muted */
-		--muted-foreground: 215 15% 35%; /* Darker for Contrast */
+		--muted: 220 16% 90%; /* Softer blue-gray */
+		--muted-foreground: 220 15% 40%; /* Gentle contrast for secondary text */
 
-		/* Popover */
-		--popover: 220 15% 97%;
-		--popover-foreground: 215 28% 20%;
+		/* Popover / Card */
+		--popover: 0 0% 100%;
+		--popover-foreground: 220 30% 18%;
 
-		/* Card */
-		--card: 220 15% 97%;
-		--card-foreground: 215 28% 20%;
+		--card: 0 0% 100%;
+		--card-foreground: 220 30% 18%;
 
 		/* Border and Input */
-		--border: 215 28% 20%;
-		--input: 210 12% 60%;
+		--border: 220 15% 80%; /* Light gray-blue */
+		--input: 220 14% 70%; /* Neutral input field */
 
 		/* Primary */
-		--primary: 220 76% 53%; /* Bright Blue */
+		--primary: 215 85% 52%; /* Calm, trustworthy blue */
 		--primary-foreground: 0 0% 100%; /* White */
 
 		/* Secondary */
-		--secondary: 42 85% 55%; /* Softer Amber */
-		--secondary-foreground: 215 28% 20%; /* Charcoal Gray */
+		--secondary: 45 100% 51%; /* Soft pastel blue-gray */
+		--secondary-foreground: 220 30% 18%;
 
 		/* Accent */
-		--accent: 42 85% 55%;
-		--accent-foreground: 215 28% 20%;
+		--accent: 220 10% 80%; /* Subtle cool gray with a hint of blue */
+		--accent-foreground: 220 30% 18%;
 
-		/* Destructive (Danger) */
-		--destructive: 0 79% 56%; /* Bright Red */
+		/* Destructive */
+		--destructive: 0 70% 50%; /* Serious red for alerts */
 		--destructive-foreground: 0 0% 100%; /* White */
 
 		/* Success */
-		--success: 140 62% 45%; /* Vivid Green */
+		--success: 160 65% 40%; /* Cool green that conveys confirmation */
 		--success-foreground: 0 0% 100%; /* White */
 
 		/* Ring */

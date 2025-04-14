@@ -45,7 +45,7 @@
 
 {#snippet addressHead(index: number)}
 	{#if itemAddress.length > 1}
-		<div class="flex w-full max-w-lg items-center justify-between">
+		<div class="flex w-full items-center justify-between">
 			<span class="text-small">{$svelteLL.general.address()}-{index + 1}</span>
 			<Button
 				size="icon"
@@ -53,7 +53,7 @@
 				variant="ghost"
 				onclick={() => removeAddress(index)}
 			>
-				<CloseIconV2 variant="default" width={20} height={20} />
+				<CloseIconV2 classname="fill-foreground" width={20} height={20} />
 			</Button>
 		</div>
 	{/if}
@@ -62,11 +62,7 @@
 {#snippet addressSnippet(index: number)}
 	<div class="flex w-full flex-col gap-1 capitalize">
 		{@render addressHead(index)}
-		<Tabs.Root
-			value="general"
-			class="w-full max-w-lg"
-			onValueChange={(tab) => changeTab(index, tab)}
-		>
+		<Tabs.Root value="general" class="w-full" onValueChange={(tab) => changeTab(index, tab)}>
 			<Tabs.List>
 				<Tabs.Trigger value="general" class="capitalize">{$svelteLL.general.address()}</Tabs.Trigger
 				>
@@ -105,7 +101,7 @@
 		{@render addressSnippet(idx)}
 	{/each}
 	{#if itemAddress.length < itemAddressLength && itemType == 'lost'}
-		<Button class="text-secondary p-0" variant="link" onclick={pushAddress}
+		<Button class="text-foreground p-0" variant="link" onclick={pushAddress}
 			>{$svelteLL.posts.additionalAddress()}</Button
 		>
 	{/if}

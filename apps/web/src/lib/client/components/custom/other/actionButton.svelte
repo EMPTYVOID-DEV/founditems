@@ -7,7 +7,7 @@
 
 <Button disabled={loading} {...restProps} type="submit">
 	{#if loading}
-		<LoadingIcon />
+		<LoadingIcon classname1="fill-muted" classname2="fill-foreground/60" />
 	{/if}
 	{@render children?.()}
 </Button>
