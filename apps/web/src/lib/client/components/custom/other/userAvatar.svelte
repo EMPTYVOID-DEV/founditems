@@ -13,7 +13,9 @@
 			class="object-cover object-center"
 		/>
 		<Avatar.Fallback>
-			<span class=" bg-primary/30 rounded-[50%] p-3 uppercase">{fullname.slice(0, 2)}</span>
+			<span class="bg-primary/30 flex h-full w-full items-center justify-center rounded-[50%]"
+				>{fullname.slice(0, 2)}</span
+			>
 		</Avatar.Fallback>
 	</Avatar.Root>
 </a>

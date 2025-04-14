@@ -69,7 +69,7 @@
 	>
 		<span class="text-small" dir="ltr">{limitFileName(filename)}</span>
 		<button class="contents" type="button" onclick={() => removeFile(index)}
-			><CloseIconV2 variant="default" /></button
+			><CloseIconV2 classname="fill-foreground" /></button
 		>
 	</div>
 {/snippet}

@@ -29,9 +29,6 @@ importers:
       hono:
         specifier: 4.6.20
         version: 4.6.20
-      mail:
-        specifier: file:../../packages/mail
-        version: '@founditems/mail@file:../../packages/mail'
       mime-types:
         specifier: ^2.1.35
         version: 2.1.35
@@ -434,9 +431,6 @@ packages:
 
   '@founditems/db@file:../../packages/db':
     resolution: {directory: ../../packages/db, type: directory}
-
-  '@founditems/mail@file:../../packages/mail':
-    resolution: {directory: ../../packages/mail, type: directory}
 
   '@founditems/utils@file:../../packages/utils':
     resolution: {directory: ../../packages/utils, type: directory}
@@ -1375,10 +1369,6 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  nodemailer@6.10.0:
-    resolution: {integrity: sha512-SQ3wZCExjeSatLE/HBaXS5vqUOQk6GtBdIIKxiFdmm01mOQZX/POJkO3SUX1wDiYcwUOJwT23scFSC9fY2H8IA==}
-    engines: {node: '>=6.0.0'}
-
   object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
@@ -1939,40 +1929,6 @@ snapshots:
       nanoid: 5.0.9
       postgres: 3.4.5
       utils: '@founditems/utils@file:../../packages/utils'
-    transitivePeerDependencies:
-      - '@aws-sdk/client-rds-data'
-      - '@cloudflare/workers-types'
-      - '@electric-sql/pglite'
-      - '@libsql/client'
-      - '@libsql/client-wasm'
-      - '@neondatabase/serverless'
-      - '@op-engineering/op-sqlite'
-      - '@opentelemetry/api'
-      - '@planetscale/database'
-      - '@prisma/client'
-      - '@tidbcloud/serverless'
-      - '@types/better-sqlite3'
-      - '@types/pg'
-      - '@types/sql.js'
-      - '@vercel/postgres'
-      - '@xata.io/client'
-      - better-sqlite3
-      - bun-types
-      - expo-sqlite
-      - knex
-      - kysely
-      - mysql2
-      - pg
-      - prisma
-      - sql.js
-      - sqlite3
-
-  '@founditems/mail@file:../../packages/mail':
-    dependencies:
-      db: '@founditems/db@file:../../packages/db'
-      dotenv: 16.4.7
-      nanoid: 5.0.9
-      nodemailer: 6.10.0
     transitivePeerDependencies:
       - '@aws-sdk/client-rds-data'
       - '@cloudflare/workers-types'
@@ -2792,8 +2748,6 @@ snapshots:
   nanoid@5.0.9: {}
 
   natural-compare@1.4.0: {}
-
-  nodemailer@6.10.0: {}
 
   object-assign@4.1.1: {}
 

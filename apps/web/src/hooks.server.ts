@@ -6,7 +6,7 @@ import {
 	authPage,
 	authPasswordResetPage,
 	authVerifyPage,
-	connectionsPage,
+	matchesPage,
 	postsPage,
 	profilePage
 } from '@shared/const';
@@ -47,7 +47,7 @@ const handleRouting: Handle = async ({ event, resolve }) => {
 	const pathname = event.url.pathname;
 	if (user && checkPath(pathname, [authPage, authVerifyPage, authPasswordResetPage], 'startWith'))
 		redirect(303, profilePage);
-	if (!user && checkPath(pathname, [profilePage, connectionsPage, postsPage], 'startWith'))
+	if (!user && checkPath(pathname, [profilePage, matchesPage, postsPage], 'startWith'))
 		redirect(303, authPage);
 
 	if (event.params.postId) {

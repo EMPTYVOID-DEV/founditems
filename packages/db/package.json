@@ -7,10 +7,10 @@
 	"scripts": {
 		"lint": "eslint .",
 		"build": "tsup",
-		"db:generate": "drizzle-kit generate",
-		"db:push": "drizzle-kit push",
-		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "drizzle-kit studio"
+		"generate": "drizzle-kit generate",
+		"push": "drizzle-kit push",
+		"migrate": "drizzle-kit migrate",
+		"studio": "drizzle-kit studio"
 	},
 	"files": [
 		"./dist/*",

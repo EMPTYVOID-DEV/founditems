@@ -44,7 +44,7 @@
 			onclick={resetlvl}
 		>
 			<span class="text-small capitalize">{$svelteLL.posts.returnCategories()}</span>
-			<BackIcon width={48} height={48} />
+			<BackIcon width={48} height={48} classname="stroke-foreground" />
 		</button>
 	{/if}
 	{#if PostDataInstance.level < 2}

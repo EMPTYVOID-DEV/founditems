@@ -18,7 +18,7 @@
 	{@const categoryTranslation = category[1] as keyof Translation['categories']}
 	{@const typeTranslation = itemType as keyof Translation['posts']}
 	{@const stateTranslation = state as keyof Translation['postStates']}
-	<div class="border-secondary bg-secondary/15 flex items-center gap-4 rounded-sm border-2 p-2">
+	<div class="border-secondary bg-secondary/15 flex items-center gap-4 rounded-md border-2 p-2">
 		<img alt="category" {src} class="aspect-square w-10 object-cover object-center" />
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.postType()}</span>
@@ -39,7 +39,7 @@
 			})}
 			onclick={() => goto(`${postsPage}/more/${id}`)}
 		>
-			<MoreIcon variant="ghost" />
+			<MoreIcon classname="fill-background" />
 			<span class="text-small capitalize sm:hidden">{$svelteLL.general.seeInfo()}</span>
 		</Button>
 	</div>
@@ -47,13 +47,9 @@
 
 <div class="flex w-full flex-grow flex-col gap-6 p-[2.5%]">
 	<div class="flex items-center justify-between sm:flex-col sm:items-start sm:gap-2">
-		<h1 class="text-primary capitalize">{$svelteLL.navbar.posts()}</h1>
-		<Button
-			onclick={() => goto(createPostPage)}
-			variant="secondary"
-			class="cursor-pointer sm:w-full"
-		>
-			<AddIcon variant="default" />
+		<h1 class="capitalize">{$svelteLL.navbar.posts()}</h1>
+		<Button onclick={() => goto(createPostPage)} class="cursor-pointer sm:w-full">
+			<AddIcon classname="fill-background" />
 			<span class="capitalize">{$svelteLL.posts.newPost()}</span>
 		</Button>
 	</div>

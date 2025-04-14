@@ -1,10 +1,11 @@
-import type {
-	MatchMetaData,
-	MatchStates,
-	ItemMetaData,
-	ItemStates,
-	AvailableLocales,
-	ItemAddress
+import {
+	type MatchMetaData,
+	type MatchStates,
+	type ItemMetaData,
+	type ItemStates,
+	type AvailableLocales,
+	type ItemAddress,
+	otpCodeLength
 } from 'utils';
 
 import {
@@ -90,7 +91,7 @@ export const matchedItemsTable = pgTable('matched_items', {
 
 export const otpTable = pgTable('otp', {
 	id: serial('id').notNull().primaryKey(),
-	code: varchar('code', { length: 6 }).notNull(),
+	code: varchar('code', { length: otpCodeLength }).notNull(),
 	email: text('email').unique().notNull(),
 	expiresAt: timestamp('expires_at', {
 		withTimezone: true,

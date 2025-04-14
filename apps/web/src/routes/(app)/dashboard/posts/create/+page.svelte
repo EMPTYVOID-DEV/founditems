@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { ItemCategory, ItemMetaData, PostDataInstance } from '@components/custom/postItem';
-	import Header from './containers/header.svelte';
+	import Header from '@containers/createPost/header.svelte';
 	import type { ItemType } from 'utils';
-	import ItemTypeComponent from './containers/itemType.svelte';
-	import Footer from './containers/footer.svelte';
+	import ItemTypeComponent from '@containers/createPost/itemType.svelte';
+	import Footer from '@containers/createPost/footer.svelte';
 	import Button from '@components/shadcn/button/button.svelte';
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import { goto } from '$app/navigation';
@@ -13,9 +13,9 @@
 	import { showToast } from '@client/utils.svelte';
 	import { enhance } from '$app/forms';
 	import ActionButton from '@components/custom/other/actionButton.svelte';
-	import ItemDate from './containers/itemDate.svelte';
+	import ItemDate from '@containers/createPost/itemDate.svelte';
 	import type { ItemAddress, Nullable } from 'utils';
-	import ItemAddressComponent from './containers/itemAddress.svelte';
+	import ItemAddressComponent from '@containers/createPost/itemAddress.svelte';
 
 	let itemType = $state<ItemType>('found');
 	let fullDescription = $state('');
@@ -51,20 +51,24 @@
 
 <div class="flex w-full flex-grow flex-col gap-4 p-[2.5%]">
 	<Header />
-	<ItemTypeComponent setType={(type) => (itemType = type)} />
-	<ItemDate {itemType} setDate={(date) => (itemDate = date)} />
-	<ItemAddressComponent bind:itemAddress {itemType} />
+	<div class="flex max-w-lg flex-col gap-4">
+		<ItemTypeComponent setType={(type) => (itemType = type)} />
+		<ItemDate {itemType} setDate={(date) => (itemDate = date)} />
+		<ItemAddressComponent bind:itemAddress {itemType} />
+	</div>
 	<ItemCategory />
-	<ItemMetaData />
-	<Footer bind:files setFullDescription={(desc) => (fullDescription = desc)} />
-	<div class="flex gap-4">
-		<Button size="lg" class="w-fit" variant="outline" onclick={() => goto(postsPage)}
-			>{$svelteLL.general.cancel()}</Button
-		>
-		<form action="?/create" method="post" enctype="multipart/form-data" use:enhance={action}>
-			<ActionButton size="lg" class="w-fit" loading={loading.value}
-				>{$svelteLL.general.confirm()}</ActionButton
+	<div class="flex max-w-lg flex-col gap-4">
+		<ItemMetaData />
+		<Footer bind:files setFullDescription={(desc) => (fullDescription = desc)} />
+		<div class="flex gap-4">
+			<Button size="lg" class="w-fit" variant="outline" onclick={() => goto(postsPage)}
+				>{$svelteLL.general.cancel()}</Button
 			>
-		</form>
+			<form action="?/create" method="post" enctype="multipart/form-data" use:enhance={action}>
+				<ActionButton size="lg" class="w-fit" loading={loading.value}
+					>{$svelteLL.general.confirm()}</ActionButton
+				>
+			</form>
+		</div>
 	</div>
 </div>

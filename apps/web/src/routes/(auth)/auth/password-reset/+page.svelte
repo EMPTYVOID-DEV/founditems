@@ -9,6 +9,7 @@
 	import { REGEXP_ONLY_DIGITS } from 'bits-ui';
 	import type { SubmitFunctionAfter, SubmitFunctionBefore } from '@client/types';
 	import ActionButton from '@components/custom/other/actionButton.svelte';
+	import ReactivePasswordInput from '@components/custom/other/reactivePasswordInput.svelte';
 
 	let stage = $state<'send' | 'verify'>('send');
 
@@ -73,10 +74,10 @@
 </script>
 
 <div class="flex h-svh w-svw items-center justify-center">
-	<div class=" flex w-1/2 flex-col items-center gap-5 sm:w-[90%]">
+	<div class=" flex w-[440px] flex-col items-center gap-5 sm:w-[90%]">
 		<Logo class="self-center" />
 		{#if stage == 'send'}
-			<p class="text-muted-foreground w-full max-w-sm font-bold">
+			<p class="text-muted-foreground w-full font-bold">
 				{$svelteLL.auth.lostPasswordEmail()}
 			</p>
 			<ReactiveInput
@@ -87,12 +88,12 @@
 				oninput={(e) => (email = e.currentTarget.value)}
 			/>
 			<form action="?/send" class="contents" use:enhance={sendAction} method="post">
-				<ActionButton loading={sendLoading.value} class="w-full max-w-sm" type="submit"
+				<ActionButton loading={sendLoading.value} class="w-full" type="submit"
 					>{$svelteLL.auth.sendTheCode()}</ActionButton
 				>
 			</form>
 		{:else}
-			<p class="text-muted-foreground w-full max-w-sm font-bold">
+			<p class="text-muted-foreground w-full font-bold">
 				{$svelteLL.auth.resetPassword()}
 			</p>
 			<div class="contents" dir="ltr">
@@ -112,24 +113,20 @@
 					{/snippet}
 				</InputOTP.Root>
 			</div>
-			<ReactiveInput
+			<ReactivePasswordInput
 				label={$svelteLL.schema.password()}
 				placeholder={$svelteLL.schema.password()}
-				type="password"
 				validator={passwordValidator}
 				oninput={(e) => (password = e.currentTarget.value)}
 			/>
 			<form action="?/verify" class="contents" use:enhance={verifyAction} method="post">
-				<ActionButton loading={verifyLoading.value} class="w-full max-w-sm" type="submit"
+				<ActionButton loading={verifyLoading.value} class="w-full" type="submit"
 					>{$svelteLL.auth.confirmNewPassword()}</ActionButton
 				>
 			</form>
 			<form action="?/resend" class="contents" use:enhance={resendAction} method="post">
-				<ActionButton
-					loading={resendLoading.value}
-					class="w-full max-w-sm"
-					variant="secondary"
-					type="submit">{$svelteLL.auth.resendEmail()}</ActionButton
+				<ActionButton loading={resendLoading.value} class="w-full" variant="secondary" type="submit"
+					>{$svelteLL.auth.resendEmail()}</ActionButton
 				>
 			</form>
 		{/if}

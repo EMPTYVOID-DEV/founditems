@@ -7,7 +7,7 @@ import { hash, verify } from '@node-rs/argon2';
 import { fail } from '@sveltejs/kit';
 import { postgresUniqueViolationCode } from '@server/const';
 import { authVerifyPage, profilePage } from '@shared/const';
-import { setupOtp } from 'mail';
+import { createOtp } from '@server/utils/mail';
 import { LL } from '@assets/i18n/i18n';
 
 export const actions: Actions = {
@@ -38,7 +38,7 @@ export const actions: Actions = {
 			if ((error as PostgresError).code === postgresUniqueViolationCode)
 				return fail(403, { message: LL.auth.acounntAlreadyExist() });
 		}
-		await setupOtp(email);
+		await createOtp(email);
 		redirect(303, `${authVerifyPage}/${email}`);
 	},
 	signin: async ({ cookies, request }) => {
@@ -66,7 +66,7 @@ export const actions: Actions = {
 			await createSessionWrapper(cookies, userKey.id);
 			redirect(303, profilePage);
 		}
-		await setupOtp(email);
+		await createOtp(email);
 		redirect(303, `${authVerifyPage}/${email}`);
 	}
 };

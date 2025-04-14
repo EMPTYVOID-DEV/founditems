@@ -9,6 +9,7 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			'@components': './src/lib/client/components',
+			'@containers': './src/lib/client/containers',
 			'@icons': './src/lib/client/icons',
 			'@server': './src/lib/server',
 			'@client': './src/lib/client',

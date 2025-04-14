@@ -11,3 +11,7 @@ export const itemAddressLength = 3;
 export const maxMetaDataValueLength = 300;
 
 export const validItemDateLimit = 15;
+
+export const otpCodeLength = 6;
+
+export const otpExpirationMinutes = 5;

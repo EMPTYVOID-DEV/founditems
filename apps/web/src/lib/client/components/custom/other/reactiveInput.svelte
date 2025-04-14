@@ -10,42 +10,41 @@
 		label,
 		value = $bindable(),
 		oninput,
-		maxSize = 'sm',
 		class: className,
 		...restProps
 	}: {
 		validator: Validator;
 		label?: string;
-		maxSize?: 'lg' | 'sm';
 	} & WithElementRef<HTMLInputAttributes> = $props();
 
 	let errorMsg = $state('');
 	let status = $state<'valid' | 'invalid' | 'idle'>('idle');
 
 	const statusClasses = {
-		invalid: 'bg-destructive/40 border-destructive text-destructive-foreground',
-		valid: 'bg-success/40 border-success text-success-foreground',
+		invalid: 'border-destructive',
+		valid: ' border-success',
 		idle: ''
 	};
 
-	function validate(e: Event & { currentTarget: HTMLInputElement }) {
-		if (oninput) oninput(e);
+	function onblur() {
 		const result = validator(value);
 		status = result.status;
 		errorMsg = result.errorMsg;
 	}
+
+	function onfocus() {
+		status = 'idle';
+		errorMsg = '';
+	}
 </script>
 
-<div
-	class={cn('flex w-full  flex-col gap-1', {
-		'max-w-sm': maxSize == 'sm',
-		'max-w-lg': maxSize == 'lg'
-	})}
->
-	<label for="password" class="text-small capitalize empty:hidden">{label}</label>
+<div class="flex w-full flex-col gap-1">
+	<label for="password" class="text-small font-semibold capitalize empty:hidden">{label}</label>
 	<Input
 		bind:value
-		oninput={validate}
+		{onblur}
+		{onfocus}
+		{oninput}
 		class={cn('bg-background/40', statusClasses[status], className)}
 		{...restProps}
 	/>

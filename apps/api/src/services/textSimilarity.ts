@@ -51,7 +51,6 @@ export class TextSimilarity {
 	async getSimilarity(text1: string, text2: string): Promise<number> {
 		const embedding1 = await this.getEmbedding(text1);
 		const embedding2 = await this.getEmbedding(text2);
-
 		return this.cosineSimilarity(embedding1, embedding2);
 	}
 }

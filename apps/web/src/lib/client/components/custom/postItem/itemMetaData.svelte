@@ -19,7 +19,7 @@
 	<div class="flex flex-col">
 		<span class="text-small capitalize">{$svelteLL.metaData[metaKey]()}</span>
 		<Select.Root type="single" onValueChange={(val) => PostDataInstance.setMetaData(name, val)}>
-			<Select.Trigger class="flex w-full max-w-lg items-center justify-between">
+			<Select.Trigger class="flex w-full  items-center justify-between">
 				{@const optionKey = PostDataInstance.getMetaData(
 					name
 				) as keyof Translation['selectOptions']}
@@ -40,7 +40,6 @@
 {#snippet textSnippet(name: string)}
 	{@const translationKey = name as keyof Translation['metaData']}
 	<ReactiveInput
-		maxSize="lg"
 		label={$svelteLL.metaData[translationKey]()}
 		validator={textValidator}
 		oninput={(e) => PostDataInstance.setMetaData(name, e.currentTarget.value)}
@@ -55,7 +54,7 @@
 	</div>
 {/snippet}
 
-<div class="flex w-full flex-col gap-2 empty:hidden">
+<div class="flex flex-col gap-2 empty:hidden">
 	{#each PostDataInstance.metaDataDescOptions as metaDataObject}
 		{#if metaDataObject.options}
 			{@render selectSnippet(metaDataObject.options, metaDataObject.name)}

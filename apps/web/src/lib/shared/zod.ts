@@ -7,15 +7,16 @@ import { maxMetaDataValueLength, validItemDateLimit } from 'utils';
 
 export const getFullnameSchema = () =>
 	z
-		.string()
+		.string({ message: LL.validation.fullname(3) })
 		.trim()
-		.min(12, { message: LL.validation.fullname(12) });
+		.min(3, { message: LL.validation.fullname(3) });
 
-export const getEmailSchema = () => z.string().email(LL.validation.email());
+export const getEmailSchema = () =>
+	z.string({ message: LL.validation.email() }).email(LL.validation.email());
 
 export const getPasswordSchema = () =>
 	z
-		.string()
+		.string({ message: LL.validation.passwordLength(8) })
 		.min(8, { message: LL.validation.passwordLength(8) })
 		.regex(/[a-z]/, { message: LL.validation.passwordLowercase() })
 		.regex(/[A-Z]/, { message: LL.validation.passwordUppercase() })
@@ -24,7 +25,8 @@ export const getPasswordSchema = () =>
 			message: LL.validation.passwordSpecialChar()
 		});
 
-export const getAddressSchema = () => z.string().min(12, { message: LL.validation.address(12) });
+export const getAddressSchema = () =>
+	z.string({ message: LL.validation.address(12) }).min(12, { message: LL.validation.address(12) });
 
 export const getImageSchema = () =>
 	z
@@ -37,11 +39,13 @@ export const getImageSchema = () =>
 		});
 
 export const getPhoneNumberSchema = () =>
-	z.string().regex(/\d{10}/, { message: LL.validation.phoneNumber() });
+	z
+		.string({ message: LL.validation.phoneNumber() })
+		.regex(/\d{10}/, { message: LL.validation.phoneNumber() });
 
 export const getMetaDataTextSchema = () =>
 	z
-		.string()
+		.string({ message: LL.validation.metaDataText(maxMetaDataValueLength) })
 		.max(maxMetaDataValueLength, { message: LL.validation.metaDataText(maxMetaDataValueLength) });
 
 export const itemDateSchema = z.date().refine((date) => {

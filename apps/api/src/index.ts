@@ -4,13 +4,13 @@ import { zodEnv } from './shared/env.js';
 import { logger } from 'hono/logger';
 import { serveAvatars, serveCategories, serveProofs } from './services/serveStatic.js';
 import storeRoute from './services/store.js';
-import { AlgorithmCycle } from './services/algorithmCycle.js';
+// import { AlgorithmCycle } from './services/algorithmCycle.js';
 
 const app = new Hono();
 
-const algorithmCycle = new AlgorithmCycle();
+// const algorithmCycle = new AlgorithmCycle();
 
-algorithmCycle.startAlgorithm();
+// algorithmCycle.startAlgorithm();
 
 app.onError((err, c) => {
 	console.log(err);

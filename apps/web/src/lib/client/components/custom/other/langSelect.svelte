@@ -13,8 +13,8 @@
 </script>
 
 <Select.Root type="single" {onValueChange} bind:value={selected}>
-	<Select.Trigger class="flex w-[120px] items-center justify-between">
-		<GlobeIcon />
+	<Select.Trigger class="flex w-[100px] items-center">
+		<GlobeIcon classname="fill-primary" />
 		<span class="capitalize">{selected}</span>
 	</Select.Trigger>
 	<Select.Content>

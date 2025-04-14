@@ -15,7 +15,7 @@
 </script>
 
 <Select
-	class="w-full max-w-lg"
+	class="w-full"
 	containerStyles="border:1px solid hsl(var(--input));"
 	placeholder={$svelteLL.general.searchAddress()}
 	listOpen={false}
