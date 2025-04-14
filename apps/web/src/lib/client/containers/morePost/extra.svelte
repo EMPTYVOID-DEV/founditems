@@ -12,23 +12,25 @@
 	</div>
 {/if}
 
-<div class="flex flex-col gap-1">
-	<span class="font-bold capitalize">{$svelteLL.posts.itemImages()}</span>
-	<div class="flex gap-4">
-		{#each images as image}
-			{@const src = `${PUBLIC_API_HOST}/proofs/${image}`}
-			<Dialog.Root>
-				<Dialog.Trigger>
-					<img
-						{src}
-						alt=""
-						class="aspect-square w-48 rounded-md object-cover object-center sm:w-40"
-					/>
-				</Dialog.Trigger>
-				<Dialog.Content class="w-[40%] bg-transparent p-0 sm:w-[80%]" closeClass="hidden">
-					<img {src} alt="" class="aspect-square w-full rounded-md object-cover object-center" />
-				</Dialog.Content>
-			</Dialog.Root>
-		{/each}
+{#if images.length > 0}
+	<div class="flex flex-col gap-1">
+		<span class="font-bold capitalize">{$svelteLL.posts.itemImages()}</span>
+		<div class="flex gap-4">
+			{#each images as image}
+				{@const src = `${PUBLIC_API_HOST}/proofs/${image}`}
+				<Dialog.Root>
+					<Dialog.Trigger>
+						<img
+							{src}
+							alt=""
+							class="aspect-square w-48 rounded-md object-cover object-center sm:w-40"
+						/>
+					</Dialog.Trigger>
+					<Dialog.Content class="w-[40%] bg-transparent p-0 sm:w-[80%]" closeClass="hidden">
+						<img {src} alt="" class="aspect-square w-full rounded-md object-cover object-center" />
+					</Dialog.Content>
+				</Dialog.Root>
+			{/each}
+		</div>
 	</div>
-</div>
+{/if}

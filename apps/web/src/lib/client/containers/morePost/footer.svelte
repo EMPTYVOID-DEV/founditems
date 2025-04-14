@@ -20,14 +20,14 @@
 	</span>
 	{#each address as addressItem}
 		{#if addressItem.type == 'general'}
-			<div class="bg-secondary/25 border-secondary flex flex-col rounded-md border-2 p-4">
+			<div class="bg-foreground/25 border-foreground flex flex-col rounded-md border-2 p-4">
 				<span class="font-medium">{addressItem.address.name}</span>
 				<span class="text-muted-foreground text-small">
 					{addressItem.address.latitude}, {addressItem.address.longtitude}
 				</span>
 			</div>
 		{:else}
-			<div class="border-secondary bg-secondary/15 flex flex-col rounded-md border-2 p-2">
+			<div class="border-foreground bg-foreground/15 flex flex-col rounded-md border-2 p-2">
 				<span class="capitalize"
 					>{$svelteLL.general.transport()}-{$svelteLL.transports[addressItem.method]()}</span
 				>

@@ -27,9 +27,9 @@
 	<Logo class="sm-auto" />
 	<button class="hidden sm:contents" onclick={() => (showMenu = !showMenu)}>
 		{#if showMenu}
-			<CloseIcon />
+			<CloseIcon classname="stroke-primary" />
 		{:else}
-			<MenuIcon />
+			<MenuIcon classname="stroke-primary" />
 		{/if}
 	</button>
 

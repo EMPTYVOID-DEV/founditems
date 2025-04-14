@@ -13,7 +13,7 @@
 			class="object-cover object-center"
 		/>
 		<Avatar.Fallback>
-			<span class="bg-primary/30 flex h-full w-full items-center justify-center rounded-[50%]"
+			<span class="bg-foreground/30 flex h-full w-full items-center justify-center rounded-[50%]"
 				>{fullname.slice(0, 2)}</span
 			>
 		</Avatar.Fallback>

@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "npm-run-all --parallel vite i18n",
 		"i18n": "typesafe-i18n",
-		"vite": "vite dev",
+		"vite": "vite --host",
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",

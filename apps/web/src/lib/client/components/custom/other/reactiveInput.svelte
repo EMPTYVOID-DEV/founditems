@@ -20,12 +20,6 @@
 	let errorMsg = $state('');
 	let status = $state<'valid' | 'invalid' | 'idle'>('idle');
 
-	const statusClasses = {
-		invalid: 'border-destructive',
-		valid: ' border-success',
-		idle: ''
-	};
-
 	function onblur() {
 		const result = validator(value);
 		status = result.status;
@@ -39,13 +33,19 @@
 </script>
 
 <div class="flex w-full flex-col gap-1">
-	<label for="password" class="text-small font-semibold capitalize empty:hidden">{label}</label>
+	<label for="password" class="text-small capitalize empty:hidden">{label}</label>
 	<Input
 		bind:value
 		{onblur}
 		{onfocus}
 		{oninput}
-		class={cn('bg-background/40', statusClasses[status], className)}
+		class={cn(
+			'bg-background/40',
+			{
+				'border-destructive': status === 'invalid'
+			},
+			className
+		)}
 		{...restProps}
 	/>
 	{#if status === 'invalid'}

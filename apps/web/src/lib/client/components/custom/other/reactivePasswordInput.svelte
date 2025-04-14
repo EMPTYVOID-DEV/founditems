@@ -30,12 +30,6 @@
 	let status = $state<'valid' | 'invalid' | 'idle'>('idle');
 	let showPassword = $state(false);
 
-	const statusClasses = {
-		invalid: 'border-destructive',
-		valid: 'border-success',
-		idle: ''
-	};
-
 	function togglePasswordVisibility() {
 		showPassword = !showPassword;
 	}
@@ -53,14 +47,20 @@
 </script>
 
 <div class="flex w-full flex-col gap-1">
-	<label for="password" class="text-small font-semibold capitalize empty:hidden">{label}</label>
+	<label for="password" class="text-small capitalize empty:hidden">{label}</label>
 	<div class="relative">
 		<Input
 			bind:value
 			{onblur}
 			{onfocus}
 			{oninput}
-			class={cn('bg-background/40 pr-10', statusClasses[status], className)}
+			class={cn(
+				'bg-background/40 pr-10',
+				{
+					'border-destructive': status === 'invalid'
+				},
+				className
+			)}
 			type={showPassword ? 'text' : 'password'}
 			{...restProps}
 		/>

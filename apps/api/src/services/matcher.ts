@@ -2,6 +2,7 @@ import type { RawAddress, TransportAddress } from 'utils';
 import { zodEnv } from '../shared/env.js';
 import type { Item } from 'db';
 import type { TextSimilarity } from './textSimilarity.js';
+import { earthRadius } from '../shared/consts.js';
 
 export class Matcher {
 	foundItem: Item;
@@ -19,7 +20,7 @@ export class Matcher {
 	}
 
 	private dateMatcher() {
-		const timeDiff = this.foundItem.date.getTime() - this.lostItem.date.getTime();
+		const timeDiff = Math.abs(this.foundItem.date.getTime() - this.lostItem.date.getTime());
 		const hoursDiff = timeDiff / (1000 * 60 * 60);
 		return hoursDiff <= zodEnv.DATE_MATCHING_THRESHOLD;
 	}
@@ -30,7 +31,7 @@ export class Matcher {
 		return this.lostItem.address.some((item) => {
 			let match = false;
 			if (item.type === 'general' && foundEntry.type === 'general')
-				match = Matcher.matchRawAddress(item.address, item.address);
+				match = Matcher.matchRawAddress(item.address, foundEntry.address);
 			else if (item.type === 'transport' && foundEntry.type === 'transport')
 				match = Matcher.matchTransport(item, foundEntry);
 			return match;
@@ -71,10 +72,37 @@ export class Matcher {
 	}
 
 	private static matchRawAddress(a: RawAddress, b: RawAddress) {
-		return a.id === b.id;
+		const latA = parseFloat(a.latitude);
+		const latB = parseFloat(b.latitude);
+		const lonA = parseFloat(a.longtitude);
+		const lonB = parseFloat(b.longtitude);
+		const distance = Matcher.getDistanceInMeters(latA, lonA, latB, lonB);
+		return distance <= zodEnv.ADDRESS_MATCHING_THRESHOLD;
 	}
 
 	private static dateMetaDataMatcher(valA: string, valB: string) {
 		return valA === '' || valB === '' || valA === valB;
+	}
+
+	private static getDistanceInMeters(
+		lat1: number,
+		lon1: number,
+		lat2: number,
+		lon2: number
+	): number {
+		const toRadians = (deg: number) => (deg * Math.PI) / 180;
+
+		const R = earthRadius;
+
+		const dLat = toRadians(lat2 - lat1);
+		const dLon = toRadians(lon2 - lon1);
+
+		const a =
+			Math.sin(dLat / 2) ** 2 +
+			Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * Math.sin(dLon / 2) ** 2;
+
+		const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+		return R * c;
 	}
 }

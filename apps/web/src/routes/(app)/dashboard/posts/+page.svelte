@@ -18,7 +18,7 @@
 	{@const categoryTranslation = category[1] as keyof Translation['categories']}
 	{@const typeTranslation = itemType as keyof Translation['posts']}
 	{@const stateTranslation = state as keyof Translation['postStates']}
-	<div class="border-secondary bg-secondary/15 flex items-center gap-4 rounded-md border-2 p-2">
+	<div class="border-foreground bg-foreground/15 flex items-center gap-4 rounded-md border-2 p-2">
 		<img alt="category" {src} class="aspect-square w-10 object-cover object-center" />
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.postType()}</span>
@@ -38,8 +38,9 @@
 				'mr-auto': $svelteUsedLocale == 'ar'
 			})}
 			onclick={() => goto(`${postsPage}/more/${id}`)}
+			variant="secondary"
 		>
-			<MoreIcon classname="fill-background" />
+			<MoreIcon />
 			<span class="text-small capitalize sm:hidden">{$svelteLL.general.seeInfo()}</span>
 		</Button>
 	</div>
