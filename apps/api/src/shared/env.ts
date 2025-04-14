@@ -53,14 +53,26 @@ const envSchema = z.object({
 	MATCHING_CYCLE_TIMEOUT: z.coerce
 		.number()
 		.default(5000)
-		.describe('Timeout between cycles in milieseconds'),
+		.describe('Timeout between cycles in milliseconds'),
 
 	PORT: z.coerce
 		.number()
 		.int()
 		.min(1, 'Port must be greater than 0')
 		.max(65535, 'Port must be less than or equal to 65535')
-		.default(3000)
+		.default(3000),
+
+	SMTP_REQUIRE_AUTH: z.coerce.boolean().default(false),
+
+	SMTP_HOST: z.string().default('0.0.0.0'),
+
+	SMTP_PORT: z.coerce.number().default(1025),
+
+	SMTP_USER: z.string().optional(),
+
+	SMTP_PASSWORD: z.string().optional(),
+
+	SMTP_EMAIL: z.string().email().default('founditems@gmail.com')
 });
 
 export const zodEnv = envSchema.parse(process.env);
