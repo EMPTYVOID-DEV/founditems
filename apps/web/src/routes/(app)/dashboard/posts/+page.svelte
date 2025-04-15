@@ -16,23 +16,21 @@
 {#snippet postSnippet(itemType: ItemType, category: string[], state: ItemStates, id: string)}
 	{@const src = PostData.getImageSrc(category[1])}
 	{@const typeTranslation = itemType as keyof Translation['posts']}
-	{@const stateTranslation = state as keyof Translation['postStates']}
-	<div class="border-foreground bg-foreground/15 flex items-center gap-4 rounded-md border-2 p-2">
+	{@const stateTranslation = state as keyof Translation['states']}
+	<div
+		class="border-foreground bg-foreground/15 flex flex-wrap items-center gap-4 rounded-md border-2 p-2"
+	>
 		<img alt="category" {src} class="aspect-square w-10 object-cover object-center" />
-		<div class="flex flex-col">
-			<span class="font-bold">ID</span>
-			<span>{id}</span>
-		</div>
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.postType()}</span>
 			<span>{$svelteLL.posts[typeTranslation]()}</span>
 		</div>
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.postState()}</span>
-			<span>{$svelteLL.postStates[stateTranslation]()}</span>
+			<span>{$svelteLL.states[stateTranslation]()}</span>
 		</div>
 		<Button
-			class={cn({
+			class={cn('md:basis-full', {
 				'ml-auto': $svelteUsedLocale != 'ar',
 				'mr-auto': $svelteUsedLocale == 'ar'
 			})}
@@ -40,6 +38,7 @@
 			variant="secondary"
 		>
 			<MoreIcon />
+			<span>{$svelteLL.general.seeMore()}</span>
 		</Button>
 	</div>
 {/snippet}

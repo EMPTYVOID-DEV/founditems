@@ -5,8 +5,8 @@ import {
 	eq,
 	itemTable,
 	asc,
-	unmatchedItemsTable,
-	matchedItemsTable,
+	unmatchedTable,
+	matchedTable,
 	inArray,
 	type Item,
 	and,
@@ -113,11 +113,11 @@ export class AlgorithmCycle {
 					notExists(
 						db
 							.select()
-							.from(unmatchedItemsTable)
+							.from(unmatchedTable)
 							.where(
 								and(
-									eq(unmatchedItemsTable.lostItemId, lostItem.id),
-									eq(unmatchedItemsTable.foundItemId, itemTable.id)
+									eq(unmatchedTable.lostItemId, lostItem.id),
+									eq(unmatchedTable.foundItemId, itemTable.id)
 								)
 							)
 					)
@@ -175,7 +175,7 @@ export class AlgorithmCycle {
 		) as Extract<CycleAction, { type: 'match' }>[];
 
 		if (unmatchActions.length > 0)
-			await db.insert(unmatchedItemsTable).values(
+			await db.insert(unmatchedTable).values(
 				unmatchActions.map((action) => ({
 					foundItemId: action.foundItemId,
 					lostItemId: action.lostItemId
@@ -184,7 +184,7 @@ export class AlgorithmCycle {
 
 		if (matchActions.length > 0) {
 			await db.transaction(async (tx) => {
-				await tx.insert(matchedItemsTable).values(
+				await tx.insert(matchedTable).values(
 					matchActions.map((action) => ({
 						foundItemId: action.foundItemId,
 						lostItemId: action.lostItemId

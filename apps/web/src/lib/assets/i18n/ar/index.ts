@@ -152,7 +152,7 @@ const ar: BaseTranslation = {
 		postType: 'نوع',
 		postState: 'الحالة',
 		itemCategory: 'الفئة',
-		seeInfo: 'المزيد من المعلومات'
+		seeMore: 'انظر المزيد'
 	},
 	errors: {
 		forbidden: 'غير مسموح',
@@ -213,6 +213,11 @@ const ar: BaseTranslation = {
 		expiredCode: 'الرمز منتهي الصلاحية، حاول إعادة الإرسال',
 		logout: 'تسجيل الخروج'
 	},
+	states: {
+		idle: 'عاطل',
+		matched: 'مطابقة',
+		validated: 'صالح'
+	},
 	navbar: {
 		selectLanguage: 'اختر اللغة',
 		posts: 'المنشورات',
@@ -258,9 +263,9 @@ const ar: BaseTranslation = {
 		to: 'الى',
 		releasePost: 'تحرير المنشور'
 	},
-	postStates: {
-		idle: 'عاطل',
-		matched: 'مطابقة'
+	matches: {
+		yourItem: 'شيئك',
+		matchedItem: 'الشيء المطابق'
 	}
 };
 

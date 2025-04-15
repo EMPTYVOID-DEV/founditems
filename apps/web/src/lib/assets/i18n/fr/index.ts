@@ -152,7 +152,7 @@ const fr: Translation = {
 		postState: 'état',
 		postType: 'type',
 		itemCategory: 'catégorie',
-		seeInfo: "plus d'informations"
+		seeMore: 'voir plus'
 	},
 	errors: {
 		forbidden: 'interdit',
@@ -214,6 +214,11 @@ const fr: Translation = {
 		expiredCode: 'le code a expiré, essayez de le renvoyer',
 		logout: 'se déconnecter'
 	},
+	states: {
+		idle: 'inactive',
+		validated: 'validé',
+		matched: 'match'
+	},
 	navbar: {
 		selectLanguage: 'choisissez la langue',
 		posts: 'les postes',
@@ -260,9 +265,9 @@ const fr: Translation = {
 		itemDescription: "description de l'objet",
 		itemImages: "images de l'object"
 	},
-	postStates: {
-		idle: 'oisif',
-		matched: 'apparié'
+	matches: {
+		yourItem: 'votre object',
+		matchedItem: 'objet correspondant'
 	}
 };
 

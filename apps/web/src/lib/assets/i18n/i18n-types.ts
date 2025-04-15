@@ -592,9 +592,9 @@ type RootTranslation = {
 		 */
 		itemCategory: string
 		/**
-		 * ا​ل​م​ز​ي​د​ ​م​ن​ ​ا​ل​م​ع​ل​و​م​ا​ت
+		 * ا​ن​ظ​ر​ ​ا​ل​م​ز​ي​د
 		 */
-		seeInfo: string
+		seeMore: string
 	}
 	errors: {
 		/**
@@ -806,6 +806,17 @@ type RootTranslation = {
 		 */
 		logout: string
 	}
+	states: {
+		/**
+		 * ع​ا​ط​ل
+		 */
+		idle: string
+		/**
+		 * م​ط​ا​ب​ق​ة
+		 */
+		matched: string
+		validated: string
+	}
 	navbar: {
 		/**
 		 * ا​خ​ت​ر​ ​ا​ل​ل​غ​ة
@@ -950,15 +961,15 @@ type RootTranslation = {
 		 */
 		releasePost: string
 	}
-	postStates: {
+	matches: {
 		/**
-		 * ع​ا​ط​ل
+		 * ش​ي​ئ​ك
 		 */
-		idle: string
+		yourItem: string
 		/**
-		 * م​ط​ا​ب​ق​ة
+		 * ا​ل​ش​ي​ء​ ​ا​ل​م​ط​ا​ب​ق
 		 */
-		matched: string
+		matchedItem: string
 	}
 }
 
@@ -1541,9 +1552,9 @@ export type TranslationFunctions = {
 		 */
 		itemCategory: () => LocalizedString
 		/**
-		 * المزيد من المعلومات
+		 * انظر المزيد
 		 */
-		seeInfo: () => LocalizedString
+		seeMore: () => LocalizedString
 	}
 	errors: {
 		/**
@@ -1749,6 +1760,17 @@ export type TranslationFunctions = {
 		 */
 		logout: () => LocalizedString
 	}
+	states: {
+		/**
+		 * عاطل
+		 */
+		idle: () => LocalizedString
+		/**
+		 * مطابقة
+		 */
+		matched: () => LocalizedString
+		validated: () => LocalizedString
+	}
 	navbar: {
 		/**
 		 * اختر اللغة
@@ -1893,15 +1915,15 @@ export type TranslationFunctions = {
 		 */
 		releasePost: () => LocalizedString
 	}
-	postStates: {
+	matches: {
 		/**
-		 * عاطل
+		 * شيئك
 		 */
-		idle: () => LocalizedString
+		yourItem: () => LocalizedString
 		/**
-		 * مطابقة
+		 * الشيء المطابق
 		 */
-		matched: () => LocalizedString
+		matchedItem: () => LocalizedString
 	}
 }
 

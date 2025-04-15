@@ -36,7 +36,7 @@ route.delete('/avatars/:filename', async (c) => {
 route.delete('/proofs/:itemId', async (c) => {
 	const itemId = c.req.param('itemId');
 	const item = (await db.query.itemTable.findFirst({
-		where: eq(itemTable.id, parseInt(itemId)),
+		where: eq(itemTable.id, itemId),
 		columns: { images: true }
 	}))!;
 	for (const image of item.images) {

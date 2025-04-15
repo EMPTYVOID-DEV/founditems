@@ -13,7 +13,7 @@ CREATE TABLE "item" (
 	"is_found" boolean DEFAULT true NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "matched_items" (
+CREATE TABLE "matched_item" (
 	"id" varchar(8) PRIMARY KEY NOT NULL,
 	"lost_item_id" varchar(8) NOT NULL,
 	"found_item_id" varchar(8) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE "session" (
 	"expires_at" timestamp with time zone NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "unmatched_items" (
+CREATE TABLE "unmatched_item" (
 	"id" varchar(8) PRIMARY KEY NOT NULL,
 	"lost_item_id" varchar(8) NOT NULL,
 	"found_item_id" varchar(8) NOT NULL
@@ -54,8 +54,8 @@ CREATE TABLE "user" (
 );
 --> statement-breakpoint
 ALTER TABLE "item" ADD CONSTRAINT "item_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "matched_items" ADD CONSTRAINT "matched_items_lost_item_id_item_id_fk" FOREIGN KEY ("lost_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "matched_items" ADD CONSTRAINT "matched_items_found_item_id_item_id_fk" FOREIGN KEY ("found_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "matched_item" ADD CONSTRAINT "matched_item_lost_item_id_item_id_fk" FOREIGN KEY ("lost_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "matched_item" ADD CONSTRAINT "matched_item_found_item_id_item_id_fk" FOREIGN KEY ("found_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "session" ADD CONSTRAINT "session_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "unmatched_items" ADD CONSTRAINT "unmatched_items_lost_item_id_item_id_fk" FOREIGN KEY ("lost_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "unmatched_items" ADD CONSTRAINT "unmatched_items_found_item_id_item_id_fk" FOREIGN KEY ("found_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;
+ALTER TABLE "unmatched_item" ADD CONSTRAINT "unmatched_item_lost_item_id_item_id_fk" FOREIGN KEY ("lost_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "unmatched_item" ADD CONSTRAINT "unmatched_item_found_item_id_item_id_fk" FOREIGN KEY ("found_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;
