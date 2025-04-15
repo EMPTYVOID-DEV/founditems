@@ -1,5 +1,5 @@
 {
-  "id": "d29ba380-11ec-4315-b5fd-bd69f60e745a",
+  "id": "4171fd3f-8c3a-4dab-b7c6-870f7ad31eb6",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -106,8 +106,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.matched_items": {
-      "name": "matched_items",
+    "public.matched_item": {
+      "name": "matched_item",
       "schema": "",
       "columns": {
         "id": {
@@ -145,9 +145,9 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "matched_items_lost_item_id_item_id_fk": {
-          "name": "matched_items_lost_item_id_item_id_fk",
-          "tableFrom": "matched_items",
+        "matched_item_lost_item_id_item_id_fk": {
+          "name": "matched_item_lost_item_id_item_id_fk",
+          "tableFrom": "matched_item",
           "tableTo": "item",
           "columnsFrom": [
             "lost_item_id"
@@ -158,9 +158,9 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "matched_items_found_item_id_item_id_fk": {
-          "name": "matched_items_found_item_id_item_id_fk",
-          "tableFrom": "matched_items",
+        "matched_item_found_item_id_item_id_fk": {
+          "name": "matched_item_found_item_id_item_id_fk",
+          "tableFrom": "matched_item",
           "tableTo": "item",
           "columnsFrom": [
             "found_item_id"
@@ -268,8 +268,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.unmatched_items": {
-      "name": "unmatched_items",
+    "public.unmatched_item": {
+      "name": "unmatched_item",
       "schema": "",
       "columns": {
         "id": {
@@ -293,9 +293,9 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "unmatched_items_lost_item_id_item_id_fk": {
-          "name": "unmatched_items_lost_item_id_item_id_fk",
-          "tableFrom": "unmatched_items",
+        "unmatched_item_lost_item_id_item_id_fk": {
+          "name": "unmatched_item_lost_item_id_item_id_fk",
+          "tableFrom": "unmatched_item",
           "tableTo": "item",
           "columnsFrom": [
             "lost_item_id"
@@ -306,9 +306,9 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "unmatched_items_found_item_id_item_id_fk": {
-          "name": "unmatched_items_found_item_id_item_id_fk",
-          "tableFrom": "unmatched_items",
+        "unmatched_item_found_item_id_item_id_fk": {
+          "name": "unmatched_item_found_item_id_item_id_fk",
+          "tableFrom": "unmatched_item",
           "tableTo": "item",
           "columnsFrom": [
             "found_item_id"

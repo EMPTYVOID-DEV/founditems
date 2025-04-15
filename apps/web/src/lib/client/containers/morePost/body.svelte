@@ -19,7 +19,7 @@
 	let itemType = isFound ? 'found' : 'lost';
 	let categoryTranslation = category[1] as keyof Translation['categories'];
 	let typeTranslation = itemType as keyof Translation['posts'];
-	let stateTranslation = state as keyof Translation['postStates'];
+	let stateTranslation = state as keyof Translation['states'];
 </script>
 
 <div class="grid grid-cols-2 items-start gap-2">
@@ -37,7 +37,7 @@
 	</div>
 	<div class="flex flex-col gap-1">
 		<span class="font-bold capitalize">{$svelteLL.general.postState()}</span>
-		<span>{$svelteLL.postStates[stateTranslation]()}</span>
+		<span>{$svelteLL.states[stateTranslation]()}</span>
 	</div>
 	{#each metadata as metaData}
 		{@const metaKey = metaData.name as keyof Translation['metaData']}

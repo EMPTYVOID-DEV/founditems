@@ -60,7 +60,7 @@ export const itemTable = pgTable('item', {
 	isFound: boolean('is_found').notNull().default(true)
 });
 
-export const unmatchedItemsTable = pgTable('unmatched_items', {
+export const unmatchedTable = pgTable('unmatched_item', {
 	id: varchar('id', { length: 8 })
 		.primaryKey()
 		.notNull()
@@ -73,7 +73,7 @@ export const unmatchedItemsTable = pgTable('unmatched_items', {
 		.references(() => itemTable.id, { onDelete: 'cascade' })
 });
 
-export const matchedItemsTable = pgTable('matched_items', {
+export const matchedTable = pgTable('matched_item', {
 	id: varchar('id', { length: 8 })
 		.primaryKey()
 		.notNull()
