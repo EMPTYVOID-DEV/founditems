@@ -21,6 +21,7 @@
 <div class="flex w-full flex-grow flex-col gap-8 p-[2.5%]">
 	<Header />
 	<Body
+		id={item.id}
 		category={item.category}
 		isFound={item.isFound}
 		metadata={item.metadata}

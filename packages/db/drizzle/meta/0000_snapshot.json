@@ -1,125 +1,16 @@
 {
-  "id": "c40fbcfb-feb0-4cd9-b500-be8886639fd0",
+  "id": "d29ba380-11ec-4315-b5fd-bd69f60e745a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.connection": {
-      "name": "connection",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "lost_item_id": {
-          "name": "lost_item_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "found_item_id": {
-          "name": "found_item_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "founder_id": {
-          "name": "founder_id",
-          "type": "varchar(8)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "victim_id": {
-          "name": "victim_id",
-          "type": "varchar(8)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "state": {
-          "name": "state",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "'idle'"
-        },
-        "meta_data": {
-          "name": "meta_data",
-          "type": "json",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "connection_lost_item_id_item_id_fk": {
-          "name": "connection_lost_item_id_item_id_fk",
-          "tableFrom": "connection",
-          "tableTo": "item",
-          "columnsFrom": [
-            "lost_item_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "connection_found_item_id_item_id_fk": {
-          "name": "connection_found_item_id_item_id_fk",
-          "tableFrom": "connection",
-          "tableTo": "item",
-          "columnsFrom": [
-            "found_item_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "connection_founder_id_user_id_fk": {
-          "name": "connection_founder_id_user_id_fk",
-          "tableFrom": "connection",
-          "tableTo": "user",
-          "columnsFrom": [
-            "founder_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "connection_victim_id_user_id_fk": {
-          "name": "connection_victim_id_user_id_fk",
-          "tableFrom": "connection",
-          "tableTo": "user",
-          "columnsFrom": [
-            "victim_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
     "public.item": {
       "name": "item",
       "schema": "",
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "varchar(8)",
           "primaryKey": true,
           "notNull": true
         },
@@ -201,6 +92,78 @@
           "tableTo": "user",
           "columnsFrom": [
             "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.matched_items": {
+      "name": "matched_items",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(8)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "lost_item_id": {
+          "name": "lost_item_id",
+          "type": "varchar(8)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "found_item_id": {
+          "name": "found_item_id",
+          "type": "varchar(8)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "state": {
+          "name": "state",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'idle'"
+        },
+        "meta_data": {
+          "name": "meta_data",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'::json"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "matched_items_lost_item_id_item_id_fk": {
+          "name": "matched_items_lost_item_id_item_id_fk",
+          "tableFrom": "matched_items",
+          "tableTo": "item",
+          "columnsFrom": [
+            "lost_item_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "matched_items_found_item_id_item_id_fk": {
+          "name": "matched_items_found_item_id_item_id_fk",
+          "tableFrom": "matched_items",
+          "tableTo": "item",
+          "columnsFrom": [
+            "found_item_id"
           ],
           "columnsTo": [
             "id"
@@ -311,19 +274,19 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "varchar(8)",
           "primaryKey": true,
           "notNull": true
         },
         "lost_item_id": {
           "name": "lost_item_id",
-          "type": "integer",
+          "type": "varchar(8)",
           "primaryKey": false,
           "notNull": true
         },
         "found_item_id": {
           "name": "found_item_id",
-          "type": "integer",
+          "type": "varchar(8)",
           "primaryKey": false,
           "notNull": true
         }

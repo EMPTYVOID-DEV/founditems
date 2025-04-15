@@ -25,7 +25,7 @@
 
 	let beforeAction: SubmitFunctionBefore = ({ formData }) => {
 		formData.append('address', JSON.stringify(itemAddress));
-		formData.append('date', itemDate ? itemDate.toISOString() : '');
+		formData.append('date', itemDate ? itemDate.toLocaleString() : '');
 		formData.append('type', itemType);
 		formData.append('metaData', JSON.stringify(PostDataInstance.metaData));
 		formData.append('description', fullDescription);

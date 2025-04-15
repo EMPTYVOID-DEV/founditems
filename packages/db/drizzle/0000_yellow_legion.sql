@@ -1,15 +1,5 @@
-CREATE TABLE "connection" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"lost_item_id" integer NOT NULL,
-	"found_item_id" integer NOT NULL,
-	"founder_id" varchar(8) NOT NULL,
-	"victim_id" varchar(8) NOT NULL,
-	"state" text DEFAULT 'idle' NOT NULL,
-	"meta_data" json NOT NULL
-);
---> statement-breakpoint
 CREATE TABLE "item" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" varchar(8) PRIMARY KEY NOT NULL,
 	"user_id" varchar(8) NOT NULL,
 	"creation_date" timestamp with time zone DEFAULT now() NOT NULL,
 	"lang" text NOT NULL,
@@ -21,6 +11,14 @@ CREATE TABLE "item" (
 	"description" text NOT NULL,
 	"images" text[] NOT NULL,
 	"is_found" boolean DEFAULT true NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE "matched_items" (
+	"id" varchar(8) PRIMARY KEY NOT NULL,
+	"lost_item_id" varchar(8) NOT NULL,
+	"found_item_id" varchar(8) NOT NULL,
+	"state" text DEFAULT 'idle' NOT NULL,
+	"meta_data" json DEFAULT '{}'::json NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "otp" (
@@ -38,9 +36,9 @@ CREATE TABLE "session" (
 );
 --> statement-breakpoint
 CREATE TABLE "unmatched_items" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"lost_item_id" integer NOT NULL,
-	"found_item_id" integer NOT NULL
+	"id" varchar(8) PRIMARY KEY NOT NULL,
+	"lost_item_id" varchar(8) NOT NULL,
+	"found_item_id" varchar(8) NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "user" (
@@ -55,11 +53,9 @@ CREATE TABLE "user" (
 	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
-ALTER TABLE "connection" ADD CONSTRAINT "connection_lost_item_id_item_id_fk" FOREIGN KEY ("lost_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "connection" ADD CONSTRAINT "connection_found_item_id_item_id_fk" FOREIGN KEY ("found_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "connection" ADD CONSTRAINT "connection_founder_id_user_id_fk" FOREIGN KEY ("founder_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "connection" ADD CONSTRAINT "connection_victim_id_user_id_fk" FOREIGN KEY ("victim_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "item" ADD CONSTRAINT "item_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "matched_items" ADD CONSTRAINT "matched_items_lost_item_id_item_id_fk" FOREIGN KEY ("lost_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "matched_items" ADD CONSTRAINT "matched_items_found_item_id_item_id_fk" FOREIGN KEY ("found_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "session" ADD CONSTRAINT "session_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "unmatched_items" ADD CONSTRAINT "unmatched_items_lost_item_id_item_id_fk" FOREIGN KEY ("lost_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "unmatched_items" ADD CONSTRAINT "unmatched_items_found_item_id_item_id_fk" FOREIGN KEY ("found_item_id") REFERENCES "public"."item"("id") ON DELETE cascade ON UPDATE no action;

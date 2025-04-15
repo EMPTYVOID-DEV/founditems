@@ -9,7 +9,7 @@ import { matchedItemsTable, db, eq, itemTable, or } from 'db';
 export const load: ServerLoad = async ({ params }) => {
 	const id = params.postId!;
 	let item = (await db.query.itemTable.findFirst({
-		where: eq(itemTable.id, parseInt(id))
+		where: eq(itemTable.id, id)
 	}))!;
 	return { item };
 };
@@ -17,20 +17,16 @@ export const load: ServerLoad = async ({ params }) => {
 export const actions: Actions = {
 	release: async ({ params }) => {
 		const id = params.postId!;
-		const parsedId = parseInt(id);
 		await db.transaction(async (tx) => {
 			const connection = await tx.query.matchedItemsTable.findFirst({
-				where: or(
-					eq(matchedItemsTable.foundItemId, parsedId),
-					eq(matchedItemsTable.lostItemId, parsedId)
-				)
+				where: or(eq(matchedItemsTable.foundItemId, id), eq(matchedItemsTable.lostItemId, id))
 			});
 			if (connection) {
-				const otherItemId = connection.foundItemId == parsedId ? parsedId : connection.lostItemId;
+				const otherItemId = connection.foundItemId == id ? id : connection.lostItemId;
 				await tx.update(itemTable).set({ state: 'idle' }).where(eq(itemTable.id, otherItemId));
 			}
-			await deleteItemProofs(parsedId);
-			await tx.delete(itemTable).where(eq(itemTable.id, parsedId));
+			await deleteItemProofs(id);
+			await tx.delete(itemTable).where(eq(itemTable.id, id));
 		});
 		redirect(303, postsPage);
 	}

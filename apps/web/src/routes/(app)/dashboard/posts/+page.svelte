@@ -13,13 +13,16 @@
 	let { data } = $props();
 </script>
 
-{#snippet postSnippet(itemType: ItemType, category: string[], state: ItemStates, id: number)}
+{#snippet postSnippet(itemType: ItemType, category: string[], state: ItemStates, id: string)}
 	{@const src = PostData.getImageSrc(category[1])}
-	{@const categoryTranslation = category[1] as keyof Translation['categories']}
 	{@const typeTranslation = itemType as keyof Translation['posts']}
 	{@const stateTranslation = state as keyof Translation['postStates']}
 	<div class="border-foreground bg-foreground/15 flex items-center gap-4 rounded-md border-2 p-2">
 		<img alt="category" {src} class="aspect-square w-10 object-cover object-center" />
+		<div class="flex flex-col">
+			<span class="font-bold">ID</span>
+			<span>{id}</span>
+		</div>
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.postType()}</span>
 			<span>{$svelteLL.posts[typeTranslation]()}</span>
@@ -27,10 +30,6 @@
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.postState()}</span>
 			<span>{$svelteLL.postStates[stateTranslation]()}</span>
-		</div>
-		<div class="flex flex-col">
-			<span class="font-bold capitalize">{$svelteLL.general.itemCategory()}</span>
-			<span class="line-clamp-1">{$svelteLL.categories[categoryTranslation]()}</span>
 		</div>
 		<Button
 			class={cn({
@@ -41,7 +40,6 @@
 			variant="secondary"
 		>
 			<MoreIcon />
-			<span class="text-small capitalize sm:hidden">{$svelteLL.general.seeInfo()}</span>
 		</Button>
 	</div>
 {/snippet}
@@ -54,7 +52,7 @@
 			<span class="capitalize">{$svelteLL.posts.newPost()}</span>
 		</Button>
 	</div>
-	<div class="flex flex-col gap-4">
+	<div class="grid grid-cols-2 gap-4 sm:grid-cols-1">
 		{#each data.posts as post}
 			{@const itemType = post.isFound ? 'found' : 'lost'}
 			{@render postSnippet(itemType, post.category, post.state, post.id)}

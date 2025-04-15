@@ -7,24 +7,14 @@ import {
 	type ItemAddress,
 	otpCodeLength
 } from 'utils';
-
-import {
-	boolean,
-	pgTable,
-	text,
-	timestamp,
-	varchar,
-	serial,
-	json,
-	integer
-} from 'drizzle-orm/pg-core';
-import { nanoid } from 'nanoid';
+import { boolean, pgTable, text, timestamp, varchar, serial, json } from 'drizzle-orm/pg-core';
+import { customAlphabet } from 'nanoid';
 
 export const userTable = pgTable('user', {
 	id: varchar('id', { length: 8 })
 		.primaryKey()
 		.notNull()
-		.$default(() => nanoid(8)),
+		.$default(() => customAlphabet('0123456789')(8)),
 	fullname: text('fullname').notNull(),
 	email: text('email').unique().notNull(),
 	password: text('password').notNull(),
@@ -46,7 +36,10 @@ export const sessionTable = pgTable('session', {
 });
 
 export const itemTable = pgTable('item', {
-	id: serial('id').primaryKey().notNull(),
+	id: varchar('id', { length: 8 })
+		.primaryKey()
+		.notNull()
+		.$default(() => customAlphabet('0123456789')(8)),
 	userId: varchar('user_id', { length: 8 })
 		.notNull()
 		.references(() => userTable.id, { onDelete: 'cascade' }),
@@ -68,21 +61,27 @@ export const itemTable = pgTable('item', {
 });
 
 export const unmatchedItemsTable = pgTable('unmatched_items', {
-	id: serial('id').primaryKey().notNull(),
-	lostItemId: integer('lost_item_id')
+	id: varchar('id', { length: 8 })
+		.primaryKey()
+		.notNull()
+		.$default(() => customAlphabet('0123456789')(8)),
+	lostItemId: varchar('lost_item_id', { length: 8 })
 		.notNull()
 		.references(() => itemTable.id, { onDelete: 'cascade' }),
-	foundItemId: integer('found_item_id')
+	foundItemId: varchar('found_item_id', { length: 8 })
 		.notNull()
 		.references(() => itemTable.id, { onDelete: 'cascade' })
 });
 
 export const matchedItemsTable = pgTable('matched_items', {
-	id: serial('id').primaryKey().notNull(),
-	lostItemId: integer('lost_item_id')
+	id: varchar('id', { length: 8 })
+		.primaryKey()
+		.notNull()
+		.$default(() => customAlphabet('0123456789')(8)),
+	lostItemId: varchar('lost_item_id', { length: 8 })
 		.notNull()
 		.references(() => itemTable.id, { onDelete: 'cascade' }),
-	foundItemId: integer('found_item_id')
+	foundItemId: varchar('found_item_id', { length: 8 })
 		.notNull()
 		.references(() => itemTable.id, { onDelete: 'cascade' }),
 	state: text('state').$type<MatchStates>().notNull().default('idle'),

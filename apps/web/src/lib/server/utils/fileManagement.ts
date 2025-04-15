@@ -30,7 +30,7 @@ export async function uploadProofs(proofs: File[]) {
 	return right(filenames);
 }
 
-export async function deleteItemProofs(itemId: number) {
+export async function deleteItemProofs(itemId: string) {
 	const deleteEndPoint = `${PUBLIC_API_HOST}/store/proofs/${itemId}`;
 	const fetchPromise = fetch(deleteEndPoint, { method: 'DELETE' });
 	const res = await handleFetchError(fetchPromise);

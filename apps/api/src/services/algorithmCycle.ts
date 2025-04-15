@@ -17,7 +17,7 @@ import {
 import { TextSimilarity } from './textSimilarity.js';
 import { Matcher } from './matcher.js';
 import { Logger } from './logger.js';
-import { sendEmail } from './mail.js';
+import { sendNotification } from './mail.js';
 
 export class AlgorithmCycle {
 	blockIndex: number;
@@ -202,34 +202,28 @@ export class AlgorithmCycle {
 					.where(inArray(itemTable.id, matchedItemIds));
 			});
 
-			await AlgorithmCycle.notifyUsers(matchActions);
+			AlgorithmCycle.notifyUsers(matchActions);
 		}
 
 		this.actions = [];
 	}
 
 	private static removeMatchDuplicates(actions: CycleAction[]) {
-		const seen = new Map<number, CycleAction>();
+		const seen = new Map<string, CycleAction>();
 		for (const action of actions)
 			if (!seen.has(action.lostItemId)) seen.set(action.lostItemId, action);
 		return Array.from(seen.values());
 	}
 
-	private static async notifyUsers(matches: Extract<CycleAction, { type: 'match' }>[]) {
-		for (const { founderId, victimId } of matches) {
-			const users = await Promise.all([
-				db.query.userTable.findFirst({ where: eq(userTable.id, founderId) }),
-				db.query.userTable.findFirst({ where: eq(userTable.id, victimId) })
-			]);
+	private static notifyUsers(matches: Extract<CycleAction, { type: 'match' }>[]) {
+		const uniqueUserIds = [
+			...new Set(matches.flatMap(({ victimId, founderId }) => [founderId, victimId]))
+		];
 
-			for (const user of users) if (user) await AlgorithmCycle.sendNotification(user.email);
-		}
-	}
-
-	private static sendNotification(email: string) {
-		const subject = 'System Match';
-		const html =
-			'<h1>Matched your item</h1><p>We have matches your item. Please enter the site for more details.</p>';
-		return sendEmail(email, subject, html);
+		uniqueUserIds.forEach((userId) => {
+			db.query.userTable
+				.findFirst({ where: eq(userTable.id, userId) })
+				.then((user) => user && sendNotification(user.email));
+		});
 	}
 }

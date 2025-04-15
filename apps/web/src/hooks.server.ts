@@ -53,7 +53,7 @@ const handleRouting: Handle = async ({ event, resolve }) => {
 	if (event.params.postId) {
 		const postId = event.params.postId;
 		let item = await db.query.itemTable.findFirst({
-			where: and(eq(itemTable.id, parseInt(postId)), eq(itemTable.userId, user!.id))
+			where: and(eq(itemTable.id, postId), eq(itemTable.userId, user!.id))
 		});
 		if (!item) redirect(303, postsPage);
 	}
