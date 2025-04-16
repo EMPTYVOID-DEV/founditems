@@ -4,6 +4,6 @@
 </script>
 
 <div class="flex items-center justify-between">
-	<h2 class="text-primary capitalize">{$svelteLL.posts.postInformation()}</h2>
+	<h2 class="text-primary capitalize">{$svelteLL.matches.matchInformation()}</h2>
 	<BackButton />
 </div>

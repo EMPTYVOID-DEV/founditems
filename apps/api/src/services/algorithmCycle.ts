@@ -12,7 +12,8 @@ import {
 	and,
 	arrayContains,
 	notExists,
-	userTable
+	userTable,
+	not
 } from 'db';
 import { TextSimilarity } from './textSimilarity.js';
 import { Matcher } from './matcher.js';
@@ -107,6 +108,7 @@ export class AlgorithmCycle {
 			.from(itemTable)
 			.where(
 				and(
+					not(eq(itemTable.userId, lostItem.userId)),
 					eq(itemTable.isFound, true),
 					eq(itemTable.state, 'idle'),
 					arrayContains(itemTable.category, lostItem.category),
@@ -143,7 +145,7 @@ export class AlgorithmCycle {
 								type: 'match',
 								foundItemId: pair.foundItem.id,
 								lostItemId: pair.lostItem.id,
-								founderId: pair.foundItem.userId,
+								finderId: pair.foundItem.userId,
 								victimId: pair.lostItem.userId
 							});
 						else
@@ -217,7 +219,7 @@ export class AlgorithmCycle {
 
 	private static notifyUsers(matches: Extract<CycleAction, { type: 'match' }>[]) {
 		const uniqueUserIds = [
-			...new Set(matches.flatMap(({ victimId, founderId }) => [founderId, victimId]))
+			...new Set(matches.flatMap(({ victimId, finderId }) => [finderId, victimId]))
 		];
 
 		uniqueUserIds.forEach((userId) => {

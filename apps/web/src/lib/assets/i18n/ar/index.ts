@@ -152,7 +152,9 @@ const ar: BaseTranslation = {
 		postType: 'نوع',
 		postState: 'الحالة',
 		itemCategory: 'الفئة',
-		seeMore: 'انظر المزيد'
+		seeMore: 'انظر المزيد',
+		lost: 'مفقود',
+		found: 'موجود'
 	},
 	errors: {
 		forbidden: 'غير مسموح',
@@ -244,8 +246,6 @@ const ar: BaseTranslation = {
 	posts: {
 		newPost: 'منشور جديد',
 		returnCategories: 'العودة إلى الفئات',
-		lost: 'مفقود',
-		found: 'موجود',
 		selectItemType: 'اختر نوع الشيء',
 		createDescription:
 			'البيانات الوصفية للشيء لها قيم افتراضية. إذا كنت لا تعرف قيمها فلا تقم بتعيينها',
@@ -265,7 +265,12 @@ const ar: BaseTranslation = {
 	},
 	matches: {
 		yourItem: 'شيئك',
-		matchedItem: 'الشيء المطابق'
+		matchedItem: 'الشيء المطابق',
+		matchInformation: 'معلومات المطابقة',
+		idleLost: 'تمت مطابقة الشيء الخاص بك، ولكنك تحتاج إلى انتظار التأكيد من قبل وَاجِد',
+		validatedLost: 'تم التحقق من صحة التطابق، يمكنك الآن استخدام معلومات وَاجِد للاتصال به',
+		idleFound: 'قد تكون مطابقة النظام خاطئة لذلك نريد منك التحقق من صحتها',
+		validatedFound: 'شكرًا لك على مجهودك في العثور على الشيء'
 	}
 };
 

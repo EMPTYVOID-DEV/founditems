@@ -11,8 +11,15 @@
 	let { data } = $props();
 </script>
 
-{#snippet matchSnippet(id: string, ownItemId: string, category: string[], state: MatchStates)}
+{#snippet matchSnippet(
+	id: string,
+	ownItemId: string,
+	category: string[],
+	state: MatchStates,
+	isFound: boolean
+)}
 	{@const src = PostData.getImageSrc(category[1])}
+	{@const typeTranslation = isFound ? 'found' : ('lost' as keyof Translation['general'])}
 	{@const stateTranslation = state as keyof Translation['states']}
 	<div
 		class="border-foreground bg-foreground/15 flex flex-wrap items-center gap-4 rounded-md border-2 p-2"
@@ -21,6 +28,10 @@
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.postState()}</span>
 			<span>{$svelteLL.states[stateTranslation]()}</span>
+		</div>
+		<div class="flex flex-col">
+			<span class="font-bold capitalize">{$svelteLL.general.postType()}</span>
+			<span>{$svelteLL.general[typeTranslation]()}</span>
 		</div>
 		<Button
 			class={cn('md:basis-full', {
@@ -33,7 +44,7 @@
 			{$svelteLL.matches.yourItem()}
 		</Button>
 		<Button class={cn('md:basis-full')} onclick={() => goto(`${matchesPage}/more/${id}`)}>
-			<MoreIcon />
+			<MoreIcon classname="fill-background" />
 			<span>{$svelteLL.general.seeMore()}</span>
 		</Button>
 	</div>
@@ -43,7 +54,7 @@
 	<h1 class="capitalize">{$svelteLL.navbar.matches()}</h1>
 	<div class="grid grid-cols-2 gap-4 sm:grid-cols-1">
 		{#each data.matches as match}
-			{@render matchSnippet(match.id, match.ownItemId, match.category, match.state)}
+			{@render matchSnippet(match.id, match.ownItemId, match.category, match.state, match.isFound)}
 		{/each}
 	</div>
 </div>
