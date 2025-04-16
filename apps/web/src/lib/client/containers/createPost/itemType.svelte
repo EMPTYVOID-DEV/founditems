@@ -19,13 +19,13 @@
 			size="lg"
 			class="rounded-3xl"
 			variant={isLost ? 'secondary' : 'outline'}
-			onclick={() => (isLost = true)}>{$svelteLL.posts.lost()}</Button
+			onclick={() => (isLost = true)}>{$svelteLL.general.lost()}</Button
 		>
 		<Button
 			size="lg"
 			class="rounded-3xl"
 			variant={!isLost ? 'secondary' : 'outline'}
-			onclick={() => (isLost = false)}>{$svelteLL.posts.found()}</Button
+			onclick={() => (isLost = false)}>{$svelteLL.general.found()}</Button
 		>
 	</div>
 </div>

@@ -152,7 +152,9 @@ const fr: Translation = {
 		postState: 'état',
 		postType: 'type',
 		itemCategory: 'catégorie',
-		seeMore: 'voir plus'
+		seeMore: 'voir plus',
+		found: 'trouvé',
+		lost: 'perdue'
 	},
 	errors: {
 		forbidden: 'interdit',
@@ -246,8 +248,6 @@ const fr: Translation = {
 	posts: {
 		newPost: 'nouveau poste',
 		returnCategories: 'retour aux catégories',
-		found: 'trouvé',
-		lost: 'perdue',
 		selectItemType: "sélectionner le type d'object",
 		createDescription:
 			"les métadonnées d'object ont des valeurs par défaut. si vous ne connaissez pas leurs valeurs, ne les définissez pas.",
@@ -267,7 +267,14 @@ const fr: Translation = {
 	},
 	matches: {
 		yourItem: 'votre object',
-		matchedItem: 'objet correspondant'
+		matchedItem: 'objet correspondant',
+		matchInformation: 'informations sur le match',
+		idleLost:
+			"votre objet a été trouvé, mais vous devez attendre la confirmation de l'auteur de le trouveur",
+		validatedLost:
+			'la correspondance a été validée, vous pouvez maintenant utiliser les informations de trouveur pour le contacter',
+		validatedFound: "merci de votre effort pour retrouver l'objet",
+		idleFound: 'la correspondance du système peut être erronée et nous voulons que vous la validiez'
 	}
 };
 

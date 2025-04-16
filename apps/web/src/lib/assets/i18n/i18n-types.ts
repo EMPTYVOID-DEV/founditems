@@ -595,6 +595,14 @@ type RootTranslation = {
 		 * ا​ن​ظ​ر​ ​ا​ل​م​ز​ي​د
 		 */
 		seeMore: string
+		/**
+		 * م​ف​ق​و​د
+		 */
+		lost: string
+		/**
+		 * م​و​ج​و​د
+		 */
+		found: string
 	}
 	errors: {
 		/**
@@ -815,6 +823,9 @@ type RootTranslation = {
 		 * م​ط​ا​ب​ق​ة
 		 */
 		matched: string
+		/**
+		 * ص​ا​ل​ح
+		 */
 		validated: string
 	}
 	navbar: {
@@ -893,14 +904,6 @@ type RootTranslation = {
 		 */
 		returnCategories: string
 		/**
-		 * م​ف​ق​و​د
-		 */
-		lost: string
-		/**
-		 * م​و​ج​و​د
-		 */
-		found: string
-		/**
 		 * ا​خ​ت​ر​ ​ن​و​ع​ ​ا​ل​ش​ي​ء
 		 */
 		selectItemType: string
@@ -970,6 +973,26 @@ type RootTranslation = {
 		 * ا​ل​ش​ي​ء​ ​ا​ل​م​ط​ا​ب​ق
 		 */
 		matchedItem: string
+		/**
+		 * م​ع​ل​و​م​ا​ت​ ​ا​ل​م​ط​ا​ب​ق​ة
+		 */
+		matchInformation: string
+		/**
+		 * ت​م​ت​ ​م​ط​ا​ب​ق​ة​ ​ا​ل​ش​ي​ء​ ​ا​ل​خ​ا​ص​ ​ب​ك​،​ ​و​ل​ك​ن​ك​ ​ت​ح​ت​ا​ج​ ​إ​ل​ى​ ​ا​ن​ت​ظ​ا​ر​ ​ا​ل​ت​أ​ك​ي​د​ ​م​ن​ ​ق​ب​ل​ ​و​َ​ا​ج​ِ​د
+		 */
+		idleLost: string
+		/**
+		 * ت​م​ ​ا​ل​ت​ح​ق​ق​ ​م​ن​ ​ص​ح​ة​ ​ا​ل​ت​ط​ا​ب​ق​،​ ​ي​م​ك​ن​ك​ ​ا​ل​آ​ن​ ​ا​س​ت​خ​د​ا​م​ ​م​ع​ل​و​م​ا​ت​ ​و​َ​ا​ج​ِ​د​ ​ل​ل​ا​ت​ص​ا​ل​ ​ب​ه
+		 */
+		validatedLost: string
+		/**
+		 * ق​د​ ​ت​ك​و​ن​ ​م​ط​ا​ب​ق​ة​ ​ا​ل​ن​ظ​ا​م​ ​خ​ا​ط​ئ​ة​ ​ل​ذ​ل​ك​ ​ن​ر​ي​د​ ​م​ن​ك​ ​ا​ل​ت​ح​ق​ق​ ​م​ن​ ​ص​ح​ت​ه​ا
+		 */
+		idleFound: string
+		/**
+		 * ش​ك​ر​ً​ا​ ​ل​ك​ ​ع​ل​ى​ ​م​ج​ه​و​د​ك​ ​ف​ي​ ​ا​ل​ع​ث​و​ر​ ​ع​ل​ى​ ​ا​ل​ش​ي​ء
+		 */
+		validatedFound: string
 	}
 }
 
@@ -1555,6 +1578,14 @@ export type TranslationFunctions = {
 		 * انظر المزيد
 		 */
 		seeMore: () => LocalizedString
+		/**
+		 * مفقود
+		 */
+		lost: () => LocalizedString
+		/**
+		 * موجود
+		 */
+		found: () => LocalizedString
 	}
 	errors: {
 		/**
@@ -1769,6 +1800,9 @@ export type TranslationFunctions = {
 		 * مطابقة
 		 */
 		matched: () => LocalizedString
+		/**
+		 * صالح
+		 */
 		validated: () => LocalizedString
 	}
 	navbar: {
@@ -1847,14 +1881,6 @@ export type TranslationFunctions = {
 		 */
 		returnCategories: () => LocalizedString
 		/**
-		 * مفقود
-		 */
-		lost: () => LocalizedString
-		/**
-		 * موجود
-		 */
-		found: () => LocalizedString
-		/**
 		 * اختر نوع الشيء
 		 */
 		selectItemType: () => LocalizedString
@@ -1924,6 +1950,26 @@ export type TranslationFunctions = {
 		 * الشيء المطابق
 		 */
 		matchedItem: () => LocalizedString
+		/**
+		 * معلومات المطابقة
+		 */
+		matchInformation: () => LocalizedString
+		/**
+		 * تمت مطابقة الشيء الخاص بك، ولكنك تحتاج إلى انتظار التأكيد من قبل وَاجِد
+		 */
+		idleLost: () => LocalizedString
+		/**
+		 * تم التحقق من صحة التطابق، يمكنك الآن استخدام معلومات وَاجِد للاتصال به
+		 */
+		validatedLost: () => LocalizedString
+		/**
+		 * قد تكون مطابقة النظام خاطئة لذلك نريد منك التحقق من صحتها
+		 */
+		idleFound: () => LocalizedString
+		/**
+		 * شكرًا لك على مجهودك في العثور على الشيء
+		 */
+		validatedFound: () => LocalizedString
 	}
 }
 

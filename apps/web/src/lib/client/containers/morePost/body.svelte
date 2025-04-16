@@ -7,29 +7,23 @@
 		category,
 		isFound,
 		metadata,
-		state,
-		id
+		state
 	}: {
 		category: string[];
 		isFound: boolean;
 		state: ItemStates;
 		metadata: ItemMetaData;
-		id: string;
 	} = $props();
 	let itemType = isFound ? 'found' : 'lost';
 	let categoryTranslation = category[1] as keyof Translation['categories'];
-	let typeTranslation = itemType as keyof Translation['posts'];
+	let typeTranslation = itemType as keyof Translation['general'];
 	let stateTranslation = state as keyof Translation['states'];
 </script>
 
 <div class="grid grid-cols-2 items-start gap-2">
-	<div class="flex flex-col">
-		<span class="font-bold">ID</span>
-		<span>{id}</span>
-	</div>
 	<div class="flex flex-col gap-1">
 		<span class="font-bold capitalize">{$svelteLL.general.postType()}</span>
-		<span>{$svelteLL.posts[typeTranslation]()}</span>
+		<span>{$svelteLL.general[typeTranslation]()}</span>
 	</div>
 	<div class="flex flex-col gap-1">
 		<span class="font-bold capitalize">{$svelteLL.general.itemCategory()}</span>

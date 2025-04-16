@@ -13,6 +13,12 @@ export const load: ServerLoad = async ({ locals }) => {
 		);
 
 	return {
-		matches: joinResult.map((i) => ({ ...i.match, category: i.category, ownItemId: i.ownItemId }))
+		matches: joinResult.map((i) => ({
+			id: i.match.id,
+			state: i.match.state,
+			category: i.category,
+			ownItemId: i.ownItemId,
+			isFound: i.match.foundItemId == i.ownItemId
+		}))
 	};
 };

@@ -15,7 +15,7 @@
 
 {#snippet postSnippet(itemType: ItemType, category: string[], state: ItemStates, id: string)}
 	{@const src = PostData.getImageSrc(category[1])}
-	{@const typeTranslation = itemType as keyof Translation['posts']}
+	{@const typeTranslation = itemType as keyof Translation['general']}
 	{@const stateTranslation = state as keyof Translation['states']}
 	<div
 		class="border-foreground bg-foreground/15 flex flex-wrap items-center gap-4 rounded-md border-2 p-2"
@@ -23,7 +23,7 @@
 		<img alt="category" {src} class="aspect-square w-10 object-cover object-center" />
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.postType()}</span>
-			<span>{$svelteLL.posts[typeTranslation]()}</span>
+			<span>{$svelteLL.general[typeTranslation]()}</span>
 		</div>
 		<div class="flex flex-col">
 			<span class="font-bold capitalize">{$svelteLL.general.postState()}</span>
