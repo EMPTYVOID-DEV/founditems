@@ -72,11 +72,12 @@ export class Matcher {
 	}
 
 	private static matchRawAddress(a: RawAddress, b: RawAddress) {
-		const latA = parseFloat(a.latitude);
-		const latB = parseFloat(b.latitude);
-		const lonA = parseFloat(a.longtitude);
-		const lonB = parseFloat(b.longtitude);
-		const distance = Matcher.getDistanceInMeters(latA, lonA, latB, lonB);
+		const distance = Matcher.getDistanceInMeters(
+			a.latitude,
+			a.longtitude,
+			b.latitude,
+			b.longtitude
+		);
 		return distance <= zodEnv.ADDRESS_MATCHING_THRESHOLD;
 	}
 

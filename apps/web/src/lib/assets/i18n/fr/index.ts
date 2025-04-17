@@ -268,13 +268,16 @@ const fr: Translation = {
 	matches: {
 		yourItem: 'votre object',
 		matchedItem: 'objet correspondant',
-		matchInformation: 'informations sur le match',
+		matchInformation: 'informations de match',
 		idleLost:
 			"votre objet a été trouvé, mais vous devez attendre la confirmation de l'auteur de le trouveur",
 		validatedLost:
 			'la correspondance a été validée, vous pouvez maintenant utiliser les informations de trouveur pour le contacter',
 		validatedFound: "merci de votre effort pour retrouver l'objet",
-		idleFound: 'la correspondance du système peut être erronée et nous voulons que vous la validiez'
+		idleFound:
+			'la correspondance du système peut être erronée et nous voulons que vous la validiez',
+		validateMatch: 'validez le match',
+		rejectMatch: 'rejectez le match'
 	}
 };
 

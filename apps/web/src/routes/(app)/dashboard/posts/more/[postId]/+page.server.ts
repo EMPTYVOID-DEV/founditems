@@ -1,13 +1,13 @@
 import { deleteItemProofs } from '@server/utils/fileManagement';
 import { postsPage } from '@shared/const';
-import { redirect, type Actions, type ServerLoad } from '@sveltejs/kit';
+import { error, redirect, type Actions, type ServerLoad } from '@sveltejs/kit';
 import { matchedTable, db, eq, itemTable, or, and } from 'db';
 
 async function validateAccess(postId: string, userId: string) {
 	let item = await db.query.itemTable.findFirst({
 		where: and(eq(itemTable.id, postId), eq(itemTable.userId, userId))
 	});
-	if (!item) redirect(303, postsPage);
+	if (!item) error(403);
 	return item;
 }
 

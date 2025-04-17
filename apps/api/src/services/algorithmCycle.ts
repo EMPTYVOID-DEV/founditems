@@ -33,34 +33,22 @@ export class AlgorithmCycle {
 
 	async startAlgorithm() {
 		Logger.info('starting algorithm');
-		await this.textSimilarity.initialize().catch((error) => {
-			Logger.error(JSON.stringify(error), 'initializing text similarity');
-		});
+		await this.textSimilarity.initialize();
 		this.startCycle();
 	}
 
 	private async startCycle() {
-		Logger.info('cycle starts');
-
-		const lostItems = await this.fetchBlock();
-
-		const matchingPairs = await this.createMatchingPairs(lostItems);
-
-		await this.createActions(matchingPairs);
-
-		this.updateCycleState(lostItems.length);
-
-		Logger.info('cycle ends');
-
-		this.scheduleNewCycle();
-	}
-
-	private async scheduleNewCycle() {
 		try {
+			Logger.info('cycle starts');
+			const lostItems = await this.fetchBlock();
+			const matchingPairs = await this.createMatchingPairs(lostItems);
+			await this.createActions(matchingPairs);
 			await this.postCycle();
+			this.updateCycleState(lostItems.length);
 		} catch (error) {
-			Logger.error(JSON.stringify(error), 'post cycle');
+			Logger.error(JSON.stringify(error), 'cycle error');
 		} finally {
+			Logger.info('cycle ends');
 			setTimeout(() => {
 				this.startCycle();
 			}, zodEnv.MATCHING_CYCLE_TIMEOUT);
@@ -74,17 +62,12 @@ export class AlgorithmCycle {
 
 	private async fetchBlock() {
 		Logger.info('fetching a cycle block');
-		return await db.query.itemTable
-			.findMany({
-				where: eq(itemTable.isFound, false),
-				orderBy: asc(itemTable.creationDate),
-				offset: this.blockIndex * zodEnv.ALGORITHM_BLOCK_SIZE,
-				limit: zodEnv.ALGORITHM_BLOCK_SIZE
-			})
-			.catch((error) => {
-				Logger.error(JSON.stringify(error), 'fetching the cycle block');
-				return [];
-			});
+		return await db.query.itemTable.findMany({
+			where: eq(itemTable.isFound, false),
+			orderBy: asc(itemTable.creationDate),
+			offset: this.blockIndex * zodEnv.ALGORITHM_BLOCK_SIZE,
+			limit: zodEnv.ALGORITHM_BLOCK_SIZE
+		});
 	}
 
 	private async createMatchingPairs(lostItems: Item[]) {
@@ -137,30 +120,22 @@ export class AlgorithmCycle {
 					`started matching lost_item_id:${pair.lostItem.id} with found_item_id:${pair.foundItem.id}`
 				);
 				const matcher = new Matcher(pair.foundItem, pair.lostItem, this.textSimilarity);
-				return matcher
-					.match()
-					.then((matchingResult) => {
-						if (matchingResult)
-							this.actions.push({
-								type: 'match',
-								foundItemId: pair.foundItem.id,
-								lostItemId: pair.lostItem.id,
-								finderId: pair.foundItem.userId,
-								victimId: pair.lostItem.userId
-							});
-						else
-							this.actions.push({
-								type: 'unmatch',
-								foundItemId: pair.foundItem.id,
-								lostItemId: pair.lostItem.id
-							});
-					})
-					.catch((error) =>
-						Logger.error(
-							JSON.stringify(error),
-							`matching lost_item_id:${pair.lostItem.id} with found_item_id:${pair.foundItem.id}`
-						)
-					);
+				return matcher.match().then((matchingResult) => {
+					if (matchingResult)
+						this.actions.push({
+							type: 'match',
+							foundItemId: pair.foundItem.id,
+							lostItemId: pair.lostItem.id,
+							finderId: pair.foundItem.userId,
+							victimId: pair.lostItem.userId
+						});
+					else
+						this.actions.push({
+							type: 'unmatch',
+							foundItemId: pair.foundItem.id,
+							lostItemId: pair.lostItem.id
+						});
+				});
 			})
 		);
 	}
@@ -168,24 +143,27 @@ export class AlgorithmCycle {
 	private async postCycle() {
 		Logger.info('running post cycle actions');
 
-		if (this.actions.length == 0) return;
-
 		const unmatchActions = this.actions.filter((action) => action.type === 'unmatch');
 
 		const matchActions = AlgorithmCycle.removeMatchDuplicates(
 			this.actions.filter((action) => action.type === 'match')
 		) as Extract<CycleAction, { type: 'match' }>[];
 
-		if (unmatchActions.length > 0)
-			await db.insert(unmatchedTable).values(
-				unmatchActions.map((action) => ({
-					foundItemId: action.foundItemId,
-					lostItemId: action.lostItemId
-				}))
-			);
+		const matchedItemIds = matchActions.flatMap((action) => [
+			action.foundItemId,
+			action.lostItemId
+		]);
 
-		if (matchActions.length > 0) {
-			await db.transaction(async (tx) => {
+		await db.transaction(async (tx) => {
+			if (unmatchActions.length > 0)
+				await tx.insert(unmatchedTable).values(
+					unmatchActions.map((action) => ({
+						foundItemId: action.foundItemId,
+						lostItemId: action.lostItemId
+					}))
+				);
+
+			if (matchActions.length > 0)
 				await tx.insert(matchedTable).values(
 					matchActions.map((action) => ({
 						foundItemId: action.foundItemId,
@@ -193,19 +171,13 @@ export class AlgorithmCycle {
 					}))
 				);
 
-				const matchedItemIds = matchActions.flatMap((action) => [
-					action.foundItemId,
-					action.lostItemId
-				]);
+			await tx
+				.update(itemTable)
+				.set({ state: 'matched' })
+				.where(inArray(itemTable.id, matchedItemIds));
+		});
 
-				await tx
-					.update(itemTable)
-					.set({ state: 'matched' })
-					.where(inArray(itemTable.id, matchedItemIds));
-			});
-
-			AlgorithmCycle.notifyUsers(matchActions);
-		}
+		AlgorithmCycle.notifyUsers(matchActions);
 
 		this.actions = [];
 	}
@@ -222,10 +194,15 @@ export class AlgorithmCycle {
 			...new Set(matches.flatMap(({ victimId, finderId }) => [finderId, victimId]))
 		];
 
-		uniqueUserIds.forEach((userId) => {
-			db.query.userTable
-				.findFirst({ where: eq(userTable.id, userId) })
-				.then((user) => user && sendNotification(user.email));
-		});
+		db.query.userTable
+			.findMany({
+				where: inArray(userTable.id, uniqueUserIds)
+			})
+			.then((users) => {
+				users.forEach((user) => sendNotification(user.email));
+			})
+			.catch((err) => {
+				Logger.error(JSON.stringify(err), 'matching notification');
+			});
 	}
 }

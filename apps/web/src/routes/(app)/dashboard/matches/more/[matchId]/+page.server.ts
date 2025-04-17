@@ -1,6 +1,17 @@
 import { matchesPage } from '@shared/const';
-import { redirect, type ServerLoad } from '@sveltejs/kit';
-import { db, eq, itemTable, matchedTable, or, userTable, type Item, type User } from 'db';
+import { error, redirect, type Actions, type ServerLoad } from '@sveltejs/kit';
+import {
+	db,
+	eq,
+	inArray,
+	itemTable,
+	matchedTable,
+	or,
+	unmatchedTable,
+	userTable,
+	type Item,
+	type User
+} from 'db';
 import type { MatchStates } from 'utils';
 
 type MatchContext = {
@@ -22,7 +33,7 @@ async function validateAccess(matchId: string, userId: string): Promise<MatchCon
 
 	const match = joinResult.find((i) => i.item.userId === userId);
 
-	if (!match) redirect(303, matchesPage);
+	if (!match) error(403);
 
 	const found = joinResult.find((i) => i.item.isFound)!.item;
 	const lost = joinResult.find((i) => !i.item.isFound)!.item;
@@ -34,6 +45,7 @@ async function validateAccess(matchId: string, userId: string): Promise<MatchCon
 		lostItem: lost
 	};
 }
+
 async function handleLost(ctx: MatchContext) {
 	const newCtx = { state: ctx.state, isFound: ctx.isFound };
 	if (ctx.state == 'validated') {
@@ -58,4 +70,31 @@ export const load: ServerLoad = async ({ locals, params }) => {
 	const matchContext = await validateAccess(matchId, userId);
 	if (matchContext.isFound) return await handleFound(matchContext);
 	return await handleLost(matchContext);
+};
+
+export const actions: Actions = {
+	validate: async ({ locals, params }) => {
+		const matchId = params.matchId!;
+		const userId = locals.user!.id;
+		const matchContext = await validateAccess(matchId, userId);
+		if (!matchContext.isFound) error(403);
+		await db.update(matchedTable).set({ state: 'validated' }).where(eq(matchedTable.id, matchId));
+	},
+	reject: async ({ locals, params }) => {
+		const matchId = params.matchId!;
+		const userId = locals.user!.id;
+		const matchContext = await validateAccess(matchId, userId);
+		if (!matchContext.isFound) error(403);
+		await db.transaction(async (tx) => {
+			await tx.delete(matchedTable).where(eq(matchedTable.id, matchId));
+			await tx
+				.update(itemTable)
+				.set({ state: 'idle' })
+				.where(inArray(itemTable.id, [matchContext.foundItem.id, matchContext.lostItem.id]));
+			await tx
+				.insert(unmatchedTable)
+				.values({ foundItemId: matchContext.foundItem.id, lostItemId: matchContext.lostItem.id });
+		});
+		redirect(303, matchesPage);
+	}
 };

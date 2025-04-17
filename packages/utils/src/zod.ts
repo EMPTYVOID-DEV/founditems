@@ -17,8 +17,8 @@ export const itemMetaDataSchema = z
 export const rawAddressSchema = z.object({
 	id: z.number(),
 	name: z.string(),
-	longtitude: z.string(),
-	latitude: z.string(),
+	longtitude: z.number(),
+	latitude: z.number(),
 	rank: z.number().min(1).max(30)
 });
 

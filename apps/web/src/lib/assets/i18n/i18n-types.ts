@@ -993,6 +993,14 @@ type RootTranslation = {
 		 * ش​ك​ر​ً​ا​ ​ل​ك​ ​ع​ل​ى​ ​م​ج​ه​و​د​ك​ ​ف​ي​ ​ا​ل​ع​ث​و​ر​ ​ع​ل​ى​ ​ا​ل​ش​ي​ء
 		 */
 		validatedFound: string
+		/**
+		 * ت​ا​ي​د​ ​ت​ط​ا​ب​ق
+		 */
+		validateMatch: string
+		/**
+		 * ر​ف​ض​ ​ت​ط​ا​ب​ق
+		 */
+		rejectMatch: string
 	}
 }
 
@@ -1970,6 +1978,14 @@ export type TranslationFunctions = {
 		 * شكرًا لك على مجهودك في العثور على الشيء
 		 */
 		validatedFound: () => LocalizedString
+		/**
+		 * تايد تطابق
+		 */
+		validateMatch: () => LocalizedString
+		/**
+		 * رفض تطابق
+		 */
+		rejectMatch: () => LocalizedString
 	}
 }
 
