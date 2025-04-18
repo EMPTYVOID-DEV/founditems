@@ -5,10 +5,9 @@ import type { NominatimResponse, RawAddress } from 'utils';
 
 const SIGNIFICANT_DIGITS = 3;
 
-const truncateCoordinate = (coord: string): number => {
-	const num = parseFloat(coord);
+const truncateCoordinate = (coord: number) => {
 	const multiplier = 10 ** SIGNIFICANT_DIGITS;
-	return Math.trunc(num * multiplier) / multiplier;
+	return Math.trunc(coord * multiplier) / multiplier;
 };
 
 export const GET: RequestHandler = async ({ fetch, params, locals }) => {
@@ -26,8 +25,8 @@ export const GET: RequestHandler = async ({ fetch, params, locals }) => {
 		.filter((el) => el.place_rank >= 16)
 		.map((el) => ({
 			id: el.osm_id,
-			latitude: el.lat,
-			longtitude: el.lon,
+			latitude: parseFloat(el.lat),
+			longtitude: parseFloat(el.lon),
 			name: el.display_name,
 			rank: el.place_rank
 		}));

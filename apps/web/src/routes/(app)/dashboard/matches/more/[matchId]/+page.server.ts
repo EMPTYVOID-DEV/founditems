@@ -1,4 +1,5 @@
 import { matchesPage } from '@shared/const';
+import type { UserContact } from '@shared/types';
 import { error, redirect, type Actions, type ServerLoad } from '@sveltejs/kit';
 import {
 	db,
@@ -48,20 +49,22 @@ async function validateAccess(matchId: string, userId: string): Promise<MatchCon
 
 async function handleLost(ctx: MatchContext) {
 	const newCtx = { state: ctx.state, isFound: ctx.isFound };
-	if (ctx.state == 'validated') {
-		const finder = (await db.query.userTable.findFirst({
-			where: eq(userTable.id, ctx.foundItem.userId),
-			columns: { password: false, verified: false, id: false }
-		}))!;
-		return { ctx: { ...newCtx, finder } };
-	}
-	return { ctx: newCtx };
+	if (ctx.state == 'idle') return { ctx: newCtx };
+	const finderContact: UserContact = (await db.query.userTable.findFirst({
+		where: eq(userTable.id, ctx.foundItem.userId),
+		columns: { password: false, verified: false, id: false }
+	}))!;
+	return { ctx: { ...newCtx, finderContact } };
 }
 
 async function handleFound(ctx: MatchContext) {
 	const newCtx = { state: ctx.state, isFound: ctx.isFound };
 	if (ctx.state == 'idle') return { ctx: { ...newCtx, lostItem: ctx.lostItem } };
-	return { ctx: newCtx };
+	const victimContact: UserContact = (await db.query.userTable.findFirst({
+		where: eq(userTable.id, ctx.lostItem.userId),
+		columns: { password: false, verified: false, id: false }
+	}))!;
+	return { ctx: { ...newCtx, victimContact } };
 }
 
 export const load: ServerLoad = async ({ locals, params }) => {

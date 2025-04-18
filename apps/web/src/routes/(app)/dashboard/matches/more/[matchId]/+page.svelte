@@ -4,13 +4,15 @@
 	import IdleLost from '@containers/moreMatch/idleLost.svelte';
 	import ValidatedFound from '@containers/moreMatch/validatedFound.svelte';
 	import ValidatedLost from '@containers/moreMatch/validatedLost.svelte';
+	import type { UserContact } from '@shared/types.js';
 	import type { User, Item } from 'db';
 	import type { MatchStates } from 'utils';
 
 	type MatchContext = {
 		state: MatchStates;
 		isFound: boolean;
-		finder?: Omit<User, 'password' | 'verified' | 'id'> | undefined;
+		finderContact?: UserContact;
+		victimContact?: UserContact;
 		lostItem?: Item | undefined;
 	};
 
@@ -23,10 +25,10 @@
 	{#if !ctx.isFound && ctx.state == 'idle'}
 		<IdleLost />
 	{:else if !ctx.isFound && ctx.state == 'validated'}
-		<ValidatedLost finderInfo={ctx.finder!} />
+		<ValidatedLost finderContact={ctx.finderContact!} />
 	{:else if ctx.isFound && ctx.state == 'idle'}
 		<IdleFound lostItem={ctx.lostItem!} />
 	{:else}
-		<ValidatedFound />
+		<ValidatedFound victimContact={ctx.victimContact!} />
 	{/if}
 </div>

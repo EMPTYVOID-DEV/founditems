@@ -5,11 +5,7 @@
 	import { PostDataInstance } from './postData.svelte';
 	import DatePicker from '../other/datePicker.svelte';
 	import Input from '@components/shadcn/input/input.svelte';
-
-	function formatDate(date: Date | null) {
-		if (date) return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
-		return '';
-	}
+	import { formatDate } from '@client/utils.svelte';
 </script>
 
 {#snippet selectSnippet(options: string[], name: string)}
@@ -47,7 +43,7 @@
 	{@const translationKey = name as keyof Translation['metaData']}
 	<div class="flex flex-col gap-1">
 		<span class="text-small capitalize">{$svelteLL.metaData[translationKey]()}</span>
-		<DatePicker setDate={(val) => PostDataInstance.setMetaData(name, formatDate(val))} />
+		<DatePicker setDate={(val) => val && PostDataInstance.setMetaData(name, formatDate(val))} />
 	</div>
 {/snippet}
 

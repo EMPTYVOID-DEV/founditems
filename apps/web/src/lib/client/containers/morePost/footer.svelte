@@ -11,7 +11,7 @@
 		<Timer class="h-5 w-5" />
 		{$svelteLL.general.date()}
 	</span>
-	<span>{formatDate(date)}</span>
+	<span>{formatDate(date, true)}</span>
 </div>
 <div class="flex w-fit flex-col gap-1">
 	<span class="flex items-center gap-1 font-bold capitalize">

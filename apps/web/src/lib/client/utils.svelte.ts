@@ -60,10 +60,12 @@ export function getObjectProperty<A>(obj: Record<string, A>, target: string) {
 	return null;
 }
 
-export function formatDate(date: Date) {
+export function formatDate(date: Date, includeHours: boolean = false) {
 	const year = date.getFullYear();
 	const day = String(date.getDate()).padStart(2, '0');
 	const month = String(date.getMonth() + 1).padStart(2, '0');
-
-	return `${year}/${day}/${month}`;
+	const hours = date.getHours();
+	let formattedDate = `${year}/${day}/${month}`;
+	if (includeHours) formattedDate = `${formattedDate}:${hours}`;
+	return formattedDate;
 }
