@@ -32,6 +32,46 @@ type RootTranslation = {
 		 */
 		green: string
 		/**
+		 * أ​س​و​د
+		 */
+		black: string
+		/**
+		 * أ​ب​ي​ض
+		 */
+		white: string
+		/**
+		 * ر​م​ا​د​ي
+		 */
+		gray: string
+		/**
+		 * ف​ض​ي
+		 */
+		silver: string
+		/**
+		 * ذ​ه​ب​ي
+		 */
+		gold: string
+		/**
+		 * و​ر​د​ي
+		 */
+		pink: string
+		/**
+		 * ب​ن​ف​س​ج​ي
+		 */
+		purple: string
+		/**
+		 * ب​ر​ت​ق​ا​ل​ي
+		 */
+		orange: string
+		/**
+		 * أ​ص​ف​ر
+		 */
+		yellow: string
+		/**
+		 * ب​ن​ي
+		 */
+		brown: string
+		/**
 		 * ج​د​ي​د​ ​م​ع​ ​ا​ل​ب​ط​ا​ق​ة
 		 */
 		newWithTicket: string
@@ -68,6 +108,14 @@ type RootTranslation = {
 		 */
 		tennisBall: string
 		/**
+		 * ك​ر​ة​ ​ت​ن​س​ ​ط​ا​و​ل​ة
+		 */
+		pingPongBall: string
+		/**
+		 * ك​ر​ة​ ​غ​و​ل​ف
+		 */
+		golfBall: string
+		/**
 		 * د​ر​ا​ج​ة​ ​ه​و​ا​ئ​ي​ة
 		 */
 		bicycle: string
@@ -79,6 +127,18 @@ type RootTranslation = {
 		 * د​ر​ا​ج​ة​ ​ن​ا​ر​ي​ة
 		 */
 		motorcycle: string
+		/**
+		 * د​ر​ا​ج​ة​ ​ك​ه​ر​ب​ا​ئ​ي​ة
+		 */
+		electricBike: string
+		/**
+		 * د​ر​ا​ج​ة​ ​ج​ب​ل​ي​ة
+		 */
+		mountainBike: string
+		/**
+		 * د​ر​ا​ج​ة​ ​ط​ر​ي​ق
+		 */
+		roadBike: string
 		/**
 		 * ج​ا​ي​ن​ت
 		 */
@@ -92,6 +152,14 @@ type RootTranslation = {
 		 */
 		schwinn: string
 		/**
+		 * س​ب​ي​ش​ي​ا​ل​ا​ي​ز​د
+		 */
+		specialized: string
+		/**
+		 * ك​ا​ن​و​ن​د​ي​ل
+		 */
+		cannondale: string
+		/**
 		 * ي​ا​م​ا​ه​ا
 		 */
 		yamaha: string
@@ -99,6 +167,18 @@ type RootTranslation = {
 		 * ه​و​ن​د​ا
 		 */
 		honda: string
+		/**
+		 * س​و​ز​و​ك​ي
+		 */
+		suzuki: string
+		/**
+		 * ك​ا​و​ا​س​ا​ك​ي
+		 */
+		kawasaki: string
+		/**
+		 * ه​ا​ر​ل​ي​ ​د​ي​ف​ي​د​س​و​ن
+		 */
+		harleyDavidson: string
 		/**
 		 * ر​و​س​ي​ن​ي​و​ل
 		 */
@@ -116,6 +196,22 @@ type RootTranslation = {
 		 */
 		blackDiamond: string
 		/**
+		 * ف​و​ل​ك​ل
+		 */
+		volkl: string
+		/**
+		 * ك​ي​ ​2
+		 */
+		k2: string
+		/**
+		 * د​ي​ن​ا​س​ت​ا​ر
+		 */
+		dynastar: string
+		/**
+		 * إ​ي​ل​ا​ن
+		 */
+		elan: string
+		/**
 		 * و​ي​ل​س​و​ن
 		 */
 		wilson: string
@@ -132,6 +228,18 @@ type RootTranslation = {
 		 */
 		yonex: string
 		/**
+		 * ب​ر​ي​ن​س
+		 */
+		prince: string
+		/**
+		 * د​ا​ن​ل​و​ب
+		 */
+		dunlop: string
+		/**
+		 * ت​ك​ن​ي​ف​ا​ي​ب​ر
+		 */
+		tecnifibre: string
+		/**
 		 * خ​و​ذ​ة​ ​د​ر​ا​ج​ة​ ​ه​و​ا​ئ​ي​ة
 		 */
 		bicycleHelmet: string
@@ -143,6 +251,14 @@ type RootTranslation = {
 		 * خ​و​ذ​ة​ ​د​ر​ا​ج​ة​ ​ن​ا​ر​ي​ة
 		 */
 		motorcycleHelmet: string
+		/**
+		 * خ​و​ذ​ة​ ​ت​ز​ل​ج​ ​ع​ل​ى​ ​ا​ل​أ​ل​و​ا​ح
+		 */
+		skateboardHelmet: string
+		/**
+		 * خ​و​ذ​ة​ ​ت​س​ل​ق​ ​ا​ل​ص​خ​و​ر
+		 */
+		rockClimbingHelmet: string
 		/**
 		 * س​و​ن​ي
 		 */
@@ -160,6 +276,22 @@ type RootTranslation = {
 		 */
 		gopro: string
 		/**
+		 * ب​ا​ن​ا​س​و​ن​ي​ك
+		 */
+		panasonic: string
+		/**
+		 * ف​و​ج​ي​ ​ف​ي​ل​م
+		 */
+		fujifilm: string
+		/**
+		 * أ​و​ل​ي​م​ب​و​س
+		 */
+		olympus: string
+		/**
+		 * ب​ل​ا​ك​ ​م​ا​ج​ي​ك
+		 */
+		blackmagic: string
+		/**
 		 * س​م​ا​ع​ا​ت​ ​ر​أ​س
 		 */
 		headphones: string
@@ -172,6 +304,38 @@ type RootTranslation = {
 		 */
 		earphones: string
 		/**
+		 * م​ك​ب​ر​ا​ت​ ​ص​و​ت
+		 */
+		speakers: string
+		/**
+		 * م​ي​ك​ر​و​ف​و​ن
+		 */
+		microphone: string
+		/**
+		 * ب​و​ز
+		 */
+		bose: string
+		/**
+		 * س​ن​ه​ا​ي​ز​ر
+		 */
+		sennheiser: string
+		/**
+		 * أ​و​د​ي​و​ ​ت​ك​ن​ي​ك​ا
+		 */
+		audioTechnica: string
+		/**
+		 * ب​ا​ي​ر​د​ا​ي​ن​ا​م​ي​ك
+		 */
+		beyerdynamic: string
+		/**
+		 * ج​ي​ ​ب​ي​ ​إ​ل
+		 */
+		jbl: string
+		/**
+		 * ب​ي​ت​س
+		 */
+		beats: string
+		/**
 		 * م​ش​غ​ل​ ​M​P​3
 		 */
 		mp3Player: string
@@ -183,6 +347,18 @@ type RootTranslation = {
 		 * ك​ا​م​ي​ر​ا​ ​ر​ق​م​ي​ة
 		 */
 		digitalCamera: string
+		/**
+		 * ذ​ا​ك​ر​ة​ ​ف​ل​ا​ش
+		 */
+		flashDrive: string
+		/**
+		 * ب​ن​ك​ ​ا​ل​ط​ا​ق​ة
+		 */
+		powerBank: string
+		/**
+		 * م​ك​ب​ر​ ​ص​و​ت​ ​ب​ل​و​ت​و​ث
+		 */
+		bluetoothSpeaker: string
 		/**
 		 * U​S​B​-​C
 		 */
@@ -199,6 +375,18 @@ type RootTranslation = {
 		 * ل​ا​س​ل​ك​ي
 		 */
 		wireless: string
+		/**
+		 * U​S​B​-​A
+		 */
+		usbA: string
+		/**
+		 * T​y​p​e​-​C
+		 */
+		typeC: string
+		/**
+		 * م​ا​غ​ ​س​ي​ف
+		 */
+		magsafe: string
 		/**
 		 * أ​ب​ل
 		 */
@@ -220,9 +408,37 @@ type RootTranslation = {
 		 */
 		asus: string
 		/**
+		 * إ​ي​س​ر
+		 */
+		acer: string
+		/**
+		 * إ​م​ ​إ​س​ ​آ​ي
+		 */
+		msi: string
+		/**
+		 * م​ا​ي​ك​ر​و​س​و​ف​ت
+		 */
+		microsoft: string
+		/**
+		 * ر​ا​ي​ز​ر
+		 */
+		razer: string
+		/**
 		 * ك​ي​ن​د​ل
 		 */
 		kindle: string
+		/**
+		 * س​ا​ن​د​س​ك
+		 */
+		sandisk: string
+		/**
+		 * أ​ن​ك​ر
+		 */
+		anker: string
+		/**
+		 * ج​ا​ر​م​ن
+		 */
+		garmin: string
 		/**
 		 * ت​ا​ب​ل​ت
 		 */
@@ -236,17 +452,37 @@ type RootTranslation = {
 		 */
 		amazon: string
 		/**
+		 * ه​و​ا​و​ي
+		 */
+		huawei: string
+		/**
+		 * ش​ي​ا​و​م​ي
+		 */
+		xiaomi: string
+		/**
 		 * ف​ي​ت​ب​ي​ت
 		 */
 		fitbit: string
 		/**
-		 * ج​ا​ر​م​ن
+		 * ف​و​س​ي​ل
 		 */
-		garmin: string
+		fossil: string
+		/**
+		 * أ​م​ا​ز​ف​ي​ت
+		 */
+		amazfit: string
+		/**
+		 * ب​و​ل​ا​ر
+		 */
+		polar: string
 		/**
 		 * ن​ي​ن​ت​ن​د​و
 		 */
 		nintendo: string
+		/**
+		 * ف​ا​ل​ف
+		 */
+		valve: string
 		/**
 		 * غ​و​غ​ل
 		 */
@@ -256,6 +492,18 @@ type RootTranslation = {
 		 */
 		onePlus: string
 		/**
+		 * أ​و​ب​و
+		 */
+		oppo: string
+		/**
+		 * م​و​ت​و​ر​و​ل​ا
+		 */
+		motorola: string
+		/**
+		 * ن​و​ك​ي​ا
+		 */
+		nokia: string
+		/**
 		 * ا​ل​و​ل​ا​ي​ا​ت​ ​ا​ل​م​ت​ح​د​ة
 		 */
 		unitedStates: string
@@ -263,6 +511,10 @@ type RootTranslation = {
 		 * ك​ن​د​ا
 		 */
 		canada: string
+		/**
+		 * ا​ل​م​ك​س​ي​ك
+		 */
+		mexico: string
 		/**
 		 * ا​ل​م​م​ل​ك​ة​ ​ا​ل​م​ت​ح​د​ة
 		 */
@@ -276,6 +528,70 @@ type RootTranslation = {
 		 */
 		france: string
 		/**
+		 * إ​س​ب​ا​ن​ي​ا
+		 */
+		spain: string
+		/**
+		 * إ​ي​ط​ا​ل​ي​ا
+		 */
+		italy: string
+		/**
+		 * ه​و​ل​ن​د​ا
+		 */
+		netherlands: string
+		/**
+		 * ا​ل​س​و​ي​د
+		 */
+		sweden: string
+		/**
+		 * ا​ل​ن​ر​و​ي​ج
+		 */
+		norway: string
+		/**
+		 * ا​ل​د​ن​م​ا​ر​ك
+		 */
+		denmark: string
+		/**
+		 * ف​ن​ل​ن​د​ا
+		 */
+		finland: string
+		/**
+		 * س​و​ي​س​ر​ا
+		 */
+		switzerland: string
+		/**
+		 * ا​ل​ن​م​س​ا
+		 */
+		austria: string
+		/**
+		 * ب​ل​ج​ي​ك​ا
+		 */
+		belgium: string
+		/**
+		 * ب​و​ل​ن​د​ا
+		 */
+		poland: string
+		/**
+		 * ر​و​س​ي​ا
+		 */
+		russia: string
+		/**
+		 * ا​ل​ي​و​ن​ا​ن
+		 */
+		greece: string
+		/**
+		 * ا​ل​ب​ر​ت​غ​ا​ل
+		 */
+		portugal: string
+		/**
+		 * أ​ي​ر​ل​ن​د​ا
+		 */
+		ireland: string
+		/**
+		 * ج​م​ه​و​ر​ي​ة​ ​ا​ل​ت​ش​ي​ك
+		 */
+		czechRepublic: string
+		/**
 		 * ا​ل​ي​ا​ب​ا​ن
 		 */
 		japan: string
@@ -284,17 +600,133 @@ type RootTranslation = {
 		 */
 		china: string
 		/**
+		 * ا​ل​ه​ن​د
+		 */
+		india: string
+		/**
+		 * ك​و​ر​ي​ا​ ​ا​ل​ج​ن​و​ب​ي​ة
+		 */
+		southKorea: string
+		/**
+		 * س​ن​غ​ا​ف​و​ر​ة
+		 */
+		singapore: string
+		/**
+		 * ت​ا​ي​ل​ا​ن​د
+		 */
+		thailand: string
+		/**
+		 * م​ا​ل​ي​ز​ي​ا
+		 */
+		malaysia: string
+		/**
+		 * إ​ن​د​و​ن​ي​س​ي​ا
+		 */
+		indonesia: string
+		/**
+		 * ا​ل​ف​ل​ب​ي​ن
+		 */
+		philippines: string
+		/**
+		 * ف​ي​ت​ن​ا​م
+		 */
+		vietnam: string
+		/**
+		 * إ​س​ر​ا​ئ​ي​ل
+		 */
+		israel: string
+		/**
+		 * ا​ل​م​م​ل​ك​ة​ ​ا​ل​ع​ر​ب​ي​ة​ ​ا​ل​س​ع​و​د​ي​ة
+		 */
+		saudiArabia: string
+		/**
+		 * ا​ل​إ​م​ا​ر​ا​ت​ ​ا​ل​ع​ر​ب​ي​ة​ ​ا​ل​م​ت​ح​د​ة
+		 */
+		uae: string
+		/**
+		 * ت​ر​ك​ي​ا
+		 */
+		turkey: string
+		/**
 		 * أ​س​ت​ر​ا​ل​ي​ا
 		 */
 		australia: string
+		/**
+		 * ن​ي​و​ز​ي​ل​ن​د​ا
+		 */
+		newZealand: string
+		/**
+		 * ف​ي​ج​ي
+		 */
+		fiji: string
 		/**
 		 * ا​ل​ب​ر​ا​ز​ي​ل
 		 */
 		brazil: string
 		/**
-		 * ا​ل​ه​ن​د
+		 * ا​ل​أ​ر​ج​ن​ت​ي​ن
 		 */
-		india: string
+		argentina: string
+		/**
+		 * ت​ش​ي​ل​ي
+		 */
+		chile: string
+		/**
+		 * ك​و​ل​و​م​ب​ي​ا
+		 */
+		colombia: string
+		/**
+		 * ب​ي​ر​و
+		 */
+		peru: string
+		/**
+		 * ف​ن​ز​و​ي​ل​ا
+		 */
+		venezuela: string
+		/**
+		 * ا​ل​إ​ك​و​ا​د​و​ر
+		 */
+		ecuador: string
+		/**
+		 * ا​ل​أ​و​ر​و​غ​و​ا​ي
+		 */
+		uruguay: string
+		/**
+		 * ج​ن​و​ب​ ​أ​ف​ر​ي​ق​ي​ا
+		 */
+		southAfrica: string
+		/**
+		 * م​ص​ر
+		 */
+		egypt: string
+		/**
+		 * ن​ي​ج​ي​ر​ي​ا
+		 */
+		nigeria: string
+		/**
+		 * ك​ي​ن​ي​ا
+		 */
+		kenya: string
+		/**
+		 * ا​ل​م​غ​ر​ب
+		 */
+		morocco: string
+		/**
+		 * غ​ا​ن​ا
+		 */
+		ghana: string
+		/**
+		 * إ​ث​ي​و​ب​ي​ا
+		 */
+		ethiopia: string
+		/**
+		 * ت​و​ن​س
+		 */
+		tunisia: string
+		/**
+		 * ا​ل​ج​ز​ا​ئ​ر
+		 */
+		algeria: string
 	}
 	metaData: {
 		/**
@@ -1023,6 +1455,46 @@ export type TranslationFunctions = {
 		 */
 		green: () => LocalizedString
 		/**
+		 * أسود
+		 */
+		black: () => LocalizedString
+		/**
+		 * أبيض
+		 */
+		white: () => LocalizedString
+		/**
+		 * رمادي
+		 */
+		gray: () => LocalizedString
+		/**
+		 * فضي
+		 */
+		silver: () => LocalizedString
+		/**
+		 * ذهبي
+		 */
+		gold: () => LocalizedString
+		/**
+		 * وردي
+		 */
+		pink: () => LocalizedString
+		/**
+		 * بنفسجي
+		 */
+		purple: () => LocalizedString
+		/**
+		 * برتقالي
+		 */
+		orange: () => LocalizedString
+		/**
+		 * أصفر
+		 */
+		yellow: () => LocalizedString
+		/**
+		 * بني
+		 */
+		brown: () => LocalizedString
+		/**
 		 * جديد مع البطاقة
 		 */
 		newWithTicket: () => LocalizedString
@@ -1059,6 +1531,14 @@ export type TranslationFunctions = {
 		 */
 		tennisBall: () => LocalizedString
 		/**
+		 * كرة تنس طاولة
+		 */
+		pingPongBall: () => LocalizedString
+		/**
+		 * كرة غولف
+		 */
+		golfBall: () => LocalizedString
+		/**
 		 * دراجة هوائية
 		 */
 		bicycle: () => LocalizedString
@@ -1070,6 +1550,18 @@ export type TranslationFunctions = {
 		 * دراجة نارية
 		 */
 		motorcycle: () => LocalizedString
+		/**
+		 * دراجة كهربائية
+		 */
+		electricBike: () => LocalizedString
+		/**
+		 * دراجة جبلية
+		 */
+		mountainBike: () => LocalizedString
+		/**
+		 * دراجة طريق
+		 */
+		roadBike: () => LocalizedString
 		/**
 		 * جاينت
 		 */
@@ -1083,6 +1575,14 @@ export type TranslationFunctions = {
 		 */
 		schwinn: () => LocalizedString
 		/**
+		 * سبيشيالايزد
+		 */
+		specialized: () => LocalizedString
+		/**
+		 * كانونديل
+		 */
+		cannondale: () => LocalizedString
+		/**
 		 * ياماها
 		 */
 		yamaha: () => LocalizedString
@@ -1090,6 +1590,18 @@ export type TranslationFunctions = {
 		 * هوندا
 		 */
 		honda: () => LocalizedString
+		/**
+		 * سوزوكي
+		 */
+		suzuki: () => LocalizedString
+		/**
+		 * كاواساكي
+		 */
+		kawasaki: () => LocalizedString
+		/**
+		 * هارلي ديفيدسون
+		 */
+		harleyDavidson: () => LocalizedString
 		/**
 		 * روسينيول
 		 */
@@ -1107,6 +1619,22 @@ export type TranslationFunctions = {
 		 */
 		blackDiamond: () => LocalizedString
 		/**
+		 * فولكل
+		 */
+		volkl: () => LocalizedString
+		/**
+		 * كي 2
+		 */
+		k2: () => LocalizedString
+		/**
+		 * ديناستار
+		 */
+		dynastar: () => LocalizedString
+		/**
+		 * إيلان
+		 */
+		elan: () => LocalizedString
+		/**
 		 * ويلسون
 		 */
 		wilson: () => LocalizedString
@@ -1123,6 +1651,18 @@ export type TranslationFunctions = {
 		 */
 		yonex: () => LocalizedString
 		/**
+		 * برينس
+		 */
+		prince: () => LocalizedString
+		/**
+		 * دانلوب
+		 */
+		dunlop: () => LocalizedString
+		/**
+		 * تكنيفايبر
+		 */
+		tecnifibre: () => LocalizedString
+		/**
 		 * خوذة دراجة هوائية
 		 */
 		bicycleHelmet: () => LocalizedString
@@ -1134,6 +1674,14 @@ export type TranslationFunctions = {
 		 * خوذة دراجة نارية
 		 */
 		motorcycleHelmet: () => LocalizedString
+		/**
+		 * خوذة تزلج على الألواح
+		 */
+		skateboardHelmet: () => LocalizedString
+		/**
+		 * خوذة تسلق الصخور
+		 */
+		rockClimbingHelmet: () => LocalizedString
 		/**
 		 * سوني
 		 */
@@ -1151,6 +1699,22 @@ export type TranslationFunctions = {
 		 */
 		gopro: () => LocalizedString
 		/**
+		 * باناسونيك
+		 */
+		panasonic: () => LocalizedString
+		/**
+		 * فوجي فيلم
+		 */
+		fujifilm: () => LocalizedString
+		/**
+		 * أوليمبوس
+		 */
+		olympus: () => LocalizedString
+		/**
+		 * بلاك ماجيك
+		 */
+		blackmagic: () => LocalizedString
+		/**
 		 * سماعات رأس
 		 */
 		headphones: () => LocalizedString
@@ -1163,6 +1727,38 @@ export type TranslationFunctions = {
 		 */
 		earphones: () => LocalizedString
 		/**
+		 * مكبرات صوت
+		 */
+		speakers: () => LocalizedString
+		/**
+		 * ميكروفون
+		 */
+		microphone: () => LocalizedString
+		/**
+		 * بوز
+		 */
+		bose: () => LocalizedString
+		/**
+		 * سنهايزر
+		 */
+		sennheiser: () => LocalizedString
+		/**
+		 * أوديو تكنيكا
+		 */
+		audioTechnica: () => LocalizedString
+		/**
+		 * بايردايناميك
+		 */
+		beyerdynamic: () => LocalizedString
+		/**
+		 * جي بي إل
+		 */
+		jbl: () => LocalizedString
+		/**
+		 * بيتس
+		 */
+		beats: () => LocalizedString
+		/**
 		 * مشغل MP3
 		 */
 		mp3Player: () => LocalizedString
@@ -1174,6 +1770,18 @@ export type TranslationFunctions = {
 		 * كاميرا رقمية
 		 */
 		digitalCamera: () => LocalizedString
+		/**
+		 * ذاكرة فلاش
+		 */
+		flashDrive: () => LocalizedString
+		/**
+		 * بنك الطاقة
+		 */
+		powerBank: () => LocalizedString
+		/**
+		 * مكبر صوت بلوتوث
+		 */
+		bluetoothSpeaker: () => LocalizedString
 		/**
 		 * USB-C
 		 */
@@ -1190,6 +1798,18 @@ export type TranslationFunctions = {
 		 * لاسلكي
 		 */
 		wireless: () => LocalizedString
+		/**
+		 * USB-A
+		 */
+		usbA: () => LocalizedString
+		/**
+		 * Type-C
+		 */
+		typeC: () => LocalizedString
+		/**
+		 * ماغ سيف
+		 */
+		magsafe: () => LocalizedString
 		/**
 		 * أبل
 		 */
@@ -1211,9 +1831,37 @@ export type TranslationFunctions = {
 		 */
 		asus: () => LocalizedString
 		/**
+		 * إيسر
+		 */
+		acer: () => LocalizedString
+		/**
+		 * إم إس آي
+		 */
+		msi: () => LocalizedString
+		/**
+		 * مايكروسوفت
+		 */
+		microsoft: () => LocalizedString
+		/**
+		 * رايزر
+		 */
+		razer: () => LocalizedString
+		/**
 		 * كيندل
 		 */
 		kindle: () => LocalizedString
+		/**
+		 * ساندسك
+		 */
+		sandisk: () => LocalizedString
+		/**
+		 * أنكر
+		 */
+		anker: () => LocalizedString
+		/**
+		 * جارمن
+		 */
+		garmin: () => LocalizedString
 		/**
 		 * تابلت
 		 */
@@ -1227,17 +1875,37 @@ export type TranslationFunctions = {
 		 */
 		amazon: () => LocalizedString
 		/**
+		 * هواوي
+		 */
+		huawei: () => LocalizedString
+		/**
+		 * شياومي
+		 */
+		xiaomi: () => LocalizedString
+		/**
 		 * فيتبيت
 		 */
 		fitbit: () => LocalizedString
 		/**
-		 * جارمن
+		 * فوسيل
 		 */
-		garmin: () => LocalizedString
+		fossil: () => LocalizedString
+		/**
+		 * أمازفيت
+		 */
+		amazfit: () => LocalizedString
+		/**
+		 * بولار
+		 */
+		polar: () => LocalizedString
 		/**
 		 * نينتندو
 		 */
 		nintendo: () => LocalizedString
+		/**
+		 * فالف
+		 */
+		valve: () => LocalizedString
 		/**
 		 * غوغل
 		 */
@@ -1247,6 +1915,18 @@ export type TranslationFunctions = {
 		 */
 		onePlus: () => LocalizedString
 		/**
+		 * أوبو
+		 */
+		oppo: () => LocalizedString
+		/**
+		 * موتورولا
+		 */
+		motorola: () => LocalizedString
+		/**
+		 * نوكيا
+		 */
+		nokia: () => LocalizedString
+		/**
 		 * الولايات المتحدة
 		 */
 		unitedStates: () => LocalizedString
@@ -1254,6 +1934,10 @@ export type TranslationFunctions = {
 		 * كندا
 		 */
 		canada: () => LocalizedString
+		/**
+		 * المكسيك
+		 */
+		mexico: () => LocalizedString
 		/**
 		 * المملكة المتحدة
 		 */
@@ -1267,6 +1951,70 @@ export type TranslationFunctions = {
 		 */
 		france: () => LocalizedString
 		/**
+		 * إسبانيا
+		 */
+		spain: () => LocalizedString
+		/**
+		 * إيطاليا
+		 */
+		italy: () => LocalizedString
+		/**
+		 * هولندا
+		 */
+		netherlands: () => LocalizedString
+		/**
+		 * السويد
+		 */
+		sweden: () => LocalizedString
+		/**
+		 * النرويج
+		 */
+		norway: () => LocalizedString
+		/**
+		 * الدنمارك
+		 */
+		denmark: () => LocalizedString
+		/**
+		 * فنلندا
+		 */
+		finland: () => LocalizedString
+		/**
+		 * سويسرا
+		 */
+		switzerland: () => LocalizedString
+		/**
+		 * النمسا
+		 */
+		austria: () => LocalizedString
+		/**
+		 * بلجيكا
+		 */
+		belgium: () => LocalizedString
+		/**
+		 * بولندا
+		 */
+		poland: () => LocalizedString
+		/**
+		 * روسيا
+		 */
+		russia: () => LocalizedString
+		/**
+		 * اليونان
+		 */
+		greece: () => LocalizedString
+		/**
+		 * البرتغال
+		 */
+		portugal: () => LocalizedString
+		/**
+		 * أيرلندا
+		 */
+		ireland: () => LocalizedString
+		/**
+		 * جمهورية التشيك
+		 */
+		czechRepublic: () => LocalizedString
+		/**
 		 * اليابان
 		 */
 		japan: () => LocalizedString
@@ -1275,17 +2023,133 @@ export type TranslationFunctions = {
 		 */
 		china: () => LocalizedString
 		/**
+		 * الهند
+		 */
+		india: () => LocalizedString
+		/**
+		 * كوريا الجنوبية
+		 */
+		southKorea: () => LocalizedString
+		/**
+		 * سنغافورة
+		 */
+		singapore: () => LocalizedString
+		/**
+		 * تايلاند
+		 */
+		thailand: () => LocalizedString
+		/**
+		 * ماليزيا
+		 */
+		malaysia: () => LocalizedString
+		/**
+		 * إندونيسيا
+		 */
+		indonesia: () => LocalizedString
+		/**
+		 * الفلبين
+		 */
+		philippines: () => LocalizedString
+		/**
+		 * فيتنام
+		 */
+		vietnam: () => LocalizedString
+		/**
+		 * إسرائيل
+		 */
+		israel: () => LocalizedString
+		/**
+		 * المملكة العربية السعودية
+		 */
+		saudiArabia: () => LocalizedString
+		/**
+		 * الإمارات العربية المتحدة
+		 */
+		uae: () => LocalizedString
+		/**
+		 * تركيا
+		 */
+		turkey: () => LocalizedString
+		/**
 		 * أستراليا
 		 */
 		australia: () => LocalizedString
+		/**
+		 * نيوزيلندا
+		 */
+		newZealand: () => LocalizedString
+		/**
+		 * فيجي
+		 */
+		fiji: () => LocalizedString
 		/**
 		 * البرازيل
 		 */
 		brazil: () => LocalizedString
 		/**
-		 * الهند
+		 * الأرجنتين
 		 */
-		india: () => LocalizedString
+		argentina: () => LocalizedString
+		/**
+		 * تشيلي
+		 */
+		chile: () => LocalizedString
+		/**
+		 * كولومبيا
+		 */
+		colombia: () => LocalizedString
+		/**
+		 * بيرو
+		 */
+		peru: () => LocalizedString
+		/**
+		 * فنزويلا
+		 */
+		venezuela: () => LocalizedString
+		/**
+		 * الإكوادور
+		 */
+		ecuador: () => LocalizedString
+		/**
+		 * الأوروغواي
+		 */
+		uruguay: () => LocalizedString
+		/**
+		 * جنوب أفريقيا
+		 */
+		southAfrica: () => LocalizedString
+		/**
+		 * مصر
+		 */
+		egypt: () => LocalizedString
+		/**
+		 * نيجيريا
+		 */
+		nigeria: () => LocalizedString
+		/**
+		 * كينيا
+		 */
+		kenya: () => LocalizedString
+		/**
+		 * المغرب
+		 */
+		morocco: () => LocalizedString
+		/**
+		 * غانا
+		 */
+		ghana: () => LocalizedString
+		/**
+		 * إثيوبيا
+		 */
+		ethiopia: () => LocalizedString
+		/**
+		 * تونس
+		 */
+		tunisia: () => LocalizedString
+		/**
+		 * الجزائر
+		 */
+		algeria: () => LocalizedString
 	}
 	metaData: {
 		/**

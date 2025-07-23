@@ -5,7 +5,6 @@
     "db:generate": "pnpm run --filter @founditems/db generate",
     "db:build": "pnpm run --filter @founditems/db build",
     "db:studio": "pnpm run --filter @founditems/db studio",
-    "mail:build": "pnpm run --filter @founditems/mail build",
     "utils:build": "pnpm run --filter @founditems/utils build",
     "web:dev": "pnpm run --filter @founditems/web dev",
     "web:build": "pnpm run --filter @founditems/web build",

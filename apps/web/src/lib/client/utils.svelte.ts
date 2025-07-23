@@ -65,7 +65,7 @@ export function formatDate(date: Date, includeHours: boolean = false) {
 	const day = String(date.getDate()).padStart(2, '0');
 	const month = String(date.getMonth() + 1).padStart(2, '0');
 	const hours = date.getHours();
-	let formattedDate = `${year}/${day}/${month}`;
+	let formattedDate = `${year}/${month}/${day}`;
 	if (includeHours) formattedDate = `${formattedDate}:${hours}`;
 	return formattedDate;
 }
