@@ -1,0 +1,96 @@
+services:
+  traefik:
+    image: traefik:v2.10
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - traefik_logs:/var/log
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+      - "--entrypoints.web.address=:80"
+      - "--log.level=DEBUG"
+      - "--log.filePath=/var/log/traefik.log"
+      - "--accesslog=true"
+      - "--accesslog.filepath=/var/log/access.log"
+      - "--accesslog.format=json"
+
+  web:
+    build:
+      context: ..
+      dockerfile: docker/web.dockerfile
+    env_file:
+      - ../env/web.env
+    restart: unless-stopped
+    networks:
+      - net
+    depends_on:
+      postgres:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.web-service.loadbalancer.server.port=3000"
+      - "traefik.http.routers.web.rule=Host(`web.${DOMAIN}`)"
+      - "traefik.http.routers.web.service=web-service"
+      - "traefik.http.routers.web.entrypoints=web"
+
+  api:
+    build:
+      context: ..
+      dockerfile: docker/api.dockerfile
+    env_file:
+      - ../env/api.env
+    restart: unless-stopped
+    volumes:
+      - api_storage:/app/store
+    networks:
+      - net
+    depends_on:
+      postgres:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.api-service.loadbalancer.server.port=3000"
+      - "traefik.http.routers.api.rule=Host(`api.${DOMAIN}`)"
+      - "traefik.http.routers.api.service=api-service"
+      - "traefik.http.routers.api.entrypoints=web"
+
+  migrator:
+    build:
+      context: ..
+      dockerfile: docker/migrator.dockerfile
+    env_file:
+      - ../env/migrator.env
+    networks:
+      - net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    env_file:
+      - ../env/db.env
+    expose:
+      - 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+networks:
+  net:
+
+volumes:
+  postgres_data:
+  api_storage:
+  traefik_logs:

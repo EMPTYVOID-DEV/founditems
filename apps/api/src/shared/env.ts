@@ -60,7 +60,7 @@ const envSchema = z.object({
 		.int()
 		.min(1, 'Port must be greater than 0')
 		.max(65535, 'Port must be less than or equal to 65535')
-		.default(3002),
+		.default(3000),
 
 	SMTP_REQUIRE_AUTH: z.coerce.boolean().default(false),
 

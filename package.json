@@ -13,7 +13,8 @@
     "web:check": "pnpm run --filter @founditems/web check",
     "api:dev": "pnpm run --filter @founditems/api dev",
     "api:build": "pnpm run --filter @founditems/api build",
-    "api:start": "pnpm run --filter @founditems/api start"
+    "api:start": "pnpm run --filter @founditems/api start",
+    "build-packages": "pnpm run db:build && pnpm run utils:build"
   },
   "workspaces": [
     "apps/*",

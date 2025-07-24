@@ -13,8 +13,7 @@
 		"studio": "drizzle-kit studio"
 	},
 	"files": [
-		"./dist/*",
-		"./drizzle/*"
+		"./dist/*"
 	],
 	"keywords": [],
 	"author": "",
