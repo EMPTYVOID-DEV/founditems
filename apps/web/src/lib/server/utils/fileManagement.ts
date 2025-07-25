@@ -1,15 +1,15 @@
-import { PUBLIC_API_HOST } from '$env/static/public';
+import { env } from '$env/dynamic/private';
 import { right } from 'fp-ts/lib/Either';
 import { extractJson, handleFetchError } from './general';
 
 export async function uploadAvatar(avatar: File, oldAvatar: string) {
 	if (oldAvatar != '') {
-		const deleteEndPoint = `${PUBLIC_API_HOST}/store/avatars/${oldAvatar}`;
+		const deleteEndPoint = `${env.API_HOST}/store/avatars/${oldAvatar}`;
 		const fetchPromise = fetch(deleteEndPoint, { method: 'DELETE' });
 		const res = await handleFetchError(fetchPromise);
 		if (res._tag == 'Left') return res;
 	}
-	const postEndPoint = `${PUBLIC_API_HOST}/store/avatars`;
+	const postEndPoint = `${env.API_HOST}/store/avatars`;
 	const fd = new FormData();
 	fd.append('avatar', avatar);
 	const fetchPromise = fetch(postEndPoint, { method: 'POST', body: fd });
@@ -20,7 +20,7 @@ export async function uploadAvatar(avatar: File, oldAvatar: string) {
 }
 
 export async function uploadProofs(proofs: File[]) {
-	const postEndPoint = `${PUBLIC_API_HOST}/store/proofs`;
+	const postEndPoint = `${env.API_HOST}/store/proofs`;
 	const fd = new FormData();
 	for (const proof of proofs) fd.append('proofs', proof);
 	const fetchPromise = fetch(postEndPoint, { method: 'POST', body: fd });
@@ -31,7 +31,7 @@ export async function uploadProofs(proofs: File[]) {
 }
 
 export async function deleteItemProofs(itemId: string) {
-	const deleteEndPoint = `${PUBLIC_API_HOST}/store/proofs/${itemId}`;
+	const deleteEndPoint = `${env.API_HOST}/store/proofs/${itemId}`;
 	const fetchPromise = fetch(deleteEndPoint, { method: 'DELETE' });
 	const res = await handleFetchError(fetchPromise);
 	if (res._tag == 'Left') return res;

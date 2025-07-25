@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_API_HOST } from '$env/static/public';
+	import { env } from '$env/dynamic/public';
 	import { svelteLL } from '@assets/i18n/i18n-svelte';
 	import * as Dialog from '@components/shadcn/dialog';
 	let { description, images }: { description: string; images: string[] } = $props();
@@ -17,7 +17,7 @@
 		<span class="font-bold capitalize">{$svelteLL.posts.itemImages()}</span>
 		<div class="flex gap-4">
 			{#each images as image}
-				{@const src = `${PUBLIC_API_HOST}/proofs/${image}`}
+				{@const src = `${env.PUBLIC_API_HOST}/proofs/${image}`}
 				<Dialog.Root>
 					<Dialog.Trigger>
 						<img

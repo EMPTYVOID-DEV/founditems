@@ -5,7 +5,7 @@ import imagesMap from '@assets/json/imagesMap.json';
 import { getObjectProperty } from '@client/utils.svelte';
 import { defaultMetaDataOption } from '@shared/const';
 import { pipe } from 'fp-ts/lib/function';
-import { PUBLIC_API_HOST } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 
 export class PostData {
 	category: string[] = $state([]);
@@ -98,7 +98,7 @@ export class PostData {
 
 	static getImageSrc(lvl: string) {
 		const name = getObjectProperty<string>(imagesMap, lvl);
-		return `${PUBLIC_API_HOST}/categories/${name}`;
+		return `${env.PUBLIC_API_HOST}/categories/${name}`;
 	}
 
 	static getSecondLvl(lvl1: string) {

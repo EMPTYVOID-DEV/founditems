@@ -1,5 +1,5 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
-import { MAPS_API } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { handleFetchError } from '@server/utils/general';
 import type { NominatimResponse, RawAddress } from 'utils';
 
@@ -14,7 +14,7 @@ export const GET: RequestHandler = async ({ fetch, params, locals }) => {
 	const address = params.address || '';
 	const locale = locals.locale;
 	const limits = 5;
-	const query = `${MAPS_API}/search?q=${address}&format=json&accept-language=${locale}&limit=${limits}`;
+	const query = `${env.MAPS_API}/search?q=${address}&format=json&accept-language=${locale}&limit=${limits}`;
 	const response = await handleFetchError(fetch(query));
 
 	if (response._tag == 'Left') return json([]);

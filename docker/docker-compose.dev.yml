@@ -47,6 +47,8 @@ services:
       - api_storage:/app/store
     networks:
       - net
+    expose:
+      - 3000
     depends_on:
       postgres:
         condition: service_healthy

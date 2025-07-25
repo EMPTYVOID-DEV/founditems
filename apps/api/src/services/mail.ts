@@ -6,7 +6,7 @@ export function sendEmail(email: string, subject: string, html: string) {
 	let settings: SMTPTransport.Options = {
 		host: zodEnv.SMTP_HOST,
 		port: zodEnv.SMTP_PORT,
-		secure: false
+		secure: zodEnv.NODE_ENV != 'dev'
 	};
 
 	if (zodEnv.SMTP_REQUIRE_AUTH)

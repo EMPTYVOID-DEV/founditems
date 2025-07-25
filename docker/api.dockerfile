@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base
+FROM node:20 AS base
 WORKDIR /monorepo
 
 RUN npm i -g pnpm
@@ -22,7 +22,7 @@ RUN pnpm deploy --filter @founditems/api api
 WORKDIR /monorepo/api
 RUN pnpm run build
 
-FROM node:20-alpine AS runner
+FROM node:20 AS runner
 WORKDIR /app
 
 COPY --from=base /monorepo/api/dist dist/

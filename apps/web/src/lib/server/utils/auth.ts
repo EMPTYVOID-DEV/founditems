@@ -4,7 +4,7 @@ import type { Session } from 'db';
 import { sha256 } from '@oslojs/crypto/sha2';
 import { encodeBase64url, encodeHexLowerCase } from '@oslojs/encoding';
 import { DAY_IN_MS, sessionCookieName } from '../const';
-import { dev } from '$app/environment';
+import { env } from '$env/dynamic/private';
 
 export function generateSessionToken() {
 	const bytes = crypto.getRandomValues(new Uint8Array(18));
@@ -79,7 +79,7 @@ export function setSessionTokenCookie(
 	cookies.set(sessionCookieName, token, {
 		expires: expiresAt,
 		httpOnly: true,
-		secure: !dev,
+		secure: env.MODE != 'dev',
 		path: '/'
 	});
 }

@@ -11,7 +11,7 @@ async function sendEmail(email: string, subject: string, html: string) {
 	let settings: SMTPTransport.Options = {
 		host: env.SMTP_HOST,
 		port: parseInt(env.SMTP_PORT),
-		secure: false
+		secure: env.MODE != 'dev'
 	};
 
 	if (env.SMTP_REQUIRE_AUTH == 'true')
