@@ -185,7 +185,7 @@ export class AlgorithmCycle {
 	private static removeMatchDuplicates(actions: CycleAction[]) {
 		const seen = new Map<string, CycleAction>();
 		for (const action of actions)
-			if (!seen.has(action.lostItemId)) seen.set(action.lostItemId, action);
+			if (!seen.has(action.foundItemId)) seen.set(action.foundItemId, action);
 		return Array.from(seen.values());
 	}
 
