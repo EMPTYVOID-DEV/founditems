@@ -1,0 +1,205 @@
+- name: Deploy VM for Docker Compose with Traefik
+  hosts: localhost
+  connection: local
+  collections:
+    - azure.azcollection
+  vars_files:
+    - group_vars/all/vars.yml
+    - group_vars/all/vault.yml
+  environment:
+    AZURE_CLIENT_ID: "{{ azure_client_id }}"
+    AZURE_SECRET: "{{ azure_secret }}"
+    AZURE_SUBSCRIPTION_ID: "{{ azure_subscription_id }}"
+    AZURE_TENANT: "{{ azure_tenant }}"
+
+  tasks:
+    - name: Create resource group
+      azure_rm_resourcegroup:
+        name: "{{ resource_group }}"
+        location: "{{ location }}"
+        state: present
+
+    - name: Create virtual network
+      azure_rm_virtualnetwork:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vnet_name }}"
+        address_prefixes: "10.0.0.0/16"
+        state: present
+
+    - name: Create subnet
+      azure_rm_subnet:
+        resource_group: "{{ resource_group }}"
+        virtual_network: "{{ vnet_name }}"
+        name: "{{ subnet_name }}"
+        address_prefix: "10.0.1.0/24"
+        state: present
+
+    - name: Create NSG
+      azure_rm_securitygroup:
+        resource_group: "{{ resource_group }}"
+        name: "{{ nsg_name }}"
+        rules:
+          - name: SSH
+            protocol: Tcp
+            destination_port_range: 22
+            access: Allow
+            priority: 1001
+            direction: Inbound
+          - name: HTTP
+            protocol: Tcp
+            destination_port_range: 80
+            access: Allow
+            priority: 1002
+            direction: Inbound
+          - name: HTTPS
+            protocol: Tcp
+            destination_port_range: 443
+            access: Allow
+            priority: 1003
+            direction: Inbound
+          - name: TraefikDashboard
+            protocol: Tcp
+            destination_port_range: 8080
+            access: Allow
+            priority: 1004
+            direction: Inbound
+
+    - name: Create public IP
+      azure_rm_publicipaddress:
+        resource_group: "{{ resource_group }}"
+        allocation_method: Static
+        name: "{{ public_ip_name }}"
+        domain_name: "{{ domain_name }}"
+        state: present
+
+    - name: Create NIC
+      azure_rm_networkinterface:
+        resource_group: "{{ resource_group }}"
+        name: "{{ nic_name }}"
+        virtual_network: "{{ vnet_name }}"
+        subnet_name: "{{ subnet_name }}"
+        security_group: "{{ nsg_name }}"
+        ip_configurations:
+          - name: "{{ nic_name }}-ipconfig"
+            public_ip_address_name: "{{ public_ip_name }}"
+            primary: true
+
+    - name: Create VM
+      azure_rm_virtualmachine:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_name }}"
+        vm_size: "{{ vm_size }}"
+        admin_username: "{{ admin_username }}"
+        ssh_password_enabled: false
+        ssh_public_keys:
+          - path: "/home/{{ admin_username }}/.ssh/authorized_keys"
+            key_data: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+        network_interfaces: "{{ nic_name }}"
+        image:
+          offer: 0001-com-ubuntu-server-jammy
+          publisher: Canonical
+          sku: 22_04-lts-gen2
+          version: latest
+        managed_disk_type: "Standard_LRS"
+        os_disk_size_gb: 30
+        state: present
+
+    - name: Get VM facts
+      azure_rm_publicipaddress_info:
+        resource_group: "{{ resource_group }}"
+        name: "{{ public_ip_name }}"
+      register: vm_ip
+
+    - name: Display connection info
+      debug:
+        msg:
+          - "VM Public IP: {{ vm_ip.publicipaddresses[0].ip_address }}"
+          - "Web App: http://web.{{ vm_ip.publicipaddresses[0].dns_settings.fqdn }}"
+          - "API: http://api.{{ vm_ip.publicipaddresses[0].dns_settings.fqdn }}"
+          - "Traefik Dashboard: http://{{ vm_ip.publicipaddresses[0].ip_address }}:8080"
+
+    - name: Add VM to inventory
+      add_host:
+        name: vm_host
+        ansible_host: "{{ vm_ip.publicipaddresses[0].ip_address }}"
+        ansible_user: "{{ admin_username }}"
+        vm_fqdn: "{{ vm_ip.publicipaddresses[0].dns_settings.fqdn }}"
+
+- name: Configure VM and deploy apps
+  hosts: vm_host
+  become: true
+  vars:
+    app_dir: "/opt/founditems"
+
+  tasks:
+    - name: Wait for SSH to be available
+      wait_for_connection:
+        delay: 30
+        timeout: 300
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
+        state: present
+
+    - name: Install Docker
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+        state: present
+
+    - name: Start and enable Docker
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add user to docker group
+      user:
+        name: "{{ admin_username }}"
+        groups: docker
+        append: yes
+
+    - name: Create app directory
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+
+    - name: Synchronize application files
+      synchronize:
+        src: "{{ playbook_dir }}/../"
+        dest: "{{ app_dir }}/"
+        rsync_opts:
+          - "--exclude=node_modules"
+          - "--exclude=.git"
+          - "--exclude=.cache"
+          - "--exclude=ansible"
+        perms: yes
+        delete: yes
+
+    - name: Start services with Docker Compose
+      command: docker compose -f docker/docker-compose.yml --env-file=env/global.env up -d
+      args:
+        chdir: "{{ app_dir }}"

@@ -1,0 +1,16 @@
+# Infrastructure Configuration
+resource_group: "founditems-rg"
+location: "North Europe"
+admin_username: "azureuser"
+domain_name: "founditems"
+
+# VM Configuration
+vm_size: "Standard_B1s"
+vm_name: "founditems-vm"
+
+# Network Configuration
+vnet_name: "founditems-vnet"
+subnet_name: "founditems-subnet"
+nsg_name: "founditems-nsg"
+nic_name: "founditems-nic"
+public_ip_name: "founditems-public-ip"

@@ -25,8 +25,14 @@ RUN pnpm run build
 FROM node:20 AS runner
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y git git-lfs && rm -rf /var/lib/apt/lists/*
+RUN git lfs install
+RUN mkdir -p .cache
+WORKDIR /app/.cache
+RUN git clone https://huggingface.co/Xenova/all-MiniLM-L6-v2
+
+WORKDIR /app
 COPY --from=base /monorepo/api/dist dist/
-COPY --from=base /monorepo/api/.cache .cache/
 COPY --from=base /monorepo/api/store store/
 COPY --from=base /monorepo/api/node_modules node_modules/
 COPY --from=base /monorepo/api/package.json .

@@ -25,4 +25,5 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 env
+.cache
 .vscode
